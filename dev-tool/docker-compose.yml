@@ -1,0 +1,13 @@
+version: '2.2'
+
+services:
+  db:
+    image: postgres:9
+    environment:
+      POSTGRES_DB: 'library'
+      POSTGRES_USER: 'shslibraryadmin'
+      POSTGRES_PASSWORD: 'shslibrary123'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ../library-ddl/sql:/docker-entrypoint-initdb.d:delegated
