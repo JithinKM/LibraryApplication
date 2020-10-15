@@ -2,8 +2,7 @@ package com.shs.LibraryApplication.controller;
 
 import com.shs.LibraryApplication.enums.ResponseStatus;
 import com.shs.LibraryApplication.models.BaseResponse;
-import com.shs.LibraryApplication.models.UserRequest;
-import com.shs.LibraryApplication.models.UserResponse;
+import com.shs.LibraryApplication.models.User;
 import com.shs.LibraryApplication.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,14 +53,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/registeriOXM5xKVYF")
-    public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest user) throws Exception {
+    public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
 
         return ResponseEntity.ok(userService.save(user));
     }
 
     @PostMapping(value = "/authenticate")
-    public ResponseEntity<BaseResponse> createAuthenticationToken(@RequestBody UserRequest userRequest)
-            throws Exception {
+    public ResponseEntity<BaseResponse> createAuthenticationToken(@RequestBody User user) throws Exception {
 
         return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "token", HOME_URL));
     }

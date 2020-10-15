@@ -1,10 +1,9 @@
 package com.shs.LibraryApplication.controller;
 
-import com.shs.LibraryApplication.models.AuthorCreationRequest;
-import com.shs.LibraryApplication.models.AuthorCreationResponse;
-import com.shs.LibraryApplication.service.AuthorService;
 import com.shs.LibraryApplication.enums.ResponseStatus;
+import com.shs.LibraryApplication.models.Author;
 import com.shs.LibraryApplication.models.BaseResponse;
+import com.shs.LibraryApplication.service.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class AuthorController {
      * @return created author information
      */
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse> createAuthor(@RequestBody final AuthorCreationRequest request) {
+    public ResponseEntity<BaseResponse> createAuthor(@RequestBody final Author request) {
 
         authorService.createAuthor(request);
 
@@ -60,7 +59,7 @@ public class AuthorController {
      * @return author information
      */
     @GetMapping("/{name}")
-    public AuthorCreationResponse getAuthor(@PathVariable(value = "name") String name) {
+    public Author getAuthor(@PathVariable(value = "name") String name) {
 
         return null;
     }

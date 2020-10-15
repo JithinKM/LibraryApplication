@@ -1,21 +1,11 @@
 package com.shs.LibraryApplication.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "author", schema = "library")
 public class AuthorEntity {
 
@@ -28,7 +18,37 @@ public class AuthorEntity {
     @Column
     private String penName;
 
-    @OneToMany(targetEntity = BookEntity.class)
-    private List<BookEntity> books = new ArrayList<>();
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPenName() {
+        return penName;
+    }
+
+    public void setPenName(String penName) {
+        this.penName = penName;
+    }
+
+    public AuthorEntity() {
+
+    }
+
+    public AuthorEntity(String id, String name, String penName) {
+        this.id = id;
+        this.name = name;
+        this.penName = penName;
+    }
 }

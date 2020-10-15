@@ -1,11 +1,10 @@
 package com.shs.LibraryApplication.service;
 
-import com.shs.LibraryApplication.utils.CommonUtility;
-import com.shs.LibraryApplication.enums.UserType;
 import com.shs.LibraryApplication.entity.UserEntity;
-import com.shs.LibraryApplication.models.UserRequest;
-import com.shs.LibraryApplication.models.UserResponse;
+import com.shs.LibraryApplication.enums.UserType;
+import com.shs.LibraryApplication.models.User;
 import com.shs.LibraryApplication.repository.UserRepository;
+import com.shs.LibraryApplication.utils.CommonUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse save(UserRequest user) {
+    public User save(User user) {
 
         UserEntity adminUser = new UserEntity();
         adminUser.setId(CommonUtility.generateRandomStringByUUID());
@@ -46,7 +45,8 @@ public class UserServiceImpl implements UserService {
         adminUser.setActive(Boolean.TRUE);
         UserEntity userEntity = userRepository.save(adminUser);
 
-        return new UserResponse(userEntity.getId(), userEntity.getUsername());
+        return new User(userEntity.getId(), userEntity.getName(), userEntity.getUsername(), userEntity.getStandard(),
+                userEntity.getPhone(), userEntity.getRole(), userEntity.getActive());
     }
 
 }

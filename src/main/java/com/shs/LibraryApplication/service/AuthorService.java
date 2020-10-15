@@ -1,10 +1,9 @@
 package com.shs.LibraryApplication.service;
 
-import com.shs.LibraryApplication.models.AuthorCreationRequest;
-import com.shs.LibraryApplication.models.AuthorCreationResponse;
+import com.shs.LibraryApplication.models.Author;
 
 public interface AuthorService {
 
-    AuthorCreationResponse createAuthor(AuthorCreationRequest request);
+    Author createAuthor(Author request);
 
 }

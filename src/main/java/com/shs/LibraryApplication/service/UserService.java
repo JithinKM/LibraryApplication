@@ -1,8 +1,7 @@
 package com.shs.LibraryApplication.service;
 
 import com.shs.LibraryApplication.entity.UserEntity;
-import com.shs.LibraryApplication.models.UserRequest;
-import com.shs.LibraryApplication.models.UserResponse;
+import com.shs.LibraryApplication.models.User;
 
 public interface UserService {
 
@@ -10,5 +9,5 @@ public interface UserService {
 
     UserEntity updateUserToken(final UserEntity user);
 
-    UserResponse save(UserRequest user);
+    User save(User user);
 }
