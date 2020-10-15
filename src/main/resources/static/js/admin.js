@@ -104,6 +104,34 @@ function addAuthor() {
         });
 }
 
+function editAuthor() {
+    showLoadingAnimation();
+    $.ajax({
+        contentType: 'application/json',
+        dataType: 'json',
+        type: 'POST',
+        url: '/author/edit/',
+        data: JSON.stringify({
+            id: $('#editId').val(),
+            name: $('#editName').val(),
+            penName: $('#editPenName').val()
+        }),
+        success: function(data) {
+            hideLoadingAnimation();
+            if (data.status == "SUCCESS") {
+                console.log(data);
+                window.location = data.message;
+            } else {
+                processAdminErrorMessage(data);
+            }
+        },
+        error: function(data) {
+            hideLoadingAnimation();
+            processAdminErrorMessage(JSON.parse(data.responseText));
+        }
+    });
+}
+
 function authorsListPageReady() {
     $("#author").addClass("active");
 
@@ -119,7 +147,26 @@ function authorsListPageReady() {
         submitHandler: function() {
             addAuthor();
         }
+    });
 
+    var validator = $("#authorEditForm").validate({
+        rules: {
+            "editName": {
+                required: true
+            },
+            "editPenName": {
+                required: true
+            }
+        },
+        submitHandler: function() {
+            editAuthor();
+        }
+    });
+
+    $(".author-edit").click(function(event) {
+        $("#editName").val($(event.target).siblings(".authorEditName").val());
+        $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
+        $("#editId").val($(event.target).siblings(".authorEditId").val());
     });
 
     $("#adminLoginEmail").focus();

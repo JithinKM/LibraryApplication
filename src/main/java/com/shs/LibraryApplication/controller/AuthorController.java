@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 import static com.shs.LibraryApplication.constants.LibraryConstants.AUTHOR_LIST_URL;
 
 @RestController
@@ -37,31 +39,34 @@ public class AuthorController {
     public ResponseEntity<BaseResponse> createAuthor(@RequestBody final Author request) {
 
         authorService.createAuthor(request);
-
         return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
     }
 
     @GetMapping("/list")
     public ModelAndView getAuthorsListPage(final ModelAndView model) {
+
+        final List<Author> authors = authorService.getAuthors();
+        model.addObject("authors", authors);
+        model.setViewName("authors-list");
+
+        return model;
+    }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView deleteAuthor(@PathVariable("id") String id,  final ModelAndView model) {
+
+        authorService.deleteAuthor(id);
+        final List<Author> authors = authorService.getAuthors();
+        model.addObject("authors", authors);
         model.setViewName("authors-list");
         return model;
     }
 
-    @GetMapping("/edit")
-    public ModelAndView getAuthorsEditPage(final ModelAndView model) {
-        model.setViewName("authors-edit");
-        return model;
-    }
+    @PostMapping("/edit")
+    public ResponseEntity<BaseResponse> getAuthorsEditPage(@RequestBody final Author request) {
 
-    /**
-     * Get author information by name.
-     *
-     * @return author information
-     */
-    @GetMapping("/{name}")
-    public Author getAuthor(@PathVariable(value = "name") String name) {
-
-        return null;
+        authorService.updateAuthor(request);
+        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
     }
 
 }
