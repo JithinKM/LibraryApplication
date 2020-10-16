@@ -61,7 +61,7 @@
             </div>
         </div>
         </div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div class="modal fade" id="authorAddModal" tabindex="-1" role="dialog" aria-labelledby="authorAddModalTitle" aria-hidden="true">

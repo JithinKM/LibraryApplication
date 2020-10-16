@@ -75,6 +75,40 @@ function homePageReady() {
 
 function booksListPageReady() {
     $("#book").addClass("active");
+
+    var validator = $("#bookAddForm").validate({
+        rules: {
+            "name": {
+                required: true
+            },
+            "penName": {
+                required: true
+            }
+        },
+        submitHandler: function() {
+            addBook();
+        }
+    });
+
+    var validator = $("#bookEditForm").validate({
+        rules: {
+            "editName": {
+                required: true
+            },
+            "editPenName": {
+                required: true
+            }
+        },
+        submitHandler: function() {
+            editBook();
+        }
+    });
+
+    $(".book-edit").click(function(event) {
+        $("#editName").val($(event.target).siblings(".bookEditName").val());
+        $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
+        $("#editId").val($(event.target).siblings(".authorEditId").val());
+    });
 }
 
 function addAuthor() {
@@ -168,8 +202,6 @@ function authorsListPageReady() {
         $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
         $("#editId").val($(event.target).siblings(".authorEditId").val());
     });
-
-    $("#adminLoginEmail").focus();
 }
 
 function usersListPageReady() {
@@ -194,7 +226,7 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight - 350) +"px";
+   var windowHeight = (getWindowHeight - 476) +"px";
    $('.admin-page').css("min-height",windowHeight);
 }
 
