@@ -8,9 +8,9 @@
                 <h3 class="panel-title">Users</h3>
             </div>
             <div class="panel-body">
-                <div class="row justify-content-center">
-                    <div class="col-auto">
-                    <table class="table table-responsive table-hover">
+                <div class="justify-content-center">
+                    <div class="table-responsive">
+                    <table class="table table-hover">
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">#</th>

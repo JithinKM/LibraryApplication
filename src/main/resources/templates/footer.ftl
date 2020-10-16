@@ -27,11 +27,16 @@
     <input type="hidden" id="pageTracker" value="${pageTracker!""}" />
     <input type="hidden" id="loggedIn" value="" />
 
-    <footer class="bd-footer text-muted">
-      <div class="container-fluid p-2 p-md-2 text-center">
-        <p>&copy; Sanskrit High School Vattoli, All rights reserved.</p>
-        <p>Designed and built with love by 2006 batch.</p>
-      </div>
+    <footer class="bd-footer text-center">
+        <a href="#" id="navBackToTop">
+            <div class="navFooterBackToTop">
+                <span class="navFooterBackToTopText">Back to top</span>
+            </div>
+        </a>
+        <div class="container-fluid p-2 p-md-2">
+            <p>&copy; Sanskrit High School Vattoli, All rights reserved.</p>
+            <p>Designed and built with love by 2006 batch.</p>
+        </div>
     </footer>
 
     <!--core JavaScript

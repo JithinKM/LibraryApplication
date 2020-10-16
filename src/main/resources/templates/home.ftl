@@ -3,7 +3,7 @@
 
     <main>
         <div class="container text-center">
-            <h2>Search for books, authors or even users by their name</h2>
+            <h2>Search for books or authors</h2>
             <div class="search-box">
                 <form action="" class="search-form">
                     <input type="text" placeholder="Search here..." id="search" autocomplete="off">
@@ -15,130 +15,8 @@
             </svg>
                 <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
             </div>
-            <hr>
-            <div class="table-title">
-                <h4>Here are some of the users joined recently.</h4>
-                <h4>You can verify the details and activate their membership.</h4>
-            </div>
-            <div class="table-title">
-                <h5><span class="label label-info">Teachers</span></h5>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                <table class="table table-responsive table-hover">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Class</th>
-                      <th scope="col">Owned Books</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                </div>
-            </div>
-            <div class="table-title">
-                <h5><span class="label label-success">Students</span></h5>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                <table class="table table-responsive table-hover">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Class</th>
-                      <th scope="col">Owned Books</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Mark</td>
-                      <td>mark@gmail.com</td>
-                      <td>IX</td>
-                      <td>2</td>
-                      <td>Inactive</td>
-                      <td>
-                          <a class="confirm" href="/user/confirm/id">Confirm</a> |
-                          <a class="reject" href="/user/reject/id">Reject</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                </div>
-            </div>
-            <hr>
         </div>
     </main>
 
-<#assign pageTracker = "adminHome">
+<#assign pageTracker = "home">
 <#include "footer.ftl">

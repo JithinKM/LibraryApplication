@@ -194,7 +194,7 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight - 320) +"px";
+   var windowHeight = (getWindowHeight - 350) +"px";
    $('.admin-page').css("min-height",windowHeight);
 }
 
@@ -243,10 +243,10 @@ $(document).ready(function() {
     checkLoggedInStatus();
     var currentPage = $('#pageTracker').val();
 
-    if (currentPage == 'adminLogin') {
-        adminLoginReady();
-    } else if (currentPage == 'adminHome') {
+    if (currentPage == 'home') {
         homePageReady();
+    } else if (currentPage == 'adminLogin') {
+        adminLoginReady();
     } else if (currentPage == 'booksList') {
         booksListPageReady();
     } else if (currentPage == 'authorsList') {

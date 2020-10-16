@@ -3,19 +3,31 @@
 
     <main>
         <div class="container text-center">
-            <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Authors</h3>
+            <div class="panel panel-info list-title">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <h3 class="panel-title float-left">Authors</h3>
+                </div>
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <div class="input-group search-form">
+                      <input type="text" class="form-control" placeholder="Search authors...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">Go!</button>
+                      </span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <!-- Button trigger modal -->
+                    <a class="panel-btn float-right" data-toggle="modal" data-target="#authorAddModal">
+                        Add a new author
+                    </a>
+                </div>
             </div>
             <div class="panel-body">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authorAddModal">
-                  Add a new author
-                </button>
-                <div class="row justify-content-center">
-                    <div class="col-auto">
-                    <table class="table table-responsive table-hover">
-                      <thead class="thead-dark">
+                <div class="justify-content-center">
+                    <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
@@ -24,24 +36,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                    <#if authors??>
-                      <#assign count = 0>
-                      <#list authors as author>
-                        <#assign count = count + 1>
-                        <tr>
-                          <td>${count}</td>
-                          <td>${author.name}</td>
-                          <td>${author.penName}</td>
-                          <td>
-                              <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
-                              <a class="reject" href="/author/${author.id}/delete">Delete</a>
-                              <input type="hidden" class="authorEditId" value="${author.id}" />
-                              <input type="hidden" class="authorEditName" value="${author.name}" />
-                              <input type="hidden" class="authorEditPenName" value="${author.penName}" />
-                          </td>
-                        </tr>
-                      </#list>
-                    </#if>
+                      <#if authors??>
+                          <#assign count = 0>
+                          <#list authors as author>
+                            <#assign count = count + 1>
+                            <tr>
+                              <td>${count}</td>
+                              <td>${author.name}</td>
+                              <td>${author.penName}</td>
+                              <td>
+                                  <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
+                                  <a class="reject" href="/author/${author.id}/delete">Delete</a>
+                                  <input type="hidden" class="authorEditId" value="${author.id}" />
+                                  <input type="hidden" class="authorEditName" value="${author.name}" />
+                                  <input type="hidden" class="authorEditPenName" value="${author.penName}" />
+                              </td>
+                            </tr>
+                          </#list>
+                      </#if>
                       </tbody>
                     </table>
                     </div>
