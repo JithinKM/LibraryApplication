@@ -10,6 +10,8 @@ public interface AuthorService {
 
     List<Author> getAuthors();
 
+    List<Author> getAuthors(final String name);
+
     Author getAuthor(final String id);
 
     void deleteAuthor(final String id);

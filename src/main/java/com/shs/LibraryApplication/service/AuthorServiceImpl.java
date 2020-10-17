@@ -41,6 +41,19 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public List<Author> getAuthors(String name) {
+
+        final List<Author> authors = new ArrayList<>();
+        final Iterable<AuthorEntity> allAuthors = authorRepository.findAllByName(name);
+        allAuthors.forEach(authorEntity -> {
+            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName());
+            authors.add(author);
+        });
+
+        return authors;
+    }
+
+    @Override
     public Author getAuthor(final String id) {
 
         final Author author = new Author();

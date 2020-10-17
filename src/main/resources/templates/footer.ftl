@@ -45,8 +45,10 @@
     <!--core JavaScript
     ================================================== -->
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-ui.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.validate.js"></script>
+    <script src="/js/typeahead.bundle.js"></script>
     <!--Custom JavaScript
     ================================================== -->
     <script src="/js/admin.js"></script>

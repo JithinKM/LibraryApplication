@@ -52,6 +52,12 @@ public class AuthorController {
         return model;
     }
 
+    @GetMapping("/all/{query}")
+    public List<Author> getAuthors(@PathVariable("query") String name) {
+
+        return authorService.getAuthors(name);
+    }
+
     @GetMapping("/{id}/delete")
     public ModelAndView deleteAuthor(@PathVariable("id") String id,  final ModelAndView model) {
 

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -31,10 +33,13 @@ public class BookEntity {
     private String language;
 
     @Column
-    private Long purchased;
+    private LocalDateTime purchased;
 
     @Column
-    private int price;
+    private BigDecimal price;
+
+    @Column
+    private boolean available;
 
     public String getId() {
         return id;
@@ -92,20 +97,28 @@ public class BookEntity {
         this.language = language;
     }
 
-    public Long getPurchased() {
+    public LocalDateTime getPurchased() {
         return purchased;
     }
 
-    public void setPurchased(Long purchased) {
+    public void setPurchased(LocalDateTime purchased) {
         this.purchased = purchased;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public BookEntity() {
@@ -113,7 +126,7 @@ public class BookEntity {
     }
 
     public BookEntity(String id, String name, String author, String rack, String publication, String category,
-            String language, Long purchased, int price) {
+            String language, LocalDateTime purchased, BigDecimal price, boolean available) {
         this.id = id;
         this.name = name;
         this.author = author;
@@ -123,5 +136,6 @@ public class BookEntity {
         this.language = language;
         this.purchased = purchased;
         this.price = price;
+        this.available = available;
     }
 }

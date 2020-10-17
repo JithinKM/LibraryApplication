@@ -12,13 +12,6 @@ create table library.user
     primary key (username)
 );
 
-create table library.book_type
-(
-    id varchar(16) not null,
-    type varchar(20) not null,
-    primary key (id)
-);
-
 create table library.author
 (
     id varchar(16) not null,
@@ -31,13 +24,14 @@ create table library.book
 (
     id varchar(16) not null,
     name varchar(30) not null,
-    author varchar(8) references library.author(id) not null,
+    author varchar(16) references library.author(id) not null,
     rack varchar(10) not null,
     publication varchar(50),
     language varchar(20) not null,
-    price int not null,
+    price NUMERIC(10, 4) not null,
     purchased timestamp not null,
-    category varchar(20) references library.book_type(id) not null,
+    category varchar(20),
+    available boolean not null,
     primary key (id)
 );
 
