@@ -6,8 +6,8 @@ import com.shs.LibraryApplication.entity.UserEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Book extends BookEntity implements Serializable {
@@ -37,14 +37,14 @@ public class Book extends BookEntity implements Serializable {
     }
 
     public Book(String id, String name, String author, String rack, String publication, String category,
-            String language, LocalDateTime purchased, BigDecimal price, boolean available, AuthorEntity authorObj) {
+            String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj) {
 
         super(id, name, author, rack, publication, category, language, purchased, price, available);
         this.authorObj = authorObj;
     }
 
     public Book(String id, String name, String author, String rack, String publication, String category,
-            String language, LocalDateTime purchased, BigDecimal price, boolean available, AuthorEntity authorObj,
+            String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj,
             List<UserEntity> ownedUsers) {
 
         super(id, name, author, rack, publication, category, language, purchased, price, available);

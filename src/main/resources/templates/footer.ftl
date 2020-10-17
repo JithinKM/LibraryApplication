@@ -35,7 +35,6 @@
         </a>
         <div class="container-fluid p-2 p-md-2">
             <p>&copy; Sanskrit High School Vattoli, All rights reserved.</p>
-            <p>&nbsp;</p>
             <p>Designed and built with love by -</p>
             <img class="footer-logo" src="/img/logo.png"></img>
             <p>2006 batch.</p>

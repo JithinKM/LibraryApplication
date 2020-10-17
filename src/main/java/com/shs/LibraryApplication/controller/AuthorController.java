@@ -38,7 +38,12 @@ public class AuthorController {
     @PostMapping("/add")
     public ResponseEntity<BaseResponse> createAuthor(@RequestBody final Author request) {
 
-        authorService.createAuthor(request);
+        try {
+            authorService.createAuthor(request);
+        } catch (Exception exception) {
+            return ResponseEntity.ok(new BaseResponse(ResponseStatus.ERROR, "", exception.getMessage()));
+        }
+
         return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
     }
 
@@ -69,9 +74,14 @@ public class AuthorController {
     }
 
     @PostMapping("/edit")
-    public ResponseEntity<BaseResponse> getAuthorsEditPage(@RequestBody final Author request) {
+    public ResponseEntity<BaseResponse> editAuthor(@RequestBody final Author request) {
 
-        authorService.updateAuthor(request);
+        try {
+            authorService.updateAuthor(request);
+        } catch (Exception exception) {
+            return ResponseEntity.ok(new BaseResponse(ResponseStatus.ERROR, "", exception.getMessage()));
+        }
+
         return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
     }
 

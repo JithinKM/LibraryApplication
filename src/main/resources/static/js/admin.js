@@ -110,23 +110,53 @@ function addBook() {
         });
 }
 
-function booksListPageReady() {
-    $("#book").addClass("active");
+function editBook() {
+        showLoadingAnimation();
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            type: 'POST',
+            url: '/book/edit',
+            data: JSON.stringify({
+                id: $('#bookEditId').val(),
+                name: $('#bookEditName').val(),
+                author: {
+                    id: $('#bookEditAuthorId').val(),
+                    name: $('#bookEditAuthor').val(),
+                    pen_name: $('#bookEditAuthorPenName').val()
+                },
+                category: $('#bookEditCategory').val(),
+                language: $('#bookEditLanguage').val(),
+                publication: $('#bookEditPublication').val(),
+                rack: $('#bookEditRack').val(),
+                purchased: new Date($('#bookEditPurchased').val()),
+                price: $('#bookEditPrice').val()
+            }),
+            success: function(data) {
+                hideLoadingAnimation();
+                if (data.status == "SUCCESS") {
+                    window.location = data.message;
+                } else {
+                    processAdminErrorMessage(data);
+                }
+            },
+            error: function(data) {
+                hideLoadingAnimation();
+                processAdminErrorMessage(JSON.parse(data.responseText));
+            }
+        });
+}
 
-    var authors = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: {
-            url: '/author/all/%QUERY',
-            wildcard: '%QUERY',
-            transform: response => $.map(response, author => ({
-              id: author.id,
-              value: author.name,
-              pen_name: author.penName
-            }))
-        }
+$.validator.methods.localDate = function( value, element ) {
+    return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
+}
+
+function prepareBookAddForm(authors) {
+
+    $( "#purchased" ).datepicker({
+        changeMonth: true,
+        changeYear: true
     });
-    authors.initialize();
 
     $('#bookAddForm .typeahead').typeahead({
         highlight: true
@@ -142,14 +172,6 @@ function booksListPageReady() {
         $("#authorPenName").val(data.pen_name);
     });
 
-    $( "#purchased" ).datepicker({
-        changeMonth: true,
-        changeYear: true
-    });
-
-    $.validator.methods.localDate = function( value, element ) {
-        return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
-    }
     var validator = $("#bookAddForm").validate({
         rules: {
             "bookId": {
@@ -183,25 +205,97 @@ function booksListPageReady() {
             addBook();
         }
     });
+}
+
+function prepareBookEditForm(authors) {
+
+    $( "#bookEditPurchased" ).datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+
+    $('#bookEditForm .typeahead').typeahead({
+        highlight: true
+    },
+    {
+        display: 'value',
+        source: authors.ttAdapter()
+    });
+
+    $('#bookEditForm').on('typeahead:selected', function (e, data) {
+        $("#authorEditId").val(data.id);
+        $("#authorEditName").val(data.value);
+        $("#authorEditPenName").val(data.pen_name);
+    });
 
     var validator = $("#bookEditForm").validate({
         rules: {
-            "editName": {
+            "bookId": {
                 required: true
             },
-            "editPenName": {
+            "name": {
                 required: true
+            },
+            "author": {
+                required: true
+            },
+            "category": {
+                required: true
+            },
+            "language": {
+                required: true
+            },
+            "rack": {
+                required: true
+            },
+            "purchased": {
+                required: true,
+                localDate: true
+            },
+            "price": {
+                required: true,
+                number: true
             }
         },
         submitHandler: function() {
             editBook();
         }
     });
+}
+
+function booksListPageReady() {
+    $("#book").addClass("active");
+
+    var authors = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/author/all/%QUERY',
+            wildcard: '%QUERY',
+            transform: response => $.map(response, author => ({
+              id: author.id,
+              value: author.name,
+              pen_name: author.penName
+            }))
+        }
+    });
+
+    authors.initialize();
+    prepareBookAddForm(authors);
+    prepareBookEditForm(authors);
 
     $(".book-edit").click(function(event) {
-        $("#editName").val($(event.target).siblings(".bookEditName").val());
-        $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
-        $("#editId").val($(event.target).siblings(".authorEditId").val());
+        $("#bookEditId").val($(event.target).siblings(".bookEditId").val());
+        $("#bookEditName").val($(event.target).siblings(".bookEditName").val());
+        $("#bookEditAuthor").val($(event.target).siblings(".bookEditAuthor").val());
+        $("#bookEditAuthorId").val($(event.target).siblings(".bookEditAuthorId").val());
+        $("#bookEditAuthorPenName").val($(event.target).siblings(".bookEditAuthorPenName").val());
+        $("#bookEditCategory").val($(event.target).siblings(".bookEditCategory").val());
+        $("#bookEditLanguage").val($(event.target).siblings(".bookEditLanguage").val());
+        $("#bookEditPublication").val($(event.target).siblings(".bookEditPublication").val());
+        $("#bookEditRack").val($(event.target).siblings(".bookEditRack").val());
+        $("#bookEditPurchased").val($(event.target).siblings(".bookEditPurchased").val());
+        $("#bookEditPrice").val($(event.target).siblings(".bookEditPrice").val());
     });
 }
 
@@ -318,7 +412,7 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight - 476) +"px";
+   var windowHeight = (getWindowHeight - 400) +"px";
    $('.admin-page').css("min-height",windowHeight);
 }
 
@@ -360,6 +454,11 @@ function toggleSignupAndLogin() {
             }
         });
     });
+}
+
+function processAdminErrorMessage(errorData) {
+    alert(errorData);
+    console.log(errorData);
 }
 
 $(document).ready(function() {

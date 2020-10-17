@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -33,7 +33,7 @@ public class BookEntity {
     private String language;
 
     @Column
-    private LocalDateTime purchased;
+    private Date purchased;
 
     @Column
     private BigDecimal price;
@@ -97,11 +97,11 @@ public class BookEntity {
         this.language = language;
     }
 
-    public LocalDateTime getPurchased() {
+    public Date getPurchased() {
         return purchased;
     }
 
-    public void setPurchased(LocalDateTime purchased) {
+    public void setPurchased(Date purchased) {
         this.purchased = purchased;
     }
 
@@ -126,7 +126,7 @@ public class BookEntity {
     }
 
     public BookEntity(String id, String name, String author, String rack, String publication, String category,
-            String language, LocalDateTime purchased, BigDecimal price, boolean available) {
+            String language, Date purchased, BigDecimal price, boolean available) {
         this.id = id;
         this.name = name;
         this.author = author;

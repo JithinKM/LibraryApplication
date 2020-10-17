@@ -53,7 +53,7 @@
                               <td>${book.category}</td>
                               <td>${book.language}</td>
                               <td>${book.rack}</td>
-                              <td>${book.purchased}</td>
+                              <td>${book.purchased?date?string.short}</td>
                               <td>${book.price}</td>
                               <td>${book.available?string('Yes', 'No')}</td>
                               <td>
@@ -61,6 +61,15 @@
                                   <a class="reject" href="/book/${book.id}/delete">Delete</a>
                                   <input type="hidden" class="bookEditId" value="${book.id}" />
                                   <input type="hidden" class="bookEditName" value="${book.name}" />
+                                  <input type="hidden" class="bookEditAuthorId" value="${book.authorObj.id}" />
+                                  <input type="hidden" class="bookEditAuthor" value="${book.authorObj.name}" />
+                                  <input type="hidden" class="bookEditAuthorPenName" value="${book.authorObj.penName}" />
+                                  <input type="hidden" class="bookEditCategory" value="${book.category}" />
+                                  <input type="hidden" class="bookEditLanguage" value="${book.language}" />
+                                  <input type="hidden" class="bookEditPublication" value="${book.publication}" />
+                                  <input type="hidden" class="bookEditRack" value="${book.rack}" />
+                                  <input type="hidden" class="bookEditPurchased" value="${book.purchased?date?string.short}" />
+                                  <input type="hidden" class="bookEditPrice" value="${book.price}" />
                               </td>
                             </tr>
                           </#list>
@@ -87,42 +96,42 @@
           <div class="modal-body">
             <form role="form" id="bookAddForm">
               <div class="form-group">
-                <label for="blogPostTitle">Book id's</label>
+                <label>Book id's</label>
                 <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Enter book id's separated by commas">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Name</label>
+                <label>Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Author</label>
+                <label>Author</label>
                 <input type="text" class="typeahead form-control" id="author" name="author" placeholder="Enter author">
                 <input type="hidden" id="authorId" name="author" value="">
                 <input type="hidden" id="authorName" name="author" value="">
                 <input type="hidden" id="authorPenName" name="author" value="">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Category</label>
+                <label>Category</label>
                 <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Language</label>
+                <label>Language</label>
                 <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Publication</label>
+                <label>Publication</label>
                 <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Rack</label>
+                <label>Rack</label>
                 <input type="text" class="form-control" id="rack" name="rack" placeholder="Enter rack">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Purchased Date</label>
+                <label>Purchased Date</label>
                 <input type="text" class="form-control" id="purchased" name="purchased" placeholder="Enter purchased date">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Price</label>
+                <label>Price</label>
                 <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
               </div>
               <input type="submit" class="btn btn-primary" id="addBook" value="Add"/>
@@ -132,7 +141,7 @@
       </div>
     </div>
 
-    <div class="modal fade" id="bookEditModal" tabindex="-1" role="dialog" aria-labelledby="authorEditModalTitle" aria-hidden="true">
+    <div class="modal fade" id="bookEditModal" tabindex="-1" role="dialog" aria-labelledby="bookEditModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -144,14 +153,44 @@
           <div class="modal-body">
             <form role="form" id="bookEditForm">
               <div class="form-group">
-                <label for="blogPostTitle">Name</label>
-                <input type="text" class="form-control" id="editName" name="editName" placeholder="Enter book name">
+                <label>Book id's</label>
+                <input type="text" class="form-control" id="bookEditId" name="bookId" placeholder="Enter book id">
               </div>
               <div class="form-group">
-                <label for="blogPostTitle">Pen Name</label>
-                <input type="text" class="form-control" id="editPenName" name="editPenName" placeholder="Enter author pen-name">
+                <label>Name</label>
+                <input type="text" class="form-control" id="bookEditName" name="name" placeholder="Enter book name">
               </div>
-                <input type="hidden" class="form-control" id="editId" name="id">
+              <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="typeahead form-control" id="bookEditAuthor" name="author" placeholder="Enter author">
+                <input type="hidden" id="bookEditAuthor" name="author" value="">
+                <input type="hidden" id="bookEditAuthorId" name="author" value="">
+                <input type="hidden" id="bookEditAuthorPenName" name="author" value="">
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" id="bookEditCategory" name="category" placeholder="Enter book category">
+              </div>
+              <div class="form-group">
+                <label>Language</label>
+                <input type="text" class="form-control" id="bookEditLanguage" name="language" placeholder="Enter book language">
+              </div>
+              <div class="form-group">
+                <label>Publication</label>
+                <input type="text" class="form-control" id="bookEditPublication" name="publication" placeholder="Enter publication">
+              </div>
+              <div class="form-group">
+                <label>Rack</label>
+                <input type="text" class="form-control" id="bookEditRack" name="rack" placeholder="Enter rack">
+              </div>
+              <div class="form-group">
+                <label>Purchased Date</label>
+                <input type="text" class="form-control" id="bookEditPurchased" name="purchased" placeholder="Enter purchased date">
+              </div>
+              <div class="form-group">
+                <label>Price</label>
+                <input type="text" class="form-control" id="bookEditPrice" name="price" placeholder="Enter price">
+              </div>
               <input type="submit" class="btn btn-primary" id="editBook" value="Save"/>
             </form>
           </div>
