@@ -17,8 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.shs.LibraryApplication.constants.LibraryConstants.HOME_URL;
+import static com.shs.LibraryApplication.constants.LibraryConstants.ADMIN_DASHBOARD_URL;
+import static com.shs.LibraryApplication.constants.LibraryConstants.LOGIN_TEMPLATE;
 import static com.shs.LibraryApplication.constants.LibraryConstants.LOGIN_URL;
+import static com.shs.LibraryApplication.constants.LibraryConstants.SIGNUP_TEMPLATE;
+import static com.shs.LibraryApplication.constants.LibraryConstants.USERS_LIST_TEMPLATE;
 
 @Controller
 @RequestMapping("/user")
@@ -30,7 +33,7 @@ public class UserController {
 
     @GetMapping("/list")
     public ModelAndView getUsersListPage(final ModelAndView model) {
-        model.setViewName("users-list");
+        model.setViewName(USERS_LIST_TEMPLATE);
         return model;
     }
 
@@ -42,13 +45,13 @@ public class UserController {
 
     @RequestMapping(value = "/login")
     public ModelAndView getLoginPage(final ModelAndView model) {
-        model.setViewName("login");
+        model.setViewName(LOGIN_TEMPLATE);
         return model;
     }
 
     @RequestMapping(value = "/signup")
     public ModelAndView getSignupPage(final ModelAndView model) {
-        model.setViewName("signup");
+        model.setViewName(SIGNUP_TEMPLATE);
         return model;
     }
 
@@ -61,7 +64,7 @@ public class UserController {
     @PostMapping(value = "/authenticate")
     public ResponseEntity<BaseResponse> createAuthenticationToken(@RequestBody User user) throws Exception {
 
-        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "token", HOME_URL));
+        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "token", ADMIN_DASHBOARD_URL));
     }
 
     @PostMapping(value = "/logout")

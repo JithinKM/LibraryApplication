@@ -412,8 +412,8 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight - 400) +"px";
-   $('.admin-page').css("min-height",windowHeight);
+   var windowHeight = (getWindowHeight - 300) +"px";
+   $('main').css("min-height",windowHeight);
 }
 
 function checkLoggedInStatus() {
@@ -457,8 +457,8 @@ function toggleSignupAndLogin() {
 }
 
 function processAdminErrorMessage(errorData) {
-    alert(errorData);
-    console.log(errorData);
+    alert(JSON.parse(errorData));
+    console.log(JSON.parse(errorData));
 }
 
 $(document).ready(function() {

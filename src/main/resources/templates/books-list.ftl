@@ -82,6 +82,8 @@
         </div>
         </div>
     </main>
+    </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="bookAddModal" tabindex="-1" role="dialog" aria-labelledby="bookAddModalTitle" aria-hidden="true">

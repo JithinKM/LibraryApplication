@@ -1,7 +1,6 @@
 package com.shs.LibraryApplication.controller;
 
 import com.shs.LibraryApplication.enums.ResponseStatus;
-import com.shs.LibraryApplication.models.Author;
 import com.shs.LibraryApplication.models.BaseResponse;
 import com.shs.LibraryApplication.models.Book;
 import com.shs.LibraryApplication.service.BookService;
@@ -18,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-import static com.shs.LibraryApplication.constants.LibraryConstants.AUTHOR_LIST_URL;
+import static com.shs.LibraryApplication.constants.LibraryConstants.BOOKS_LIST_TEMPLATE;
 import static com.shs.LibraryApplication.constants.LibraryConstants.BOOK_LIST_URL;
 
 @Controller
@@ -34,7 +33,7 @@ public class BookController {
 
         final List<Book> books = bookService.getBooks();
         model.addObject("books", books);
-        model.setViewName("books-list");
+        model.setViewName(BOOKS_LIST_TEMPLATE);
         return model;
     }
 

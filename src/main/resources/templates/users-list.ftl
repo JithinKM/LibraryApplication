@@ -69,6 +69,8 @@
         </div>
         </div>
     </main>
+    </div>
+    </div>
 
 <#assign pageTracker = "usersList">
 <#include "footer.ftl">

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+import static com.shs.LibraryApplication.constants.LibraryConstants.ERR_404_TEMPLATE;
+import static com.shs.LibraryApplication.constants.LibraryConstants.ERR_500_TEMPLATE;
+
 @Controller
 public class CustomErrorController implements ErrorController {
 
@@ -19,9 +22,9 @@ public class CustomErrorController implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error-404";
+                return ERR_404_TEMPLATE;
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "error-500";
+                return ERR_500_TEMPLATE;
             }
         }
         return "error";

@@ -3,6 +3,14 @@ body {
   font-family: 'Lato';
 }
 
+main {
+    margin-top: 100px;
+}
+
+.margin-none {
+    margin: 0;
+}
+
 h1,
 h2,
 h3,
@@ -269,7 +277,6 @@ a, a:visited, a:hover {
 .bd-footer {
     background-color: #232F3E;
     color: #ccc;
-    margin-top: 50px;
     font-weight: 700;
 }
 
@@ -281,8 +288,14 @@ a, a:visited, a:hover {
 }
 
 .admin-page {
-    margin-top: 150px;
+    margin-top: 60px;
+    padding: 0;
 }
+
+.main-container {
+    padding: 0;
+}
+
 .form-outer {
     background: rgba(255, 255, 255, 0.5);
     margin-top: 50px;
@@ -404,4 +417,41 @@ a, a:visited, a:hover {
     border: none;
     background-color: #fff;
     color: #555;
+}
+
+.main-row {
+    margin: 0;
+}
+
+.sidebar {
+    background-color: #17a2b8;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+}
+
+.nav-sidebar {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-sidebar > li {
+    padding: 10px;
+}
+
+.nav-sidebar > li > a {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #0FA4C8;
+}
+
+.sidebar-divider {
+    border-top: 1px solid #17b4c5;
 }

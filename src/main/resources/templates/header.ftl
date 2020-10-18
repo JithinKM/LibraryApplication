@@ -26,7 +26,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light navbar-expand-lg navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/">SHS Library App</a>
+      <a class="navbar-brand" href="/admin">SHS Library App</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,15 +38,6 @@
             <li class="nav-item" id="login">
             <a class="nav-link" href="/user/login">Log In</a>
             </li>
-            <li class="nav-item d-none onlyForLoggedIn" id="book">
-            <a class="nav-link" href="/book/list">Books</a>
-            </li>
-            <li class="nav-item d-none onlyForLoggedIn" id="author">
-            <a class="nav-link" href="/author/list">Authors</a>
-            </li>
-            <li class="nav-item d-none onlyForLoggedIn" id="user">
-            <a class="nav-link" href="/user/list">Users</a>
-            </li>
             <li class="nav-item d-none onlyForLoggedIn" id="logout">
             <a class="nav-link" id="logoutLink">Log Out</a>
             </li>
@@ -57,3 +48,15 @@
 
 <section class="admin-page">
   <div class="container-fluid main-container">
+    <div class="row main-row">
+      <div class="col-lg-2 col-md-2 col-sm-3 col-4 sidebar">
+        <ul class="nav-sidebar admin-nav-bar">
+          <li class="${menuSelectDashboard!""}"><a href="/admin">Dashboard</a></li>
+          <hr class="sidebar-divider">
+          <li class="${menuSelectBlogs!""}"><a href="/book/list">Books</a></li>
+          <li class="${menuSelectGuides!""}"><a href="/author/list">Authors</a></li>
+          <li class="${menuSelectGuides!""}"><a href="/user/list">Users</a></li>
+          <hr class="sidebar-divider">
+        </ul>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-9 col-8">

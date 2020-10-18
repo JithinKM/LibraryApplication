@@ -1,9 +1,10 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
 
+        <main>
           <div class="admin-body">
               <h3 class="main-title text-center">LOGIN</h3>
-              <div class="row">
+              <div class="row margin-none">
                 <div class="form-outer mx-auto">
                   <form role="form" id="login-form">
                     <div class="form-group">
@@ -26,6 +27,7 @@
                 </div>
               </div>
           </div>
+        </main>
 
 <#assign pageTracker = "adminLogin">
 <#include "footer.ftl">
