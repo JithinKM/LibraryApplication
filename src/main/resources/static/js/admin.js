@@ -49,10 +49,7 @@ function adminLoginReady() {
 }
 
 function homePageReady() {
-    var token = sessionStorage.getItem("token");
-    if (!token) {
-        window.location = "/user/login";
-    }
+    redirectToLogin();
 
     $("#search").focus(function() {
       $(".search-box").addClass("border-searching");
@@ -264,6 +261,7 @@ function prepareBookEditForm(authors) {
 }
 
 function booksListPageReady() {
+    redirectToLogin();
     $("#book").addClass("active");
 
     var authors = new Bloodhound({
@@ -353,6 +351,7 @@ function editAuthor() {
 }
 
 function authorsListPageReady() {
+    redirectToLogin();
     $("#author").addClass("active");
 
     var validator = $("#authorAddForm").validate({
@@ -391,6 +390,7 @@ function authorsListPageReady() {
 }
 
 function usersListPageReady() {
+    redirectToLogin();
     $("#user").addClass("active");
 }
 
@@ -459,6 +459,12 @@ function toggleSignupAndLogin() {
 function processAdminErrorMessage(errorData) {
     alert(JSON.parse(errorData));
     console.log(JSON.parse(errorData));
+}
+function redirectToLogin() {
+    var token = sessionStorage.getItem("token");
+    if (!token) {
+        window.location = "/user/login";
+    }
 }
 
 $(document).ready(function() {

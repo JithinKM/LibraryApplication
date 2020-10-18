@@ -1,8 +1,7 @@
 <#assign showMenuBar = true>
 <#include "header.ftl">
 
-    <main>
-        <div class="container text-center">
+        <div class="container main-content text-center">
             <div class="panel panel-info list-title">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 panel-heading">
