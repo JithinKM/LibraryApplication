@@ -16,6 +16,7 @@ public class LibraryConstants {
     public static final String HOME_PAGE_TEMPLATE = "home";
     public static final String ADMIN_DASHBOARD_TEMPLATE = "admin-dashboard";
     public static final String AUTHORS_LIST_TEMPLATE = "authors-list";
+    public static final String AUTHOR_DETAIL_TEMPLATE = "author-detail";
     public static final String USERS_LIST_TEMPLATE = "users-list";
     public static final String ERR_404_TEMPLATE = "error-404";
     public static final String ERR_500_TEMPLATE = "error-500";

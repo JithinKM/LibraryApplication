@@ -37,17 +37,18 @@ public class Book extends BookEntity implements Serializable {
     }
 
     public Book(String id, String name, String author, String rack, String publication, String category,
-            String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj) {
+            String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj,
+            long updatedAt) {
 
-        super(id, name, author, rack, publication, category, language, purchased, price, available);
+        super(id, name, author, rack, publication, category, language, purchased, price, available, updatedAt);
         this.authorObj = authorObj;
     }
 
     public Book(String id, String name, String author, String rack, String publication, String category,
             String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj,
-            List<UserEntity> ownedUsers) {
+            List<UserEntity> ownedUsers, long updatedAt) {
 
-        super(id, name, author, rack, publication, category, language, purchased, price, available);
+        super(id, name, author, rack, publication, category, language, purchased, price, available, updatedAt);
         this.authorObj = authorObj;
         this.ownedUsers = ownedUsers;
     }

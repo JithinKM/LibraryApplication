@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/fontawesome.min.css" rel="stylesheet">
     <link href="/css/typeahead.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
@@ -49,12 +50,11 @@
     <div class="row main-row">
           <div class="col-lg-2 col-md-2 col-sm-3 col-12 sidebar onlyForLoggedIn">
             <ul class="nav-sidebar admin-nav-bar">
-              <li class="${menuSelectDashboard!""}"><a href="/admin">Dashboard</a></li>
+              <li><a href="/admin" id="dashboard">Dashboard</a></li>
               <hr class="sidebar-divider">
-              <li><a href="/book/list">Books</a></li>
-              <li><a href="/author/list">Authors</a></li>
-              <li><a href="/user/list">Users</a></li>
-              <hr class="sidebar-divider">
+              <li><a href="/book/list" id="book">Books</a></li>
+              <li><a href="/author/list" id="author">Authors</a></li>
+              <li><a href="/user/list" id="user">Users</a></li>
             </ul>
           </div>
       <div class="col-lg-10 col-md-10 col-sm-9 col-12 admin-main">

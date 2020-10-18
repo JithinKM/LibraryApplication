@@ -1,8 +1,11 @@
 package com.shs.LibraryApplication.service;
 
 import com.shs.LibraryApplication.entity.AuthorEntity;
+import com.shs.LibraryApplication.entity.BookEntity;
 import com.shs.LibraryApplication.models.Author;
+import com.shs.LibraryApplication.models.Book;
 import com.shs.LibraryApplication.repository.AuthorRepository;
+import com.shs.LibraryApplication.repository.BookRepository;
 import com.shs.LibraryApplication.utils.CommonUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +20,19 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
+    @Autowired
+    private BookRepository bookRepository;
+
     @Override
     public Author createAuthor(final Author request) {
 
         final String id = CommonUtility.generateRandomStringByUUID();
-        final AuthorEntity authorEntityToSave = new AuthorEntity(id, request.getName(), request.getPenName());
+        final AuthorEntity authorEntityToSave =
+                new AuthorEntity(id, request.getName(), request.getPenName(), System.nanoTime());
         final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
 
-        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName());
+        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),
+                savedAuthorEntity.getUpdatedAt());
     }
 
     @Override
@@ -33,7 +41,8 @@ public class AuthorServiceImpl implements AuthorService {
         final List<Author> authors = new ArrayList<>();
         final Iterable<AuthorEntity> allAuthors = authorRepository.findAll();
         allAuthors.forEach(authorEntity -> {
-            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName());
+            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
+                    authorEntity.getUpdatedAt());
             authors.add(author);
         });
 
@@ -46,7 +55,8 @@ public class AuthorServiceImpl implements AuthorService {
         final List<Author> authors = new ArrayList<>();
         final Iterable<AuthorEntity> allAuthors = authorRepository.findAllByName(name);
         allAuthors.forEach(authorEntity -> {
-            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName());
+            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
+                    authorEntity.getUpdatedAt());
             authors.add(author);
         });
 
@@ -73,7 +83,11 @@ public class AuthorServiceImpl implements AuthorService {
                             .getPenName());
                 });
 
-        // TODO: Populate books
+        List<BookEntity> books = new ArrayList<>();
+        Iterable<BookEntity> allByAuthor = bookRepository.findAllByAuthor(author.getId());
+        allByAuthor.forEach(books::add);
+        author.setBooks(books);
+
         return author;
     }
 
@@ -85,10 +99,12 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author updateAuthor(final Author request) {
-        final AuthorEntity authorEntityToSave = new AuthorEntity(request.getId(), request.getName(), request.getPenName());
+        final AuthorEntity authorEntityToSave =
+                new AuthorEntity(request.getId(), request.getName(), request.getPenName(), System.nanoTime());
         final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
 
-        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName());
+        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),
+                savedAuthorEntity.getUpdatedAt());
     }
 
 }

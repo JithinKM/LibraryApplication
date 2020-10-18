@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import static com.shs.LibraryApplication.constants.LibraryConstants.AUTHORS_LIST_TEMPLATE;
+import static com.shs.LibraryApplication.constants.LibraryConstants.AUTHOR_DETAIL_TEMPLATE;
 import static com.shs.LibraryApplication.constants.LibraryConstants.AUTHOR_LIST_URL;
 
 @RestController
@@ -62,6 +63,15 @@ public class AuthorController {
     public List<Author> getAuthors(@PathVariable("query") String name) {
 
         return authorService.getAuthors(name);
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView getAuthor(@PathVariable("id") String id,  final ModelAndView model) {
+
+        final Author author = authorService.getAuthor(id);
+        model.addObject("author", author);
+        model.setViewName(AUTHOR_DETAIL_TEMPLATE);
+        return model;
     }
 
     @GetMapping("/{id}/delete")

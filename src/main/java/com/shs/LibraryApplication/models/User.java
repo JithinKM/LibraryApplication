@@ -28,9 +28,9 @@ public class User extends UserEntity implements Serializable {
     }
 
     public User(String id, String name, String username, String standard, String phone, String role,
-            String password, Boolean active, String token) {
+            String password, Boolean active, String token, long updatedAt) {
 
-        super(id, name, username, standard, phone, role, password, active, token);
+        super(id, name, username, standard, phone, role, password, active, token, updatedAt);
     }
 
 }

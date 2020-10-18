@@ -41,6 +41,9 @@ public class BookEntity {
     @Column
     private boolean available;
 
+    @Column
+    private long updatedAt;
+
     public String getId() {
         return id;
     }
@@ -121,12 +124,20 @@ public class BookEntity {
         this.available = available;
     }
 
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public BookEntity() {
 
     }
 
     public BookEntity(String id, String name, String author, String rack, String publication, String category,
-            String language, Date purchased, BigDecimal price, boolean available) {
+            String language, Date purchased, BigDecimal price, boolean available, long updatedAt) {
         this.id = id;
         this.name = name;
         this.author = author;
@@ -137,5 +148,6 @@ public class BookEntity {
         this.purchased = purchased;
         this.price = price;
         this.available = available;
+        this.updatedAt = updatedAt;
     }
 }

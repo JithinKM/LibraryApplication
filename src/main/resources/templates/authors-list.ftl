@@ -41,7 +41,7 @@
                             <#assign count = count + 1>
                             <tr>
                               <td>${count}</td>
-                              <td>${author.name}</td>
+                              <td><a href="/author/${author.id}">${author.name}</a></td>
                               <td>${author.penName}</td>
                               <td>
                                   <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |

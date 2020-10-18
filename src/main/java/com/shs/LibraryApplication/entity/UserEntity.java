@@ -39,6 +39,9 @@ public class UserEntity {
     @Column
     private String token;
 
+    @Column
+    private long updatedAt;
+
     public String getId() {
         return id;
     }
@@ -111,6 +114,14 @@ public class UserEntity {
         this.token = token;
     }
 
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public UserEntity() {
 
     }
@@ -127,7 +138,7 @@ public class UserEntity {
     }
 
     public UserEntity(String id, String name, String username, String standard, String phone, String role,
-            String password, Boolean active, String token) {
+            String password, Boolean active, String token, long updatedAt) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -137,5 +148,6 @@ public class UserEntity {
         this.password = password;
         this.active = active;
         this.token = token;
+        this.updatedAt = updatedAt;
     }
 }

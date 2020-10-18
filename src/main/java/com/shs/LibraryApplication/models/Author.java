@@ -15,12 +15,20 @@ public class Author extends AuthorEntity implements Serializable {
 
     }
 
-    public Author(String id, String name, String penName) {
-        super(id, name, penName);
+    public List<BookEntity> getBooks() {
+        return books;
     }
 
-    public Author(String id, String name, String penName, List<BookEntity> books) {
-        super(id, name, penName);
+    public void setBooks(List<BookEntity> books) {
+        this.books = books;
+    }
+
+    public Author(String id, String name, String penName, long updatedAt) {
+        super(id, name, penName, updatedAt);
+    }
+
+    public Author(String id, String name, String penName, List<BookEntity> books, long updatedAt) {
+        super(id, name, penName, updatedAt);
         this.books = books;
     }
 }

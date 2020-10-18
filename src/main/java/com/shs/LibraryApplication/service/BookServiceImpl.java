@@ -33,7 +33,7 @@ public class BookServiceImpl implements BookService {
         bookIds.forEach(id -> {
             final BookEntity bookEntityToSave = new BookEntity(id.trim(), book.getName(), book
                     .getAuthorObj().getId(), book.getRack(), book.getPublication(), book.getCategory(),
-                    book.getLanguage(), book.getPurchased(), book.getPrice(), Boolean.TRUE);
+                    book.getLanguage(), book.getPurchased(), book.getPrice(), Boolean.TRUE, System.nanoTime());
             bookRepository.save(bookEntityToSave);
         });
 
@@ -47,11 +47,13 @@ public class BookServiceImpl implements BookService {
         allBooks.forEach(bookEntity -> {
             Optional<AuthorEntity> optionalAuthorEntity = authorRepository.findById(bookEntity.getAuthor());
             optionalAuthorEntity.ifPresent(authorEntity -> {
-                Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName());
+                Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
+                        authorEntity.getUpdatedAt());
                 Book book =
                         new Book(bookEntity.getId(), bookEntity.getName(), bookEntity.getAuthor(), bookEntity.getRack(),
                                 bookEntity.getPublication(), bookEntity.getCategory(), bookEntity.getLanguage(),
-                                bookEntity.getPurchased(), bookEntity.getPrice(), bookEntity.isAvailable(), author);
+                                bookEntity.getPurchased(), bookEntity.getPrice(), bookEntity.isAvailable(), author,
+                                bookEntity.getUpdatedAt());
                 books.add(book);
             });
         });

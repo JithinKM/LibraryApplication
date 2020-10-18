@@ -9,6 +9,7 @@ create table library.user
     password varchar(200) not null,
     active boolean not null,
     token varchar(300),
+    updated_at bigint not null,
     primary key (username)
 );
 
@@ -17,6 +18,7 @@ create table library.author
     id varchar(16) not null,
     name varchar(30) not null,
     pen_name varchar(30),
+    updated_at bigint not null,
     primary key (id)
 );
 
@@ -32,6 +34,7 @@ create table library.book
     purchased timestamp not null,
     category varchar(20),
     available boolean not null,
+    updated_at bigint not null,
     primary key (id)
 );
 
@@ -39,5 +42,6 @@ create table book_owned_users
 (
     book_id varchar(255) not null,
     username varchar(255) not null,
-    purchased timestamp not null
+    purchased timestamp not null,
+    updated_at bigint not null
 );

@@ -389,9 +389,18 @@ function authorsListPageReady() {
     });
 }
 
+function authorDetailPageReady() {
+    $("#author").addClass("active");
+}
+
 function usersListPageReady() {
     redirectToLogin();
     $("#user").addClass("active");
+}
+
+function adminDashboardReady() {
+    redirectToLogin();
+    $("#dashboard").addClass("active");
 }
 
 function showLoadingAnimation() {
@@ -476,10 +485,14 @@ $(document).ready(function() {
         homePageReady();
     } else if (currentPage == 'adminLogin') {
         adminLoginReady();
+    } else if (currentPage == 'adminDashboard') {
+        adminDashboardReady();
     } else if (currentPage == 'booksList') {
         booksListPageReady();
     } else if (currentPage == 'authorsList') {
         authorsListPageReady();
+    } else if (currentPage == 'authorDetail') {
+        authorDetailPageReady();
     } else if (currentPage == 'usersList') {
         usersListPageReady();
     }

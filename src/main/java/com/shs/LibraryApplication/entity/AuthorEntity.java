@@ -18,6 +18,9 @@ public class AuthorEntity {
     @Column
     private String penName;
 
+    @Column
+    private long updatedAt;
+
     public String getId() {
         return id;
     }
@@ -42,13 +45,22 @@ public class AuthorEntity {
         this.penName = penName;
     }
 
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public AuthorEntity() {
 
     }
 
-    public AuthorEntity(String id, String name, String penName) {
+    public AuthorEntity(String id, String name, String penName, long updatedAt) {
         this.id = id;
         this.name = name;
         this.penName = penName;
+        this.updatedAt = updatedAt;
     }
 }
