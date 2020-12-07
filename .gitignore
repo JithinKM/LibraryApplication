@@ -32,3 +32,4 @@ mvnw*
 
 # Target directory
 target
+/bin/

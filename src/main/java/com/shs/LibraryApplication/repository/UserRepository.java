@@ -1,11 +1,12 @@
 package com.shs.LibraryApplication.repository;
 
-import com.shs.LibraryApplication.entity.UserEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.shs.LibraryApplication.entity.UserEntity;
+
 @Repository
-public interface UserRepository extends CrudRepository<UserEntity, String> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     UserEntity findByUsername(String username);
 

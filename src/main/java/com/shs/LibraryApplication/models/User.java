@@ -1,12 +1,12 @@
 package com.shs.LibraryApplication.models;
 
 import com.shs.LibraryApplication.entity.BookEntity;
-import com.shs.LibraryApplication.entity.UserEntity;
+import com.shs.LibraryApplication.entity.UserDetailsEntity;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class User extends UserEntity implements Serializable {
+public class User extends UserDetailsEntity implements Serializable {
 
     private List<BookEntity> books;
 

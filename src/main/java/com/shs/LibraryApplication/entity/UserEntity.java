@@ -1,153 +1,111 @@
 package com.shs.LibraryApplication.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "user", schema = "library")
 public class UserEntity {
 
-    @Column
-    private String id;
+	@Id
+	private String username; //userid
+	private String email;
+	private String password;
+	private Date createdTimestamp;
+	private Date updatedTimestamp;
+	private String status; //enabled/registered/active/blocked...
+	
+	@ManyToMany(mappedBy = "user")
+	private Set<RoleEntity> roles;
+	
+	@OneToOne(mappedBy = "user")
+	private UserDetailsEntity userdetail;
+	
+	@OneToMany(mappedBy = "user")
+	private List<BookEntity> books;
+	
+	public String getUsername() {
+		return username;
+	}
 
-    @Column
-    private String name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    @Id
-    private String username;
+	public String getEmail() {
+		return email;
+	}
 
-    @Column
-    private String standard;
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @Column
-    private String phone;
+	public String getPassword() {
+		return password;
+	}
 
-    @Column
-    private String role;
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    @Column
-    @JsonIgnore
-    private String password;
+	public Set<RoleEntity> getRoles() {
+		return roles;
+	}
 
-    @Column
-    private Boolean active;
+	public void setRoles(Set<RoleEntity> roles) {
+		this.roles = roles;
+	}
 
-    @Column
-    private String token;
+	public Date getCreatedTimestamp() {
+		return createdTimestamp;
+	}
 
-    @Column
-    private long updatedAt;
+	public void setCreatedTimestamp(Date createdTimestamp) {
+		this.createdTimestamp = createdTimestamp;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public Date getUpdatedTimestamp() {
+		return updatedTimestamp;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setUpdatedTimestamp(Date updatedTimestamp) {
+		this.updatedTimestamp = updatedTimestamp;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public List<BookEntity> getBooks() {
+		return books;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setBooks(List<BookEntity> books) {
+		this.books = books;
+	}
 
-    public String getStandard() {
-        return standard;
-    }
+	public UserDetailsEntity getUserdetail() {
+		return userdetail;
+	}
 
-    public void setStandard(String standard) {
-        this.standard = standard;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public long getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(long updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public UserEntity() {
-
-    }
-
-    public UserEntity(String id, String name, String username, String standard, String phone, String role,
-            Boolean active) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.standard = standard;
-        this.phone = phone;
-        this.role = role;
-        this.active = active;
-    }
-
-    public UserEntity(String id, String name, String username, String standard, String phone, String role,
-            String password, Boolean active, String token, long updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.standard = standard;
-        this.phone = phone;
-        this.role = role;
-        this.password = password;
-        this.active = active;
-        this.token = token;
-        this.updatedAt = updatedAt;
-    }
+	public void setUserdetail(UserDetailsEntity userdetail) {
+		this.userdetail = userdetail;
+	}
+	
+	public boolean isActive() {
+		return this.status.equalsIgnoreCase("Active");
+	}
+	
 }

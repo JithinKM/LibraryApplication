@@ -1,153 +1,141 @@
 package com.shs.LibraryApplication.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "book", schema = "library")
 public class BookEntity {
 
-    @Id
-    private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
+	private String name;
+	private String publication;
+	private String category;
+	private String language;
+	private String contibutedBy;
+	private BigDecimal price;
+	private String rack;
+	private String staus;
+	private Date createdTimestamp;
+	private Date updatedTimestamp;
 
-    @Column
-    private String name;
+	@ManyToOne
+	private UserEntity user;
 
-    @Column
-    private String author;
+	@ManyToOne
+	private AuthorEntity author;
 
-    @Column
-    private String rack;
+	public String getId() {
+		return id;
+	}
 
-    @Column
-    private String publication;
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    @Column
-    private String category;
+	public String getName() {
+		return name;
+	}
 
-    @Column
-    private String language;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Column
-    private Date purchased;
+	public String getPublication() {
+		return publication;
+	}
 
-    @Column
-    private BigDecimal price;
+	public void setPublication(String publication) {
+		this.publication = publication;
+	}
 
-    @Column
-    private boolean available;
+	public String getCategory() {
+		return category;
+	}
 
-    @Column
-    private long updatedAt;
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getLanguage() {
+		return language;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getContibutedBy() {
+		return contibutedBy;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setContibutedBy(String contibutedBy) {
+		this.contibutedBy = contibutedBy;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 
-    public String getRack() {
-        return rack;
-    }
+	public String getRack() {
+		return rack;
+	}
 
-    public void setRack(String rack) {
-        this.rack = rack;
-    }
+	public void setRack(String rack) {
+		this.rack = rack;
+	}
 
-    public String getPublication() {
-        return publication;
-    }
+	public String getStaus() {
+		return staus;
+	}
 
-    public void setPublication(String publication) {
-        this.publication = publication;
-    }
+	public void setStaus(String staus) {
+		this.staus = staus;
+	}
 
-    public String getCategory() {
-        return category;
-    }
+	public Date getCreatedTimestamp() {
+		return createdTimestamp;
+	}
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+	public void setCreatedTimestamp(Date createdTimestamp) {
+		this.createdTimestamp = createdTimestamp;
+	}
 
-    public String getLanguage() {
-        return language;
-    }
+	public Date getUpdatedTimestamp() {
+		return updatedTimestamp;
+	}
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+	public void setUpdatedTimestamp(Date updatedTimestamp) {
+		this.updatedTimestamp = updatedTimestamp;
+	}
 
-    public Date getPurchased() {
-        return purchased;
-    }
+	public UserEntity getUser() {
+		return user;
+	}
 
-    public void setPurchased(Date purchased) {
-        this.purchased = purchased;
-    }
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+	public AuthorEntity getAuthor() {
+		return author;
+	}
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+	public void setAuthor(AuthorEntity author) {
+		this.author = author;
+	}
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public long getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(long updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public BookEntity() {
-
-    }
-
-    public BookEntity(String id, String name, String author, String rack, String publication, String category,
-            String language, Date purchased, BigDecimal price, boolean available, long updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.rack = rack;
-        this.publication = publication;
-        this.category = category;
-        this.language = language;
-        this.purchased = purchased;
-        this.price = price;
-        this.available = available;
-        this.updatedAt = updatedAt;
-    }
 }

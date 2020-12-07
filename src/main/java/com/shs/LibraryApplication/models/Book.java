@@ -2,7 +2,7 @@ package com.shs.LibraryApplication.models;
 
 import com.shs.LibraryApplication.entity.AuthorEntity;
 import com.shs.LibraryApplication.entity.BookEntity;
-import com.shs.LibraryApplication.entity.UserEntity;
+import com.shs.LibraryApplication.entity.UserDetailsEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ public class Book extends BookEntity implements Serializable {
 
     private AuthorEntity authorObj;
 
-    private List<UserEntity> ownedUsers = new ArrayList<>();
+    private List<UserDetailsEntity> ownedUsers = new ArrayList<>();
 
     public AuthorEntity getAuthorObj() {
         return authorObj;
@@ -24,11 +24,11 @@ public class Book extends BookEntity implements Serializable {
         this.authorObj = author;
     }
 
-    public List<UserEntity> getOwnedUsers() {
+    public List<UserDetailsEntity> getOwnedUsers() {
         return ownedUsers;
     }
 
-    public void setOwnedUsers(List<UserEntity> ownedUsers) {
+    public void setOwnedUsers(List<UserDetailsEntity> ownedUsers) {
         this.ownedUsers = ownedUsers;
     }
 
@@ -46,7 +46,7 @@ public class Book extends BookEntity implements Serializable {
 
     public Book(String id, String name, String author, String rack, String publication, String category,
             String language, Date purchased, BigDecimal price, boolean available, AuthorEntity authorObj,
-            List<UserEntity> ownedUsers, long updatedAt) {
+            List<UserDetailsEntity> ownedUsers, long updatedAt) {
 
         super(id, name, author, rack, publication, category, language, purchased, price, available, updatedAt);
         this.authorObj = authorObj;

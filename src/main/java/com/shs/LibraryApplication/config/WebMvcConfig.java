@@ -1,4 +1,4 @@
-package com.shs.LibraryApplication;
+package com.shs.LibraryApplication.config;
 
 import freemarker.template.TemplateException;
 import org.springframework.context.annotation.Bean;
