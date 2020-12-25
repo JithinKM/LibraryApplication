@@ -22,15 +22,15 @@ import com.school.library.repository.UserRepository;
 public class LibUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	UserRepository userRepository;
+	UserRepository userRepository; 
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		System.out.println("loadingusers.......................");
 		UserEntity user = Optional.ofNullable(userRepository.findByUsername(username))
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
+		System.out.println(user.getEmail());
 		if (!user.isActive()) {
 			throw new UserNotValidException(user.getStatus(), "User is not valid");
 		}

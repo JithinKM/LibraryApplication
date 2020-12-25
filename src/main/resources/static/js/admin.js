@@ -1,30 +1,30 @@
-function loginPageSubmit() {
-    showLoadingAnimation();
-    $.ajax({
-        contentType: 'application/json',
-        dataType: 'json',
-        type: 'POST',
-        url: '/user/authenticate',
-        data: JSON.stringify({
-            username: $('#username').val(),
-            password: $('#password').val()
-        }),
-        success: function(data) {
-            hideLoadingAnimation();
-            if (data.status == "SUCCESS") {
-                console.log(data);
-                sessionStorage.setItem("token", data.jwttoken);
-                window.location = data.message;
-            } else {
-                processAdminErrorMessage(data);
-            }
-        },
-        error: function(data) {
-            hideLoadingAnimation();
-            processAdminErrorMessage(JSON.parse(data.responseText));
-        }
-    });
-}
+//function loginPageSubmit() {
+//    showLoadingAnimation();
+//    $.ajax({
+//        contentType: 'application/json',
+//        dataType: 'json',
+//        type: 'POST',
+//        url: '/user/authenticate',
+//        data: JSON.stringify({
+//            username: $('#username').val(),
+//            password: $('#password').val()
+//        }),
+//        success: function(data) {
+//            hideLoadingAnimation();
+//            if (data.status == "SUCCESS") {
+//                console.log(data);
+//                sessionStorage.setItem("token", data.jwttoken);
+//                window.location = data.message;
+//            } else {
+//                processAdminErrorMessage(data);
+//            }
+//        },
+//        error: function(data) {
+//            hideLoadingAnimation();
+//            processAdminErrorMessage(JSON.parse(data.responseText));
+//        }
+//    });
+//}
 
 function adminLoginReady() {
     var validator = $("#login-form").validate({
@@ -470,10 +470,10 @@ function processAdminErrorMessage(errorData) {
     console.log(JSON.parse(errorData));
 }
 function redirectToLogin() {
-    var token = sessionStorage.getItem("token");
-    if (!token) {
-        window.location = "/user/login";
-    }
+    var token = sessionStorage.getItem("JSESSIONID");
+//    if (!token) {
+//        window.location = "/user/login";
+//    }
 }
 
 $(document).ready(function() {

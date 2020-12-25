@@ -105,7 +105,7 @@ public class UserEntity {
 	}
 	
 	public boolean isActive() {
-		return this.status.equalsIgnoreCase("Active");
+		return this.status.equalsIgnoreCase("ACTIVE");
 	}
 	
 }

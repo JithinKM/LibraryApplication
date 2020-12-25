@@ -6,7 +6,7 @@
               <h3 class="main-title text-center">LOGIN</h3>
               <div class="row margin-none">
                 <div class="form-outer mx-auto">
-                  <form role="form" id="login-form">
+                  <form role="form" id="login-form" method="post" action="/login">
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="username" name="username" placeholder="Enter email" required tabindex="1">
@@ -20,7 +20,7 @@
                         Log In
                         </button>
                         <div class="col-md-7 text-right">
-                            <p id="signup-link">Create your account <a href="/user/signup">here</a></p>
+                            <p id="signup-link">Create your account <a href="/signup">here</a></p>
                         </div>
                     </div>
                   </form>

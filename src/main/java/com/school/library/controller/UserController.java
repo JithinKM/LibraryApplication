@@ -25,10 +25,10 @@ import com.school.library.models.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
     public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-//    @Autowired
-//    private UserService userService;
+
 
     @GetMapping("/list")
     public ModelAndView getUsersListPage(final ModelAndView model) {
@@ -48,21 +48,4 @@ public class UserController {
         return model;
     }
 
-//    @PostMapping(value = "/registeriOXM5xKVYF")
-//    public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
-//
-//        return ResponseEntity.ok(userService.save(user));
-//    }
-
-    @PostMapping(value = "/authenticate")
-    public ResponseEntity<BaseResponse> createAuthenticationToken(@RequestBody User user) throws Exception {
-
-        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "token", ADMIN_DASHBOARD_URL));
-    }
-
-    @PostMapping(value = "/logout")
-    public ResponseEntity<BaseResponse> logoutUser(HttpServletRequest request) {
-
-        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", LOGIN_URL));
-    }
 }

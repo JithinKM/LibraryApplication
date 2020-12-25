@@ -30,22 +30,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+    	
+    	httpSecurity
+        .csrf().disable()
+        .authorizeRequests()
+        	.anyRequest().permitAll()
+        	.and()
+        .exceptionHandling()
+        	.accessDeniedPage("/403")
+        ;
 
-        httpSecurity
-                .csrf().disable()
-                .authorizeRequests()
-                	.antMatchers("/", "/login", "/signup", "/js/**", "/css/**", "/img/**").permitAll()
-                	.anyRequest().authenticated()
-                	.and()
-                .formLogin()
-                	.loginPage("/login")
-                	.and()
-                .logout()
-                	.permitAll()
-                	.and()
-                .exceptionHandling()
-                	.accessDeniedPage("/403")
-                ;
+//        httpSecurity
+//                .csrf().disable()
+//                .authorizeRequests()
+//                	.antMatchers("/", "/login", "/signup", "/js/**", "/css/**", "/img/**").permitAll()
+//                	.anyRequest().authenticated()
+//                	.and()
+//                .formLogin()
+//                	.loginPage("/login")
+//                	.defaultSuccessUrl("/")
+//                	.and()
+//                .logout()
+//                	.permitAll()
+//                	.and()
+//                .exceptionHandling()
+//                	.accessDeniedPage("/403")
+//                ;
         
         //httpSecurity.addFilterAfter(requestFilter, BasicAuthenticationFilter.class);
     }
