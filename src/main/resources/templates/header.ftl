@@ -33,10 +33,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" id="signup">
-            <a class="nav-link" href="/user/signup">Sign Up</a>
+            <a class="nav-link" href="/signup">Sign Up</a>
             </li>
             <li class="nav-item" id="login">
-            <a class="nav-link" href="/user/login">Log In</a>
+            <a class="nav-link" href="/login">Log In</a>
             </li>
             <li class="nav-item d-none onlyForLoggedIn" id="logout">
             <a class="nav-link" id="logoutLink">Log Out</a>

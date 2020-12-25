@@ -27,7 +27,7 @@ public class LibUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		UserEntity user = Optional.ofNullable(userRepository.findByUsername(username))
+		UserEntity user = Optional.ofNullable(userRepository.findByEmail(username))
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
 		System.out.println(user.getEmail());

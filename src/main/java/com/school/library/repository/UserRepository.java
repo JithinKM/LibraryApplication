@@ -9,5 +9,6 @@ import com.school.library.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     UserEntity findByUsername(String username);
+    UserEntity findByEmail(String username);
 
 }

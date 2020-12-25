@@ -6,9 +6,9 @@ INSERT INTO library.role VALUES ('STUDENT');
 INSERT INTO library.role VALUES ('ADMIN');
 INSERT INTO library.role VALUES ('TEACHER');
 
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('IXA22',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6 ', 'active', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('XB21',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6 ', 'active', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('ADMIN',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6 ', 'active', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('IXA22',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('XB21',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('ADMIN',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
 
 INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235234', '', 'A', 'abc', 'def', '', '', 9, 'IXA22');
 INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235235', '', 'B', 'abc', 'def', '', '', 10, 'XB21');
