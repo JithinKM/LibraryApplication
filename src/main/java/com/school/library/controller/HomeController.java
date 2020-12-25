@@ -2,6 +2,7 @@ package com.school.library.controller;
 
 import static com.school.library.constants.LibraryConstants.ADMIN_DASHBOARD_TEMPLATE;
 import static com.school.library.constants.LibraryConstants.HOME_PAGE_TEMPLATE;
+import static com.school.library.constants.LibraryConstants.LOGIN_TEMPLATE;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,11 @@ public class HomeController {
     public ModelAndView getAdminDashboardPage(final ModelAndView model) {
         model.setViewName(ADMIN_DASHBOARD_TEMPLATE);
         return model;
+    }
+
+    @RequestMapping(value = "/login")
+    public String getLoginPage() {
+        return "login";
     }
 
 }

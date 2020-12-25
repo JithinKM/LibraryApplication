@@ -42,12 +42,6 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value = "/login")
-    public ModelAndView getLoginPage(final ModelAndView model) {
-        model.setViewName(LOGIN_TEMPLATE);
-        return model;
-    }
-
     @RequestMapping(value = "/signup")
     public ModelAndView getSignupPage(final ModelAndView model) {
         model.setViewName(SIGNUP_TEMPLATE);
