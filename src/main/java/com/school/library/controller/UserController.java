@@ -1,26 +1,13 @@
 package com.school.library.controller;
 
-import static com.school.library.constants.LibraryConstants.ADMIN_DASHBOARD_URL;
-import static com.school.library.constants.LibraryConstants.LOGIN_TEMPLATE;
-import static com.school.library.constants.LibraryConstants.LOGIN_URL;
-import static com.school.library.constants.LibraryConstants.SIGNUP_TEMPLATE;
-import static com.school.library.constants.LibraryConstants.USERS_LIST_TEMPLATE;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.school.library.enums.ResponseStatus;
-import com.school.library.models.BaseResponse;
-import com.school.library.models.User;
 
 @Controller
 @RequestMapping("/user")
@@ -28,24 +15,19 @@ public class UserController {
 	
     public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-
-
     @GetMapping("/list")
-    public ModelAndView getUsersListPage(final ModelAndView model) {
-        model.setViewName(USERS_LIST_TEMPLATE);
-        return model;
+    public String getUsersListPage(Model model) {
+        return "users-list";
     }
 
     @GetMapping("/edit")
-    public ModelAndView getUsersEditPage(final ModelAndView model) {
-        model.setViewName("users-edit");
-        return model;
+    public String getUsersEditPage(final ModelAndView model) {
+        return "users-edit";
     }
 
-    @RequestMapping(value = "/signup")
-    public ModelAndView getSignupPage(final ModelAndView model) {
-        model.setViewName(SIGNUP_TEMPLATE);
-        return model;
+    @PostMapping(value = "/signup")
+    public String getSignupPage(final ModelAndView model) {
+        return "signup";
     }
 
 }

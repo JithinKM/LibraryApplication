@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "bookdetails", schema = "library")
@@ -26,6 +27,12 @@ public class BookDetailsEntity {
 	private String category;
 	private String language;
 	private Date createdTimestamp;
+	
+	@Transient
+	private boolean available;
+	
+	@Transient
+	private int count;
 	
 	@ManyToOne
 	@JsonManagedReference
@@ -99,4 +106,13 @@ public class BookDetailsEntity {
 		this.books = books;
 	}
 
+	public boolean isAvailable() {
+		//TODO return value according to books availability
+		return true;
+	}
+
+	public int getCount() {
+		return this.books.size();
+	}
+	
 }

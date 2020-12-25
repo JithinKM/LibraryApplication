@@ -24,6 +24,11 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private BookRepository bookRepository;
+    
+    @Override
+    public List<AuthorEntity> getAuthors() {
+        return authorRepository.findAll();
+    }
 
     @Override
     public Author createAuthor(final Author request) {
@@ -37,25 +42,13 @@ public class AuthorServiceImpl implements AuthorService {
                 savedAuthorEntity.getUpdatedAt());
     }
 
-    @Override
-    public List<Author> getAuthors() {
-
-        final List<Author> authors = new ArrayList<>();
-        final Iterable<AuthorEntity> allAuthors = authorRepository.findAll();
-        allAuthors.forEach(authorEntity -> {
-            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
-                    authorEntity.getUpdatedAt());
-            authors.add(author);
-        });
-
-        return authors;
-    }
+    
 
     @Override
     public List<Author> getAuthors(String name) {
 
-        final List<Author> authors = new ArrayList<>();
-        final Iterable<AuthorEntity> allAuthors = authorRepository.findAllByName(name);
+        List<Author> authors = new ArrayList<>();
+        List<AuthorEntity> allAuthors = authorRepository.findByName(name);
         allAuthors.forEach(authorEntity -> {
             Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
                     authorEntity.getUpdatedAt());

@@ -34,10 +34,9 @@
                           <th scope="col">Publication</th>
                           <th scope="col">Category</th>
                           <th scope="col">Language</th>
-                          <th scope="col">Rack</th>
-                          <th scope="col">Purchased on</th>
-                          <th scope="col">Price</th>
+                          <th scope="col">Added on</th>
                           <th scope="col">Available</th>
+                          <th scope="col">Count</th>
                           <th scope="col">Actions</th>
                         </tr>
                       </thead>
@@ -47,28 +46,16 @@
                             <tr>
                               <td>${book.id}</td>
                               <td>${book.name}</td>
-                              <td>${book.authorObj.name}</td>
+                              <td>${book.author.name}</td>
                               <td>${book.publication}</td>
                               <td>${book.category}</td>
                               <td>${book.language}</td>
-                              <td>${book.rack}</td>
-                              <td>${book.purchased?date?string.short}</td>
-                              <td>${book.price}</td>
-                              <td>${book.available?string('Yes', 'No')}</td>
+                              <td>${book.createdTimestamp?date?string.short}</td>
+                              <td>${book.available?string('Yes','No')}</td>
+                              <td>${book.count}</td>
                               <td>
                                   <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
                                   <a class="reject" href="/book/${book.id}/delete">Delete</a>
-                                  <input type="hidden" class="bookEditId" value="${book.id}" />
-                                  <input type="hidden" class="bookEditName" value="${book.name}" />
-                                  <input type="hidden" class="bookEditAuthorId" value="${book.authorObj.id}" />
-                                  <input type="hidden" class="bookEditAuthor" value="${book.authorObj.name}" />
-                                  <input type="hidden" class="bookEditAuthorPenName" value="${book.authorObj.penName}" />
-                                  <input type="hidden" class="bookEditCategory" value="${book.category}" />
-                                  <input type="hidden" class="bookEditLanguage" value="${book.language}" />
-                                  <input type="hidden" class="bookEditPublication" value="${book.publication}" />
-                                  <input type="hidden" class="bookEditRack" value="${book.rack}" />
-                                  <input type="hidden" class="bookEditPurchased" value="${book.purchased?date?string.short}" />
-                                  <input type="hidden" class="bookEditPrice" value="${book.price}" />
                               </td>
                             </tr>
                           </#list>

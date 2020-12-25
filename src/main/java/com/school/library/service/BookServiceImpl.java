@@ -1,25 +1,20 @@
 package com.school.library.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.school.library.entity.AuthorEntity;
-import com.school.library.entity.BookEntity;
-import com.school.library.models.Author;
+import com.school.library.entity.BookDetailsEntity;
 import com.school.library.models.Book;
 import com.school.library.repository.AuthorRepository;
-import com.school.library.repository.BookRepository;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import com.school.library.repository.BookDetailsRepository;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     @Autowired
-    private BookRepository bookRepository;
+    private BookDetailsRepository bookDetailsRepository;
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -27,10 +22,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void createBook(Book book) {
 
-        final List<String> bookIds = Arrays.asList(book
-                .getId()
-                .split(",", -1));
-
+//        final List<String> bookIds = Arrays.asList(book
+//                .getId()
+//                .split(",", -1));
+//
 //        bookIds.forEach(id -> {
 //            final BookEntity bookEntityToSave = new BookEntity(id.trim(), book.getName(), book
 //                    .getAuthorObj().getId(), book.getRack(), book.getPublication(), book.getCategory(),
@@ -41,25 +36,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooks() {
-
-//        final List<Book> books = new ArrayList<>();
-//        final Iterable<BookEntity> allBooks = bookRepository.findAll();
-//        allBooks.forEach(bookEntity -> {
-//            Optional<AuthorEntity> optionalAuthorEntity = authorRepository.findById(bookEntity.getAuthor());
-//            optionalAuthorEntity.ifPresent(authorEntity -> {
-//                Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
-//                        authorEntity.getUpdatedAt());
-//                Book book =
-//                        new Book(bookEntity.getId(), bookEntity.getName(), bookEntity.getAuthor(), bookEntity.getRack(),
-//                                bookEntity.getPublication(), bookEntity.getCategory(), bookEntity.getLanguage(),
-//                                bookEntity.getPurchased(), bookEntity.getPrice(), bookEntity.isAvailable(), author,
-//                                bookEntity.getUpdatedAt());
-//                books.add(book);
-//            });
-//        });
-//
-        return null;
+    public List<BookDetailsEntity> getBooks() {
+    	return bookDetailsRepository.findAll();
     }
 
 }

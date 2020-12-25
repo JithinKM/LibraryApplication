@@ -2,13 +2,14 @@ package com.school.library.service;
 
 import java.util.List;
 
+import com.school.library.entity.AuthorEntity;
 import com.school.library.models.Author;
 
 public interface AuthorService {
 
     Author createAuthor(final Author request);
 
-    List<Author> getAuthors();
+    List<AuthorEntity> getAuthors();
 
     List<Author> getAuthors(final String name);
 
