@@ -1,12 +1,17 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -15,7 +20,6 @@ import javax.persistence.Table;
 public class BookEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	private String contibutedBy;
 	private BigDecimal price;
@@ -24,10 +28,12 @@ public class BookEntity {
 	private Date createdTimestamp;
 	private Date updatedTimestamp;
 
-	@ManyToOne
-	private UserEntity user;
+	@ManyToMany
+	@JsonBackReference
+	private List<UserEntity> users;
 
 	@ManyToOne
+	@JsonManagedReference
 	private BookDetailsEntity bookDetails;
 
 	public String getId() {
@@ -86,12 +92,12 @@ public class BookEntity {
 		this.updatedTimestamp = updatedTimestamp;
 	}
 
-	public UserEntity getUser() {
-		return user;
+	public List<UserEntity> getUsers() {
+		return users;
 	}
 
-	public void setUser(UserEntity user) {
-		this.user = user;
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
 	}
 
 	public BookDetailsEntity getBookDetails() {

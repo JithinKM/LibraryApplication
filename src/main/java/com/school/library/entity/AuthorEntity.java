@@ -1,5 +1,8 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,15 +21,16 @@ public class AuthorEntity {
 	private String id;
 	private String name;
 	private String penName;
-	private long updatedAt;
+	private Date updatedAt;
 
 	@OneToMany(mappedBy = "author")
+	@JsonBackReference
 	private List<BookDetailsEntity> bookDetailsList;
 
 	public AuthorEntity() {
 	}
 			
-	public AuthorEntity(String id2, String name2, String penName2, long nanoTime) {
+	public AuthorEntity(String id2, String name2, String penName2, Date nanoTime) {
 	}
 
 	public String getId() {
@@ -53,11 +57,11 @@ public class AuthorEntity {
 		this.penName = penName;
 	}
 
-	public long getUpdatedAt() {
+	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(long updatedAt) {
+	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 

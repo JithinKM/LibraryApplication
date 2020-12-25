@@ -12,6 +12,7 @@ import com.school.library.repository.BookRepository;
 import com.school.library.utils.CommonUtility;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ public class AuthorServiceImpl implements AuthorService {
 
         final String id = CommonUtility.generateRandomStringByUUID();
         final AuthorEntity authorEntityToSave =
-                new AuthorEntity(id, request.getName(), request.getPenName(), System.nanoTime());
+                new AuthorEntity(id, request.getName(), request.getPenName(), new Date());
         final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
 
         return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),
@@ -101,7 +102,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Author updateAuthor(final Author request) {
         final AuthorEntity authorEntityToSave =
-                new AuthorEntity(request.getId(), request.getName(), request.getPenName(), System.nanoTime());
+                new AuthorEntity(request.getId(), request.getName(), request.getPenName(), new Date());
         final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
 
         return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),

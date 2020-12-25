@@ -1,5 +1,8 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -25,9 +28,11 @@ public class BookDetailsEntity {
 	private Date createdTimestamp;
 	
 	@ManyToOne
+	@JsonManagedReference
 	private AuthorEntity author;
 	
 	@OneToMany(mappedBy = "bookDetails")
+	@JsonBackReference
 	private List<BookEntity> books;
 
 	public String getId() {

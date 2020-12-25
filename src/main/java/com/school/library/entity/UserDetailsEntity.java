@@ -1,5 +1,7 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class UserDetailsEntity {
 	private Long id;
 
 	@OneToOne
+	@JsonBackReference
 	private UserEntity user;
 
 	private String firstname;

@@ -2,6 +2,7 @@ package com.school.library.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.school.library.entity.AuthorEntity;
@@ -23,11 +24,11 @@ public class Author extends AuthorEntity implements Serializable {
         this.books = books;
     }
 
-    public Author(String id, String name, String penName, long updatedAt) {
+    public Author(String id, String name, String penName, Date updatedAt) {
         super(id, name, penName, updatedAt);
     }
 
-    public Author(String id, String name, String penName, List<BookEntity> books, long updatedAt) {
+    public Author(String id, String name, String penName, List<BookEntity> books, Date updatedAt) {
         super(id, name, penName, updatedAt);
         this.books = books;
     }

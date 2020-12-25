@@ -1,5 +1,7 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +26,15 @@ public class UserEntity {
 	private String status; //enabled/registered/active/blocked...
 	
 	@ManyToMany(mappedBy = "user")
+	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	
 	@OneToOne(mappedBy = "user")
+	@JsonManagedReference
 	private UserDetailsEntity userdetail;
 	
-	@OneToMany(mappedBy = "user")
+	@ManyToMany(mappedBy = "users")
+	@JsonManagedReference
 	private List<BookEntity> books;
 	
 	public String getUsername() {

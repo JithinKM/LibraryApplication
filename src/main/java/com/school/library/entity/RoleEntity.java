@@ -1,5 +1,8 @@
 package com.school.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,7 +18,8 @@ public class RoleEntity {
 	private String role;
  
     @ManyToMany
-    private List<UserEntity> user;
+	@JsonBackReference
+	private List<UserEntity> user;
 
 	public List<UserEntity> getUser() {
 		return user;
