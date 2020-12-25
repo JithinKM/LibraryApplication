@@ -17,10 +17,6 @@ public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-	private String name;
-	private String publication;
-	private String category;
-	private String language;
 	private String contibutedBy;
 	private BigDecimal price;
 	private String rack;
@@ -32,7 +28,7 @@ public class BookEntity {
 	private UserEntity user;
 
 	@ManyToOne
-	private AuthorEntity author;
+	private BookDetailsEntity bookDetails;
 
 	public String getId() {
 		return id;
@@ -40,38 +36,6 @@ public class BookEntity {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPublication() {
-		return publication;
-	}
-
-	public void setPublication(String publication) {
-		this.publication = publication;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) {
-		this.language = language;
 	}
 
 	public String getContibutedBy() {
@@ -130,12 +94,12 @@ public class BookEntity {
 		this.user = user;
 	}
 
-	public AuthorEntity getAuthor() {
-		return author;
+	public BookDetailsEntity getBookDetails() {
+		return bookDetails;
 	}
 
-	public void setAuthor(AuthorEntity author) {
-		this.author = author;
+	public void setBookDetails(BookDetailsEntity bookDetails) {
+		this.bookDetails = bookDetails;
 	}
 
 }

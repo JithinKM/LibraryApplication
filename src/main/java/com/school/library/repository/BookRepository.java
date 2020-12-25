@@ -10,7 +10,7 @@ import com.school.library.entity.BookEntity;
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity, String> {
 
-    @Query("FROM BookEntity b where b.author = :author")
-    Iterable<BookEntity> findAllByAuthor(@Param("author") final String authorId);
+//    @Query("FROM BookEntity b where b.author = :author")
+//    Iterable<BookEntity> findAllByAuthor(@Param("author") final String authorId);
 
 }

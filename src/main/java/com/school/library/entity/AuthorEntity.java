@@ -3,6 +3,8 @@ package com.school.library.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -12,13 +14,14 @@ import javax.persistence.Table;
 public class AuthorEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	private String name;
 	private String penName;
 	private long updatedAt;
 
 	@OneToMany(mappedBy = "author")
-	private List<BookEntity> books;
+	private List<BookDetailsEntity> bookDetailsList;
 
 	public AuthorEntity() {
 	}
@@ -58,12 +61,12 @@ public class AuthorEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<BookEntity> getBooks() {
-		return books;
+	public List<BookDetailsEntity> getBookDetailsList() {
+		return bookDetailsList;
 	}
 
-	public void setBooks(List<BookEntity> books) {
-		this.books = books;
+	public void setBookDetailsList(List<BookDetailsEntity> bookDetailsList) {
+		this.bookDetailsList = bookDetailsList;
 	}
 
 }

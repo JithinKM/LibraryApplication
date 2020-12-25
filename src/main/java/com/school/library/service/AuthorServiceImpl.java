@@ -85,8 +85,8 @@ public class AuthorServiceImpl implements AuthorService {
                 });
 
         List<BookEntity> books = new ArrayList<>();
-        Iterable<BookEntity> allByAuthor = bookRepository.findAllByAuthor(author.getId());
-        allByAuthor.forEach(books::add);
+        //Iterable<BookEntity> allByAuthor = bookRepository.findAllByAuthor(author.getId());
+       // allByAuthor.forEach(books::add);
         author.setBooks(books);
 
         return author;
