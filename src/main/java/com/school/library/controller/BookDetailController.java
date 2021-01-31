@@ -1,6 +1,7 @@
 package com.school.library.controller;
 
 import com.school.library.entity.BookEntity;
+import com.school.library.service.BookDetailService;
 import com.school.library.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,34 +17,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/book")
-public class BookController {
-    public static final Logger logger = LoggerFactory.getLogger(BookController.class);
+@RequestMapping("/book-detail")
+public class BookDetailController {
+    public static final Logger logger = LoggerFactory.getLogger(BookDetailController.class);
 
     @Autowired
-    private BookService bookService;
+    private BookDetailService bookDetailService;
 
-//    @GetMapping
-//    public String getBooksListPage(Model model) {
-//        model.addAttribute("books", bookService.getBooks());
-//        return "books-list";
-//    }
-
-    @PostMapping
-    public String createBooks(@RequestBody BookEntity bookEntity) {
-        bookService.createBooks(bookEntity);
-        return "books-list";
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteBook(@PathVariable String id) {
-        bookService.deleteBook(id);
-        return "books-list";
-    }
-
-    @PutMapping
-    public String editBook(@RequestBody BookEntity bookEntity) {
-        bookService.createBook(bookEntity);
+    @GetMapping
+    public String getBooksListPage(Model model) {
+        model.addAttribute("books", bookDetailService.getBookDetails());
         return "books-list";
     }
 

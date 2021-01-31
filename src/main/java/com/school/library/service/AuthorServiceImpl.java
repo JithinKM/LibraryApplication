@@ -1,18 +1,15 @@
 package com.school.library.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.school.library.entity.AuthorEntity;
 import com.school.library.entity.BookEntity;
 import com.school.library.models.Author;
-import com.school.library.models.Book;
 import com.school.library.repository.AuthorRepository;
 import com.school.library.repository.BookRepository;
 import com.school.library.utils.CommonUtility;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,18 +28,10 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author createAuthor(final Author request) {
-
+    public void createAuthor(final AuthorEntity authorEntity) {
         final String id = CommonUtility.generateRandomStringByUUID();
-        final AuthorEntity authorEntityToSave =
-                new AuthorEntity(id, request.getName(), request.getPenName(), new Date());
-        final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
-
-        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),
-                savedAuthorEntity.getUpdatedAt());
+        authorRepository.save(authorEntity);
     }
-
-    
 
     @Override
     public List<Author> getAuthors(String name) {
@@ -88,18 +77,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void deleteAuthor(final String id) {
-
         authorRepository.deleteById(id);
-    }
-
-    @Override
-    public Author updateAuthor(final Author request) {
-        final AuthorEntity authorEntityToSave =
-                new AuthorEntity(request.getId(), request.getName(), request.getPenName(), new Date());
-        final AuthorEntity savedAuthorEntity = authorRepository.save(authorEntityToSave);
-
-        return new Author(savedAuthorEntity.getId(), savedAuthorEntity.getName(), savedAuthorEntity.getPenName(),
-                savedAuthorEntity.getUpdatedAt());
     }
 
 }

@@ -8,12 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -21,10 +20,14 @@ public class BookEntity {
 
 	@Id
 	private String id;
-	private String contibutedBy;
+
+	@Transient
+	private String bookIds;
+	private String contributedBy;
 	private BigDecimal price;
 	private String rack;
-	private String staus;
+	private String status;
+	private Date purchasedDate;
 	private Date createdTimestamp;
 	private Date updatedTimestamp;
 
@@ -44,12 +47,12 @@ public class BookEntity {
 		this.id = id;
 	}
 
-	public String getContibutedBy() {
-		return contibutedBy;
+	public String getContributedBy() {
+		return contributedBy;
 	}
 
-	public void setContibutedBy(String contibutedBy) {
-		this.contibutedBy = contibutedBy;
+	public void setContributedBy(String contributedBy) {
+		this.contributedBy = contributedBy;
 	}
 
 	public BigDecimal getPrice() {
@@ -68,12 +71,12 @@ public class BookEntity {
 		this.rack = rack;
 	}
 
-	public String getStaus() {
-		return staus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStaus(String staus) {
-		this.staus = staus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getCreatedTimestamp() {
@@ -108,4 +111,34 @@ public class BookEntity {
 		this.bookDetails = bookDetails;
 	}
 
+	public Date getPurchasedDate() {
+		return purchasedDate;
+	}
+
+	public void setPurchasedDate(Date purchasedDate) {
+		this.purchasedDate = purchasedDate;
+	}
+
+	public String getBookIds() {
+		return bookIds;
+	}
+
+	public void setBookIds(String bookIds) {
+		this.bookIds = bookIds;
+	}
+
+	public BookEntity(String id, String contributedBy, BigDecimal price, String rack, String status,
+			Date purchasedDate,
+			Date createdTimestamp, Date updatedTimestamp, List<UserEntity> users, BookDetailsEntity bookDetails) {
+		this.id = id;
+		this.contributedBy = contributedBy;
+		this.price = price;
+		this.rack = rack;
+		this.status = status;
+		this.purchasedDate = purchasedDate;
+		this.createdTimestamp = createdTimestamp;
+		this.updatedTimestamp = updatedTimestamp;
+		this.users = users;
+		this.bookDetails = bookDetails;
+	}
 }

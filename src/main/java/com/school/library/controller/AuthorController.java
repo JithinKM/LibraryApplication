@@ -1,27 +1,25 @@
 package com.school.library.controller;
 
-import static com.school.library.constants.LibraryConstants.AUTHOR_DETAIL_TEMPLATE;
-import static com.school.library.constants.LibraryConstants.AUTHOR_LIST_URL;
-
-import java.util.List;
-
+import com.school.library.entity.AuthorEntity;
+import com.school.library.models.Author;
+import com.school.library.service.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.school.library.enums.ResponseStatus;
-import com.school.library.models.Author;
-import com.school.library.models.BaseResponse;
-import com.school.library.service.AuthorService;
+import java.util.List;
+
+import static com.school.library.constants.LibraryConstants.AUTHOR_DETAIL_TEMPLATE;
 
 @Controller
 @RequestMapping("/author")
@@ -32,25 +30,32 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
     
-    @GetMapping("/list")
+    @GetMapping
     public String getAuthorsListPage(Model model) {
         model.addAttribute("authors", authorService.getAuthors());
         return "authors-list";
     }
-   
-    @PostMapping("/add")
-    public ResponseEntity<BaseResponse> createAuthor(@RequestBody final Author request) {
 
-        try {
-            authorService.createAuthor(request);
-        } catch (Exception exception) {
-            return ResponseEntity.ok(new BaseResponse(ResponseStatus.ERROR, "", exception.getMessage()));
-        }
-
-        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
+    @PostMapping
+    public String createAuthor(@RequestBody AuthorEntity authorEntity) {
+        authorService.createAuthor(authorEntity);
+        return "authors-list";
     }
 
-    
+    @DeleteMapping("/{id}")
+    public String deleteAuthor(@PathVariable String id) {
+        authorService.deleteAuthor(id);
+        return "authors-list";
+    }
+
+    @PutMapping
+    public String editAuthor(@RequestBody AuthorEntity authorEntity) {
+        authorService.createAuthor(authorEntity);
+        return "authors-list";
+    }
+
+
+
 
     @GetMapping("/all/{query}")
     public List<Author> getAuthors(@PathVariable("query") String name) {
@@ -66,27 +71,4 @@ public class AuthorController {
         model.setViewName(AUTHOR_DETAIL_TEMPLATE);
         return model;
     }
-
-//    @GetMapping("/{id}/delete")
-//    public ModelAndView deleteAuthor(@PathVariable("id") String id,  final ModelAndView model) {
-//
-//        authorService.deleteAuthor(id);
-//        final List<Author> authors = authorService.getAuthors();
-//        model.addObject("authors", authors);
-//        model.setViewName(AUTHORS_LIST_TEMPLATE);
-//        return model;
-//    }
-
-    @PostMapping("/edit")
-    public ResponseEntity<BaseResponse> editAuthor(@RequestBody final Author request) {
-
-        try {
-            authorService.updateAuthor(request);
-        } catch (Exception exception) {
-            return ResponseEntity.ok(new BaseResponse(ResponseStatus.ERROR, "", exception.getMessage()));
-        }
-
-        return ResponseEntity.ok(new BaseResponse(ResponseStatus.SUCCESS, "", AUTHOR_LIST_URL));
-    }
-
 }

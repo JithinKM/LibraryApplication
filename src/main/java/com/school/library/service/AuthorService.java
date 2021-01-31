@@ -1,13 +1,13 @@
 package com.school.library.service;
 
-import java.util.List;
-
 import com.school.library.entity.AuthorEntity;
 import com.school.library.models.Author;
 
+import java.util.List;
+
 public interface AuthorService {
 
-    Author createAuthor(final Author request);
+    void createAuthor(final AuthorEntity authorEntity);
 
     List<AuthorEntity> getAuthors();
 
@@ -16,6 +16,4 @@ public interface AuthorService {
     Author getAuthor(final String id);
 
     void deleteAuthor(final String id);
-
-    Author updateAuthor(final Author request);
 }

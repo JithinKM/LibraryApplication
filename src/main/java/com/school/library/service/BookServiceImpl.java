@@ -1,17 +1,24 @@
 package com.school.library.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.school.library.entity.BookDetailsEntity;
-import com.school.library.models.Book;
+import com.school.library.entity.BookEntity;
 import com.school.library.repository.AuthorRepository;
 import com.school.library.repository.BookDetailsRepository;
+import com.school.library.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Autowired
     private BookDetailsRepository bookDetailsRepository;
@@ -20,24 +27,39 @@ public class BookServiceImpl implements BookService {
     private AuthorRepository authorRepository;
 
     @Override
-    public void createBook(Book book) {
+    public void createBook(BookEntity bookEntity) {
+        bookRepository.save(bookEntity);
+    }
 
-//        final List<String> bookIds = Arrays.asList(book
-//                .getId()
-//                .split(",", -1));
-//
-//        bookIds.forEach(id -> {
-//            final BookEntity bookEntityToSave = new BookEntity(id.trim(), book.getName(), book
-//                    .getAuthorObj().getId(), book.getRack(), book.getPublication(), book.getCategory(),
-//                    book.getLanguage(),false, book.getPrice(), Boolean.TRUE, System.nanoTime());
-//            bookRepository.save(bookEntityToSave);
-//        });
+    @Override
+    public void createBooks(BookEntity bookEntity) {
 
+        String bookIds = bookEntity.getBookIds();
+        List<BookEntity> bookEntities = new ArrayList<>();
+        if (!StringUtils.isEmpty(bookIds)) {
+            Arrays
+                    .stream(bookIds.split(","))
+                    .distinct()
+                    .forEach(id -> {
+                        bookEntities.add(new BookEntity(id, bookEntity.getContributedBy(), bookEntity.getPrice(),
+                                bookEntity.getRack(), bookEntity.getStatus(), bookEntity.getPurchasedDate(), new Date(),
+                                new Date(), null, bookEntity.getBookDetails()));
+                    });
+        } else if (!StringUtils.isEmpty(bookEntity.getId())) {
+            bookEntities.add(bookEntity);
+        }
+
+        bookRepository.saveAll(bookEntities);
     }
 
     @Override
     public List<BookDetailsEntity> getBooks() {
     	return bookDetailsRepository.findAll();
+    }
+
+    @Override
+    public void deleteBook(String id) {
+        bookRepository.deleteById(id);
     }
 
 }

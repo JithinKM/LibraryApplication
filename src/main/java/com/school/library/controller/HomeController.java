@@ -23,7 +23,7 @@ public class HomeController {
     
     @GetMapping("/admin")
     public String adminDashboard() {
-        return "admin";
+        return "admin-dashboard";
     }
     
     @GetMapping(value = "/signup")

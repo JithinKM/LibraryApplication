@@ -1,14 +1,17 @@
 package com.school.library.service;
 
-import java.util.List;
-
 import com.school.library.entity.BookDetailsEntity;
-import com.school.library.models.Book;
+import com.school.library.entity.BookEntity;
+
+import java.util.List;
 
 public interface BookService {
 
-    void createBook(final Book book);
+    void createBook(final BookEntity bookEntity);
+
+    void createBooks(final BookEntity bookEntity);
 
     List<BookDetailsEntity> getBooks();
 
+    void deleteBook(String id);
 }
