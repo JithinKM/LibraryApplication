@@ -1,7 +1,7 @@
 package com.school.library.service;
 
 import com.school.library.entity.UserDetailsEntity;
-import com.school.library.models.User;
+import com.school.library.entity.UserEntity;
 
 public interface UserService {
 
@@ -9,5 +9,5 @@ public interface UserService {
 
     UserDetailsEntity updateUserToken(final UserDetailsEntity user);
 
-    User save(User user);
+    UserEntity save(UserEntity user);
 }

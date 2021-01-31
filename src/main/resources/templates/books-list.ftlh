@@ -83,33 +83,39 @@
           </div>
           <div class="modal-body">
             <form role="form" id="bookAddForm">
+              <div class="col-lg-6">
+                  <h4>Author Details</h4>
+                  <div class="form-group">
+                    <label>Author Name</label>
+                    <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter author name">
+                  </div>
+                  <div class="form-group">
+                    <label>Author Pen Name</label>
+                    <input type="text" class="form-control" id="authorPenName" name="authorPenName" placeholder="Enter author pen name">
+                    </div>
+                    <h4>Book Common Details</h4>
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name">
+                    </div>
+                    <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category">
+                    </div>
+                    <div class="form-group">
+                    <label>Language</label>
+                    <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language">
+                    </div>
+                    <div class="form-group">
+                    <label>Publication</label>
+                    <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication">
+                    </div>
               <div class="form-group">
                 <label>Book id's</label>
                 <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Enter book id's separated by commas">
               </div>
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name">
-              </div>
-              <div class="form-group">
-                <label>Author</label>
-                <input type="text" class="typeahead form-control" id="author" name="author" placeholder="Enter author">
-                <input type="hidden" id="authorId" name="author" value="">
-                <input type="hidden" id="authorName" name="author" value="">
-                <input type="hidden" id="authorPenName" name="author" value="">
-              </div>
-              <div class="form-group">
-                <label>Category</label>
-                <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category">
-              </div>
-              <div class="form-group">
-                <label>Language</label>
-                <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language">
-              </div>
-              <div class="form-group">
-                <label>Publication</label>
-                <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication">
-              </div>
+            </div>
+            <div class="col-lg-6">
               <div class="form-group">
                 <label>Rack</label>
                 <input type="text" class="form-control" id="rack" name="rack" placeholder="Enter rack">
@@ -123,6 +129,7 @@
                 <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
               </div>
               <input type="submit" class="btn btn-primary" id="addBook" value="Add"/>
+          </div>
             </form>
           </div>
         </div>

@@ -2,7 +2,6 @@ package com.school.library.service;
 
 import com.school.library.entity.AuthorEntity;
 import com.school.library.entity.BookEntity;
-import com.school.library.models.Author;
 import com.school.library.repository.AuthorRepository;
 import com.school.library.repository.BookRepository;
 import com.school.library.utils.CommonUtility;
@@ -34,23 +33,14 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> getAuthors(String name) {
-
-        List<Author> authors = new ArrayList<>();
-        List<AuthorEntity> allAuthors = authorRepository.findByName(name);
-        allAuthors.forEach(authorEntity -> {
-            Author author = new Author(authorEntity.getId(), authorEntity.getName(), authorEntity.getPenName(),
-                    authorEntity.getUpdatedAt());
-            authors.add(author);
-        });
-
-        return authors;
+    public List<AuthorEntity> getAuthors(String name) {
+        return authorRepository.findByName(name);
     }
 
     @Override
-    public Author getAuthor(final String id) {
+    public AuthorEntity getAuthor(final String id) {
 
-        final Author author = new Author();
+        final AuthorEntity author = new AuthorEntity();
         Optional<AuthorEntity> optionalAuthorEntity = authorRepository.findById(id);
 
         Optional
@@ -70,7 +60,7 @@ public class AuthorServiceImpl implements AuthorService {
         List<BookEntity> books = new ArrayList<>();
         //Iterable<BookEntity> allByAuthor = bookRepository.findAllByAuthor(author.getId());
        // allByAuthor.forEach(books::add);
-        author.setBooks(books);
+//        author.setBooks(books);
 
         return author;
     }

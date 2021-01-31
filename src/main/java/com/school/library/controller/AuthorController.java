@@ -1,7 +1,6 @@
 package com.school.library.controller;
 
 import com.school.library.entity.AuthorEntity;
-import com.school.library.models.Author;
 import com.school.library.service.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +57,7 @@ public class AuthorController {
 
 
     @GetMapping("/all/{query}")
-    public List<Author> getAuthors(@PathVariable("query") String name) {
+    public List<AuthorEntity> getAuthors(@PathVariable("query") String name) {
 
         return authorService.getAuthors(name);
     }
@@ -66,7 +65,7 @@ public class AuthorController {
     @GetMapping("/{id}")
     public ModelAndView getAuthor(@PathVariable("id") String id,  final ModelAndView model) {
 
-        final Author author = authorService.getAuthor(id);
+        final AuthorEntity author = authorService.getAuthor(id);
         model.addObject("author", author);
         model.setViewName(AUTHOR_DETAIL_TEMPLATE);
         return model;
