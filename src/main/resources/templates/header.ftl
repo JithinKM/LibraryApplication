@@ -52,7 +52,7 @@
             <ul class="nav-sidebar admin-nav-bar">
               <li><a href="/admin" id="dashboard">Dashboard</a></li>
               <hr class="sidebar-divider">
-              <li><a href="/book-list" id="book">Books</a></li>
+              <li><a href="/book" id="book">Books</a></li>
               <li><a href="/author" id="author">Authors</a></li>
               <li><a href="/user" id="user">Users</a></li>
             </ul>

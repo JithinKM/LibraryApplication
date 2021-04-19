@@ -14,7 +14,7 @@ public class UserController {
 	
     public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping("/list")
+    @GetMapping
     public String getUsersListPage(Model model) {
         return "users-list";
     }

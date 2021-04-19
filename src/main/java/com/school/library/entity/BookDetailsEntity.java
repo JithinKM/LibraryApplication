@@ -21,7 +21,7 @@ public class BookDetailsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 	private String name;
 	private String publication;
 	private String category;
@@ -42,11 +42,11 @@ public class BookDetailsEntity {
 	@JsonBackReference
 	private List<BookEntity> books;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

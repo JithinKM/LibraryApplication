@@ -76,18 +76,20 @@ function addBook() {
             contentType: 'application/json',
             dataType: 'json',
             type: 'POST',
-            url: '/book/add',
+            url: '/book',
             data: JSON.stringify({
                 id: $('#bookId').val(),
-                name: $('#name').val(),
-                author: {
-                    id: $('#authorId').val(),
-                    name: $('#authorName').val(),
-                    pen_name: $('#authorPenName').val()
+                book_details: {
+                    author: {
+                        id: $('#authorId').val(),
+                        name: $('#authorName').val(),
+                        pen_name: $('#authorPenName').val()
+                    },
+                    name: $('#name').val(),
+                    category: $('#category').val(),
+                    language: $('#language').val(),
+                    publication: $('#publication').val(),
                 },
-                category: $('#category').val(),
-                language: $('#language').val(),
-                publication: $('#publication').val(),
                 rack: $('#rack').val(),
                 purchased: new Date($('#purchased').val()),
                 price: $('#price').val()
@@ -101,6 +103,7 @@ function addBook() {
                 }
             },
             error: function(data) {
+                console.log(data)
                 hideLoadingAnimation();
                 processAdminErrorMessage(JSON.parse(data.responseText));
             }

@@ -7,12 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -35,9 +30,12 @@ public class BookEntity {
 	@JsonBackReference
 	private List<UserEntity> users;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonManagedReference
 	private BookDetailsEntity bookDetails;
+
+	public BookEntity() {
+	}
 
 	public String getId() {
 		return id;
