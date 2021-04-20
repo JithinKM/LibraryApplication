@@ -78,12 +78,12 @@ function addBook() {
             type: 'POST',
             url: '/book',
             data: JSON.stringify({
-                id: $('#bookId').val(),
-                book_details: {
+                bookIds: $('#bookId').val(),
+                bookDetails: {
                     author: {
                         id: $('#authorId').val(),
                         name: $('#authorName').val(),
-                        pen_name: $('#authorPenName').val()
+                        penName: $('#authorPenName').val()
                     },
                     name: $('#name').val(),
                     category: $('#category').val(),
@@ -115,19 +115,21 @@ function editBook() {
         $.ajax({
             contentType: 'application/json',
             dataType: 'json',
-            type: 'POST',
-            url: '/book/edit',
+            type: 'PUT',
+            url: '/book',
             data: JSON.stringify({
-                id: $('#bookEditId').val(),
-                name: $('#bookEditName').val(),
-                author: {
-                    id: $('#bookEditAuthorId').val(),
-                    name: $('#bookEditAuthor').val(),
-                    pen_name: $('#bookEditAuthorPenName').val()
+                bookIds: $('#bookEditId').val(),
+                bookDetails: {
+                    name: $('#bookEditName').val(),
+                    category: $('#bookEditCategory').val(),
+                    language: $('#bookEditLanguage').val(),
+                    publication: $('#bookEditPublication').val(),
+                    author: {
+                        id: $('#bookEditAuthorId').val(),
+                        name: $('#bookEditAuthor').val(),
+                        penName: $('#bookEditAuthorPenName').val()
+                    }
                 },
-                category: $('#bookEditCategory').val(),
-                language: $('#bookEditLanguage').val(),
-                publication: $('#bookEditPublication').val(),
                 rack: $('#bookEditRack').val(),
                 purchased: new Date($('#bookEditPurchased').val()),
                 price: $('#bookEditPrice').val()

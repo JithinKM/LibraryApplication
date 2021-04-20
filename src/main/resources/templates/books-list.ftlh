@@ -27,34 +27,51 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Publication</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Language</th>
-                                <th scope="col">Added on</th>
                                 <th scope="col">Available</th>
                                 <th scope="col">Count</th>
-                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <#if books??>
-                            <#list books as book>
+                            <#list books as bookDetail>
+                            <tr class="accordion-toggle" data-toggle="collapse" data-target="#${bookDetail.name?replace(" ", "")}">
+                                <td>${bookDetail.name}</td>
+                                <td>${bookDetail.author.name}</td>
+                                <td>${bookDetail.publication}</td>
+                                <td>${bookDetail.category}</td>
+                                <td>${bookDetail.language}</td>
+                                <td>${bookDetail.available?c}</td>
+                                <td>1</td>
+                            </tr>
                             <tr>
-                                <td>${book.id}</td>
-                                <td>${book.name}</td>
-                                <td>${book.author.name}</td>
-                                <td>${book.publication}</td>
-                                <td>${book.category}</td>
-                                <td>${book.language}</td>
-                                <td>${book.createdTimestamp?date?string.short}</td>
-                                <td>${book.available?string('Yes','No')}</td>
-                                <td>${book.count}</td>
-                                <td>
-                                    <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
-                                    <a class="reject" href="/book/${book.id}/delete">Delete</a>
+                                <td class="accordion-body collapse" id="${bookDetail.name?replace(" ", "")}">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Id</th>
+                                            <th>Contributed By</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>Rack</th>
+                                            <th>Purchased Date</th>
+                                        </thead>
+                                        <tbody>
+                                            <#list bookDetail.books as book>
+                                            <tr>
+                                                <td>${book.id}</td>
+                                                <td>${book.contributedBy}</td>
+                                                <td>${book.price}</td>
+                                                <td>${book.status}</td>
+                                                <td>${book.rack}</td>
+                                                <td>${book.purchasedDate}</td>
+                                            </tr>
+                                            </#list>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             </#list>

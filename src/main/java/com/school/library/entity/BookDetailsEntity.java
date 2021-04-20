@@ -29,10 +29,10 @@ public class BookDetailsEntity {
 	private Date createdTimestamp;
 	
 	@Transient
-	private boolean available;
+	private boolean available = true;
 	
 	@Transient
-	private int count;
+	private int count = 1;
 	
 	@ManyToOne
 	@JsonManagedReference
