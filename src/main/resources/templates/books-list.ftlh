@@ -39,7 +39,7 @@
                         <tbody>
                             <#if books??>
                             <#list books as bookDetail>
-                            <tr class="accordion-toggle" data-toggle="collapse" data-target="#${bookDetail.name?replace(" ", "")}">
+                            <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target=".${bookDetail.name?replace(" ", "")}">
                                 <td>${bookDetail.name}</td>
                                 <td>${bookDetail.author.name}</td>
                                 <td>${bookDetail.publication}</td>
@@ -48,32 +48,40 @@
                                 <td>${bookDetail.available?c}</td>
                                 <td>1</td>
                             </tr>
-                            <tr>
-                                <td class="accordion-body collapse" id="${bookDetail.name?replace(" ", "")}">
-                                    <table class="table">
-                                        <thead>
-                                            <th>Id</th>
-                                            <th>Contributed By</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                            <th>Rack</th>
-                                            <th>Purchased Date</th>
-                                        </thead>
-                                        <tbody>
-                                            <#list bookDetail.books as book>
-                                            <tr>
-                                                <td>${book.id}</td>
-                                                <td>${book.contributedBy}</td>
-                                                <td>${book.price}</td>
-                                                <td>${book.status}</td>
-                                                <td>${book.rack}</td>
-                                                <td>${book.purchasedDate}</td>
-                                            </tr>
-                                            </#list>
-                                        </tbody>
-                                    </table>
+                            <tr class="table-collapse table-collapse-header collapse ${bookDetail.name?replace(" ", "")}">
+                                <td>Id</td>
+                                <td>Contributed By</td>
+                                <td>Price</td>
+                                <td>Status</td>
+                                <td>Rack</td>
+                                <td>Purchased Date</td>
+                                <td>Actions</td>
+                            </tr>
+                            <#list bookDetail.books as book>
+                            <tr class="table-collapse collapse ${bookDetail.name?replace(" ", "")}">
+                                <td>${book.id}</td>
+                                <td>${book.contributedBy}</td>
+                                <td>${book.price}</td>
+                                <td>${book.status}</td>
+                                <td>${book.rack}</td>
+                                <td>${book.purchasedDate}</td>
+                                <td>
+                                    <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
+                                    <a class="reject" href="/book/${book.id}/delete">Delete</a>
+                                    <input type="hidden" class="bookEditId" value="${book.id}" />
+                                    <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
+                                    <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id}" />
+                                    <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
+                                    <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
+                                    <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
+                                    <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
+                                    <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
+                                    <input type="hidden" class="bookEditRack" value="${book.rack}" />
+                                    <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
+                                    <input type="hidden" class="bookEditPrice" value="${book.price}" />
                                 </td>
                             </tr>
+                            </#list>
                             </#list>
                             </#if>
                         </tbody>

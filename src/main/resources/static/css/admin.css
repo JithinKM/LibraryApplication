@@ -491,3 +491,21 @@ a, a:visited, a:hover {
     padding: 20px;
     color: #17a2b8;
 }
+
+.table-collapse {
+    font-size: 12px;
+}
+
+.table-collapse td {
+    padding: 4px;
+    background-color: #32383e;
+    color: #fff;
+    border: none;
+}
+
+.table-collapse-header {
+    font-weight: bold;
+}
+.table-accordion {
+    cursor: pointer;
+}
