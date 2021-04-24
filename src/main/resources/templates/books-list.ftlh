@@ -74,6 +74,7 @@
                                     <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
                                     <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
                                     <input type="hidden" class="bookEditRack" value="${book.rack}" />
+                                    <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
                                     <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
                                     <input type="hidden" class="bookEditPrice" value="${book.price}" />
                                 </td>
@@ -201,6 +202,10 @@
                             </div>
                         </div>
                         <div class="col-6">
+                            <div class="form-group">
+                                <label>Contributed By</label>
+                                <input type="text" class="form-control" id="bookEditContributed" name="contributed" placeholder="Enter contributed by">
+                            </div>
                             <div class="form-group">
                                 <label>Publication</label>
                                 <input type="text" class="form-control" id="bookEditPublication" name="publication" placeholder="Enter publication">

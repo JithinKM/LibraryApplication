@@ -132,7 +132,8 @@ function editBook() {
                     }
                 },
                 rack: $('#bookEditRack').val(),
-                purchased: new Date($('#bookEditPurchased').val()),
+                contributedBy: $('#contributed').val(),
+                purchasedDate: new Date($('#bookEditPurchased').val()),
                 price: $('#bookEditPrice').val()
             }),
             success: function(data) {
@@ -154,7 +155,7 @@ $.validator.methods.localDate = function( value, element ) {
     return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
 }
 
-function prepareBookAddForm(authors) {
+function prepareBookAddForm() {
 
     $( "#purchased" ).datepicker({
         changeMonth: true,
@@ -196,7 +197,7 @@ function prepareBookAddForm(authors) {
     });
 }
 
-function prepareBookEditForm(authors) {
+function prepareBookEditForm() {
 
     $( "#bookEditPurchased" ).datepicker({
         changeMonth: true,
@@ -248,8 +249,9 @@ function booksListPageReady() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-    prepareBookAddForm(authors);
-    prepareBookEditForm(authors);
+
+    prepareBookAddForm();
+    prepareBookEditForm();
 
     $(".book-edit").click(function(event) {
         $("#bookEditId").val($(event.target).siblings(".bookEditId").val());
@@ -261,6 +263,7 @@ function booksListPageReady() {
         $("#bookEditLanguage").val($(event.target).siblings(".bookEditLanguage").val());
         $("#bookEditPublication").val($(event.target).siblings(".bookEditPublication").val());
         $("#bookEditRack").val($(event.target).siblings(".bookEditRack").val());
+        $("#bookEditContributed").val($(event.target).siblings(".bookEditContributed").val());
         $("#bookEditPurchased").val($(event.target).siblings(".bookEditPurchased").val());
         $("#bookEditPrice").val($(event.target).siblings(".bookEditPrice").val());
     });
