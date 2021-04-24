@@ -8,10 +8,7 @@
             </div>
             <div class="col-xs-12 col-sm-4 panel-heading">
                 <div class="input-group search-form">
-                    <input type="text" class="form-control" placeholder="Search books...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">Go!</button>
-                    </span>
+                    <input type="text" class="form-control" id="filer-books" placeholder="Search books or authors...">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-4 panel-heading">
@@ -24,7 +21,7 @@
         <div class="panel-body">
             <div class="justify-content-center">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="bookList">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -134,6 +131,10 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
+                                <label>Contributed By</label>
+                                <input type="text" class="form-control" id="contributed" name="contributed" placeholder="Enter contributed by">
+                            </div>
+                            <div class="form-group">
                                 <label>Publication</label>
                                 <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication">
                             </div>
@@ -185,7 +186,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Author</label>
-                                <input type="text" class="typeahead form-control" id="bookEditAuthor" name="author" placeholder="Enter author">
+                                <input type="text" class="form-control" id="bookEditAuthor" name="author" placeholder="Enter author">
                                 <input type="hidden" id="bookEditAuthor" name="author" value="">
                                 <input type="hidden" id="bookEditAuthorId" name="author" value="">
                                 <input type="hidden" id="bookEditAuthorPenName" name="author" value="">

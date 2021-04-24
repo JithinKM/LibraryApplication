@@ -91,7 +91,8 @@ function addBook() {
                     publication: $('#publication').val(),
                 },
                 rack: $('#rack').val(),
-                purchased: new Date($('#purchased').val()),
+                contributedBy: $('#contributed').val(),
+                purchasedDate: new Date($('#purchased').val()),
                 price: $('#price').val()
             }),
             success: function(data) {
@@ -160,20 +161,6 @@ function prepareBookAddForm(authors) {
         changeYear: true
     });
 
-    $('#bookAddForm .typeahead').typeahead({
-        highlight: true
-    },
-    {
-        display: 'value',
-        source: authors.ttAdapter()
-    });
-
-    $('#bookAddForm').on('typeahead:selected', function (e, data) {
-        $("#authorId").val(data.id);
-        $("#authorName").val(data.value);
-        $("#authorPenName").val(data.pen_name);
-    });
-
     var validator = $("#bookAddForm").validate({
         rules: {
             "bookId": {
@@ -216,20 +203,6 @@ function prepareBookEditForm(authors) {
         changeYear: true
     });
 
-    $('#bookEditForm .typeahead').typeahead({
-        highlight: true
-    },
-    {
-        display: 'value',
-        source: authors.ttAdapter()
-    });
-
-    $('#bookEditForm').on('typeahead:selected', function (e, data) {
-        $("#authorEditId").val(data.id);
-        $("#authorEditName").val(data.value);
-        $("#authorEditPenName").val(data.pen_name);
-    });
-
     var validator = $("#bookEditForm").validate({
         rules: {
             "bookId": {
@@ -269,21 +242,12 @@ function booksListPageReady() {
     redirectToLogin();
     $("#book").addClass("active");
 
-    var authors = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: {
-            url: '/author/all/%QUERY',
-            wildcard: '%QUERY',
-            transform: response => $.map(response, author => ({
-              id: author.id,
-              value: author.name,
-              pen_name: author.penName
-            }))
-        }
+    $("#filer-books").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#bookList tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-
-    authors.initialize();
     prepareBookAddForm(authors);
     prepareBookEditForm(authors);
 
@@ -308,7 +272,7 @@ function addAuthor() {
             contentType: 'application/json',
             dataType: 'json',
             type: 'POST',
-            url: '/author/add',
+            url: '/author',
             data: JSON.stringify({
                 name: $('#name').val(),
                 penName: $('#penName').val()
@@ -333,8 +297,8 @@ function editAuthor() {
     $.ajax({
         contentType: 'application/json',
         dataType: 'json',
-        type: 'POST',
-        url: '/author/edit/',
+        type: 'PUT',
+        url: '/author',
         data: JSON.stringify({
             id: $('#editId').val(),
             name: $('#editName').val(),
