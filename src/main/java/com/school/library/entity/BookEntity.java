@@ -1,14 +1,20 @@
 package com.school.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "book", schema = "library")
@@ -32,7 +38,7 @@ public class BookEntity {
 	@JsonBackReference
 	private List<UserEntity> users;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private BookDetailsEntity bookDetails;
 
@@ -128,8 +134,7 @@ public class BookEntity {
 	}
 
 	public BookEntity(String id, String contributedBy, BigDecimal price, String rack, String status,
-			Date purchasedDate,
-			Date createdTimestamp, Date updatedTimestamp, List<UserEntity> users, BookDetailsEntity bookDetails) {
+			Date purchasedDate, Date createdTimestamp, Date updatedTimestamp, BookDetailsEntity bookDetailsEntity) {
 		this.id = id;
 		this.contributedBy = contributedBy;
 		this.price = price;
@@ -138,7 +143,6 @@ public class BookEntity {
 		this.purchasedDate = purchasedDate;
 		this.createdTimestamp = createdTimestamp;
 		this.updatedTimestamp = updatedTimestamp;
-		this.users = users;
-		this.bookDetails = bookDetails;
+		this.bookDetails = bookDetailsEntity;
 	}
 }

@@ -1,18 +1,19 @@
 package com.school.library.service;
 
-import com.school.library.entity.AuthorEntity;
-
 import java.util.List;
+
+import com.school.library.entity.AuthorEntity;
+import com.school.library.model.Author;
 
 public interface AuthorService {
 
-    void createAuthor(final AuthorEntity authorEntity);
+    void createAuthor(final Author author);
 
     List<AuthorEntity> getAuthors();
 
     List<AuthorEntity> getAuthors(final String name);
 
-    AuthorEntity getAuthor(final String id);
+    AuthorEntity getAuthor(final Long id);
 
-    void deleteAuthor(final String id);
+    void deleteAuthor(final Long id);
 }

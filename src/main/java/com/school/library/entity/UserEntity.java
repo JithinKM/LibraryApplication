@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -34,6 +35,7 @@ public class UserEntity {
 	
 	@ManyToMany(mappedBy = "users")
 	@JsonManagedReference
+	@JsonBackReference
 	private List<BookEntity> books;
 	
 	public String getUsername() {

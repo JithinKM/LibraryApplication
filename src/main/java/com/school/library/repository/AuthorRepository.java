@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.school.library.entity.AuthorEntity;
 
 @Repository
-public interface AuthorRepository extends JpaRepository<AuthorEntity, String> {
+public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 
 	List<AuthorEntity> findByName(String name);
 }

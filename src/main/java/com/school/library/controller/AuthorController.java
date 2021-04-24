@@ -1,6 +1,7 @@
 package com.school.library.controller;
 
 import com.school.library.entity.AuthorEntity;
+import com.school.library.model.Author;
 import com.school.library.service.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,25 +37,22 @@ public class AuthorController {
     }
 
     @PostMapping
-    public String createAuthor(@RequestBody AuthorEntity authorEntity) {
-        authorService.createAuthor(authorEntity);
+    public String createAuthor(@RequestBody Author author) {
+        authorService.createAuthor(author);
         return "authors-list";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteAuthor(@PathVariable String id) {
+    public String deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return "authors-list";
     }
 
     @PutMapping
-    public String editAuthor(@RequestBody AuthorEntity authorEntity) {
-        authorService.createAuthor(authorEntity);
+    public String editAuthor(@RequestBody Author author) {
+        authorService.createAuthor(author);
         return "authors-list";
     }
-
-
-
 
     @GetMapping("/all/{query}")
     public List<AuthorEntity> getAuthors(@PathVariable("query") String name) {
@@ -63,7 +61,7 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView getAuthor(@PathVariable("id") String id,  final ModelAndView model) {
+    public ModelAndView getAuthor(@PathVariable("id") Long id,  final ModelAndView model) {
 
         final AuthorEntity author = authorService.getAuthor(id);
         model.addObject("author", author);

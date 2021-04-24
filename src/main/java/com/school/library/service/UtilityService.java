@@ -1,12 +1,4 @@
-package com.school.library.utils;
-
-import com.opencsv.CSVReader;
-import com.school.library.entity.AuthorEntity;
-import com.school.library.entity.BookDetailsEntity;
-import com.school.library.entity.BookEntity;
-import com.school.library.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+package com.school.library.service;
 
 import java.io.FileReader;
 import java.math.BigDecimal;
@@ -16,15 +8,30 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-@Component
-public class CsvReader {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.opencsv.CSVReader;
+import com.school.library.entity.BookDetailsEntity;
+import com.school.library.entity.BookEntity;
+import com.school.library.repository.BookRepository;
+
+@Service
+public class UtilityService {
 
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
     @Autowired
     private BookRepository bookRepository;
+    
+    public void addBulkBookDetails(MultipartFile file) {
+    	System.out.println(file.getName());
+    	System.out.println(file.getOriginalFilename());
+    	//readDataLineByLine(file.getName());
+    }
 
-    public void readDataLineByLine(String file) {
+    private void readDataLineByLine(String file) {
 
         ArrayList<String[]> allLines = new ArrayList<>();
         try {

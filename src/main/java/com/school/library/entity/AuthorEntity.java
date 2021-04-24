@@ -1,6 +1,8 @@
 package com.school.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.school.library.model.Author;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "author", schema = "library")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AuthorEntity {
 
 	@Id
@@ -29,8 +32,16 @@ public class AuthorEntity {
 
 	public AuthorEntity() {
 	}
+	
+	public AuthorEntity(Long id) {
+		this.id = id;
+	}
 			
-	public AuthorEntity(String id2, String name2, String penName2, Date nanoTime) {
+	public AuthorEntity(Author author) {
+		this.id = author.getId();
+		this.name = author.getName();
+		this.penName = author.getPenName();
+		this.updatedAt = new Date();
 	}
 
 	public Long getId() {

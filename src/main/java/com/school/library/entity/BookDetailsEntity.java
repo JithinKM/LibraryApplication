@@ -1,11 +1,9 @@
 package com.school.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.school.library.model.BookDetails;
+
 @Entity
 @Table(name = "bookdetails", schema = "library")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BookDetailsEntity {
 
 	@Id
@@ -34,13 +38,26 @@ public class BookDetailsEntity {
 	@Transient
 	private int count = 1;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private AuthorEntity author;
 	
-	@OneToMany(mappedBy = "bookDetails")
+	@OneToMany(mappedBy = "bookDetails", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
 	private List<BookEntity> books;
+
+	public BookDetailsEntity(BookDetails bookDetails, AuthorEntity authorEntity) {
+		this.id = bookDetails.getId();
+		this.name = bookDetails.getName();
+		this.publication = bookDetails.getPublication();
+		this.category = bookDetails.getCategory();
+		this.language = bookDetails.getLanguage();
+		this.createdTimestamp = new Date();
+		this.author = authorEntity;
+	}
+	
+	public BookDetailsEntity() {
+	}
 
 	public Long getId() {
 		return id;
