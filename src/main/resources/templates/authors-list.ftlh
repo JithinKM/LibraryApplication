@@ -25,7 +25,7 @@
         <div class="panel-body">
             <div class="justify-content-center">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="authorsList">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -36,11 +36,9 @@
                         </thead>
                         <tbody>
                             <#if authors??>
-                            <#assign count = 0>
                             <#list authors as author>
-                            <#assign count = count + 1>
                             <tr>
-                                <td>${count}</td>
+                                <td>${author.id}</td>
                                 <td><a href="/author/${author.id}">${author.name}</a></td>
                                 <td>${author.penName}</td>
                                 <td>
@@ -77,8 +75,9 @@
                 <form role="form" id="authorAddForm">
                     <div class="form-group">
                         <label for="blogPostTitle">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter author name">
+                        <input type="text" class="form-control typeahead" id="name" name="name" placeholder="Enter author name">
                     </div>
+                    <input type="hidden" id="authorId" />
                     <div class="form-group">
                         <label for="blogPostTitle">Pen Name</label>
                         <input type="text" class="form-control" id="penName" name="penName" placeholder="Enter author pen-name">

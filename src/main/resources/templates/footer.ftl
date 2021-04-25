@@ -42,6 +42,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.validate.js"></script>
 <script src="/js/typeahead.bundle.js"></script>
+<script src="/js/TableToJson.min.js"></script>
 <!--Custom JavaScript
     ================================================== -->
 <script src="/js/admin.js"></script>

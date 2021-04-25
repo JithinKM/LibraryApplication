@@ -119,7 +119,7 @@ function editBook() {
             type: 'PUT',
             url: '/book',
             data: JSON.stringify({
-                bookIds: $('#bookEditId').val(),
+                bookId: $('#bookEditId').val(),
                 bookDetails: {
                     name: $('#bookEditName').val(),
                     category: $('#bookEditCategory').val(),
@@ -325,6 +325,26 @@ function editAuthor() {
 function authorsListPageReady() {
     redirectToLogin();
     $("#author").addClass("active");
+
+    var authorsList = makeJsonFromTable('authorsList');
+    var authors = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: authorsList
+    });
+    console.log(authors);
+
+    $('#authorAddForm .typeahead').typeahead({
+        highlight: true
+    },
+    {
+        display: 'Name',
+        source: authors.ttAdapter()
+    });
+
+    $('#authorAddForm').on('typeahead:selected', function (e, data) {
+        $("#authorId").val(data.id);
+    });
 
     var validator = $("#authorAddForm").validate({
         rules: {
