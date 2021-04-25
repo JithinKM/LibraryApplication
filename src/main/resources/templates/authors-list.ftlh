@@ -39,7 +39,7 @@
                             <#list authors as author>
                             <tr>
                                 <td>${author.id}</td>
-                                <td><a href="/author/${author.id}">${author.name}</a></td>
+                                <td>${author.name}</td>
                                 <td>${author.penName}</td>
                                 <td>
                                     <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
@@ -72,15 +72,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="authorAddForm">
+                <form role="form" id="authorAddForm" action="/author" method="POST">
                     <div class="form-group">
                         <label for="blogPostTitle">Name</label>
-                        <input type="text" class="form-control typeahead" id="name" name="name" placeholder="Enter author name">
+                        <input type="text" class="form-control typeahead" id="name" name="name" placeholder="Enter author name" autocomplete="off">
                     </div>
                     <input type="hidden" id="authorId" />
                     <div class="form-group">
                         <label for="blogPostTitle">Pen Name</label>
-                        <input type="text" class="form-control" id="penName" name="penName" placeholder="Enter author pen-name">
+                        <input type="text" class="form-control" id="penName" name="penName" placeholder="Enter author pen-name" autocomplete="off">
                     </div>
                     <input type="submit" class="btn btn-primary" id="addAuthor" value="Add"/>
                 </form>
@@ -98,14 +98,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="authorEditForm">
+                <form role="form" id="authorEditForm" action="/author" method="POST">
                     <div class="form-group">
                         <label for="blogPostTitle">Name</label>
-                        <input type="text" class="form-control" id="editName" name="editName" placeholder="Enter author name">
+                        <input type="text" class="form-control" id="editName" name="name" placeholder="Enter author name" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="blogPostTitle">Pen Name</label>
-                        <input type="text" class="form-control" id="editPenName" name="editPenName" placeholder="Enter author pen-name">
+                        <input type="text" class="form-control" id="editPenName" name="penName" placeholder="Enter author pen-name" autocomplete="off">
                     </div>
                     <input type="hidden" class="form-control" id="editId" name="id">
                     <input type="submit" class="btn btn-primary" id="editAuthor" value="Save"/>

@@ -37,47 +37,47 @@
                             <#if books??>
                             <#list books as bookDetail>
                             <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target=".${bookDetail.name?replace(" ", "")}">
-                                <td>${bookDetail.name}</td>
-                                <td>${bookDetail.author.name}</td>
-                                <td>${bookDetail.publication}</td>
-                                <td>${bookDetail.category}</td>
-                                <td>${bookDetail.language}</td>
-                                <td>${bookDetail.available?c}</td>
-                                <td>1</td>
+                            <td>${bookDetail.name}</td>
+                            <td>${bookDetail.author.name}</td>
+                            <td>${bookDetail.publication}</td>
+                            <td>${bookDetail.category}</td>
+                            <td>${bookDetail.language}</td>
+                            <td>${bookDetail.available?c}</td>
+                            <td>1</td>
                             </tr>
                             <tr class="table-collapse table-collapse-header collapse ${bookDetail.name?replace(" ", "")}">
-                                <td>Id</td>
-                                <td>Contributed By</td>
-                                <td>Price</td>
-                                <td>Status</td>
-                                <td>Rack</td>
-                                <td>Purchased Date</td>
-                                <td>Actions</td>
+                            <td>Id</td>
+                            <td>Contributed By</td>
+                            <td>Price</td>
+                            <td>Status</td>
+                            <td>Rack</td>
+                            <td>Purchased Date</td>
+                            <td>Actions</td>
                             </tr>
                             <#list bookDetail.books as book>
                             <tr class="table-collapse collapse ${bookDetail.name?replace(" ", "")}">
-                                <td>${book.id}</td>
-                                <td>${book.contributedBy}</td>
-                                <td>${book.price}</td>
-                                <td>${book.status}</td>
-                                <td>${book.rack}</td>
-                                <td>${book.purchasedDate}</td>
-                                <td>
-                                    <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
-                                    <a class="reject" href="/book/${book.id}/delete">Delete</a>
-                                    <input type="hidden" class="bookEditId" value="${book.id}" />
-                                    <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
-                                    <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id}" />
-                                    <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
-                                    <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
-                                    <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
-                                    <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
-                                    <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
-                                    <input type="hidden" class="bookEditRack" value="${book.rack}" />
-                                    <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
-                                    <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
-                                    <input type="hidden" class="bookEditPrice" value="${book.price}" />
-                                </td>
+                            <td>${book.id}</td>
+                            <td>${book.contributedBy}</td>
+                            <td>${book.price}</td>
+                            <td>${book.status}</td>
+                            <td>${book.rack}</td>
+                            <td>${book.purchasedDate}</td>
+                            <td>
+                                <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
+                                <a class="reject" href="/book/${book.id}/delete">Delete</a>
+                                <input type="hidden" class="bookEditId" value="${book.id}" />
+                                <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
+                                <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id}" />
+                                <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
+                                <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
+                                <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
+                                <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
+                                <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
+                                <input type="hidden" class="bookEditRack" value="${book.rack}" />
+                                <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
+                                <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
+                                <input type="hidden" class="bookEditPrice" value="${book.price}" />
+                            </td>
                             </tr>
                             </#list>
                             </#list>
@@ -92,143 +92,203 @@
 </main>
 </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="bookAddModal" tabindex="-1" role="dialog" aria-labelledby="bookAddModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Book</h5>
+                <h4 class="modal-title">ADD BOOK</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="bookAddForm">
-                    <div class="row">
-                        <div class="col-6">
-                            <h4>Author Details</h4>
-                            <div class="form-group">
-                                <label>Author Name</label>
-                                <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter author name">
+                <form role="form" id="bookAddForm" action="/book" method="POST">
+                    <h5 class="form-subtitle">Author</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter author name" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Author Pen Name</label>
-                                <input type="text" class="form-control" id="authorPenName" name="authorPenName" placeholder="Enter author pen name">
-                            </div>
-                            <h4>Book Common Details</h4>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name">
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category">
-                            </div>
-                            <div class="form-group">
-                                <label>Language</label>
-                                <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Pen Name</label>
+                                    <input type="text" class="form-control" id="authorPenName" name="authorPenName" placeholder="Enter author pen name" autocomplete="off">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Contributed By</label>
-                                <input type="text" class="form-control" id="contributed" name="contributed" placeholder="Enter contributed by">
+                    </div>
+                    <hr>
+                    <h5 class="form-subtitle">Book</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Publication</label>
-                                <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Language</label>
+                                    <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Publication</label>
+                                    <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Book id's</label>
-                                <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Enter book id's separated by commas">
-                            </div>
-                            <div class="form-group">
-                                <label>Rack</label>
-                                <input type="text" class="form-control" id="rack" name="rack" placeholder="Enter rack">
-                            </div>
-                            <div class="form-group">
-                                <label>Purchased Date</label>
-                                <input type="text" class="form-control" id="purchased" name="purchased" placeholder="Enter purchased date">
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
-                            </div>
-                            <input type="submit" class="btn btn-primary" id="addBook" value="Add"/>
                         </div>
+                    </div>
+                    <hr>
+                    <h5 class="form-subtitle">Details</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Book id's</label>
+                                    <input type="text" class="form-control" id="bookId" name="bookIds" placeholder="Enter book id's separated by commas" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Rack</label>
+                                    <input type="text" class="form-control" id="rack" name="rack" placeholder="Enter rack" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Contributed By</label>
+                                    <input type="text" class="form-control" id="contributed" name="contributedBy" placeholder="Enter contributed by" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Purchased Date</label>
+                                    <input type="text" class="form-control" id="purchased" name="purchasedDate" placeholder="Enter purchased date" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter price" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" class="btn btn-primary btn-block" id="addBook" value="Add"/>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+</div>
 
-<div class="modal fade" id="bookEditModal" tabindex="-1" role="dialog" aria-labelledby="bookEditModalTitle" aria-hidden="true">
+<div class="modal fade" id="bookEditModal" tabindex="-1" role="dialog" aria-labelledby="bookAddModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Book</h5>
+                <h4 class="modal-title">EDIT BOOK</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="bookEditForm">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Book id's</label>
-                                <input type="text" class="form-control" id="bookEditId" name="bookId" placeholder="Enter book id">
+                <form role="form" id="bookEditForm" action="/book" method="POST">
+                    <h5 class="form-subtitle">Author</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" id="authorNameEdit" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" id="bookEditName" name="name" placeholder="Enter book name">
-                            </div>
-                            <div class="form-group">
-                                <label>Author</label>
-                                <input type="text" class="form-control" id="bookEditAuthor" name="author" placeholder="Enter author">
-                                <input type="hidden" id="bookEditAuthor" name="author" value="">
-                                <input type="hidden" id="bookEditAuthorId" name="author" value="">
-                                <input type="hidden" id="bookEditAuthorPenName" name="author" value="">
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <input type="text" class="form-control" id="bookEditCategory" name="category" placeholder="Enter book category">
-                            </div>
-                            <div class="form-group">
-                                <label>Language</label>
-                                <input type="text" class="form-control" id="bookEditLanguage" name="language" placeholder="Enter book language">
+                            <input type="hidden" id="authorIdEdit" name="bookDetails.author.id" value="">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Pen Name</label>
+                                    <input type="text" class="form-control" id="authorPenNameEdit" name="bookDetails.author.penName"
+                                    placeholder="Enter author pen name" autocomplete="off">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Contributed By</label>
-                                <input type="text" class="form-control" id="bookEditContributed" name="contributed" placeholder="Enter contributed by">
+                    </div>
+                    <hr>
+                    <h5 class="form-subtitle">Book</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" id="nameEdit" name="bookDetails.name" placeholder="Enter book name" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <input type="text" class="form-control" id="categoryEdit" name="bookDetails.category" placeholder="Enter book category" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Publication</label>
-                                <input type="text" class="form-control" id="bookEditPublication" name="publication" placeholder="Enter publication">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Language</label>
+                                    <input type="text" class="form-control" id="languageEdit" name="bookDetails.language" placeholder="Enter book language" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Publication</label>
+                                    <input type="text" class="form-control" id="publicationEdit" name="bookDetails.publication" placeholder="Enter publication" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Rack</label>
-                                <input type="text" class="form-control" id="bookEditRack" name="rack" placeholder="Enter rack">
-                            </div>
-                            <div class="form-group">
-                                <label>Purchased Date</label>
-                                <input type="text" class="form-control" id="bookEditPurchased" name="purchased" placeholder="Enter purchased date">
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input type="text" class="form-control" id="bookEditPrice" name="price" placeholder="Enter price">
-                            </div>
-                            <input type="submit" class="btn btn-primary" id="editBook" value="Save"/>
                         </div>
+                    </div>
+                    <hr>
+                    <h5 class="form-subtitle">Details</h5>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Book id's</label>
+                                    <input type="text" class="form-control" id="bookIdEdit" name="bookIds" placeholder="Enter book id's separated by commas" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Rack</label>
+                                    <input type="text" class="form-control" id="rackEdit" name="rack" placeholder="Enter rack" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Contributed By</label>
+                                    <input type="text" class="form-control" id="contributedByEdit" name="contributedBy" placeholder="Enter contributed by" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Purchased Date</label>
+                                    <input type="text" class="form-control" id="purchasedDateEdit" name="purchasedDate" placeholder="Enter purchased date" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" id="priceEdit" name="price" placeholder="Enter price" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" class="btn btn-primary btn-block" id="addBook" value="Edit"/>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <#assign pageTracker = "booksList">

@@ -70,87 +70,6 @@ function homePageReady() {
     });
 }
 
-function addBook() {
-        showLoadingAnimation();
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            type: 'POST',
-            url: '/book',
-            data: JSON.stringify({
-                bookIds: $('#bookId').val(),
-                bookDetails: {
-                    author: {
-                        id: $('#authorId').val(),
-                        name: $('#authorName').val(),
-                        penName: $('#authorPenName').val()
-                    },
-                    name: $('#name').val(),
-                    category: $('#category').val(),
-                    language: $('#language').val(),
-                    publication: $('#publication').val(),
-                },
-                rack: $('#rack').val(),
-                contributedBy: $('#contributed').val(),
-                purchasedDate: new Date($('#purchased').val()),
-                price: $('#price').val()
-            }),
-            success: function(data) {
-                hideLoadingAnimation();
-                if (data.status == "SUCCESS") {
-                    window.location = data.message;
-                } else {
-                    processAdminErrorMessage(data);
-                }
-            },
-            error: function(data) {
-                console.log(data)
-                hideLoadingAnimation();
-                processAdminErrorMessage(JSON.parse(data.responseText));
-            }
-        });
-}
-
-function editBook() {
-        showLoadingAnimation();
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            type: 'PUT',
-            url: '/book',
-            data: JSON.stringify({
-                bookId: $('#bookEditId').val(),
-                bookDetails: {
-                    name: $('#bookEditName').val(),
-                    category: $('#bookEditCategory').val(),
-                    language: $('#bookEditLanguage').val(),
-                    publication: $('#bookEditPublication').val(),
-                    author: {
-                        id: $('#bookEditAuthorId').val(),
-                        name: $('#bookEditAuthor').val(),
-                        penName: $('#bookEditAuthorPenName').val()
-                    }
-                },
-                rack: $('#bookEditRack').val(),
-                contributedBy: $('#contributed').val(),
-                purchasedDate: new Date($('#bookEditPurchased').val()),
-                price: $('#bookEditPrice').val()
-            }),
-            success: function(data) {
-                hideLoadingAnimation();
-                if (data.status == "SUCCESS") {
-                    window.location = data.message;
-                } else {
-                    processAdminErrorMessage(data);
-                }
-            },
-            error: function(data) {
-                hideLoadingAnimation();
-                processAdminErrorMessage(JSON.parse(data.responseText));
-            }
-        });
-}
-
 $.validator.methods.localDate = function( value, element ) {
     return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
 }
@@ -161,40 +80,6 @@ function prepareBookAddForm() {
         changeMonth: true,
         changeYear: true
     });
-
-    var validator = $("#bookAddForm").validate({
-        rules: {
-            "bookId": {
-                required: true
-            },
-            "name": {
-                required: true
-            },
-            "author": {
-                required: true
-            },
-            "category": {
-                required: true
-            },
-            "language": {
-                required: true
-            },
-            "rack": {
-                required: true
-            },
-            "purchased": {
-                required: true,
-                localDate: true
-            },
-            "price": {
-                required: true,
-                number: true
-            }
-        },
-        submitHandler: function() {
-            addBook();
-        }
-    });
 }
 
 function prepareBookEditForm() {
@@ -202,40 +87,6 @@ function prepareBookEditForm() {
     $( "#bookEditPurchased" ).datepicker({
         changeMonth: true,
         changeYear: true
-    });
-
-    var validator = $("#bookEditForm").validate({
-        rules: {
-            "bookId": {
-                required: true
-            },
-            "name": {
-                required: true
-            },
-            "author": {
-                required: true
-            },
-            "category": {
-                required: true
-            },
-            "language": {
-                required: true
-            },
-            "rack": {
-                required: true
-            },
-            "purchased": {
-                required: true,
-                localDate: true
-            },
-            "price": {
-                required: true,
-                number: true
-            }
-        },
-        submitHandler: function() {
-            editBook();
-        }
     });
 }
 
@@ -254,71 +105,18 @@ function booksListPageReady() {
     prepareBookEditForm();
 
     $(".book-edit").click(function(event) {
-        $("#bookEditId").val($(event.target).siblings(".bookEditId").val());
-        $("#bookEditName").val($(event.target).siblings(".bookEditName").val());
-        $("#bookEditAuthor").val($(event.target).siblings(".bookEditAuthor").val());
-        $("#bookEditAuthorId").val($(event.target).siblings(".bookEditAuthorId").val());
-        $("#bookEditAuthorPenName").val($(event.target).siblings(".bookEditAuthorPenName").val());
-        $("#bookEditCategory").val($(event.target).siblings(".bookEditCategory").val());
-        $("#bookEditLanguage").val($(event.target).siblings(".bookEditLanguage").val());
-        $("#bookEditPublication").val($(event.target).siblings(".bookEditPublication").val());
-        $("#bookEditRack").val($(event.target).siblings(".bookEditRack").val());
-        $("#bookEditContributed").val($(event.target).siblings(".bookEditContributed").val());
-        $("#bookEditPurchased").val($(event.target).siblings(".bookEditPurchased").val());
-        $("#bookEditPrice").val($(event.target).siblings(".bookEditPrice").val());
-    });
-}
-
-function addAuthor() {
-        showLoadingAnimation();
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            type: 'POST',
-            url: '/author',
-            data: JSON.stringify({
-                name: $('#name').val(),
-                penName: $('#penName').val()
-            }),
-            success: function(data) {
-                hideLoadingAnimation();
-                if (data.status == "SUCCESS") {
-                    window.location = data.message;
-                } else {
-                    processAdminErrorMessage(data);
-                }
-            },
-            error: function(data) {
-                hideLoadingAnimation();
-                processAdminErrorMessage(JSON.parse(data.responseText));
-            }
-        });
-}
-
-function editAuthor() {
-    showLoadingAnimation();
-    $.ajax({
-        contentType: 'application/json',
-        dataType: 'json',
-        type: 'PUT',
-        url: '/author',
-        data: JSON.stringify({
-            id: $('#editId').val(),
-            name: $('#editName').val(),
-            penName: $('#editPenName').val()
-        }),
-        success: function(data) {
-            hideLoadingAnimation();
-            if (data.status == "SUCCESS") {
-                window.location = data.message;
-            } else {
-                processAdminErrorMessage(data);
-            }
-        },
-        error: function(data) {
-            hideLoadingAnimation();
-            processAdminErrorMessage(JSON.parse(data.responseText));
-        }
+        $("#bookIdEdit").val($(event.target).siblings(".bookEditId").val());
+        $("#nameEdit").val($(event.target).siblings(".bookEditName").val());
+        $("#authorNameEdit").val($(event.target).siblings(".bookEditAuthor").val());
+        $("#authorIdEdit").val($(event.target).siblings(".bookEditAuthorId").val());
+        $("#authorPenNameEdit").val($(event.target).siblings(".bookEditAuthorPenName").val());
+        $("#categoryEdit").val($(event.target).siblings(".bookEditCategory").val());
+        $("#languageEdit").val($(event.target).siblings(".bookEditLanguage").val());
+        $("#publicationEdit").val($(event.target).siblings(".bookEditPublication").val());
+        $("#rackEdit").val($(event.target).siblings(".bookEditRack").val());
+        $("#contributedByEdit").val($(event.target).siblings(".bookEditContributed").val());
+        $("#purchasedDateEdit").val($(event.target).siblings(".bookEditPurchased").val());
+        $("#priceEdit").val($(event.target).siblings(".bookEditPrice").val());
     });
 }
 
@@ -344,34 +142,6 @@ function authorsListPageReady() {
 
     $('#authorAddForm').on('typeahead:selected', function (e, data) {
         $("#authorId").val(data.id);
-    });
-
-    var validator = $("#authorAddForm").validate({
-        rules: {
-            "name": {
-                required: true
-            },
-            "penName": {
-                required: true
-            }
-        },
-        submitHandler: function() {
-            addAuthor();
-        }
-    });
-
-    var validator = $("#authorEditForm").validate({
-        rules: {
-            "editName": {
-                required: true
-            },
-            "editPenName": {
-                required: true
-            }
-        },
-        submitHandler: function() {
-            editAuthor();
-        }
     });
 
     $(".author-edit").click(function(event) {

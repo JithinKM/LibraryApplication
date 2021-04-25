@@ -20,5 +20,6 @@ public class LibraryConstants {
     public static final String USERS_LIST_TEMPLATE = "users-list";
     public static final String ERR_404_TEMPLATE = "error-404";
     public static final String ERR_500_TEMPLATE = "error-500";
+    public static final String ERR_400_TEMPLATE = "error-400";
 
 }

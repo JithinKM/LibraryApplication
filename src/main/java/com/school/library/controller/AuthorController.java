@@ -37,20 +37,15 @@ public class AuthorController {
     }
 
     @PostMapping
-    public String createAuthor(@RequestBody Author author) {
+    public String createAuthor(Author author, Model model) {
         authorService.createAuthor(author);
+        model.addAttribute("authors", authorService.getAuthors());
         return "authors-list";
     }
 
     @DeleteMapping("/{id}")
     public String deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
-        return "authors-list";
-    }
-
-    @PutMapping
-    public String editAuthor(@RequestBody Author author) {
-        authorService.createAuthor(author);
         return "authors-list";
     }
 

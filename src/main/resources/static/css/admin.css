@@ -509,3 +509,11 @@ a, a:visited, a:hover {
 .table-accordion {
     cursor: pointer;
 }
+
+#addBook {
+    margin-top: 32px;
+}
+
+.form-subtitle {
+    margin-left: 15px;
+}

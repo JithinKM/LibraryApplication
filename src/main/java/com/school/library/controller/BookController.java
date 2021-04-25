@@ -33,14 +33,8 @@ public class BookController {
 	}
 
 	@PostMapping
-	public String createBooks(@RequestBody Book book) {
+	public String createBooks(Book book) {
 		bookService.createBooks(book);
-		return "books-list";
-	}
-	
-	@PutMapping
-	public String editBook(@RequestBody Book book) {
-		bookService.createBook(book);
 		return "books-list";
 	}
 
@@ -49,7 +43,5 @@ public class BookController {
 		bookService.deleteBook(id);
 		return "books-list";
 	}
-
-	
 
 }
