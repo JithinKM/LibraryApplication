@@ -29,12 +29,14 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
                                 <th scope="col">Username</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Std-Div</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Standard</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Active</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,18 +46,16 @@
                             <#assign count = count + 1>
                             <tr>
                                 <td>${count}</td>
-                                <td>${user.name}</td>
                                 <td>${user.username}</td>
-                                <td>${user.phone}</td>
-                                <td>${user.standard}</td>
-                                <td>${user.role}</td>
-                                <td>${user.active}</td>
+                                <td>${user.userdetail.firstname}&nbsp;${user.userdetail.lastname}</td>
+                                <td>${user.userdetail.standard}-${user.userdetail.division}</td>
+                                <td>${(user.email)!}</td>
+                                <td>${(user.userdetail.phone)!}</td>
+                                <td>${(user.roleValues)!"[]"}</td>
+                                <td>${user.status}</td>
                                 <td>
                                     <a class="confirm user-edit" data-toggle="modal" data-target="#userEditModal">Edit</a> |
-                                    <a class="reject" href="/user/${user.id}/delete">Delete</a>
-                                    <input type="hidden" class="userEditId" value="${user.id}" />
-                                    <input type="hidden" class="userEditName" value="${user.name}" />
-                                    <input type="hidden" class="userEditPenName" value="${user.penName}" />
+                                    <a class="reject" href="/user/ccc/delete">Delete</a>
                                 </td>
                             </tr>
                             </#list>

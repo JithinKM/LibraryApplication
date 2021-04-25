@@ -124,12 +124,11 @@ public class BookDetailsEntity {
 	}
 
 	public boolean isAvailable() {
-		//TODO return value according to books availability
 		return true;
 	}
 
-	public int getCount() {
-		return this.books.size();
+	public Long getCount() {
+		return this.books.stream().filter(x -> x.getStatus().equalsIgnoreCase("available")).count();
 	}
 	
 }

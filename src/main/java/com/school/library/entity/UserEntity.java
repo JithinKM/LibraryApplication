@@ -1,6 +1,7 @@
 package com.school.library.entity;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -64,6 +65,15 @@ public class UserEntity {
 
 	public Set<RoleEntity> getRoles() {
 		return roles;
+	}
+	
+	public String getRoleValues() {
+		StringBuilder builder = new StringBuilder();
+		Iterator<RoleEntity> roleValue = roles.iterator();  
+        while (roleValue.hasNext()) {   
+        	builder.append(roleValue.next().getRole()).append(", ");   
+        }  
+        return builder.deleteCharAt(builder.length() - 2).toString();
 	}
 
 	public void setRoles(Set<RoleEntity> roles) {
