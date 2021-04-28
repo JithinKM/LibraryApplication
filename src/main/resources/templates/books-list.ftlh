@@ -66,8 +66,9 @@
                                 <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
                                 <a class="reject" href="/book/${book.id}/delete">Delete</a>
                                 <input type="hidden" class="bookEditId" value="${book.id}" />
+                                <input type="hidden" class="bookDetailEditId" value="${bookDetail.id?string.computer}" />
                                 <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
-                                <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id}" />
+                                <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id?string.computer}" />
                                 <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
                                 <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
                                 <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
@@ -76,7 +77,7 @@
                                 <input type="hidden" class="bookEditRack" value="${book.rack}" />
                                 <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
                                 <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
-                                <input type="hidden" class="bookEditPrice" value="${book.price}" />
+                                <input type="hidden" class="bookEditPrice" value="${book.price?string.computer}" />
                             </td>
                             </tr>
                             </#list>
@@ -110,13 +111,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter author name" autocomplete="off">
+                                    <input type="text" class="form-control" id="authorName" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Pen Name</label>
-                                    <input type="text" class="form-control" id="authorPenName" name="authorPenName" placeholder="Enter author pen name" autocomplete="off">
+                                    <input type="text" class="form-control" id="authorPenName" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -128,21 +129,21 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter book name" autocomplete="off">
+                                    <input type="text" class="form-control" id="name" name="bookDetails.name" placeholder="Enter book name" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <input type="text" class="form-control" id="category" name="category" placeholder="Enter book category" autocomplete="off">
+                                    <input type="text" class="form-control" id="category" name="bookDetails.category" placeholder="Enter book category" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Language</label>
-                                    <input type="text" class="form-control" id="language" name="language" placeholder="Enter book language" autocomplete="off">
+                                    <input type="text" class="form-control" id="language" name="bookDetails.language" placeholder="Enter book language" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label>Publication</label>
-                                    <input type="text" class="form-control" id="publication" name="publication" placeholder="Enter publication" autocomplete="off">
+                                    <input type="text" class="form-control" id="publication" name="bookDetails.publication" placeholder="Enter publication" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -215,8 +216,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Pen Name</label>
-                                    <input type="text" class="form-control" id="authorPenNameEdit" name="bookDetails.author.penName"
-                                    placeholder="Enter author pen name" autocomplete="off">
+                                    <input type="text" class="form-control" id="authorPenNameEdit" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -243,6 +243,7 @@
                                 <div class="form-group">
                                     <label>Publication</label>
                                     <input type="text" class="form-control" id="publicationEdit" name="bookDetails.publication" placeholder="Enter publication" autocomplete="off">
+                                    <input type="hidden" id="bookDetailIdEdit" name="bookDetails.id">
                                 </div>
                             </div>
                         </div>
@@ -253,8 +254,8 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>Book id's</label>
-                                    <input type="text" class="form-control" id="bookIdEdit" name="bookIds" placeholder="Enter book id's separated by commas" autocomplete="off">
+                                    <label>Book id</label>
+                                    <input type="text" class="form-control" id="bookIdEdit" name="bookId" placeholder="Enter book id" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label>Rack</label>
@@ -282,7 +283,7 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <input type="submit" class="btn btn-primary btn-block" id="addBook" value="Edit"/>
+                        <input type="submit" class="btn btn-primary btn-block" id="editBook" value="Edit"/>
                     </div>
                 </form>
             </div>

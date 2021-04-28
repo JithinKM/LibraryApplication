@@ -33,8 +33,9 @@ public class BookController {
 	}
 
 	@PostMapping
-	public String createBooks(Book book) {
+	public String createBooks(Book book, Model model) {
 		bookService.createBooks(book);
+		model.addAttribute("books", bookService.getBooks());
 		return "books-list";
 	}
 

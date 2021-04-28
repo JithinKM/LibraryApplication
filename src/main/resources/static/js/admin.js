@@ -106,6 +106,7 @@ function booksListPageReady() {
 
     $(".book-edit").click(function(event) {
         $("#bookIdEdit").val($(event.target).siblings(".bookEditId").val());
+        $("#bookDetailIdEdit").val($(event.target).siblings(".bookDetailEditId").val());
         $("#nameEdit").val($(event.target).siblings(".bookEditName").val());
         $("#authorNameEdit").val($(event.target).siblings(".bookEditAuthor").val());
         $("#authorIdEdit").val($(event.target).siblings(".bookEditAuthorId").val());
