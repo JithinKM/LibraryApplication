@@ -15,6 +15,11 @@ function homePageReady() {
         else {
           $(".go-icon").removeClass("go-in");
         }
+
+        var value = $(this).val().toLowerCase();
+        $("#book-list .book-entries").filter(function() {
+            $(this).toggle($(this).find('.book-filer').text().toLowerCase().indexOf(value) > -1)
+        });
     });
     $(".go-icon").click(function(){
       $(".search-form").submit();

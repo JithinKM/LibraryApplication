@@ -1,6 +1,5 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
-
 <main>
     <div class="container text-center">
         <h4>Search for books or authors</h4>
@@ -18,26 +17,20 @@
         <div class="main-title">
             <h4>Available Books</h4>
         </div>
-        <div class="row icon-boxes">
+        <div class="row icon-boxes" id="book-list">
             <#if books??>
             <#list books as bookDetail>
-                <div class="col-md-6 col-lg-4">
-                    <#if bookDetail.count == 0>
-                    <div class="icon-box alert alert-secondary shadow rounded">
-                    <#else>
-                    <div class="icon-box alert alert-info shadow rounded">
-                    </#if>
-                        <div class="book-cover">
-                            <img src="/img/book-cover.png"></img>
-                        </div>
-                        <div class="book-details">
-                            <h5 class="title text-center"><a href="">${bookDetail.name}</a></h5>
+            <div class="col-md-6 col-lg-4 book-entries">
+                <div class="icon-box shadow rounded">
+                    <div class="book-details">
+                        <div class="book-details-inner">
+                            <h5 class="title text-center book-filer"><a href="">${bookDetail.name}</a></h5>
                             <div class="row">
                                 <div class="col-6">
                                     <p class="text-left">Author: </p>
                                 </div>
                                 <div class="col-6">
-                                    <p class="text-right">${bookDetail.author.name}</p>
+                                    <p class="text-right book-filer">${bookDetail.author.name}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -67,6 +60,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </#list>
             </#if>
         </div>
