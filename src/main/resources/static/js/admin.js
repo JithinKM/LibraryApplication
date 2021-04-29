@@ -1,56 +1,7 @@
-//function loginPageSubmit() {
-//    showLoadingAnimation();
-//    $.ajax({
-//        contentType: 'application/json',
-//        dataType: 'json',
-//        type: 'POST',
-//        url: '/user/authenticate',
-//        data: JSON.stringify({
-//            username: $('#username').val(),
-//            password: $('#password').val()
-//        }),
-//        success: function(data) {
-//            hideLoadingAnimation();
-//            if (data.status == "SUCCESS") {
-//                console.log(data);
-//                sessionStorage.setItem("token", data.jwttoken);
-//                window.location = data.message;
-//            } else {
-//                processAdminErrorMessage(data);
-//            }
-//        },
-//        error: function(data) {
-//            hideLoadingAnimation();
-//            processAdminErrorMessage(JSON.parse(data.responseText));
-//        }
-//    });
-//}
-
-function adminLoginReady() {
-    var validator = $("#login-form").validate({
-        rules: {
-            "username": {
-                required: true,
-                email: true
-            },
-            "password": {
-                required: true,
-                minlength: 5,
-                maxlength: 50
-            }
-        },
-        submitHandler: function() {
-            loginPageSubmit();
-        }
-
-    });
-
-    $("#adminLoginEmail").focus();
-}
-
 function homePageReady() {
     redirectToLogin();
-
+    $('.onlyForLoggedIn').addClass('d-none');
+    $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
     $("#search").focus(function() {
       $(".search-box").addClass("border-searching");
     });
@@ -246,8 +197,6 @@ $(document).ready(function() {
 
     if (currentPage == 'home') {
         homePageReady();
-    } else if (currentPage == 'adminLogin') {
-        adminLoginReady();
     } else if (currentPage == 'adminDashboard') {
         adminDashboardReady();
     } else if (currentPage == 'booksList') {

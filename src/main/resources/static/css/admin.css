@@ -170,7 +170,7 @@ a, a:visited, a:hover {
   max-width: 360px;
   height: 60px;
   border-radius: 120px;
-  margin: 50px auto;
+  margin: 20px auto;
   color: #555;
 }
 
@@ -322,7 +322,6 @@ a, a:visited, a:hover {
 
 #login-form, #signup-form {
     background: #fff;
-    max-width: 90%;
     padding: 20px;
     margin: 25px;
 }
@@ -494,12 +493,7 @@ a, a:visited, a:hover {
 
 .table-collapse {
     font-size: 12px;
-}
-
-.table-collapse td {
     padding: 4px;
-    background-color: #32383e;
-    color: #fff;
     border: none;
 }
 
