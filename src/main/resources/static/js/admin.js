@@ -1,5 +1,13 @@
 function homePageReady() {
     redirectToLogin();
+    filterBooks();
+
+    $('.page-item').click(function(event) {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        filterBooks();
+    });
+
     $('.onlyForLoggedIn').addClass('d-none');
     $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
     $("#search").focus(function() {
@@ -23,6 +31,31 @@ function homePageReady() {
     });
     $(".go-icon").click(function(){
       $(".search-form").submit();
+    });
+}
+
+function filterBooks() {
+    // How many books to display at a time
+    var n = 6;
+
+    var total = $('.book-entries').length;
+    var active = $('.page-item.active').find('.page-link').text();
+    var end = (active * n);
+    var start = end - n;
+
+    $('.page-item').each(function(index) {
+        var text = $(this).find('.page-link').text();
+        if(total < n * (text - 1)) {
+            $(this).remove();
+        }
+    });
+
+    $('.icon-boxes .book-entries').each(function(index) {
+        if (index >= start && index < end) {
+            $(this).removeClass('hide-element');
+        } else {
+            $(this).addClass('hide-element');
+        }
     });
 }
 
@@ -140,7 +173,7 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight) +"px";
+   var windowHeight = (getWindowHeight) + 50 +"px";
    $('main').css("min-height",windowHeight);
 }
 
@@ -196,8 +229,6 @@ function redirectToLogin() {
 }
 
 $(document).ready(function() {
-    setPageHeight();
-    checkLoggedInStatus();
     var currentPage = $('#pageTracker').val();
 
     if (currentPage == 'home') {
@@ -213,4 +244,7 @@ $(document).ready(function() {
     } else if (currentPage == 'usersList') {
         usersListPageReady();
     }
+
+    setPageHeight();
+    checkLoggedInStatus();
 });

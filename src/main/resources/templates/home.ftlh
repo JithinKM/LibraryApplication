@@ -1,8 +1,8 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
-<main>
+<main class="home-container">
     <div class="container text-center">
-        <h4>Search for books or authors</h4>
+        <h4 class="home-search">Search for books or authors</h4>
         <div class="search-box">
             <form action="" class="search-form">
                 <input type="text" placeholder="Search here..." id="search" autocomplete="off">
@@ -22,9 +22,9 @@
             <#list books as bookDetail>
             <div class="col-md-6 col-lg-4 book-entries">
                 <div class="icon-box shadow rounded">
-                    <div class="book-details">
+                    <div class="book-details book-details${(bookDetail?index) % 3}">
                         <div class="book-details-inner">
-                            <h5 class="title text-center book-filer"><a href="">${bookDetail.name}</a></h5>
+                            <h5 class="title text-center book-filer"><a>${bookDetail.name}</a></h5>
                             <div class="col-12 book-contents">
                                 <div class="row text-center">
                                     <div class="col-12">
@@ -33,17 +33,28 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-spellcheck"></i></i>${bookDetail.language}</p>
+                                        <p class="book-filer"><i class="bi bi-spellcheck"></i>${bookDetail.language}</p>
                                     </div>
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-journals"></i></i>${bookDetail.category}</p>
+                                        <p class="book-filer"><i class="bi bi-journals"></i>${bookDetail.category}</p>
                                     </div>
                                 </div>
+                                <#if bookDetail.count != 0>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-stack"></i></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
+                                        <p class="book-filer"><i class="bi bi-ladder"></i>
+                                        <#list bookDetail.books as book>
+                                        ${book.rack}&nbsp;
+                                        </#list>
+                                        </p>
+                                    </div>
+                                </div>
+                                </#if>
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <p class="book-filer"><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,6 +69,27 @@
             </div>
             </#list>
             </#if>
+            <div class="col-12">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link">1</a></li>
+                        <li class="page-item"><a class="page-link">2</a></li>
+                        <li class="page-item"><a class="page-link">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </main>
