@@ -29,7 +29,6 @@
                                 <th scope="col">Publication</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Language</th>
-                                <th scope="col">Available</th>
                                 <th scope="col">Count</th>
                             </tr>
                         </thead>
@@ -42,7 +41,6 @@
                             <td>${bookDetail.publication}</td>
                             <td>${bookDetail.category}</td>
                             <td>${bookDetail.language}</td>
-                            <td>${bookDetail.available?c}</td>
                             <td>${bookDetail.count}</td>
                             </tr>
                             <tr class="table-collapse table-collapse-header collapse" id="table-accordion${bookDetail?index}">

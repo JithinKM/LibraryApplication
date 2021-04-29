@@ -135,7 +135,7 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight - 300) +"px";
+   var windowHeight = (getWindowHeight) +"px";
    $('main').css("min-height",windowHeight);
 }
 

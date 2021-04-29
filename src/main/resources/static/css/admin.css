@@ -12,6 +12,10 @@ main {
     margin-top: 100px;
 }
 
+.main-title {
+    margin-top: 100px;
+}
+
 .main-content {
     max-width: 100%;
     padding: 0;
@@ -170,7 +174,7 @@ a, a:visited, a:hover {
   max-width: 360px;
   height: 60px;
   border-radius: 120px;
-  margin: 20px auto;
+  margin: 35px auto;
   color: #555;
 }
 
@@ -401,11 +405,6 @@ a, a:visited, a:hover {
     box-shadow: 0px 0px 3px -1px rgba(138,130,138,1) !important;
 }
 
-.shadow {
-    border-radius: 5px;
-    box-shadow: 0px 0px 3px -1px rgba(138,130,138,1) !important;
-}
-
 .list-title .row {
     margin: 0;
 }
@@ -510,4 +509,23 @@ a, a:visited, a:hover {
 
 .form-subtitle {
     margin-left: 15px;
+}
+
+.icon-box {
+    color: #555;
+    padding: 0;
+    margin: 35px;
+    border-radius: 5px;
+}
+
+.icon-box .title {
+    margin: 30px;
+}
+
+.book-cover img {
+    width: 100%;
+}
+
+.book-details {
+    padding: 20px;
 }
