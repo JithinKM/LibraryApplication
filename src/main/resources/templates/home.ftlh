@@ -25,38 +25,31 @@
                     <div class="book-details">
                         <div class="book-details-inner">
                             <h5 class="title text-center book-filer"><a href="">${bookDetail.name}</a></h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-left">Author: </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="text-right book-filer">${bookDetail.author.name}</p>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <p class="book-filer"><i class="bi bi-pencil-square"></i>${bookDetail.author.name}</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-left">Language: </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="text-right">${bookDetail.language}</p>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <p class="book-filer"><i class="bi bi-spellcheck"></i></i>${bookDetail.language}</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-left">Category: </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="text-right">${bookDetail.category}</p>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <p class="book-filer"><i class="bi bi-journals"></i></i>${bookDetail.category}</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="text-left">Available copies: </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="text-right">${bookDetail.count}</p>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <p class="book-filer"><i class="bi bi-stack"></i></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
                                 </div>
                             </div>
+                            <#if bookDetail.count == 0>
+                            <button type="button" class="btn btn-secondary btn-sm" disabled>BOOK NOW</button>
+                            <#else>
+                            <button type="button" class="btn btn-info btn-sm">BOOK NOW</button>
+                            </#if>
                         </div>
                     </div>
                 </div>
