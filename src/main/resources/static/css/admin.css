@@ -543,3 +543,13 @@ a, a:visited, a:hover {
 .book-details .bi {
     padding: 0 10px;
 }
+
+.book-contents {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.book-now {
+    margin-top: 10px;
+}
