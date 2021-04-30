@@ -59,6 +59,11 @@ function filterBooks() {
     });
 }
 
+function profilePageReady() {
+    $('.onlyForLoggedIn').addClass('d-none');
+    $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
+}
+
 $.validator.methods.localDate = function( value, element ) {
     return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
 }
@@ -173,8 +178,8 @@ function processAdminErrorMessage(response) {
 
 function setPageHeight() {
    var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight) + 50 +"px";
-   $('main').css("min-height",windowHeight);
+   var windowHeight = (getWindowHeight) - 100 +"px";
+   $('.home-container').css("min-height",windowHeight);
 }
 
 function checkLoggedInStatus() {
@@ -233,6 +238,8 @@ $(document).ready(function() {
 
     if (currentPage == 'home') {
         homePageReady();
+    } else if (currentPage == 'profile') {
+        profilePageReady();
     } else if (currentPage == 'adminDashboard') {
         adminDashboardReady();
     } else if (currentPage == 'booksList') {

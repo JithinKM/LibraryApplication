@@ -5,9 +5,9 @@ import com.school.library.entity.UserEntity;
 
 public interface UserService {
 
-    UserDetailsEntity findByUserDetails(String userName);
-
-    UserDetailsEntity updateUserToken(final UserDetailsEntity user);
-
-    UserEntity save(UserEntity user);
+    UserEntity findByUserDetails(String userName);
+//
+//    UserEntity updateUserToken(final UserEntity user);
+//
+//    UserEntity save(UserEntity user);
 }

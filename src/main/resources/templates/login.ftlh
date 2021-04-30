@@ -9,15 +9,17 @@
             <div class="form-outer mx-auto">
                 <form id="login-form" method="post" action="/login">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="username" name="username" placeholder="Enter email" required tabindex="1">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter
+                        username" required>
                     </div>
                     <div class="form-group">
                         <label for="adminLoginPassword">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="5" maxlength="50" required tabindex="2">
+                        <input type="password" class="form-control" id="loginPassword" name="password"
+                        placeholder="Password" minlength="5" maxlength="50" required>
                     </div>
                     <div class="form-group row">
-                        <button type="submit" id="login-btn" class="btn btn-info col-md-4 yellow-main-btn text-uppercase" tabindex="3">
+                        <button type="submit" id="login-btn" class="btn btn-info col-md-4 yellow-main-btn text-uppercase">
                         Log In
                         </button>
                         <div class="col-md-7 text-right">
@@ -33,13 +35,13 @@
                 <form id="signup-form"  method="post" action="/signup">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="firstName">First Name</label>
                                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" required autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="lastName">Last Name</label>
                                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" required autocomplete="off">
@@ -47,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <div class="form-group">
                                     <label for="standard">Standard</label>
                                     <select class="form-control" id="standard">
@@ -60,7 +62,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-lg-3 col-md-12">
                                 <div class="form-group">
                                     <label for="division">Division</label>
                                     <select class="form-control" id="division">
@@ -93,7 +95,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <label for="name">User Type</label>
                                 <div class="form-group row form-radio">
                                     <div class="form-check col-xs-6 col-sm-6">
@@ -112,13 +114,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="userId">User ID</label>
                                     <input type="text" class="form-control" id="userId" name="userId" disabled autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required autocomplete="off">
@@ -126,13 +128,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="parentName">Parent Name</label>
                                     <input type="text" class="form-control" id="parentName" name="parentName" placeholder="Enter parent name" autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="parentPhone">Parent Phone Number</label>
                                     <input type="text" class="form-control" id="parentPhone" name="parentPhone" placeholder="Enter parent phone" required autocomplete="off">
@@ -148,13 +150,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="5" maxlength="50" required autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
                                     <label for="confirmPassword">Confirm Password</label>
                                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" minlength="5" maxlength="50" required autocomplete="off">

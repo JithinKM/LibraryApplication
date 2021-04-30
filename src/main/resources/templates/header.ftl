@@ -33,11 +33,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" id="signup">
-            <a class="nav-link" href="/login">Sign Up</a>
-            </li>
-            <li class="nav-item" id="login">
-            <a class="nav-link" href="/login">Log In</a>
+            <li class="nav-item" id="profile">
+            <a class="nav-link" href="/user/profile">Profile</a>
             </li>
             <li class="nav-item d-none onlyForLoggedIn" id="logout">
             <a class="nav-link" id="logoutLink">Log Out</a>

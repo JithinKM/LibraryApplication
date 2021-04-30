@@ -14,7 +14,7 @@
             </svg>
             <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
         </div>
-        <div class="main-title">
+        <div class="main-heading">
             <h4>Available Books</h4>
         </div>
         <div class="row icon-boxes" id="book-list">
@@ -33,28 +33,34 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-spellcheck"></i>${bookDetail.language}</p>
+                                        <p><i class="bi bi-spellcheck"></i>${bookDetail.language}</p>
                                     </div>
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-journals"></i>${bookDetail.category}</p>
+                                        <p><i class="bi bi-journals"></i>${bookDetail.category}</p>
                                     </div>
                                 </div>
                                 <#if bookDetail.count != 0>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-ladder"></i>
+                                        <p><i class="bi bi-ladder"></i>
                                         <#list bookDetail.books as book>
                                         ${book.rack}&nbsp;
                                         </#list>
                                         </p>
                                     </div>
                                 </div>
+                                <#else>
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <p><i class="bi bi-ladder"></i>No rack info to show</p>
+                                    </div>
+                                </div>
                                 </#if>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
+                                        <p><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
                                     </div>
                                 </div>
                             </div>
