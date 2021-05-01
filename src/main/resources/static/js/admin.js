@@ -62,6 +62,13 @@ function filterBooks() {
 function profilePageReady() {
     $('.onlyForLoggedIn').addClass('d-none');
     $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
+    $('#chevron-toggle').click(function(event) {
+        $(this).find(".bi").toggleClass("d-none");
+    });
+    $('#user-chevron-toggle').click(function(event) {
+        $(this).find(".bi").toggleClass("d-none");
+        $('#username-heading').toggleClass("d-none");
+    });
 }
 
 $.validator.methods.localDate = function( value, element ) {

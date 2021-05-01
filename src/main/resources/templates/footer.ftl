@@ -24,11 +24,6 @@
 <input type="hidden" id="pageTracker" value="${pageTracker!""}" />
 <input type="hidden" id="loggedIn" value="" />
 <footer class="bd-footer">
-    <a href="#" id="navBackToTop">
-        <div class="navFooterBackToTop">
-            <span class="navFooterBackToTopText">Back to top</span>
-        </div>
-    </a>
     <div class="container-fluid p-2 p-md-2">
         <p>&copy; Sanskrit High School Vattoli, All rights reserved.<br>
             Designed and built with love by - <img class="footer-logo" src="/img/logo.png"></img> - 2006 Batch.

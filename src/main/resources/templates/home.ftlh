@@ -1,11 +1,10 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
-<main class="home-container">
-    <div class="container text-center">
-        <h4 class="home-search">Search for books or authors</h4>
+<main class="home-container justify-content-center">
+    <div class="book-container text-center">
         <div class="search-box">
             <form action="" class="search-form">
-                <input type="text" placeholder="Search here..." id="search" autocomplete="off">
+                <input type="text" placeholder="Search for books or authors" id="search" autocomplete="off">
             </form>
             <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
                 xml:space="preserve">
@@ -14,13 +13,10 @@
             </svg>
             <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
         </div>
-        <div class="main-heading">
-            <h4>Available Books</h4>
-        </div>
         <div class="row icon-boxes" id="book-list">
             <#if books??>
             <#list books as bookDetail>
-            <div class="col-md-6 col-lg-4 book-entries">
+            <div class="col-md-4 col-lg-2 book-entries">
                 <div class="icon-box shadow rounded">
                     <div class="book-details book-details${(bookDetail?index) % 3}">
                         <div class="book-details-inner">
@@ -41,26 +37,9 @@
                                         <p><i class="bi bi-journals"></i>${bookDetail.category}</p>
                                     </div>
                                 </div>
-                                <#if bookDetail.count != 0>
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p><i class="bi bi-ladder"></i>
-                                        <#list bookDetail.books as book>
-                                        ${book.rack}&nbsp;
-                                        </#list>
-                                        </p>
-                                    </div>
-                                </div>
-                                <#else>
-                                <div class="row text-center">
-                                    <div class="col-12">
-                                        <p><i class="bi bi-ladder"></i>No rack info to show</p>
-                                    </div>
-                                </div>
-                                </#if>
-                                <div class="row text-center">
-                                    <div class="col-12">
-                                        <p><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available now</p>
+                                        <p><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available</p>
                                     </div>
                                 </div>
                             </div>

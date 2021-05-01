@@ -138,7 +138,7 @@ main {
 }
 
 .admin-main {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .home-container {
@@ -530,7 +530,6 @@ a, a:visited, a:hover {
 .icon-box {
     color: #555;
     padding: 0;
-    margin: 35px;
     border-radius: 5px;
 }
 
@@ -538,7 +537,7 @@ a, a:visited, a:hover {
     background-color: #fff;
     border-radius: 5px;
     padding: 10px;
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 .book-cover img {
@@ -564,7 +563,7 @@ a, a:visited, a:hover {
 
 .book-details-inner {
     background-color: rgba(255,255,255,0.3);
-    padding: 20px;
+    padding: 5px 20px;
 }
 
 .book-details .bi {
@@ -590,29 +589,6 @@ a, a:visited, a:hover {
     display: none;
 }
 
-.card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-}
-
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-    margin-bottom: 25px;
-}
-
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
-}
-
 .profile-container {
     padding-top: 50px;
 }
@@ -623,4 +599,66 @@ a, a:visited, a:hover {
 
 .class-division {
     margin: 0;
+}
+
+.book-container {
+    margin: 35px;
+}
+
+.user-books .table-responsive {
+    margin: 0;
+}
+
+#chevron-toggle .bi {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#user-chevron-toggle .bi {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.user-details {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px 5px;
+}
+
+.current-book-outer {
+    margin: 0px 15px;
+}
+
+.user-books {
+    background-color: #fff;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.current-books {
+    margin: 50px 10px;
+}
+
+.user-book-outer {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.user-book-img {
+    width: 100%;
+    border-radius: 25px 0 0 25px;
+}
+
+.book-img-outer {
+    padding: 0;
+}
+
+.current-book {
+    padding: 10px;
 }
