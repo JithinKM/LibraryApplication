@@ -28,6 +28,10 @@ public class UserDetailsEntity {
 	private String phone;
 	private String address;
 	private String parentName;
+	
+	public String getfullName() {
+		return firstname + " " + lastname;
+	}
 
 	public Long getId() {
 		return id;

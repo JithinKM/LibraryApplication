@@ -1,13 +1,14 @@
 package com.school.library.service;
 
-import com.school.library.entity.UserDetailsEntity;
+import java.util.List;
+
 import com.school.library.entity.UserEntity;
 
 public interface UserService {
 
     UserEntity findByUserDetails(String userName);
-//
-//    UserEntity updateUserToken(final UserEntity user);
-//
-//    UserEntity save(UserEntity user);
+
+    List<UserEntity> getAllNonAdminUsers();
+
+    void signup(UserEntity user);
 }

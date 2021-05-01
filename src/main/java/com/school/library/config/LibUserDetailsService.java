@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.school.library.entity.RoleEntity;
 import com.school.library.entity.UserEntity;
-import com.school.library.exception.UserNotValidException;
 import com.school.library.repository.UserRepository;
 
 public class LibUserDetailsService implements UserDetailsService {
@@ -27,14 +26,17 @@ public class LibUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		UserEntity user = Optional.ofNullable(userRepository.findByEmail(username))
+		UserEntity user = Optional.ofNullable(userRepository.findByUsername(username))
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-		List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-		System.out.println(user.getEmail());
-		if (!user.isActive()) {
-			throw new UserNotValidException(user.getStatus(), "User is not valid");
-		}
-		return buildUserForAuthentication(user, authorities);
+		
+//		List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
+//		System.out.println(user.getEmail());
+//		if (!user.isActive()) {
+//			throw new UserNotValidException(user.getStatus(), "User is not valid");
+//		}
+//		return buildUserForAuthentication(user, authorities);
+		
+		return new UserPrincipal(user);
 	}
 
 	private List<GrantedAuthority> getUserAuthority(Set<RoleEntity> userRoles) {

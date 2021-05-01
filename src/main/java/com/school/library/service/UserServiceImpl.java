@@ -2,6 +2,10 @@ package com.school.library.service;
 
 import com.school.library.entity.UserEntity;
 import com.school.library.repository.UserRepository;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,15 +24,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-//    @Override
-//    public UserEntity updateUserToken(final UserEntity user) {
-//
-//    	UserEntity userDetailsEntity = userRepository.findByUsername(user.getUsername());
-////        userDetailsEntity.setToken(user.getToken());
-//
-//        return userRepository.save(userDetailsEntity);
-//    }
-//
+	@Override
+	public List<UserEntity> getAllNonAdminUsers() {
+		return userRepository.findByRolesRoleIn(Arrays.asList("TEACHER","STUDENT"));
+	}
+
+	@Override
+	public void signup(UserEntity user) {
+		//signup the user		
+	}
+
+    
+
+    
+    
 //    @Override
 //    public User save(User user) {
 //

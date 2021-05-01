@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -21,20 +23,22 @@ public class UserEntity {
 	@Id
 	private String username; //userid
 	private String email;
+	
+	@JsonIgnore
 	private String password;
 	private Date createdTimestamp;
 	private Date updatedTimestamp;
 	private String status; //enabled/registered/active/blocked...
 	
-	@ManyToMany(mappedBy = "user")
+	@ManyToMany(mappedBy = "user",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private UserDetailsEntity userdetail;
 	
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(mappedBy = "users",fetch = FetchType.EAGER)
 	@JsonManagedReference
 	@JsonBackReference
 	private List<BookEntity> books;
