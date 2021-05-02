@@ -55,51 +55,49 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <div class="user-field" id="field-standard">${user.userdetail.standard} - ${user.userdetail.division}</div>
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group user-input d-none">
-                                                        <select class="form-control" id="standard">
-                                                            <#if user.userdetail.standard == 5><option selected><#else><option></#if>5</option>
-                                                            <#if user.userdetail.standard == 6><option selected><#else><option></#if>6</option>
-                                                            <#if user.userdetail.standard == 7><option selected><#else><option></#if>7</option>
-                                                            <#if user.userdetail.standard == 8><option selected><#else><option></#if>8</option>
-                                                            <#if user.userdetail.standard == 9><option selected><#else><option></#if>9</option>
-                                                            <#if user.userdetail.standard == 10><option selected><#else><option></#if>10</option>
-                                                        </select>
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group user-input d-none">
+                                                    <select class="form-control" id="standard">
+                                                        <#if user.userdetail.standard == 5><option selected><#else><option></#if>5</option>
+                                                        <#if user.userdetail.standard == 6><option selected><#else><option></#if>6</option>
+                                                        <#if user.userdetail.standard == 7><option selected><#else><option></#if>7</option>
+                                                        <#if user.userdetail.standard == 8><option selected><#else><option></#if>8</option>
+                                                        <#if user.userdetail.standard == 9><option selected><#else><option></#if>9</option>
+                                                        <#if user.userdetail.standard == 10><option selected><#else><option></#if>10</option>
+                                                    </select>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="form-group user-input d-none">
-                                                        <select class="form-control" id="division">
-                                                            <#if user.userdetail.division == "A"><option selected><#else><option></#if>A</option>
-                                                            <#if user.userdetail.division == "B"><option selected><#else><option></#if>B</option>
-                                                            <#if user.userdetail.division == "C"><option selected><#else><option></#if>C</option>
-                                                            <#if user.userdetail.division == "D"><option selected><#else><option></#if>D</option>
-                                                            <#if user.userdetail.division == "E"><option selected><#else><option></#if>E</option>
-                                                            <#if user.userdetail.division == "F"><option selected><#else><option></#if>F</option>
-                                                            <#if user.userdetail.division == "G"><option selected><#else><option></#if>G</option>
-                                                            <#if user.userdetail.division == "H"><option selected><#else><option></#if>H</option>
-                                                            <#if user.userdetail.division == "I"><option selected><#else><option></#if>I</option>
-                                                            <#if user.userdetail.division == "J"><option selected><#else><option></#if>J</option>
-                                                            <#if user.userdetail.division == "K"><option selected><#else><option></#if>K</option>
-                                                            <#if user.userdetail.division == "L"><option selected><#else><option></#if>L</option>
-                                                            <#if user.userdetail.division == "M"><option selected><#else><option></#if>M</option>
-                                                            <#if user.userdetail.division == "N"><option selected><#else><option></#if>N</option>
-                                                            <#if user.userdetail.division == "O"><option selected><#else><option></#if>O</option>
-                                                            <#if user.userdetail.division == "P"><option selected><#else><option></#if>P</option>
-                                                            <#if user.userdetail.division == "Q"><option selected><#else><option></#if>Q</option>
-                                                            <#if user.userdetail.division == "R"><option selected><#else><option></#if>R</option>
-                                                            <#if user.userdetail.division == "S"><option selected><#else><option></#if>S</option>
-                                                            <#if user.userdetail.division == "T"><option selected><#else><option></#if>T</option>
-                                                            <#if user.userdetail.division == "U"><option selected><#else><option></#if>U</option>
-                                                            <#if user.userdetail.division == "V"><option selected><#else><option></#if>V</option>
-                                                            <#if user.userdetail.division == "W"><option selected><#else><option></#if>W</option>
-                                                            <#if user.userdetail.division == "X"><option selected><#else><option></#if>X</option>
-                                                            <#if user.userdetail.division == "Y"><option selected><#else><option></#if>Y</option>
-                                                            <#if user.userdetail.division == "Z"><option selected><#else><option></#if>Z</option>
-                                                        </select>
-                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group user-input d-none">
+                                                    <select class="form-control" id="division">
+                                                        <#if user.userdetail.division == "A"><option selected><#else><option></#if>A</option>
+                                                        <#if user.userdetail.division == "B"><option selected><#else><option></#if>B</option>
+                                                        <#if user.userdetail.division == "C"><option selected><#else><option></#if>C</option>
+                                                        <#if user.userdetail.division == "D"><option selected><#else><option></#if>D</option>
+                                                        <#if user.userdetail.division == "E"><option selected><#else><option></#if>E</option>
+                                                        <#if user.userdetail.division == "F"><option selected><#else><option></#if>F</option>
+                                                        <#if user.userdetail.division == "G"><option selected><#else><option></#if>G</option>
+                                                        <#if user.userdetail.division == "H"><option selected><#else><option></#if>H</option>
+                                                        <#if user.userdetail.division == "I"><option selected><#else><option></#if>I</option>
+                                                        <#if user.userdetail.division == "J"><option selected><#else><option></#if>J</option>
+                                                        <#if user.userdetail.division == "K"><option selected><#else><option></#if>K</option>
+                                                        <#if user.userdetail.division == "L"><option selected><#else><option></#if>L</option>
+                                                        <#if user.userdetail.division == "M"><option selected><#else><option></#if>M</option>
+                                                        <#if user.userdetail.division == "N"><option selected><#else><option></#if>N</option>
+                                                        <#if user.userdetail.division == "O"><option selected><#else><option></#if>O</option>
+                                                        <#if user.userdetail.division == "P"><option selected><#else><option></#if>P</option>
+                                                        <#if user.userdetail.division == "Q"><option selected><#else><option></#if>Q</option>
+                                                        <#if user.userdetail.division == "R"><option selected><#else><option></#if>R</option>
+                                                        <#if user.userdetail.division == "S"><option selected><#else><option></#if>S</option>
+                                                        <#if user.userdetail.division == "T"><option selected><#else><option></#if>T</option>
+                                                        <#if user.userdetail.division == "U"><option selected><#else><option></#if>U</option>
+                                                        <#if user.userdetail.division == "V"><option selected><#else><option></#if>V</option>
+                                                        <#if user.userdetail.division == "W"><option selected><#else><option></#if>W</option>
+                                                        <#if user.userdetail.division == "X"><option selected><#else><option></#if>X</option>
+                                                        <#if user.userdetail.division == "Y"><option selected><#else><option></#if>Y</option>
+                                                        <#if user.userdetail.division == "Z"><option selected><#else><option></#if>Z</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,12 +154,12 @@
             <h5 class="color-cyan">Currently Owned Books</h5>
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div class="col-4 current-book-outer zoom">
+                    <div class="col-12 col-md-4 current-book-outer zoom">
                         <div class="row">
-                            <div class="col-6 book-img-outer">
+                            <div class="col-6 col-md-4 book-img-outer">
                                 <img class="user-book-img shadow-lg" src="../img/book-cover1.png">
                             </div>
-                            <div class="col-6 prebooked-book-outer shadow-lg">
+                            <div class="col-6 col-md-8 prebooked-book-outer shadow-lg">
                                 <div class="current-book">
                                     <h6 class="book-name">Abcdefgh</h6>
                                     <hr class="user-field">
@@ -171,12 +169,12 @@
                         </div>
                     </div>
                     <#list user.books as book>
-                    <div class="col-4 current-book-outer zoom">
+                    <div class="col-12 col-md-4 current-book-outer zoom">
                         <div class="row">
-                            <div class="col-6 book-img-outer">
+                            <div class="col-6 col-md-4 book-img-outer">
                                 <img class="user-book-img shadow-lg" src="../img/book-cover.png">
                             </div>
-                            <div class="col-6 user-book-outer shadow-lg">
+                            <div class="col-6 col-md-8 user-book-outer shadow-lg">
                                 <div class="current-book">
                                     <h6 class="book-name">${book.bookDetails.name}</h6>
                                     <hr class="user-field">

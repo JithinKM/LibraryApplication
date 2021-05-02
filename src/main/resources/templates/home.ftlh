@@ -17,7 +17,7 @@
             <#if books??>
             <#list books as bookDetail>
             <div class="col-md-4 col-lg-2 book-entries zoom">
-                <div class="icon-box shadow-lg">
+                <div class="icon-box book-shadow">
                     <div class="book-details book-details${(bookDetail?index) % 3}">
                         <div class="book-details-inner">
                             <h5 class="title text-center book-filer"><a>${bookDetail.name}</a></h5>
