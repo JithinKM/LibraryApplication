@@ -1,6 +1,36 @@
 body {
-  background: url('https://subtlepatterns.com/patterns/kindajean.png') repeat;
   font-family: 'Lato';
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  color: #555;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.image-back {
+	 background: url('../img/school.jpg');
+	 background-size: cover;
+  font-family: 'Lato';
+}
+
+main {
+    margin-top: 100px;
+}
+
+.main-heading {
+    margin-top: 100px;
+}
+
+.main-content {
+    max-width: 100%;
+    padding: 0;
+}
+
+.margin-none {
+    margin: 0;
 }
 
 h1,
@@ -111,6 +141,25 @@ header.masthead .bg-circle-4 {
   right: 35%;
 }
 
+main {
+    margin-top: 10px;
+}
+
+.admin-main {
+    margin-bottom: 50px;
+}
+
+.home-container {
+    background-image: url('../img/bg.png');
+    margin-top: -10px;
+    padding-bottom: 100px;
+    width: 100%;
+}
+
+.home-search {
+    padding-top: 50px;
+}
+
 @media (min-width: 992px) {
   header.masthead {
     padding-top: calc(10rem + 55px);
@@ -152,7 +201,7 @@ a, a:visited, a:hover {
   max-width: 360px;
   height: 60px;
   border-radius: 120px;
-  margin: 50px auto;
+  margin: 35px auto;
   color: #555;
 }
 
@@ -268,9 +317,15 @@ a, a:visited, a:hover {
 
 .bd-footer {
     background-color: #232F3E;
+    font-size: 12px;
     color: #ccc;
-    margin-top: 50px;
     font-weight: 700;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
 }
 
 .navFooterBackToTop {
@@ -281,18 +336,22 @@ a, a:visited, a:hover {
 }
 
 .admin-page {
-    margin-top: 150px;
+    margin-top: 60px;
+    padding: 0;
 }
+
+.main-container {
+    padding: 0;
+}
+
 .form-outer {
     background: rgba(255, 255, 255, 0.5);
-    margin-top: 50px;
     padding: 0;
     min-width: 25%;
 }
 
 #login-form, #signup-form {
     background: #fff;
-    max-width: 90%;
     padding: 20px;
     margin: 25px;
 }
@@ -369,7 +428,7 @@ a, a:visited, a:hover {
     background-color: #fff;
     border-radius: 5px;
     margin: 0;
-    box-shadow: 0px 0px 3px -1px rgba(138,130,138,1);
+    box-shadow: 0px 0px 3px -1px rgba(138,130,138,1) !important;
 }
 
 .list-title .row {
@@ -377,7 +436,11 @@ a, a:visited, a:hover {
 }
 
 .panel-title {
-    margin: 0;
+    margin: 15px 0;
+}
+
+.book-shadow {
+    box-shadow: 5px 10px 7px 2px rgba(0,0,0,.15);
 }
 
 .panel-heading {
@@ -395,6 +458,275 @@ a, a:visited, a:hover {
 }
 
 .footer-logo {
-    width: 100px;
-    margin-bottom: 1rem;
+    width: 60px;
+}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+    width: 49%;
+    border: none;
+    background-color: #fff;
+    color: #555;
+}
+
+.main-row {
+    margin: 0;
+}
+
+.sidebar {
+    background-color: #17a2b8;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+}
+
+.nav-sidebar {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-sidebar > li {
+    padding: 10px;
+}
+
+.nav-sidebar > li > a {
+    text-transform: uppercase;
+    color: #ccc;
+}
+
+.nav-sidebar > li > a:hover {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.nav-sidebar > li > .active {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #0FA4C8;
+}
+
+.sidebar-divider {
+    border-top: 1px solid #17b4c5;
+}
+
+.caption {
+    padding: 20px;
+    color: #17a2b8;
+}
+
+.table-collapse {
+    font-size: 12px;
+    padding: 4px;
+    border: none;
+}
+
+.table-collapse-header {
+    font-weight: bold;
+}
+.table-accordion {
+    cursor: pointer;
+}
+
+#addBook {
+    margin-top: 32px;
+}
+
+.form-subtitle {
+    margin-left: 15px;
+}
+
+.icon-box {
+    color: #555;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.icon-box .title {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.book-cover img {
+    width: 100%;
+}
+
+.book-details {
+    border-right: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+    background-size: cover;
+    padding: 0;
+}
+
+.book-details0 {
+    background-image: url('../img/book-cover.png');
+}
+
+.book-details1 {
+    background-image: url('../img/book-cover1.png');
+}
+
+.book-details2 {
+    background-image: url('../img/book-cover2.png');
+}
+
+.book-details-inner {
+    background-color: rgba(255,255,255,0.3);
+    border-left: 15px solid rgba(0,0,0,0.2);
+    padding: 5px 10px;
+}
+
+.book-details .bi {
+    padding: 0 10px;
+}
+
+.book-contents {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.book-now {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.page-item.active .page-link {
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+.hide-element {
+    display: none;
+}
+
+.profile-container {
+    padding-top: 50px;
+}
+
+#profileEdit, #profileSave, #cancelEdit {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    background-color: #17a2b8;
+}
+
+.class-division {
+    margin: 0;
+}
+
+.book-container {
+    margin: 35px;
+}
+
+.user-books .table-responsive {
+    margin: 0;
+}
+
+#chevron-toggle .bi {
+    color: #17a2b8 !important;
+    cursor: pointer;
+}
+
+#user-chevron-toggle .bi {
+    color: #17a2b8 !important;
+    cursor: pointer;
+}
+
+.user-details {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px 5px;
+}
+
+.current-book-outer {
+    margin: 15px;
+}
+
+.user-books {
+    background-color: #fff;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.profile-edit-field {
+    margin: 5px 0;
+}
+
+.current-books {
+    margin: 50px 10px;
+}
+
+.color-cyan {
+    color: #17a2b8 !important;
+}
+
+.user-book-outer {
+    background-color: rgba(23,162,184,0.5);
+    border-top: 5px solid #17a2b8;
+    border-right: 5px solid #17a2b8;
+    border-bottom: 5px solid #17a2b8;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.prebooked-book-outer {
+    background-color: rgba(255,193,7,0.5);
+    border-top: 5px solid #ffc107;
+    border-right: 5px solid #ffc107;
+    border-bottom: 5px solid #ffc107;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.user-book-img {
+    width: 100%;
+    border-radius: 25px 0 0 25px;
+}
+
+.book-img-outer {
+    padding: 0;
+}
+
+.current-book {
+    padding: 10px;
+}
+
+.book-entries {
+    margin: 15px 0;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(1.02);
+}
+
+.dashboard-content .card {
+    margin: 15px 0px;
+    max-height: 550px;
+}
+
+.notification-body {
+    padding: 5px;
+}
+
+.notification {
+    margin: 15px 0;
+    border-radius: 26px;
 }

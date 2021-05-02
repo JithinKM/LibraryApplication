@@ -1,0 +1,73 @@
+<#assign showMenuBar = true>
+<#include "header.ftl">
+<div class="col-lg-10 col-md-10 col-sm-9 col-12 admin-main">
+    <div class="container main-content text-center">
+        <div class="panel panel-info list-title">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <h3 class="panel-title float-left">Users</h3>
+                </div>
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <div class="input-group search-form">
+                        <input type="text" class="form-control" placeholder="Search users...">
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 panel-heading">
+                    <!-- Button trigger modal -->
+                    <a class="panel-btn float-right" data-toggle="modal" data-target="#userAddModal">
+                    Add a new user
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="justify-content-center">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Std-Div</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <#if users??>
+                                <#assign count = 0>
+                                <#list users as user>
+                                <#assign count = count + 1>
+                                <tr>
+                                    <td>${count}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.userdetail.firstname}&nbsp;${user.userdetail.lastname}</td>
+                                    <td>${user.userdetail.standard}-${user.userdetail.division}</td>
+                                    <td>${(user.email)!}</td>
+                                    <td>${(user.userdetail.phone)!}</td>
+                                    <td>${(user.roleValues)!"[]"}</td>
+                                    <td>${user.status}</td>
+                                    <td>
+                                        <a class="confirm user-edit" data-toggle="modal" data-target="#userEditModal">Edit</a> |
+                                        <a class="reject" href="/user/ccc/delete">Delete</a>
+                                    </td>
+                                </tr>
+                                </#list>
+                                </#if>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<#assign pageTracker = "usersList">
+<#include "footer.ftl">

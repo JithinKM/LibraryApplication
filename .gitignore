@@ -25,6 +25,12 @@ hs_err_pid*
 # IDE files
 .idea
 *.iml
+.classpath
+.project
+.settings
+
+/bin
+/.springBeans
 
 # Maven files
 .mvn
