@@ -16,8 +16,8 @@
         <div class="row icon-boxes" id="book-list">
             <#if books??>
             <#list books as bookDetail>
-            <div class="col-md-4 col-lg-2 book-entries">
-                <div class="icon-box shadow rounded">
+            <div class="col-md-4 col-lg-2 book-entries zoom">
+                <div class="icon-box shadow-lg">
                     <div class="book-details book-details${(bookDetail?index) % 3}">
                         <div class="book-details-inner">
                             <h5 class="title text-center book-filer"><a>${bookDetail.name}</a></h5>
@@ -46,7 +46,10 @@
                             <#if bookDetail.count == 0>
                             <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
                             <#else>
-                            <button type="button" class="btn btn-info btn-sm book-now">BOOK NOW</button>
+                            <form role="form" action="/book/prebook" method="POST">
+                                <input type="hidden" class="form-control" name="id" value="${bookDetail.id}">
+                                <button type="submit" class="btn btn-info btn-sm book-now">BOOK NOW</button>
+                            </form>
                             </#if>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 body {
   font-family: 'Lato';
+  color: #555;
 }
 
 .image-back {
@@ -548,6 +549,7 @@ a, a:visited, a:hover {
 
 .book-details {
     background-size: cover;
+    border-radius: 10px;
     padding: 0;
 }
 
@@ -580,6 +582,7 @@ a, a:visited, a:hover {
 
 .book-now {
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .page-item.active .page-link {
@@ -595,7 +598,7 @@ a, a:visited, a:hover {
     padding-top: 50px;
 }
 
-#profileEdit, #profileSave {
+#profileEdit, #profileSave, #cancelEdit {
     margin-top: 20px;
 }
 
@@ -616,12 +619,12 @@ a, a:visited, a:hover {
 }
 
 #chevron-toggle .bi {
-    font-size: 20px;
+    color: #17a2b8 !important;
     cursor: pointer;
 }
 
 #user-chevron-toggle .bi {
-    font-size: 20px;
+    color: #17a2b8 !important;
     cursor: pointer;
 }
 
@@ -644,13 +647,33 @@ a, a:visited, a:hover {
     padding: 10px;
 }
 
+.profile-edit-field {
+    margin: 5px 0;
+}
+
 .current-books {
     margin: 50px 10px;
 }
 
+.color-cyan {
+    color: #17a2b8 !important;
+}
+
 .user-book-outer {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: rgba(23,162,184,0.5);
+    border-top: 5px solid #17a2b8;
+    border-right: 5px solid #17a2b8;
+    border-bottom: 5px solid #17a2b8;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.prebooked-book-outer {
+    background-color: rgba(255,193,7,0.5);
+    border-top: 5px solid #ffc107;
+    border-right: 5px solid #ffc107;
+    border-bottom: 5px solid #ffc107;
     border-radius: 0 25px 25px 0;
     padding: 0;
     margin: 0;
@@ -671,4 +694,11 @@ a, a:visited, a:hover {
 
 .book-entries {
     margin: 15px 0;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+.zoom:hover {
+  transform: scale(1.02);
 }
