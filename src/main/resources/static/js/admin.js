@@ -36,7 +36,7 @@ function homePageReady() {
 
 function filterBooks() {
     // How many books to display at a time
-    var n = 6;
+    var n = 12;
 
     var total = $('.book-entries').length;
     var active = $('.page-item.active').find('.page-link').text();
@@ -68,6 +68,19 @@ function profilePageReady() {
     $('#user-chevron-toggle').click(function(event) {
         $(this).find(".bi").toggleClass("d-none");
         $('#username-heading').toggleClass("d-none");
+    });
+
+    $('#profileEdit').click(function(event) {
+        $(this).addClass('d-none');
+        $('#profileSave').removeClass('d-none');
+        $('.user-field').addClass('d-none');
+        $('.user-input').removeClass('d-none');
+        $('#input-username').val($('#field-username').text());
+        $('#input-standard').val($('#field-standard').text());
+        $('#input-email').val($('#field-email').text());
+        $('#input-parent-name').val($('#field-parent-name').text());
+        $('#input-phone').val($('#field-phone').text());
+        $('#input-address').val($('#field-address').text());
     });
 }
 
@@ -183,12 +196,6 @@ function processAdminErrorMessage(response) {
     }
 }
 
-function setPageHeight() {
-   var getWindowHeight = $(document).height();
-   var windowHeight = (getWindowHeight) - 100 +"px";
-   $('.home-container').css("min-height",windowHeight);
-}
-
 function checkLoggedInStatus() {
     var token = sessionStorage.getItem("token");
     if (token) {
@@ -259,6 +266,5 @@ $(document).ready(function() {
         usersListPageReady();
     }
 
-    setPageHeight();
     checkLoggedInStatus();
 });

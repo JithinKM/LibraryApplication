@@ -1,6 +1,6 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
-<main class="home-container">
+<main class="home-container justify-content-center">
     <div class="container text-center profile-container">
         <div class="row user-details shadow-sm">
             <div class="col-12">
@@ -32,6 +32,7 @@
                                 <h4>${user.username}</h4>
                                 <p class="text-secondary mb-1">${user.type}</p>
                                 <button class="btn btn-primary" id="profileEdit">Edit Profile</button>
+                                <button class="btn btn-success d-none" id="profileSave">Save Changes</button>
                             </div>
                         </div>
                     </div>
@@ -43,7 +44,8 @@
                                         <h6 class="mb-0">Full Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        ${user.userdetail.fullName}
+                                        <div class="user-field" id="field-username">${user.userdetail.fullName}</div>
+                                        <input type="text" class="form-control user-input d-none" id="input-username" name="user.userdetail.fullName" autocomplete="off">
                                     </div>
                                 </div>
                                 <hr>
@@ -53,7 +55,8 @@
                                             <h6 class="mb-0">Class & Division</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            ${user.userdetail.standard} - ${user.userdetail.division}
+                                            <div class="user-field" id="field-standard">${user.userdetail.standard} - ${user.userdetail.division}</div>
+                                            <input type="text" class="form-control user-input d-none" id="input-standard" name="user.userdetail.standard" autocomplete="off">
                                         </div>
                                     </div>
                                 </#if>
@@ -63,7 +66,8 @@
                                         <h6 class="mb-0">Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        ${user.email}
+                                        <div class="user-field" id="field-email">${user.email}</div>
+                                        <input type="text" class="form-control user-input d-none" id="input-email" name="user.email" autocomplete="off">
                                     </div>
                                 </div>
                                 <hr>
@@ -72,7 +76,8 @@
                                         <h6 class="mb-0">Parent Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        ${user.userdetail.parentName}
+                                        <div class="user-field" id="field-parent-name">${user.userdetail.parentName}</div>
+                                        <input type="text" class="form-control user-input d-none" id="input-parent-name" name="user.userdetail.parentName" autocomplete="off">
                                     </div>
                                 </div>
                                 <hr>
@@ -81,7 +86,8 @@
                                         <h6 class="mb-0">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        ${user.userdetail.phone}
+                                        <div class="user-field" id="field-phone">${user.userdetail.phone}</div>
+                                        <input type="text" class="form-control user-input d-none" id="input-phone" name="user.userdetail.phone" autocomplete="off">
                                     </div>
                                 </div>
                                 <hr>
@@ -90,7 +96,8 @@
                                         <h6 class="mb-0">Address</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        ${user.userdetail.address}
+                                        <div class="user-field" id="field-address">${user.userdetail.address}</div>
+                                        <textarea type="text" class="form-control user-input d-none" id="input-address" name="user.userdetail.address" autocomplete="off" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -113,11 +120,12 @@
                                 <div class="current-book">
                                     <h6 class="book-name">${book.bookDetails.name}</h6>
                                     <hr>
+                                    <h6>Due Date</h6>
                                     <div class="progress">
                                         <div class="progress-bar" style="width: 70%"></div>
                                     </div>
                                     <span class="progress-description">
-                                        ${book.updatedTimestamp}
+                                        ${book.updatedTimestamp?date}
                                     </span>
                                 </div>
                             </div>
@@ -140,8 +148,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover collapse" id="userBookList">
+                <div class="table-responsive collapse" id="userBookList">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -158,8 +166,8 @@
                             <tr>
                                 <td>${book.id}</td>
                                 <td>${book.bookDetails.name}</td>
-                                <td>${book.updatedTimestamp}</td>
-                                <td>${book.updatedTimestamp}</td>
+                                <td>${book.updatedTimestamp?date}</td>
+                                <td>${book.updatedTimestamp?date}</td>
                                 <td>${book.status}</td>
                                 <td>${book.price}</td>
                             </tr>

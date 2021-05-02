@@ -143,6 +143,9 @@ main {
 
 .home-container {
     background-image: url('../img/bg.png');
+    margin-top: -10px;
+    padding-bottom: 100px;
+    width: 100%;
 }
 
 .home-search {
@@ -310,7 +313,6 @@ a, a:visited, a:hover {
     color: #ccc;
     font-weight: 700;
     z-index: 10;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -593,8 +595,12 @@ a, a:visited, a:hover {
     padding-top: 50px;
 }
 
-#profileEdit {
+#profileEdit, #profileSave {
     margin-top: 20px;
+}
+
+.progress-bar {
+    background-color: #17a2b8;
 }
 
 .class-division {
@@ -661,4 +667,8 @@ a, a:visited, a:hover {
 
 .current-book {
     padding: 10px;
+}
+
+.book-entries {
+    margin: 15px 0;
 }

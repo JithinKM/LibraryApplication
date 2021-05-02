@@ -55,5 +55,3 @@
               <li><a href="/user" id="user">Users</a></li>
             </ul>
           </div>
-      <div class="col-lg-10 col-md-10 col-sm-9 col-12 admin-main">
-        <main>
