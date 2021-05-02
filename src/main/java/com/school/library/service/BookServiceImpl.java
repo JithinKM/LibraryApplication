@@ -74,6 +74,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(String id) {
+    	//get book check if it is associated with any user then dont delete
         bookRepository.deleteById(id);
     }
 

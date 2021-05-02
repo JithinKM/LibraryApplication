@@ -1,14 +1,23 @@
 package com.school.library.service;
 
-import com.school.library.entity.UserEntity;
-import com.school.library.repository.UserRepository;
-
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.school.library.entity.RoleEntity;
+import com.school.library.entity.UserDetailsEntity;
+import com.school.library.entity.UserEntity;
+import com.school.library.enums.UserStatusEnum;
+import com.school.library.exception.BadRequestExpection;
+import com.school.library.model.CreateUser;
+import com.school.library.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,8 +39,55 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void signup(UserEntity user) {
-		//signup the user		
+	public UserEntity createUser(CreateUser user) {
+		//Validate user
+		
+		if(!Arrays.asList("STUDENT","TEACHER").contains(user.getType().trim())) {
+			throw new BadRequestExpection("Role must be STUDENT/TEACHER");
+		}
+		
+		
+		String userId = user.getFirstname().trim().toLowerCase()+ user.getLastname().trim().toLowerCase();
+		if("STUDENT".equalsIgnoreCase(user.getType().trim())) {
+			int batch = Calendar.getInstance().get(Calendar.YEAR) + (10-user.getStandard());
+			userId += "_b"+batch;
+		}
+		
+		if(userRepository.findById(userId).isPresent()) {
+			throw new BadRequestExpection("User Already Exists");
+		}
+		
+		UserEntity userEntity = getUserEntity(user, userId);
+		
+		return userRepository.save(userEntity);
+	}
+
+	private UserEntity getUserEntity(CreateUser user, String userId) {
+		UserEntity userEntity = new UserEntity();
+		
+		userEntity.setUsername(userId);
+		userEntity.setEmail(user.getEmail());
+		userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
+		HashSet<RoleEntity> roles = new HashSet<>();
+		roles.add(new RoleEntity(user.getType()));
+		userEntity.setRoles(roles);
+		userEntity.setCreatedTimestamp(new Date());
+		userEntity.setUpdatedTimestamp(new Date());
+		userEntity.setStatus(UserStatusEnum.PENDING.getStatus());
+		
+		UserDetailsEntity userDetailsEntity = new UserDetailsEntity();
+		userDetailsEntity.setAddress(Objects.toString(user.getAddress(), ""));
+		userDetailsEntity.setDivision(user.getDivision());
+		userDetailsEntity.setFirstname(Objects.toString(user.getFirstname(), ""));
+		userDetailsEntity.setLastname(Objects.toString(user.getLastname(), ""));
+		userDetailsEntity.setParentName(Objects.toString(user.getParentName(), ""));
+		userDetailsEntity.setParentPhone(Objects.toString(user.getParentPhone(), ""));
+		userDetailsEntity.setPhone(Objects.toString(user.getPhone(), ""));
+		userDetailsEntity.setStandard(user.getStandard());
+		
+		userEntity.setUserdetail(userDetailsEntity);
+		
+		return userEntity;
 	}
 
     

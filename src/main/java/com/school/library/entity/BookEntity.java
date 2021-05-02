@@ -38,7 +38,7 @@ public class BookEntity {
 	@JsonBackReference
 	private List<UserEntity> users;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@JsonManagedReference
 	private BookDetailsEntity bookDetails;
 

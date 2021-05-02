@@ -38,11 +38,11 @@ public class BookDetailsEntity {
 	@Transient
 	private int count = 1;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonManagedReference
 	private AuthorEntity author;
 	
-	@OneToMany(mappedBy = "bookDetails", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "bookDetails", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true)
 	@JsonBackReference
 	private List<BookEntity> books;
 

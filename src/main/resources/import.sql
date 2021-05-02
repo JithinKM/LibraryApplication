@@ -9,10 +9,10 @@ INSERT INTO library.user (username, created_timestamp, email, password, status, 
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('teachingstaff',  current_timestamp, 'teacher@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
 
 
-INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235234', '', 'A', 'Student', 'One', '', '', 9, 'studentone_b2022');
-INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235235', '', 'B', 'Student', 'Second', '', '', 10, 'studentsec_b2021');
-INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235236', '', '', 'Admin', 'User', '', '', 0, 'libraryadmin');
-INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, standard, user_username) VALUES ('54325235237', '', '', 'Teaching', 'Staff', '', '', 0, 'teachingstaff');
+INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, parent_phone, standard, user_username) VALUES ('54325235234', '', 'A', 'Student', 'One', '', '', '', 9, 'studentone_b2022');
+INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, parent_phone, standard, user_username) VALUES ('54325235235', '', 'B', 'Student', 'Second', '', '', '', 10, 'studentsec_b2021');
+INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, parent_phone, standard, user_username) VALUES ('54325235236', '', '', 'Admin', 'User', '', '', '', 0, 'libraryadmin');
+INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, parent_phone, standard, user_username) VALUES ('54325235237', '', '', 'Teaching', 'Staff', '', '', '', 0, 'teachingstaff');
 
 INSERT INTO library.role_user (roles_role, user_username) VALUES ('STUDENT', 'studentone_b2022');
 INSERT INTO library.role_user (roles_role, user_username) VALUES ('STUDENT', 'studentsec_b2021');

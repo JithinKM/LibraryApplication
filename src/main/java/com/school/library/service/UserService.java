@@ -3,6 +3,7 @@ package com.school.library.service;
 import java.util.List;
 
 import com.school.library.entity.UserEntity;
+import com.school.library.model.CreateUser;
 
 public interface UserService {
 
@@ -10,5 +11,5 @@ public interface UserService {
 
     List<UserEntity> getAllNonAdminUsers();
 
-    void signup(UserEntity user);
+    UserEntity createUser(CreateUser user);
 }

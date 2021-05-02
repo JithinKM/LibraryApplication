@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.school.library.config.UserPrincipal;
-import com.school.library.entity.UserEntity;
+import com.school.library.model.CreateUser;
 import com.school.library.model.User;
 import com.school.library.repository.UserRepository;
 import com.school.library.service.UserService;
@@ -29,12 +29,12 @@ public class UserController {
     UserService userService;
     
     @PostMapping("/signup")
-    public String signup(UserEntity user) {
-    	userService.signup(user);
+    public String signup(CreateUser user) {
+    	userService.createUser(user);
     	return "redirect:/login";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/all")
     public String getUsersListPage(Model model) {
     	model.addAttribute("users", userService.getAllNonAdminUsers());
         return "users-list";
@@ -47,14 +47,8 @@ public class UserController {
     }
     
     @PostMapping("/profile")
-    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, final Model model) {
-    	//save data and then send updated profile
-    	model.addAttribute("user", "");
+    public String updateUserProfile(CreateUser user, final Model model) {
+    	model.addAttribute("user", new User(userService.createUser(user)));
     	return "profile";
     }
-    
-//  @GetMapping("/edit")
-//  public String getUsersEditPage(final ModelAndView model) {
-//      return "users-edit";
-//  }
 }

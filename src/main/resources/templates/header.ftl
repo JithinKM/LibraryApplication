@@ -52,6 +52,6 @@
               <hr class="sidebar-divider">
               <li><a href="/book" id="book">Books</a></li>
               <li><a href="/author" id="author">Authors</a></li>
-              <li><a href="/user" id="user">Users</a></li>
+              <li><a href="/user/all" id="user">Users</a></li>
             </ul>
           </div>
