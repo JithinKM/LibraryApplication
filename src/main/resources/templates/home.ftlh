@@ -11,7 +11,6 @@
                 <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
                 <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
             </svg>
-            <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
         </div>
         <div class="row icon-boxes" id="book-list">
             <#if books??>
@@ -82,21 +81,20 @@
 </main>
 
 <div class="modal fade" id="prebookModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Confirm Your Action</h4>
                 <button type="button" class="close prebook-close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h5>Do you want to book <span id="bookName" class="text-bold"></span>?</h5>
+                <h5 class="text-center">Do you want to book <span id="bookName" class="text-bold"></span>?</h5>
                 <form role="form" id="prebookForm" action="/book/block" method="POST">
                     <div class="form-group">
                         <input type="hidden" id="bookId" name="id">
                     </div>
-                    <input type="submit" class="btn btn-sm btn-primary float-right" id="preBook" value="Confirm"/>
+                    <input type="submit" class="btn btn-sm btn-primary float-right" id="preBook" value="Yes"/>
                 </form>
             </div>
         </div>

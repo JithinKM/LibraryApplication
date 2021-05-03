@@ -2,12 +2,13 @@
 <#include "header.ftl">
 <main class="home-container justify-content-center">
     <div class="container text-center profile-container">
-        <div class="row user-details shadow-sm">
+        <div class="user-details-outer">
+        <div class="user-details shadow-sm">
             <div class="col-12">
                 <div class="row">
                     <div class="col-10">
                         <div class="row" id="username-heading">
-                            <img src="../img/profile.png" alt="Admin" class="rounded-circle profile-img-sm" width="100" height="100">
+                            <img src="../img/profile.png" alt="Admin" class="rounded-circle profile-img-sm" width="110" height="110">
                             <div class="col-12">
                                 <h5 class="text-left color-cyan username-sm">${user.userdetail.fullName}</h5>
                             </div>
@@ -148,6 +149,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <div class="current-books">
             <h5 class="color-cyan">Currently Owned Books</h5>
             <div class="col-12">
@@ -191,7 +193,8 @@
                 </div>
             </div>
         </div>
-        <div class="row user-books shadow-sm">
+        <div class="user-books-outer">
+        <div class="user-books shadow-sm">
             <div class="col-12">
                 <div class="row">
                     <div class="col-10">
@@ -233,6 +236,7 @@
                     </table>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </main>

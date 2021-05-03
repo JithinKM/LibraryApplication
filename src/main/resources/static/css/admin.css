@@ -146,7 +146,7 @@ main {
 }
 
 .home-container {
-    background-image: url('../img/bg.png');
+    background-image: url('../img/bg1.png');
     margin-top: -10px;
     width: 100%;
     min-height: 100vh;
@@ -209,7 +209,7 @@ a, a:visited, a:hover {
   max-width: 360px;
   height: 60px;
   border-radius: 120px;
-  margin: 35px auto;
+  margin: 50px auto;
   color: #555;
 }
 
@@ -471,6 +471,10 @@ a, a:visited, a:hover {
     width: 60px;
 }
 
+.page-link, .page-item.disabled .page-link {
+    background-color: rgba(255,255,255,0.4);
+}
+
 .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
     width: 49%;
     border: none;
@@ -628,9 +632,9 @@ a, a:visited, a:hover {
 }
 
 .profile-img-sm {
-    border: 10px solid #ccc;
+    border: 10px solid #fff;
     position: absolute;
-    margin: -35px;
+    margin: -45px;
 }
 
 .username-sm {
@@ -668,12 +672,15 @@ a, a:visited, a:hover {
     cursor: pointer;
 }
 
+.user-details-outer, .user-books-outer {
+    margin: 0 30px;
+    border: 15px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+}
+
 .user-details {
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     padding: 20px 5px;
-    margin: 30px;
 }
 
 .user-input {
@@ -686,10 +693,7 @@ a, a:visited, a:hover {
 
 .user-books {
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     padding: 10px;
-    margin: 30px;
 }
 
 .profile-edit-field {
@@ -697,7 +701,9 @@ a, a:visited, a:hover {
 }
 
 .current-books {
-    margin: 50px 30px;
+    padding: 50px 0;
+    margin: 0 50px;
+    background-color: rgba(255,255,255,0.3);
 }
 
 .color-cyan {
@@ -765,6 +771,7 @@ a, a:visited, a:hover {
 
 .modal-header {
     border-bottom: 0 none;
+    padding: 15px 15px 0 0;
 }
 
 #prebookModal .modal-content {
