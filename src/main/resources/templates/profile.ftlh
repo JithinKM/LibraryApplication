@@ -7,11 +7,9 @@
                 <div class="row">
                     <div class="col-10">
                         <div class="row" id="username-heading">
-                            <div class="col-1">
-                                <img src="../img/profile.png" alt="Admin" class="rounded-circle" width="30">
-                            </div>
-                            <div class="col-11">
-                                <h5 class="text-left color-cyan">${user.userdetail.fullName}</h5>
+                            <img src="../img/profile.png" alt="Admin" class="rounded-circle profile-img-sm" width="100" height="100">
+                            <div class="col-12">
+                                <h5 class="text-left color-cyan username-sm">${user.userdetail.fullName}</h5>
                             </div>
                         </div>
                     </div>
@@ -40,21 +38,21 @@
                         <form role="form" id="userForm" action="/user/profile" method="POST">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                                    <h6 class="mb-0 mt-2">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field" id="field-username">${user.userdetail.fullName}</div>
+                                    <div class="user-field mt-2" id="field-username">${user.userdetail.fullName}</div>
                                     <input type="text" class="form-control user-input d-none" id="input-username" name="fullName" autocomplete="off" value="${user.userdetail.fullName}">
                                 </div>
                             </div>
-                            <hr class="user-field">
+                            <hr class="user-field mt-2">
                             <#if user.userdetail.division??>
                                 <div class="row profile-edit-field">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Class & Division</h6>
+                                        <h6 class="mb-0 mt-2">Class & Division</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <div class="user-field" id="field-standard">${user.userdetail.standard} - ${user.userdetail.division}</div>
+                                        <div class="user-field mt-2" id="field-standard">${user.userdetail.standard} - ${user.userdetail.division}</div>
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group user-input d-none">
@@ -104,43 +102,43 @@
                                     </div>
                                 </div>
                             </#if>
-                            <hr class="user-field">
+                            <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                    <h6 class="mb-0 mt-2">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field" id="field-email">${user.email}</div>
+                                    <div class="user-field mt-2" id="field-email">${user.email}</div>
                                     <input type="text" class="form-control user-input d-none" id="input-email" name="email" autocomplete="off" value="${user.email}">
                                 </div>
                             </div>
-                            <hr class="user-field">
+                            <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Parent Name</h6>
+                                    <h6 class="mb-0 mt-2">Parent Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field" id="field-parent-name">${user.userdetail.parentName}</div>
+                                    <div class="user-field mt-2" id="field-parent-name">${user.userdetail.parentName}</div>
                                     <input type="text" class="form-control user-input d-none" id="input-parent-name" name="parentName" autocomplete="off" value="${user.userdetail.parentName}">
                                 </div>
                             </div>
-                            <hr class="user-field">
+                            <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0 mt-2">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field" id="field-phone">${user.userdetail.phone}</div>
+                                    <div class="user-field mt-2" id="field-phone">${user.userdetail.phone}</div>
                                     <input type="text" class="form-control user-input d-none" id="input-phone" name="parentPhone" autocomplete="off" value="${user.userdetail.phone}">
                                 </div>
                             </div>
-                            <hr class="user-field">
+                            <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
+                                    <h6 class="mb-0 mt-2">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field" id="field-address">${user.userdetail.address}</div>
+                                    <div class="user-field mt-2" id="field-address">${user.userdetail.address}</div>
                                     <textarea type="text" class="form-control user-input d-none" id="input-address" name="address" autocomplete="off" rows="3">${user.userdetail.address}</textarea>
                                 </div>
                             </div>
@@ -162,7 +160,7 @@
                             <div class="col-6 col-md-8 prebooked-book-outer shadow-lg">
                                 <div class="current-book">
                                     <h6 class="book-name">Abcdefgh</h6>
-                                    <hr class="user-field">
+                                    <hr class="user-field mt-2">
                                     <h6>Approval Pending</h6>
                                 </div>
                             </div>
@@ -177,7 +175,7 @@
                             <div class="col-6 col-md-8 user-book-outer shadow-lg">
                                 <div class="current-book">
                                     <h6 class="book-name">${book.bookDetails.name}</h6>
-                                    <hr class="user-field">
+                                    <hr class="user-field mt-2">
                                     <h6>Due Date</h6>
                                     <div class="progress">
                                         <div class="progress-bar" style="width: 70%"></div>

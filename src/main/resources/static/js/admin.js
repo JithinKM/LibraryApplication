@@ -2,6 +2,13 @@ function homePageReady() {
     redirectToLogin();
     filterBooks();
 
+    $('.book-now').click(function(event) {
+        var bookId = $(this).siblings('.bookId').val();
+        var bookName = $(this).siblings('.bookName').val();
+        $('#bookId').val(bookId);
+        $('#bookName').text(bookName);
+    });
+
     $('.page-item').click(function(event) {
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
@@ -269,5 +276,5 @@ $(document).ready(function() {
         usersListPageReady();
     }
 
-    checkLoggedInStatus();
+//    checkLoggedInStatus();
 });

@@ -145,19 +145,26 @@ main {
     margin-top: 10px;
 }
 
-.admin-main {
-    margin-bottom: 50px;
-}
-
 .home-container {
     background-image: url('../img/bg.png');
     margin-top: -10px;
-    padding-bottom: 100px;
     width: 100%;
 }
 
 .home-search {
     padding-top: 50px;
+}
+
+@media (max-width: 770px) {
+    .icon-box {
+        margin: 0 20%;
+    }
+}
+
+@media (max-width: 600px) {
+    .icon-box {
+        margin: 0 10%;
+    }
 }
 
 @media (min-width: 992px) {
@@ -338,6 +345,7 @@ a, a:visited, a:hover {
 .admin-page {
     margin-top: 60px;
     padding: 0;
+    height: 100vh;
 }
 
 .main-container {
@@ -544,7 +552,7 @@ a, a:visited, a:hover {
 .icon-box {
     color: #555;
     padding: 0;
-    border-radius: 5px;
+    border-radius: 0 15px 15px 0;
 }
 
 .icon-box .title {
@@ -561,6 +569,7 @@ a, a:visited, a:hover {
 .book-details {
     border-right: 5px solid #fff;
     border-bottom: 5px solid #fff;
+    border-radius: 0 15px 15px 0;
     background-size: cover;
     padding: 0;
 }
@@ -580,6 +589,7 @@ a, a:visited, a:hover {
 .book-details-inner {
     background-color: rgba(255,255,255,0.3);
     border-left: 15px solid rgba(0,0,0,0.2);
+    border-radius: 0 10px 10px 0;
     padding: 5px 10px;
 }
 
@@ -611,8 +621,23 @@ a, a:visited, a:hover {
     padding-top: 50px;
 }
 
+#user-details-inner, #userBookList {
+    margin-top: 15px;
+}
+
+.profile-img-sm {
+    border: 10px solid #ccc;
+    position: absolute;
+    margin: -35px;
+}
+
+.username-sm {
+    margin-left: 60px;
+    margin-bottom: 0 !important;
+}
+
 #profileEdit, #profileSave, #cancelEdit {
-    margin-top: 20px;
+    margin: 20px 15px;
 }
 
 .progress-bar {
@@ -646,6 +671,11 @@ a, a:visited, a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px 5px;
+    margin: 30px;
+}
+
+.user-input {
+    margin-bottom: 0 !important;
 }
 
 .current-book-outer {
@@ -654,10 +684,10 @@ a, a:visited, a:hover {
 
 .user-books {
     background-color: #fff;
-    margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
+    margin: 30px;
 }
 
 .profile-edit-field {
@@ -665,7 +695,7 @@ a, a:visited, a:hover {
 }
 
 .current-books {
-    margin: 50px 10px;
+    margin: 50px 30px;
 }
 
 .color-cyan {
@@ -729,4 +759,18 @@ a, a:visited, a:hover {
 .notification {
     margin: 15px 0;
     border-radius: 26px;
+}
+
+.modal-header {
+    border-bottom: 0 none;
+}
+
+#prebookModal .modal-content {
+    background-color: rgba(255,255,255,0.5);
+    color: #fff !important;
+    border: none;
+    backdrop-filter: blur(5px);
+}
+.prebook-close {
+    color: #fff !important;
 }

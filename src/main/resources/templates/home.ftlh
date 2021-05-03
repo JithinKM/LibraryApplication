@@ -46,10 +46,9 @@
                             <#if bookDetail.count == 0>
                             <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
                             <#else>
-                            <form role="form" action="/book/prebook" method="POST">
-                                <input type="hidden" class="form-control" name="id" value="${bookDetail.id}">
-                                <button type="submit" class="btn btn-info btn-sm book-now">BOOK NOW</button>
-                            </form>
+                                <input type="hidden" class="bookId" value="${bookDetail.id}">
+                                <input type="hidden" class="bookName" value="${bookDetail.name}">
+                                <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
                             </#if>
                         </div>
                     </div>
@@ -81,6 +80,28 @@
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="prebookModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirm Your Action</h4>
+                <button type="button" class="close prebook-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Do you want to book <span id="bookName" class="text-bold"></span>?</h5>
+                <form role="form" id="prebookForm" action="/book/block" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" id="bookId" name="id">
+                    </div>
+                    <input type="submit" class="btn btn-sm btn-primary float-right" id="preBook" value="Confirm"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <#assign pageTracker = "home">
 <#include "footer.ftl">
