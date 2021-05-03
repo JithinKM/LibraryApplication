@@ -9,9 +9,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 panel-heading">
                     <div class="input-group search-form">
-                        <input type="text" class="form-control" placeholder="Search users...">
-                        <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Go!</button>
+                        <input type="text" class="form-control" id="filter-users" placeholder="Search users...">
                         </span>
                     </div>
                 </div>
@@ -25,7 +23,7 @@
             <div class="panel-body">
                 <div class="justify-content-center">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="usersList">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -47,8 +45,8 @@
                                 <tr>
                                     <td>${count}</td>
                                     <td>${user.username}</td>
-                                    <td>${user.userdetail.firstname}&nbsp;${user.userdetail.lastname}</td>
-                                    <td>${user.userdetail.standard}-${user.userdetail.division}</td>
+                                    <td class="user-filter">${user.userdetail.firstname}&nbsp;${user.userdetail.lastname}</td>
+                                    <td><#if user.userdetail.division != " ">${user.userdetail.standard}-${user.userdetail.division}</#if></td>
                                     <td>${(user.email)!}</td>
                                     <td>${(user.userdetail.phone)!}</td>
                                     <td>${(user.roleValues)!"[]"}</td>

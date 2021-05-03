@@ -33,9 +33,14 @@ function homePageReady() {
 
         var value = $(this).val().toLowerCase();
         $("#book-list .book-entries").filter(function() {
-            $(this).toggle($(this).find('.book-filer').text().toLowerCase().indexOf(value) > -1)
+            if($(this).find('.book-filer').text().toLowerCase().indexOf(value) > -1) {
+                $(this).removeClass('filter-hide');
+            } else {
+                $(this).addClass('filter-hide');
+            }
         });
     });
+
     $(".go-icon").click(function(){
       $(".search-form").submit();
     });
@@ -43,7 +48,7 @@ function homePageReady() {
 
 function filterBooks() {
     // How many books to display at a time
-    var n = 12;
+    var n = 6;
 
     var total = $('.book-entries').length;
     var active = $('.page-item.active').find('.page-link').text();
@@ -121,7 +126,11 @@ function booksListPageReady() {
     $("#filer-books").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#bookList tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            if($(this).find('.book-filter').text().toLowerCase().indexOf(value) > -1) {
+                $(this).removeClass('filter-hide');
+            } else {
+                $(this).addClass('filter-hide');
+            }
         });
     });
 
@@ -155,18 +164,16 @@ function authorsListPageReady() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         local: authorsList
     });
-    console.log(authors);
 
-    $('#authorAddForm .typeahead').typeahead({
-        highlight: true
-    },
-    {
-        display: 'Name',
-        source: authors.ttAdapter()
-    });
-
-    $('#authorAddForm').on('typeahead:selected', function (e, data) {
-        $("#authorId").val(data.id);
+    $("#filter-authors").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#authorsList tr").filter(function() {
+            if($(this).find('.author-filter').text().toLowerCase().indexOf(value) > -1) {
+                $(this).removeClass('filter-hide');
+            } else {
+                $(this).addClass('filter-hide');
+            }
+        });
     });
 
     $(".author-edit").click(function(event) {
@@ -183,6 +190,17 @@ function authorDetailPageReady() {
 function usersListPageReady() {
     redirectToLogin();
     $("#user").addClass("active");
+
+    $("#filter-users").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#usersList tr").filter(function() {
+            if($(this).find('.user-filter').text().toLowerCase().indexOf(value) > -1) {
+                $(this).removeClass('filter-hide');
+            } else {
+                $(this).addClass('filter-hide');
+            }
+        });
+    });
 }
 
 function adminDashboardReady() {

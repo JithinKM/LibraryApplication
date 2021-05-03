@@ -9,9 +9,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 panel-heading">
                     <div class="input-group search-form">
-                        <input type="text" class="form-control" placeholder="Search authors...">
-                        <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Go!</button>
+                        <input type="text" class="form-control" id="filter-authors" placeholder="Search authors...">
                         </span>
                     </div>
                 </div>
@@ -39,8 +37,8 @@
                                 <#list authors as author>
                                 <tr>
                                     <td>${author.id}</td>
-                                    <td>${author.name}</td>
-                                    <td>${author.penName}</td>
+                                    <td class="author-filter">${author.name}</td>
+                                    <td class="author-filter">${author.penName}</td>
                                     <td>
                                         <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
                                         <a class="reject" href="/author/${author.id}/delete">Delete</a>

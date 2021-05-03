@@ -37,8 +37,8 @@
                                 <#if books??>
                                 <#list books as bookDetail>
                                 <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" data-parent="#bookList">
-                                    <td>${bookDetail.name}</td>
-                                    <td>${bookDetail.author.name}</td>
+                                    <td class="book-filter">${bookDetail.name}</td>
+                                    <td class="book-filter">${bookDetail.author.name}</td>
                                     <td>${bookDetail.publication}</td>
                                     <td>${bookDetail.category}</td>
                                     <td>${bookDetail.language}</td>
