@@ -16,8 +16,8 @@
                     </div>
                     <div class="col-2">
                         <div class="float-right" id="user-chevron-toggle" data-toggle="collapse" data-target="#user-details-inner" aria-controls="user-details-inner">
-                            <i class="bi bi-chevron-down"></i>
-                            <i class="bi bi-chevron-up d-none"></i>
+                            <i class="bi bi-caret-down-fill"></i>
+                            <i class="bi bi-caret-up-fill d-none"></i>
                         </div>
                     </div>
                 </div>
@@ -202,8 +202,8 @@
                     </div>
                     <div class="col-2">
                         <div class="float-right" id="chevron-toggle" data-toggle="collapse" data-target="#userBookList" aria-controls="userBookList">
-                            <i class="bi bi-chevron-down"></i>
-                            <i class="bi bi-chevron-up d-none"></i>
+                            <i class="bi bi-caret-down-fill"></i>
+                            <i class="bi bi-caret-up-fill d-none"></i>
                         </div>
                     </div>
                 </div>

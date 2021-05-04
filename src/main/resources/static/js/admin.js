@@ -1,3 +1,16 @@
+function getTableData(table) {
+    var data = [];
+    var target = $('tr').not('thead tr');
+    target.each(function (rowIndex, r) {
+        var cols = [];
+        $(this).find('th,td').each(function (colIndex, c) {
+            cols.push(c.textContent);
+        });
+        data.push(cols);
+    });
+    return data;
+}
+
 function homePageReady() {
     redirectToLogin();
     filterBooks();
@@ -125,7 +138,7 @@ function booksListPageReady() {
 
     $("#filer-books").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#bookList tr").filter(function() {
+        $("#bookList tr.table-accordion").filter(function() {
             if($(this).find('.book-filter').text().toLowerCase().indexOf(value) > -1) {
                 $(this).removeClass('filter-hide');
             } else {
@@ -181,6 +194,40 @@ function authorsListPageReady() {
         $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
         $("#editId").val($(event.target).siblings(".authorEditId").val());
     });
+
+    var table = $('#authorsList');
+    var tableData = getTableData(table);
+    var authors = [];
+
+    tableData.forEach(function(row) {
+        var author = {};
+        author.id = row[0];
+        author.name = row[1];
+        author.penName = row[2];
+        authors.push(author);
+    });
+
+	var authorSuggestions = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  local: authors
+	});
+
+	$('.typeahead').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'authors',
+	  display: 'name',
+	  source: authorSuggestions.ttAdapter()
+	});
+
+    $('.typeahead').on('typeahead:selected', function(evt, item) {
+        $('#editId').val(item.id);
+        $('#editPenName').val(item.penName);
+    })
 }
 
 function authorDetailPageReady() {
