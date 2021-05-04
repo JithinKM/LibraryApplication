@@ -44,50 +44,52 @@
                                     <td>${bookDetail.language}</td>
                                     <td>${bookDetail.count}</td>
                                 </tr>
-                                <tr class="table-collapse table-collapse-header collapse" id="table-accordion${bookDetail?index}" data-parent="#bookList">
+                                <tr class="table-collapse table-collapse-header">
                                     <td colspan="7" class="books-inner-table">
-                                        <table class="table table-info">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Contributed By</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
-                                                    <th>Rack</th>
-                                                    <th>Purchased Date</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <#list bookDetail.books as book>
-                                                <tr>
-                                                    <td>${book.id}</td>
-                                                    <td>${book.contributedBy}</td>
-                                                    <td>${book.price}</td>
-                                                    <td>${book.status}</td>
-                                                    <td>${book.rack}</td>
-                                                    <td>${book.purchasedDate?date}</td>
-                                                    <td>
-                                                        <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
-                                                        <a class="reject" href="/book/delete/${book.id}">Delete</a>
-                                                        <input type="hidden" class="bookEditId" value="${book.id}" />
-                                                        <input type="hidden" class="bookDetailEditId" value="${bookDetail.id?string.computer}" />
-                                                        <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
-                                                        <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id?string.computer}" />
-                                                        <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
-                                                        <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
-                                                        <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
-                                                        <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
-                                                        <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
-                                                        <input type="hidden" class="bookEditRack" value="${book.rack}" />
-                                                        <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
-                                                        <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
-                                                        <input type="hidden" class="bookEditPrice" value="${book.price?string.computer}" />
-                                                    </td>
-                                                </tr>
-                                                </#list>
-                                            </tbody>
-                                        </table>
+                                        <div class="book-accordion-inner collapse" id="table-accordion${bookDetail?index}"  data-parent="#bookList">
+                                            <table class="table table-info">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Contributed By</th>
+                                                        <th>Price</th>
+                                                        <th>Status</th>
+                                                        <th>Rack</th>
+                                                        <th>Purchased Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <#list bookDetail.books as book>
+                                                    <tr>
+                                                        <td>${book.id}</td>
+                                                        <td>${book.contributedBy}</td>
+                                                        <td>${book.price}</td>
+                                                        <td>${book.status}</td>
+                                                        <td>${book.rack}</td>
+                                                        <td>${book.purchasedDate?date}</td>
+                                                        <td>
+                                                            <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
+                                                            <a class="reject" href="/book/delete/${book.id}">Delete</a>
+                                                            <input type="hidden" class="bookEditId" value="${book.id}" />
+                                                            <input type="hidden" class="bookDetailEditId" value="${bookDetail.id?string.computer}" />
+                                                            <input type="hidden" class="bookEditName" value="${bookDetail.name}" />
+                                                            <input type="hidden" class="bookEditAuthorId" value="${bookDetail.author.id?string.computer}" />
+                                                            <input type="hidden" class="bookEditAuthor" value="${bookDetail.author.name}" />
+                                                            <input type="hidden" class="bookEditAuthorPenName" value="${bookDetail.author.penName}" />
+                                                            <input type="hidden" class="bookEditCategory" value="${bookDetail.category}" />
+                                                            <input type="hidden" class="bookEditLanguage" value="${bookDetail.language}" />
+                                                            <input type="hidden" class="bookEditPublication" value="${bookDetail.publication}" />
+                                                            <input type="hidden" class="bookEditRack" value="${book.rack}" />
+                                                            <input type="hidden" class="bookEditContributed" value="${book.contributedBy}" />
+                                                            <input type="hidden" class="bookEditPurchased" value="${book.purchasedDate?date?string.short}" />
+                                                            <input type="hidden" class="bookEditPrice" value="${book.price?string.computer}" />
+                                                        </td>
+                                                    </tr>
+                                                    </#list>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </td>
                                 </tr>
                                 </#list>
