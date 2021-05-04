@@ -13,12 +13,6 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 panel-heading">
-                    <!-- Button trigger modal -->
-                    <a class="panel-btn float-right" data-toggle="modal" data-target="#userAddModal">
-                    Add a new user
-                    </a>
-                </div>
             </div>
             <div class="panel-body">
                 <div class="justify-content-center">
@@ -53,7 +47,7 @@
                                     <td>${user.status}</td>
                                     <td>
                                         <a class="confirm user-edit" data-toggle="modal" data-target="#userEditModal">Edit</a> |
-                                        <a class="reject" href="/user/ccc/delete">Delete</a>
+                                        <a class="reject" href="/user/ccc/delete">Disable</a>
                                     </td>
                                 </tr>
                                 </#list>

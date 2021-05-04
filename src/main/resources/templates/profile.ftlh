@@ -1,8 +1,8 @@
 <#assign showMenuBar = false>
 <#include "header.ftl">
 <main class="home-container justify-content-center">
-    <div class="container text-center profile-container">
-        <div class="user-details-outer">
+    <div class="text-center profile-container">
+        <div class="user-details-outer" id="user-details-accordion">
         <div class="user-details shadow-sm">
             <div class="col-12">
                 <div class="row">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div id="user-details-inner" class="col-12 collapse">
+            <div id="user-details-inner" class="col-12 collapse" data-parent="#user-details-accordion">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="align-items-center text-center">

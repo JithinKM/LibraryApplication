@@ -36,7 +36,7 @@
                             <tbody>
                                 <#if books??>
                                 <#list books as bookDetail>
-                                <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" data-parent="#bookList">
+                                <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" aria-controls="#table-accordion${bookDetail?index}">
                                     <td class="book-filter">${bookDetail.name}</td>
                                     <td class="book-filter">${bookDetail.author.name}</td>
                                     <td>${bookDetail.publication}</td>
@@ -44,9 +44,9 @@
                                     <td>${bookDetail.language}</td>
                                     <td>${bookDetail.count}</td>
                                 </tr>
-                                <tr class="table-collapse table-collapse-header collapse" id="table-accordion${bookDetail?index}">
-                                    <td colspan="7">
-                                        <table class="table table-dark">
+                                <tr class="table-collapse table-collapse-header collapse" id="table-accordion${bookDetail?index}" data-parent="#bookList">
+                                    <td colspan="7" class="books-inner-table">
+                                        <table class="table table-info">
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>

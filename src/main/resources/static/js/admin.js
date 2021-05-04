@@ -79,7 +79,7 @@ function profilePageReady() {
     });
     $('#user-chevron-toggle').click(function(event) {
         $(this).find(".bi").toggleClass("d-none");
-        $('#username-heading').toggleClass("d-none");
+        $('#username-heading').fadeToggle("slow");
     });
 
     $('#profileEdit').click(function(event) {
