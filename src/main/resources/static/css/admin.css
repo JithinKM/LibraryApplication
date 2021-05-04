@@ -786,6 +786,12 @@ a, a:visited, a:hover {
     margin: 0 !important;
 }
 
+.ui-widget-header {
+    background: #17a2b8 !important;
+    border: 1px solid #17a2b8 !important;
+    border-radius: 0;
+}
+
 @media (min-width: 992px) {
   header.masthead {
     padding-top: calc(10rem + 55px);

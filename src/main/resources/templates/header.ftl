@@ -13,7 +13,6 @@
     <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/fontawesome.min.css" rel="stylesheet">
     <link href="/css/typeahead.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->

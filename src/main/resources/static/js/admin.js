@@ -118,7 +118,7 @@ $.validator.methods.localDate = function( value, element ) {
 
 function prepareBookAddForm() {
 
-    $( "#purchased" ).datepicker({
+    $("#purchased").datepicker({
         changeMonth: true,
         changeYear: true
     });
@@ -150,6 +150,68 @@ function booksListPageReady() {
     prepareBookAddForm();
     prepareBookEditForm();
 
+    $.get( "/author/all", function(authors) {
+        var authorSuggestions = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: authors
+        });
+
+        $('#authorName,#authorNameEdit').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        },
+        {
+          name: 'authors',
+          display: 'name',
+          source: authorSuggestions.ttAdapter()
+        });
+    });
+
+    $('#authorName').on('typeahead:selected', function(evt, item) {
+        $('#authorId').val(item.id);
+        $('#authorPenName').val(item.penName);
+    });
+
+    $('#authorNameEdit').on('typeahead:selected', function(evt, item) {
+        $('#authorIdEdit').val(item.id);
+        $('#authorPenNameEdit').val(item.penName);
+    });
+
+    $.get( "/book/all", function(books) {
+        var bookSuggestions = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: books
+        });
+
+        $('#name,#nameEdit').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        },
+        {
+          name: 'books',
+          display: 'name',
+          source: bookSuggestions.ttAdapter()
+        });
+    });
+
+    $('#name').on('typeahead:selected', function(evt, item) {
+        $('#bookDetailId').val(item.id);
+        $('#category').val(item.category);
+        $('#language').val(item.language);
+        $('#publication').val(item.publication);
+    });
+
+    $('#nameEdit').on('typeahead:selected', function(evt, item) {
+        $('#bookDetailIdEdit').val(item.id);
+        $('#categoryEdit').val(item.category);
+        $('#languageEdit').val(item.language);
+        $('#publicationEdit').val(item.publication);
+    });
+
     $(".book-edit").click(function(event) {
         $("#bookIdEdit").val($(event.target).siblings(".bookEditId").val());
         $("#bookDetailIdEdit").val($(event.target).siblings(".bookDetailEditId").val());
@@ -171,13 +233,6 @@ function authorsListPageReady() {
     redirectToLogin();
     $("#author").addClass("active");
 
-    var authorsList = makeJsonFromTable('authorsList');
-    var authors = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: authorsList
-    });
-
     $("#filter-authors").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#authorsList tr").filter(function() {
@@ -195,34 +250,25 @@ function authorsListPageReady() {
         $("#editId").val($(event.target).siblings(".authorEditId").val());
     });
 
-    var table = $('#authorsList');
-    var tableData = getTableData(table);
-    var authors = [];
+    $.get( "/author/all", function(data) {
+        var authors = data;
+        var authorSuggestions = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: authors
+        });
 
-    tableData.forEach(function(row) {
-        var author = {};
-        author.id = row[0];
-        author.name = row[1];
-        author.penName = row[2];
-        authors.push(author);
+        $('.typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        },
+        {
+          name: 'authors',
+          display: 'name',
+          source: authorSuggestions.ttAdapter()
+        });
     });
-
-	var authorSuggestions = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  local: authors
-	});
-
-	$('.typeahead').typeahead({
-	  hint: true,
-	  highlight: true,
-	  minLength: 1
-	},
-	{
-	  name: 'authors',
-	  display: 'name',
-	  source: authorSuggestions.ttAdapter()
-	});
 
     $('.typeahead').on('typeahead:selected', function(evt, item) {
         $('#editId').val(item.id);

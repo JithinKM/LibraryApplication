@@ -14,13 +14,14 @@
 							<div class="col-6">
 								<div class="form-group">
 									<label>Name</label>
-									<input type="text" class="form-control" id="authorNameEdit" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off"> </div>
+									<input type="text" class="form-control typeahead" id="authorNameEdit" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off"> </div>
 							</div>
-							<input type="hidden" id="authorIdEdit" name="bookDetails.author.id" value="">
 							<div class="col-6">
 								<div class="form-group">
 									<label>Pen Name</label>
-									<input type="text" class="form-control" id="authorPenNameEdit" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off"> </div>
+									<input type="text" class="form-control" id="authorPenNameEdit" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off">
+                                    <input type="hidden" id="authorIdEdit" name="bookDetails.author.id">
+                                 </div>
 							</div>
 						</div>
 					</div>
@@ -31,7 +32,8 @@
 							<div class="col-6">
 								<div class="form-group">
 									<label>Name</label>
-									<input type="text" class="form-control" id="nameEdit" name="bookDetails.name" placeholder="Enter book name" autocomplete="off"> </div>
+									<input type="text" class="form-control typeahead" id="nameEdit" name="bookDetails.name" placeholder="Enter book name" autocomplete="off">
+                                </div>
 								<div class="form-group">
 									<label>Category</label>
 									<input type="text" class="form-control" id="categoryEdit" name="bookDetails.category" placeholder="Enter book category" autocomplete="off"> </div>

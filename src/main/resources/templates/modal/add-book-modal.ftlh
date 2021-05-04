@@ -14,12 +14,14 @@
 							<div class="col-6">
 								<div class="form-group">
 									<label>Name</label>
-									<input type="text" class="form-control" id="authorName" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off"> </div>
+									<input type="text" class="form-control typeahead" id="authorName" name="bookDetails.author.name" placeholder="Enter author name" autocomplete="off"> </div>
 							</div>
 							<div class="col-6">
 								<div class="form-group">
 									<label>Pen Name</label>
-									<input type="text" class="form-control" id="authorPenName" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off"> </div>
+									<input type="text" class="form-control" id="authorPenName" name="bookDetails.author.penName" placeholder="Enter author pen name" autocomplete="off">
+									<input type="hidden" id="authorId" name="bookDetails.author.id">
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -30,18 +32,23 @@
 							<div class="col-6">
 								<div class="form-group">
 									<label>Name</label>
-									<input type="text" class="form-control" id="name" name="bookDetails.name" placeholder="Enter book name" autocomplete="off"> </div>
+									<input type="text" class="form-control typeahead" id="name" name="bookDetails.name" placeholder="Enter book name" autocomplete="off">
+									<input type="hidden" id="bookDetailId" name="bookDetails.id">
+                                </div>
 								<div class="form-group">
 									<label>Category</label>
-									<input type="text" class="form-control" id="category" name="bookDetails.category" placeholder="Enter book category" autocomplete="off"> </div>
+									<input type="text" class="form-control" id="category" name="bookDetails.category" placeholder="Enter book category" autocomplete="off">
+                                </div>
 							</div>
 							<div class="col-6">
 								<div class="form-group">
 									<label>Language</label>
-									<input type="text" class="form-control" id="language" name="bookDetails.language" placeholder="Enter book language" autocomplete="off"> </div>
+									<input type="text" class="form-control" id="language" name="bookDetails.language" placeholder="Enter book language" autocomplete="off">
+                                </div>
 								<div class="form-group">
 									<label>Publication</label>
-									<input type="text" class="form-control" id="publication" name="bookDetails.publication" placeholder="Enter publication" autocomplete="off"> </div>
+									<input type="text" class="form-control" id="publication" name="bookDetails.publication" placeholder="Enter publication" autocomplete="off">
+                                </div>
 							</div>
 						</div>
 					</div>
