@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.school.library.model.Book;
 import com.school.library.service.BookService;
 
+import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -23,7 +25,7 @@ public class BookController {
 
 	@GetMapping
 	public String getBooksListPage(Model model) {
-		model.addAttribute("books", bookService.getBooks());
+		model.addAttribute("books", bookService.getBooks(0, BOOKS_PER_PAGE));
 		return "books-list";
 	}
 

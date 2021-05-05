@@ -472,6 +472,7 @@ a, a:visited, a:hover {
 .nav-sidebar {
     list-style-type: none;
     padding: 0;
+    position: fixed;
 }
 
 .nav-sidebar > li {
@@ -553,6 +554,7 @@ a, a:visited, a:hover {
     border-radius: 0 15px 15px 0;
     background-size: cover;
     padding: 0;
+    word-break: break-all;
 }
 
 .book-details0 {

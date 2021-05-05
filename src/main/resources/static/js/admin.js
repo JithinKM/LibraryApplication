@@ -61,7 +61,7 @@ function homePageReady() {
 
 function filterBooks() {
     // How many books to display at a time
-    var n = 6;
+    var n = 60;
 
     var total = $('.book-entries').length;
     var active = $('.page-item.active').find('.page-link').text();

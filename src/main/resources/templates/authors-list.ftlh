@@ -36,7 +36,7 @@
                                 <#if authors??>
                                 <#list authors as author>
                                 <tr>
-                                    <td>${author.id}</td>
+                                    <td>${author?index + 1}</td>
                                     <td class="author-filter">${author.name}</td>
                                     <td class="author-filter">${author.penName}</td>
                                     <td>

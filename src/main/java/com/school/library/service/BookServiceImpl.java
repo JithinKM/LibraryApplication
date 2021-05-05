@@ -10,6 +10,9 @@ import javax.management.RuntimeErrorException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.school.library.entity.AuthorEntity;
@@ -68,8 +71,8 @@ public class BookServiceImpl implements BookService {
 	}
 
     @Override
-    public List<BookDetailsEntity> getBooks() {
-    	return bookDetailsRepository.findAll();
+    public List<BookDetailsEntity> getBooks(final int page, final int size) {
+        return bookDetailsRepository.findAll(PageRequest.of(page, size, Sort.by("createdTimestamp").descending())).getContent();
     }
 
     @Override

@@ -8,17 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import static com.school.library.constants.LibraryConstants.AUTHORS_PER_PAGE;
 import static com.school.library.constants.LibraryConstants.AUTHOR_DETAIL_TEMPLATE;
 
 @Controller
@@ -32,15 +27,14 @@ public class AuthorController {
     
     @GetMapping
     public String getAuthorsListPage(Model model) {
-        model.addAttribute("authors", authorService.getAuthors());
+        model.addAttribute("authors", authorService.getAuthors(0, AUTHORS_PER_PAGE));
         return "authors-list";
     }
 
     @PostMapping
     public String createAuthor(Author author, Model model) {
         authorService.createAuthor(author);
-        model.addAttribute("authors", authorService.getAuthors());
-        return "authors-list";
+        return "redirect:/author";
     }
 
     @DeleteMapping("/{id}")

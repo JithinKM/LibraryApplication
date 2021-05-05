@@ -33,11 +33,9 @@
                             </thead>
                             <tbody>
                                 <#if users??>
-                                <#assign count = 0>
                                 <#list users as user>
-                                <#assign count = count + 1>
                                 <tr>
-                                    <td>${count}</td>
+                                    <td>${user?index + 1}</td>
                                     <td>${user.username}</td>
                                     <td class="user-filter">${user.userdetail.firstname}&nbsp;${user.userdetail.lastname}</td>
                                     <td><#if user.userdetail.division != " ">${user.userdetail.standard}-${user.userdetail.division}</#if></td>

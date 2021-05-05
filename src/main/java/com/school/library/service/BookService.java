@@ -14,7 +14,7 @@ public interface BookService {
 
     void createBooks(final Book bookEntity);
 
-    List<BookDetailsEntity> getBooks();
+    List<BookDetailsEntity> getBooks(final int page, final int size);
 
     void deleteBook(String id);
 }

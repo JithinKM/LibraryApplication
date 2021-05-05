@@ -20,9 +20,14 @@ public class BookRestController {
 	@Autowired
 	private BookService bookService;
 
+	@GetMapping("/pages")
+	public List<BookDetailsEntity> getBooks(@RequestParam int page, @RequestParam int size) {
+		return bookService.getBooks(page, size);
+	}
+
 	@GetMapping("/all")
 	public List<BookDetailsEntity> getAllBooks() {
-		return bookService.getBooks();
+		return bookService.getBooks(0, Integer.MAX_VALUE);
 	}
 
 	//change to delete after sometime

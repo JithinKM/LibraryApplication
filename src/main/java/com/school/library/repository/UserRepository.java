@@ -1,14 +1,13 @@
 package com.school.library.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.school.library.entity.UserEntity;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import com.school.library.entity.UserEntity;
+import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String> {
+public interface UserRepository extends PagingAndSortingRepository<UserEntity, String> {
 
     UserEntity findByUsername(String username);
     

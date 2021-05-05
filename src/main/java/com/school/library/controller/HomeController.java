@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
+
 @Controller
 public class HomeController {
 
@@ -24,7 +26,7 @@ public class HomeController {
     
     @GetMapping("/")
     public String homeDashboard(Model model) {
-        model.addAttribute("books", bookService.getBooks());
+        model.addAttribute("books", bookService.getBooks(0, BOOKS_PER_PAGE));
         return "home";
     }
     

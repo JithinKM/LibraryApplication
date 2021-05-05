@@ -9,7 +9,7 @@ public interface AuthorService {
 
     void createAuthor(final Author author);
 
-    List<AuthorEntity> getAuthors();
+    List<AuthorEntity> getAuthors(final int page, final int size);
 
     List<AuthorEntity> getAuthors(final String name);
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.school.library.entity.AuthorEntity;
@@ -21,8 +23,8 @@ public class AuthorServiceImpl implements AuthorService {
     private BookRepository bookRepository;
     
     @Override
-    public List<AuthorEntity> getAuthors() {
-        return authorRepository.findAll();
+    public List<AuthorEntity> getAuthors(final int page, final int size) {
+        return authorRepository.findAll(PageRequest.of(page, size, Sort.by("updatedAt").descending())).getContent();
     }
 
     @Override
