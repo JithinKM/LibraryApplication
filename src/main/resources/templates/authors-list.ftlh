@@ -32,7 +32,7 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="authorsListBody">
                                 <#if authors??>
                                 <#list authors as author>
                                 <tr>
@@ -52,6 +52,13 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="col-12">
+                    <nav>
+                        <ul class="pagination justify-content-center" id="authors-pagination">
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -85,5 +92,21 @@
     </div>
 </div>
 
+<script id="authorListTemplate" type="text/x-jsrender">
+    <tr>
+        <td>{{:index}}</td>
+        <td class="author-filter">{{:name}}</td>
+        <td class="author-filter">{{:penName}}</td>
+        <td>
+            <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
+            <a class="reject" href="/author/{{:id}}/delete">Delete</a>
+            <input type="hidden" class="authorEditId" value="{{:id}}" />
+            <input type="hidden" class="authorEditName" value="{{:name}}" />
+            <input type="hidden" class="authorEditPenName" value="{{:penName}}" />
+        </td>
+    </tr>
+</script>
+
 <#assign pageTracker = "authorsList">
+<input type="hidden" id="pageCount" value="${pageCount}" />
 <#include "footer.ftl">

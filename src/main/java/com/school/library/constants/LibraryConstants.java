@@ -22,7 +22,7 @@ public class LibraryConstants {
     public static final String ERR_500_TEMPLATE = "error-500";
     public static final String ERR_400_TEMPLATE = "error-400";
 
-    public static final int BOOKS_PER_PAGE = 12;
-    public static final int AUTHORS_PER_PAGE = 20;
+    public static final int BOOKS_PER_PAGE = 30;
+    public static final int AUTHORS_PER_PAGE = 30;
 
 }

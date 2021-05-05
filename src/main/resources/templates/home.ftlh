@@ -4,7 +4,7 @@
     <div class="book-container text-center">
         <div class="search-box">
             <form action="" class="search-form">
-                <input type="text" placeholder="Search for books or authors" id="search" autocomplete="off">
+                <input type="text" class="text-center" placeholder="Search for books or authors" id="search" autocomplete="off">
             </form>
             <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
                 xml:space="preserve">
@@ -58,20 +58,8 @@
         </div>
         <div class="col-12">
             <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item page-item-number active"><a class="page-link">1</a></li>
-                    <li class="page-item">
-                        <a class="page-link" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
+                <ul class="pagination justify-content-center" id="books-pagination">
+
                 </ul>
             </nav>
         </div>

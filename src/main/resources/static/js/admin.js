@@ -1,39 +1,55 @@
-function getTableData(table) {
-    var data = [];
-    var target = $('tr').not('thead tr');
-    target.each(function (rowIndex, r) {
-        var cols = [];
-        $(this).find('th,td').each(function (colIndex, c) {
-            cols.push(c.textContent);
-        });
-        data.push(cols);
+function prepareBookPagination(bookList, template) {
+    var pageCount = $('#pageCount').val();
+    var bookPerPage = 30;
+    $('#books-pagination').twbsPagination({
+        totalPages: pageCount,
+        visiblePages: 5,
+        first: '<<',
+        next: '>',
+        prev: '<',
+        last: '>>',
+        onPageClick: function (event, page) {
+            var pageUrl = '/book/pages?page=' + (page - 1) + '&size=' + bookPerPage;
+            $.get(pageUrl, function(bookDetails) {
+                bookList.html("");
+                bookDetails.forEach(function(bookDetail) {
+                    var html = template.render(bookDetail);
+                    bookList.append(html);
+                });
+                $("html, body").animate({scrollTop: 0}, 300);
+            });
+        }
     });
-    return data;
 }
 
-function preparePagination() {
-    var template = $.templates("#bookListTemplate");
+function prepareAuthorPagination(authorList, template) {
     var pageCount = $('#pageCount').val();
-    var minimumPages = (pageCount < 10) ? pageCount : 10;
-    for (i = 2; i <= minimumPages; i++) {
-        $('.page-item-number:last').after('<li class="page-item page-item-number"><a class="page-link">' + i + '</a></li>');
-    }
-
-    $('.page-item-number').click(function(event) {
-        $("#book-list").html("");
-        var pageUrl = '/book/pages?page=' + (parseInt($(this).find('.page-link').text()) - 1) + '&size=12';
-        $.get(pageUrl, function(books) {
-            books.forEach(function(book) {
-                var html = template.render(book);
-                $("#book-list").append(html);
+    var authorPerPage = 30;
+    $('#authors-pagination').twbsPagination({
+        totalPages: pageCount,
+        visiblePages: 5,
+        first: '<<',
+        next: '>',
+        prev: '<',
+        last: '>>',
+        onPageClick: function (event, page) {
+            var index = (page - 1) * authorPerPage;
+            var pageUrl = '/author/pages?page=' + (page - 1) + '&size=' + authorPerPage;
+            $.get(pageUrl, function(authors) {
+                authorList.html("");
+                authors.forEach(function(author) {
+                    author.index = ++index;
+                    var html = template.render(author);
+                    authorList.append(html);
+                });
+                $("html, body").animate({scrollTop: 0}, 300);
             });
-        });
+        }
     });
 }
 
 function homePageReady() {
     redirectToLogin();
-    preparePagination();
     filterBooks();
 
     $('.book-now').click(function(event) {
@@ -78,6 +94,9 @@ function homePageReady() {
     $(".go-icon").click(function(){
       $(".search-form").submit();
     });
+
+    var template = $.templates("#bookListTemplate");
+    prepareBookPagination($("#book-list"), template);
 }
 
 function filterBooks() {
@@ -139,7 +158,6 @@ function prepareBookAddForm() {
 }
 
 function prepareBookEditForm() {
-
     $( "#bookEditPurchased" ).datepicker({
         changeMonth: true,
         changeYear: true
@@ -241,6 +259,9 @@ function booksListPageReady() {
         $("#purchasedDateEdit").val($(event.target).siblings(".bookEditPurchased").val());
         $("#priceEdit").val($(event.target).siblings(".bookEditPrice").val());
     });
+
+    var template = $.templates("#bookListTemplate");
+    prepareBookPagination($("#bookListBody"), template);
 }
 
 function authorsListPageReady() {
@@ -287,7 +308,10 @@ function authorsListPageReady() {
     $('.typeahead').on('typeahead:selected', function(evt, item) {
         $('#editId').val(item.id);
         $('#editPenName').val(item.penName);
-    })
+    });
+
+    var template = $.templates("#authorListTemplate");
+    prepareAuthorPagination($("#authorsListBody"), template);
 }
 
 function authorDetailPageReady() {
