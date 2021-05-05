@@ -6,11 +6,13 @@ import com.school.library.service.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.school.library.constants.LibraryConstants.AUTHORS_PER_PAGE;
@@ -27,7 +29,14 @@ public class AuthorController {
     
     @GetMapping
     public String getAuthorsListPage(Model model) {
-        model.addAttribute("authors", authorService.getAuthors(0, AUTHORS_PER_PAGE));
+        List<AuthorEntity> authors = new ArrayList<>();
+        Page<AuthorEntity> pagedResult = authorService.getAuthors(0, AUTHORS_PER_PAGE);
+        if(pagedResult.hasContent()) {
+            authors = pagedResult.getContent();
+        }
+
+        model.addAttribute("authors", authors);
+        model.addAttribute("pageCount", pagedResult.getTotalPages());
         return "authors-list";
     }
 

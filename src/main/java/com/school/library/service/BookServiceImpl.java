@@ -71,8 +71,8 @@ public class BookServiceImpl implements BookService {
 	}
 
     @Override
-    public List<BookDetailsEntity> getBooks(final int page, final int size) {
-        return bookDetailsRepository.findAll(PageRequest.of(page, size, Sort.by("createdTimestamp").descending())).getContent();
+    public Page<BookDetailsEntity> getBooks(final int page, final int size) {
+        return bookDetailsRepository.findAll(PageRequest.of(page, size, Sort.by("createdTimestamp").descending()));
     }
 
     @Override

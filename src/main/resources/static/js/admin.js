@@ -11,8 +11,29 @@ function getTableData(table) {
     return data;
 }
 
+function preparePagination() {
+    var template = $.templates("#bookListTemplate");
+    var pageCount = $('#pageCount').val();
+    var minimumPages = (pageCount < 10) ? pageCount : 10;
+    for (i = 2; i <= minimumPages; i++) {
+        $('.page-item-number:last').after('<li class="page-item page-item-number"><a class="page-link">' + i + '</a></li>');
+    }
+
+    $('.page-item-number').click(function(event) {
+        $("#book-list").html("");
+        var pageUrl = '/book/pages?page=' + (parseInt($(this).find('.page-link').text()) - 1) + '&size=12';
+        $.get(pageUrl, function(books) {
+            books.forEach(function(book) {
+                var html = template.render(book);
+                $("#book-list").append(html);
+            });
+        });
+    });
+}
+
 function homePageReady() {
     redirectToLogin();
+    preparePagination();
     filterBooks();
 
     $('.book-now').click(function(event) {
@@ -67,13 +88,6 @@ function filterBooks() {
     var active = $('.page-item.active').find('.page-link').text();
     var end = (active * n);
     var start = end - n;
-
-    $('.page-item').each(function(index) {
-        var text = $(this).find('.page-link').text();
-        if(total < n * (text - 1)) {
-            $(this).remove();
-        }
-    });
 
     $('.icon-boxes .book-entries').each(function(index) {
         if (index >= start && index < end) {

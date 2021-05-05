@@ -26,6 +26,7 @@
 	<script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
 	<script src="<@spring.url '/js/jquery.validate.js' />"></script>
 	<script src="<@spring.url '/js/typeahead.bundle.js'/>"></script>
+	<script src="<@spring.url '/js/jsviews.min.js'/>"></script>
 	<!-- Custom JavaScript -->
 	<script src="<@spring.url '/js/admin.js'/>"></script>
 </head>

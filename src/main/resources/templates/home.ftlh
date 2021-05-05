@@ -55,27 +55,25 @@
             </div>
             </#list>
             </#if>
-            <div class="col-12">
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link">1</a></li>
-                        <li class="page-item"><a class="page-link">2</a></li>
-                        <li class="page-item"><a class="page-link">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+        </div>
+        <div class="col-12">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item page-item-number active"><a class="page-link">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </main>
@@ -101,5 +99,47 @@
     </div>
 </div>
 
+<script id="bookListTemplate" type="text/x-jsrender">
+    <div class="col-md-4 col-lg-2 book-entries zoom">
+        <div class="icon-box book-shadow">
+            <div class="book-details book-details{{:id % 3}}">
+                <div class="book-details-inner">
+                    <h5 class="title text-center book-filer"><a>{{:name}}</a></h5>
+                    <div class="col-12 book-contents">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <p class="book-filer"><i class="bi bi-pencil-square"></i>{{:author.name}}</p>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <p><i class="bi bi-spellcheck"></i>{{:language}}</p>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <p><i class="bi bi-journals"></i>{{:category}}</p>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <p><i class="bi bi-stack"></i>{{:count}} {^{if count == 1}}copy {{else}} copies {{/if}}available</p>
+                            </div>
+                        </div>
+                    </div>
+                    {^{if count == 0}}
+                    <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
+                    {{else}}
+                        <input type="hidden" class="bookId" value="{{:id}}">
+                        <input type="hidden" class="bookName" value="{{:name}}">
+                        <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
 <#assign pageTracker = "home">
+<input type="hidden" id="pageCount" value="${pageCount}" />
 <#include "footer.ftl">

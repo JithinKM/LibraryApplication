@@ -14,6 +14,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.validate.js"></script>
 <script src="/js/typeahead.bundle.js"></script>
+<script src="/js/jsviews.min.js"></script>
 
 <script src="/js/admin.js"></script>
 

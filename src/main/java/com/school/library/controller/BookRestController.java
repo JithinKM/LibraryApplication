@@ -6,10 +6,14 @@ import com.school.library.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
 
 @RestController
 @RequestMapping("/book")
@@ -22,12 +26,24 @@ public class BookRestController {
 
 	@GetMapping("/pages")
 	public List<BookDetailsEntity> getBooks(@RequestParam int page, @RequestParam int size) {
-		return bookService.getBooks(page, size);
+		List<BookDetailsEntity> books = new ArrayList<>();
+		Page<BookDetailsEntity> pagedResult = bookService.getBooks(page, size);
+		if(pagedResult.hasContent()) {
+			books = pagedResult.getContent();
+		}
+
+		return books;
 	}
 
 	@GetMapping("/all")
 	public List<BookDetailsEntity> getAllBooks() {
-		return bookService.getBooks(0, Integer.MAX_VALUE);
+		List<BookDetailsEntity> books = new ArrayList<>();
+		Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, Integer.MAX_VALUE);
+		if(pagedResult.hasContent()) {
+			books = pagedResult.getContent();
+		}
+
+		return books;
 	}
 
 	//change to delete after sometime
