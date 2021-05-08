@@ -37,14 +37,20 @@
                     </div>
                     <div class="col-md-7 float-right">
                         <form role="form" id="userForm" action="/user/profile" method="POST">
-                        	<input type="hidden" class="form-control user-input d-none" id="input-username" id="type" name="type" disabled value="${user.type}">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0 mt-2">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-username">${user.userdetail.fullName}</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-username" name="fullName" autocomplete="off" disabled value="${user.userdetail.fullName}">
+                                    <div class="row">
+	                                    <div class="col-6" style="padding-right:5px">
+	                                    	<input type="text" class="form-control user-input d-none" id="input-firstname" name="firstname" disabled value="${user.userdetail.firstname}">
+	                                    </div>
+	                                    <div class="col-6" style="padding-left:5px">
+	                                    	<input type="text" class="form-control user-input d-none" id="input-lastname" name="lastname" disabled value="${user.userdetail.lastname}">
+	                                    </div>
+                                    </div>
                                 </div>
                             </div>
                             <#if user.type?lower_case == 'student'>
@@ -56,7 +62,7 @@
                                     <div class="col-sm-9 text-secondary">
                                         <div class="user-field mt-2" id="field-standard">${user.userdetail.standard} - ${user.userdetail.division}</div>
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-6" style="padding-right:5px">
                                                 <div class="form-group user-input d-none">
                                                     <select class="form-control" id="standard" name="standard">
                                                         <#if user.userdetail.standard == 5><option selected><#else><option></#if>5</option>
@@ -68,7 +74,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6" style="padding-left:5px">
                                                 <div class="form-group user-input d-none">
                                                     <select class="form-control" id="division" name="division">
                                                         <#if user.userdetail.division == "A"><option selected><#else><option></#if>A</option>

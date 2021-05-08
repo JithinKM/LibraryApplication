@@ -58,8 +58,7 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("User Already Exists");
 		}
 		
-		UserEntity userEntity = getUserEntity(user, userId);
-		
+		UserEntity userEntity = createUserEntity(user, userId);
 		return userRepository.save(userEntity);
 	}
 	
@@ -69,12 +68,19 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("Not able to find user");
 		}
 		UserEntity userEntity = userRepository.findById(username).get();
+		
 		if(userEntity.getUserdetail().getStandard() > 0) {
 			userEntity.getUserdetail().setStandard(user.getStandard());
 			userEntity.getUserdetail().setDivision(user.getDivision());
 		}
 		userEntity.setEmail(user.getEmail());
 		userEntity.getUserdetail().setPhone(user.getPhone());
+		if(!StringUtils.isEmpty(user.getFirstname())) {
+			userEntity.getUserdetail().setFirstname(user.getFirstname());
+		}
+		if(!StringUtils.isEmpty(user.getLastname())) {
+			userEntity.getUserdetail().setLastname(user.getLastname());
+		}
 		userEntity.getUserdetail().setParentName(user.getParentName());
 		userEntity.getUserdetail().setParentPhone(user.getParentPhone());
 		userEntity.getUserdetail().setAddress(user.getAddress());
@@ -85,7 +91,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(userEntity);
 	}
 
-	private UserEntity getUserEntity(CreateUser user, String userId) {
+	private UserEntity createUserEntity(CreateUser user, String userId) {
 		UserEntity userEntity = new UserEntity();
 		
 		userEntity.setUsername(userId);
@@ -112,25 +118,4 @@ public class UserServiceImpl implements UserService {
 		
 		return userEntity;
 	}
-
-    
-
-    
-    
-//    @Override
-//    public User save(User user) {
-//
-//    	UserEntity adminUser = new UserEntity();
-//        adminUser.setId(CommonUtility.generateRandomStringByUUID());
-//        adminUser.setName(UserType.ADMIN.getType());
-//        adminUser.setUsername(user.getUsername());
-//        adminUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-//        adminUser.setRole(UserType.ADMIN.getType());
-//        adminUser.setActive(Boolean.TRUE);
-//        UserDetailsEntity userDetailsEntity = userRepository.save(adminUser);
-//
-//        return new User(userDetailsEntity.getId(), userDetailsEntity.getName(), userDetailsEntity.getUsername(), userDetailsEntity.getStandard(),
-//                userDetailsEntity.getPhone(), userDetailsEntity.getRole(), userDetailsEntity.getActive());
-//    }
-
 }
