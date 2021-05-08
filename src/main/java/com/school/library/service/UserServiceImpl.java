@@ -12,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.school.library.entity.BookUserEntity;
 import com.school.library.entity.RoleEntity;
 import com.school.library.entity.UserDetailsEntity;
 import com.school.library.entity.UserEntity;
+import com.school.library.enums.BookUserStatusEnum;
 import com.school.library.enums.UserStatusEnum;
+import com.school.library.enums.UserType;
 import com.school.library.exception.BadRequestExpection;
 import com.school.library.model.CreateUser;
+import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.UserRepository;
 
 @Service
@@ -25,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private BookUserRepository bookUserRepository;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
@@ -36,14 +43,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserEntity> getAllNonAdminUsers() {
-		return userRepository.findByRolesRoleIn(Arrays.asList("TEACHER","STUDENT"));
+		return userRepository.findByRolesRoleIn(Arrays.asList(UserType.TEACHER.getType(),UserType.STUDENT.getType()));
 	}
 
 	@Override
 	public UserEntity createUser(CreateUser user) {
 		//Validate user
 		
-		if(!Arrays.asList("STUDENT","TEACHER").contains(user.getType().trim())) {
+		if(!Arrays.asList(UserType.TEACHER.getType(),UserType.STUDENT.getType()).contains(user.getType().trim())) {
 			throw new BadRequestExpection("Role must be STUDENT/TEACHER");
 		}
 		
@@ -69,7 +76,7 @@ public class UserServiceImpl implements UserService {
 		}
 		UserEntity userEntity = userRepository.findById(username).get();
 		
-		if(userEntity.getUserdetail().getStandard() > 0) {
+		if(userEntity.getUserdetail().isStudent()) {
 			userEntity.getUserdetail().setStandard(user.getStandard());
 			userEntity.getUserdetail().setDivision(user.getDivision());
 		}
@@ -117,5 +124,20 @@ public class UserServiceImpl implements UserService {
 		userEntity.setUserdetail(userDetailsEntity);
 		
 		return userEntity;
+	}
+
+	@Override
+	public List<BookUserEntity> getCurrentOwnedBooks(String username) {
+		List<String> statusList = Arrays.asList(BookUserStatusEnum.REQUESTED.getStatus(),
+				BookUserStatusEnum.ALLOTED.getStatus(), BookUserStatusEnum.RENEWREQUESTED.getStatus(),
+				BookUserStatusEnum.RENEWDECLINED.getStatus());
+		return bookUserRepository.findByUserUsernameAndStatusIn(username, statusList);
+	}
+
+	@Override
+	public List<BookUserEntity> getBookHistory(String username) {
+		List<String> statusList = Arrays.asList(BookUserStatusEnum.DECLINED.getStatus(),
+				BookUserStatusEnum.RETURNED.getStatus());
+		return bookUserRepository.findByUserUsernameAndStatusIn(username, statusList);
 	}
 }

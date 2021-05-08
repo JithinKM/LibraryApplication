@@ -33,6 +33,10 @@ public class UserDetailsEntity {
 	public String getfullName() {
 		return firstname + " " + lastname;
 	}
+	
+	public boolean isStudent() {
+		return standard > 0;
+	}
 
 	public Long getId() {
 		return id;

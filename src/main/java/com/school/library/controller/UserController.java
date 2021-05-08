@@ -43,6 +43,8 @@ public class UserController {
     @GetMapping("/profile")
     public String getUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, final Model model) {
     	model.addAttribute("user", new User(userPrincipal.getUser()));
+    	model.addAttribute("currentBooks", userService.getCurrentOwnedBooks(userPrincipal.getUsername()));
+    	model.addAttribute("bookHistory", userService.getBookHistory(userPrincipal.getUsername()));
     	return "profile";
     }
     

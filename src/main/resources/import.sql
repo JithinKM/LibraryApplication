@@ -3,10 +3,10 @@ INSERT INTO library.role VALUES ('ADMIN');
 INSERT INTO library.role VALUES ('TEACHER');
 INSERT INTO library.role VALUES ('REGISTERED');
 
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentone_b2022',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('libraryadmin',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('teachingstaff',  current_timestamp, 'teacher@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'active', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentone_b2022',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'PENDIG', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('libraryadmin',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('teachingstaff',  current_timestamp, 'teacher@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 
 
 INSERT INTO library.userdetails (id, address, division, firstname, lastname, parent_name, phone, parent_phone, standard, user_username) VALUES ('54325235234', '', 'A', 'Student', 'One', '', '', '', 9, 'studentone_b2022');
@@ -27,8 +27,8 @@ INSERT INTO library.author VALUES ('1005', 'Yuval Noah Harari', 'Harari', curren
 INSERT INTO library.author VALUES ('1006', 'Balachandran Chullikkad', 'Chullikkad', current_timestamp);
 INSERT INTO library.author VALUES ('1007', 'S Hareesh', 'S Hareesh', current_timestamp);
 
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1001', 'Novel', current_timestamp, 'Malayalam', 'Manjaveyil maranangal', 'Current books', '1002','9788126438150');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1002', 'Novel', current_timestamp, 'Malayalam', 'Kaalam', 'Current books', '1001','v');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1001', 'Novel', current_timestamp, 'Malayalam', 'Manjaveyil maranangal', 'Current books', '1002','');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1002', 'Novel', current_timestamp, 'Malayalam', 'Kaalam', 'Current books', '1001','');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1003', 'Novel', current_timestamp, 'Malayalam', 'Randamoozham', 'Current books', '1001','8122613705');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1004', 'Novel', current_timestamp, 'English', 'Ikigai', 'FSC', '1004','178633089X');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1005', 'Novel', current_timestamp, 'English', 'Sapiens', 'Vintage', '1005','9780099590088');
@@ -52,5 +52,7 @@ INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, st
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1233', 'ewfwe', current_timestamp, 100, 'Rack 2', 'AVAILABLE', current_timestamp, 1008, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1278', 'gregtewg', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1009, current_timestamp);
 
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required) VALUES ('1002', '2345', 'studentone_b2022', 'LENDED',false);
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required) VALUES ('1003', '6456', 'studentsec_b2021', 'RETURNED',false);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1002', '2345', 'studentone_b2022', 'REQUESTED',true,0,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1003', '6456', 'studentone_b2022', 'ALLOTED',false,0,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1004', '1324', 'studentone_b2022', 'RENEWREQUESTED',true,0,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1005', '1356', 'studentone_b2022', 'RENEWDECLINED',false,0,current_timestamp);

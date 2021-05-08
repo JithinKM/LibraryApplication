@@ -16,6 +16,8 @@
                                 </div>
                                 <div class="card-body overflow-auto">
                                         <div class="row">
+                                        
+                                        
                                             <div class="col-4">
                                                 <div class="card bg-light">
                                                     <div class="card-header">
@@ -28,78 +30,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
+                                            
                                         </div>
                                 </div>
                             </div>
@@ -107,54 +39,25 @@
                         <div class="col-xl-4 col-lg-5">
                             <div class="card mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="font-weight-bold main-title">New Members</h5>
+                                    <h5 class="font-weight-bold main-title">New User Requests</h5>
                                 </div>
                                 <div class="card-body overflow-auto">
-                                    <div class="row notification alert-info shadow-sm">
-                                        <div class="col-8 notification-body">
-                                            Student name, Class- Division
-                                        </div>
-                                        <div class="col-4 float-right">
-                                            <button type="button" class="btn text-success">&check;</button>
-                                            <button type="button" class="btn text-danger">X</button>
-                                        </div>
-                                    </div>
-                                    <div class="row notification alert-info shadow-sm">
-                                        <div class="col-8 notification-body">
-                                            Student name, Class- Division
-                                        </div>
-                                        <div class="col-4 float-right">
-                                            <button type="button" class="btn text-success">&check;</button>
-                                            <button type="button" class="btn text-danger">X</button>
-                                        </div>
-                                    </div>
-                                    <div class="row notification alert-info shadow-sm">
-                                        <div class="col-8 notification-body">
-                                            Student name, Class- Division
-                                        </div>
-                                        <div class="col-4 float-right">
-                                            <button type="button" class="btn text-success">&check;</button>
-                                            <button type="button" class="btn text-danger">X</button>
-                                        </div>
-                                    </div>
-                                    <div class="row notification alert-info shadow-sm">
-                                        <div class="col-8 notification-body">
-                                            Student name, Class- Division
-                                        </div>
-                                        <div class="col-4 float-right">
-                                            <button type="button" class="btn text-success">&check;</button>
-                                            <button type="button" class="btn text-danger">X</button>
-                                        </div>
-                                    </div>
-                                    <div class="row notification alert-info shadow-sm">
-                                        <div class="col-8 notification-body">
-                                            Student name, Class- Division
-                                        </div>
-                                        <div class="col-4 float-right">
-                                            <button type="button" class="btn text-success">&check;</button>
-                                            <button type="button" class="btn text-danger">X</button>
-                                        </div>
-                                    </div>
+                                	<#if userreq??>
+                                	<#list userreq as newuser>
+	                                    <div class="row notification alert-info shadow-sm">
+	                                        <div class="col-5 notification-body">
+	                                            ${newuser.userdetail.fullName}
+	                                        </div>
+	                                        <div class="col-3 notification-body">
+	                                            <#if newuser.userdetail.student>${newuser.userdetail.standard} - ${newuser.userdetail.division}</#if>
+	                                        </div>
+	                                        <div class="col-4 float-right">
+	                                            <button type="button" class="btn text-success">&check;</button>
+	                                            <button type="button" class="btn text-danger">X</button>
+	                                        </div>
+	                                    </div>
+                                    </#list>
+                                    </#if>
                                 </div>
                             </div>
                         </div>

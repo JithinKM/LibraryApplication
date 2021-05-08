@@ -28,7 +28,7 @@ public class HomeController {
     public String loginPage() {
         return "login";
     }
-    
+     
     @GetMapping("/")
     public String homeDashboard(Model model) {
         List<BookDetailsEntity> books = new ArrayList<>();
@@ -40,10 +40,5 @@ public class HomeController {
         model.addAttribute("books", books);
         model.addAttribute("pageCount", pagedResult.getTotalPages());
         return "home";
-    }
-    
-    @GetMapping("/admin")
-    public String adminDashboard() {
-        return "admin-dashboard";
     }
 }

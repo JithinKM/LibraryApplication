@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.school.library.enums.BookUserStatusEnum;
+
 @Entity
 @Table(name = "book_users", schema = "library")
 public class BookUserEntity {
@@ -24,12 +26,65 @@ public class BookUserEntity {
 	private UserEntity user;
 
 	private String status;
+	private short renewalCount;
+	private boolean actionRequired;
+	private String comments;
 	
-	private Date borrowedDate;
-	private Date renewalDate;
+	private Date requestedDate;
+	private Date allotedDate;
+	private Date returnedDate;
+	private Date dueDate;
 	private Date updatedDate;
 	
-	private boolean actionRequired = true;
+	public String getStatusText() {
+		return BookUserStatusEnum.valueOf(status).getStatusString();
+	}
+	
+	public BookUserEntity requestBook() {
+		renewalCount = 0;
+		requestedDate = new Date();
+		return getUpdatedUser(BookUserStatusEnum.REQUESTED, true);
+	}
+	
+	public BookUserEntity declined(String comments) {
+		this.comments = comments;
+		return getUpdatedUser(BookUserStatusEnum.DECLINED, false);
+	}
+
+	public BookUserEntity allotBook(Date newDueDate) {
+		allotedDate = new Date();
+		dueDate = newDueDate;
+		return getUpdatedUser(BookUserStatusEnum.ALLOTED, false);
+	}
+	
+	public BookUserEntity renewRequest() {
+		++renewalCount;
+		return getUpdatedUser(BookUserStatusEnum.RENEWREQUESTED, true);
+	}
+	
+	public BookUserEntity renewDeclined(String comments) {
+		dueDate = null;
+		this.comments = comments;
+		return getUpdatedUser(BookUserStatusEnum.RENEWDECLINED, false);
+	}
+	
+	public BookUserEntity renewApprove(Date newDueDate) {
+		dueDate = newDueDate;
+		return getUpdatedUser(BookUserStatusEnum.ALLOTED, false);
+	}
+	
+	public BookUserEntity returnBook() {
+		returnedDate = new Date();
+		dueDate = null;
+		return getUpdatedUser(BookUserStatusEnum.RETURNED, false);
+	}
+	
+	private BookUserEntity getUpdatedUser(BookUserStatusEnum status, boolean actionRequired) {
+		this.status = status.getStatus();
+		this.actionRequired = actionRequired;
+		this.updatedDate = new Date();
+		return this;
+	}
 
 	public Long getId() {
 		return id;
@@ -63,20 +118,52 @@ public class BookUserEntity {
 		this.status = status;
 	}
 
-	public Date getBorrowedDate() {
-		return borrowedDate;
+	public short getRenewalCount() {
+		return renewalCount;
 	}
 
-	public void setBorrowedDate(Date borrowedDate) {
-		this.borrowedDate = borrowedDate;
+	public void setRenewalCount(short renewalCount) {
+		this.renewalCount = renewalCount;
 	}
 
-	public Date getRenewalDate() {
-		return renewalDate;
+	public boolean isActionRequired() {
+		return actionRequired;
 	}
 
-	public void setRenewalDate(Date renewalDate) {
-		this.renewalDate = renewalDate;
+	public void setActionRequired(boolean actionRequired) {
+		this.actionRequired = actionRequired;
+	}
+
+	public Date getRequestedDate() {
+		return requestedDate;
+	}
+
+	public void setRequestedDate(Date requestedDate) {
+		this.requestedDate = requestedDate;
+	}
+
+	public Date getAllotedDate() {
+		return allotedDate;
+	}
+
+	public void setAllotedDate(Date allotedDate) {
+		this.allotedDate = allotedDate;
+	}
+
+	public Date getReturnedDate() {
+		return returnedDate;
+	}
+
+	public void setReturnedDate(Date returnedDate) {
+		this.returnedDate = returnedDate;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	public Date getUpdatedDate() {
@@ -87,12 +174,11 @@ public class BookUserEntity {
 		this.updatedDate = updatedDate;
 	}
 
-	public boolean isActionRequired() {
-		return actionRequired;
+	public String getComments() {
+		return comments;
 	}
 
-	public void setActionRequired(boolean actionRequired) {
-		this.actionRequired = actionRequired;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
-	
 }

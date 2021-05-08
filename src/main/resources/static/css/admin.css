@@ -557,6 +557,10 @@ a, a:visited, a:hover {
     word-break: break-all;
 }
 
+.book-details-bg {
+    background-image: url(var(--imglink));
+}
+
 .book-details0 {
     background-image: url('../img/book-cover.png');
 }
@@ -690,21 +694,41 @@ a, a:visited, a:hover {
     color: #17a2b8 !important;
 }
 
-.user-book-outer {
-    background-color: rgba(23,162,184,0.5);
-    border-top: 5px solid #17a2b8;
-    border-right: 5px solid #17a2b8;
-    border-bottom: 5px solid #17a2b8;
+.requested-book-outer {
+    background-color: rgba(255,193,7,0.5);
+    border-top: 5px solid #ffc107;
+    border-right: 5px solid #ffc107;
+    border-bottom: 5px solid #ffc107;
     border-radius: 0 25px 25px 0;
     padding: 0;
     margin: 0;
 }
 
-.prebooked-book-outer {
-    background-color: rgba(255,193,7,0.5);
-    border-top: 5px solid #ffc107;
-    border-right: 5px solid #ffc107;
-    border-bottom: 5px solid #ffc107;
+.alloted-book-outer {
+    background-color: rgba(15, 185, 44, 0.5);
+    border-top: 5px solid #0ee63c;
+    border-right: 5px solid #0ee63c;
+    border-bottom: 5px solid #0ee63c;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.renewrequested-book-outer {
+    background-color: rgba(146, 6, 116, 0.5);
+    border-top: 5px solid #c00998;
+    border-right: 5px solid #c00998;
+    border-bottom: 5px solid #c00998;
+    border-radius: 0 25px 25px 0;
+    padding: 0;
+    margin: 0;
+}
+
+.renewdeclined-book-outer {
+    background-color: rgba(192, 9, 9, 0.5);
+    border-top: 5px solid #e21414;
+    border-right: 5px solid #e21414;
+    border-bottom: 5px solid #e21414;
     border-radius: 0 25px 25px 0;
     padding: 0;
     margin: 0;

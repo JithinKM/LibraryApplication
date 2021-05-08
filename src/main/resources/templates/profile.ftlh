@@ -184,37 +184,32 @@
             <h5 class="color-cyan">Currently Owned Books</h5>
             <div class="col-12">
                 <div class="row justify-content-center">
+                    <#list currentBooks as currentbook>
                     <div class="col-12 col-md-4 current-book-outer zoom">
                         <div class="row">
                             <div class="col-6 col-md-4 book-img-outer">
-                                <img class="user-book-img shadow-lg" src="../img/book-cover1.png">
+                                <img class="user-book-img shadow-lg" 
+                                <#if currentbook.book.bookDetails.isbn?has_content>
+                                	src="http://covers.openlibrary.org/b/isbn/${currentbook.book.bookDetails.isbn}-M.jpg"
+                                <#else>
+                                	src="../img/book-cover.png"
+                                </#if>
+                                >
                             </div>
-                            <div class="col-6 col-md-8 prebooked-book-outer shadow-lg">
+                            <div class="col-6 col-md-8 ${currentbook.status?lower_case}-book-outer shadow-lg">
                                 <div class="current-book">
-                                    <h6 class="book-name">Abcdefgh</h6>
+                                    <h6 class="book-name">${currentbook.book.bookDetails.name}</h6>
                                     <hr class="user-field mt-2">
-                                    <h6>Approval Pending</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <#list user.books as book>
-                    <div class="col-12 col-md-4 current-book-outer zoom">
-                        <div class="row">
-                            <div class="col-6 col-md-4 book-img-outer">
-                                <img class="user-book-img shadow-lg" src="../img/book-cover.png">
-                            </div>
-                            <div class="col-6 col-md-8 user-book-outer shadow-lg">
-                                <div class="current-book">
-                                    <h6 class="book-name">${book.bookDetails.name}</h6>
-                                    <hr class="user-field mt-2">
-                                    <h6>Due Date</h6>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 70%"></div>
-                                    </div>
-                                    <span class="progress-description">
-                                        ${book.updatedTimestamp?date}
-                                    </span>
+                                    <h6>${currentbook.statusText}</h6>
+                                    <#if currentbook.dueDate??>
+                                    	<h6>Due Date</h6>
+	                                    <div class="progress">
+	                                        <div class="progress-bar" style="width: 70%"></div>
+	                                    </div>
+	                                    <span class="progress-description">
+	                                        ${currentbook.dueDate?date}
+	                                    </span>
+                                    </#if>
                                 </div>
                             </div>
                         </div>
