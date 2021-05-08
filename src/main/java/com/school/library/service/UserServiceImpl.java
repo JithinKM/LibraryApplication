@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,28 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		UserEntity userEntity = getUserEntity(user, userId);
+		
+		return userRepository.save(userEntity);
+	}
+	
+	@Override
+	public UserEntity updateProfile(String username, CreateUser user) {
+		if(!userRepository.findById(username).isPresent()) {
+			throw new BadRequestExpection("Not able to find user");
+		}
+		UserEntity userEntity = userRepository.findById(username).get();
+		if(userEntity.getUserdetail().getStandard() > 0) {
+			userEntity.getUserdetail().setStandard(user.getStandard());
+			userEntity.getUserdetail().setDivision(user.getDivision());
+		}
+		userEntity.setEmail(user.getEmail());
+		userEntity.getUserdetail().setPhone(user.getPhone());
+		userEntity.getUserdetail().setParentName(user.getParentName());
+		userEntity.getUserdetail().setParentPhone(user.getParentPhone());
+		userEntity.getUserdetail().setAddress(user.getAddress());
+		if(!StringUtils.isEmpty(user.getPassword())) {
+			userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
+		}
 		
 		return userRepository.save(userEntity);
 	}

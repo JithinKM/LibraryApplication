@@ -30,7 +30,7 @@ public class User {
 	
 	public String getType() {
 		if(roles.contains("ADMIN"))
-			return "Admin User";
+			return "Admin";
 		else if(roles.contains("TEACHER"))
 			return "Teacher";
 		return "Student";

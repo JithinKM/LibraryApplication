@@ -37,17 +37,18 @@
                     </div>
                     <div class="col-md-7 float-right">
                         <form role="form" id="userForm" action="/user/profile" method="POST">
+                        	<input type="hidden" class="form-control user-input d-none" id="input-username" id="type" name="type" disabled value="${user.type}">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0 mt-2">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-username">${user.userdetail.fullName}</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-username" name="fullName" autocomplete="off" value="${user.userdetail.fullName}">
+                                    <input type="text" class="form-control user-input d-none" id="input-username" name="fullName" autocomplete="off" disabled value="${user.userdetail.fullName}">
                                 </div>
                             </div>
-                            <hr class="user-field mt-2">
-                            <#if user.userdetail.division??>
+                            <#if user.type?lower_case == 'student'>
+                            	<hr class="user-field mt-2">
                                 <div class="row profile-edit-field">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0 mt-2">Class & Division</h6>
@@ -57,7 +58,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group user-input d-none">
-                                                    <select class="form-control" id="standard">
+                                                    <select class="form-control" id="standard" name="standard">
                                                         <#if user.userdetail.standard == 5><option selected><#else><option></#if>5</option>
                                                         <#if user.userdetail.standard == 6><option selected><#else><option></#if>6</option>
                                                         <#if user.userdetail.standard == 7><option selected><#else><option></#if>7</option>
@@ -69,7 +70,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group user-input d-none">
-                                                    <select class="form-control" id="division">
+                                                    <select class="form-control" id="division" name="division">
                                                         <#if user.userdetail.division == "A"><option selected><#else><option></#if>A</option>
                                                         <#if user.userdetail.division == "B"><option selected><#else><option></#if>B</option>
                                                         <#if user.userdetail.division == "C"><option selected><#else><option></#if>C</option>
@@ -116,23 +117,36 @@
                             <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0 mt-2">Parent Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <div class="user-field mt-2" id="field-parent-name">${user.userdetail.parentName}</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-parent-name" name="parentName" autocomplete="off" value="${user.userdetail.parentName}">
-                                </div>
-                            </div>
-                            <hr class="user-field mt-2">
-                            <div class="row profile-edit-field">
-                                <div class="col-sm-3">
                                     <h6 class="mb-0 mt-2">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-phone">${user.userdetail.phone}</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-phone" name="parentPhone" autocomplete="off" value="${user.userdetail.phone}">
+                                    <input type="text" class="form-control user-input d-none" id="input-phone" name="phone" autocomplete="off" value="${user.userdetail.phone}">
                                 </div>
                             </div>
+                            
+                            <#if user.type?lower_case == 'student'>
+                            	<hr class="user-field mt-2">
+	                            <div class="row profile-edit-field">
+	                                <div class="col-sm-3">
+	                                    <h6 class="mb-0 mt-2">Parent Name</h6>
+	                                </div>
+	                                <div class="col-sm-9 text-secondary">
+	                                    <div class="user-field mt-2" id="field-parent-name">${user.userdetail.parentName}</div>
+	                                    <input type="text" class="form-control user-input d-none" id="input-parent-name" name="parentName" autocomplete="off" value="${user.userdetail.parentName}">
+	                                </div>
+	                            </div>
+	                            <hr class="user-field mt-2">
+	                            <div class="row profile-edit-field">
+	                                <div class="col-sm-3">
+	                                    <h6 class="mb-0 mt-2">Parent Phone</h6>
+	                                </div>
+	                                <div class="col-sm-9 text-secondary">
+	                                    <div class="user-field mt-2" id="field-phone">${user.userdetail.parentPhone}</div>
+	                                    <input type="text" class="form-control user-input d-none" id="input-parent-phone" name="parentPhone" autocomplete="off" value="${user.userdetail.parentPhone}">
+	                                </div>
+	                            </div>
+	                        </#if>
                             <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
@@ -141,6 +155,16 @@
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-address">${user.userdetail.address}</div>
                                     <textarea type="text" class="form-control user-input d-none" id="input-address" name="address" autocomplete="off" rows="3">${user.userdetail.address}</textarea>
+                                </div>
+                            </div>
+                            <hr class="user-field mt-2">
+                            <div class="row profile-edit-field">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 mt-2">Password</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <div class="user-field mt-2" id="field-address">***********</div>
+                                    <input type="text" class="form-control user-input d-none" id="input-password" name="password" autocomplete="off">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-success d-none float-right" id="profileSave" value="Save Changes" />

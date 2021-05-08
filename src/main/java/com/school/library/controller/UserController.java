@@ -47,8 +47,8 @@ public class UserController {
     }
     
     @PostMapping("/profile")
-    public String updateUserProfile(CreateUser user, final Model model) {
-    	model.addAttribute("user", new User(userService.createUser(user)));
+    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, final Model model) {
+    	model.addAttribute("user", new User(userService.updateProfile(userPrincipal.getUsername(), user)));
     	return "profile";
     }
 }

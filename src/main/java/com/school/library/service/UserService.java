@@ -12,4 +12,6 @@ public interface UserService {
     List<UserEntity> getAllNonAdminUsers();
 
     UserEntity createUser(CreateUser user);
+
+	UserEntity updateProfile(String username, CreateUser user);
 }
