@@ -15,4 +15,6 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, S
     
     List<UserEntity> findByRolesRoleIn(List<String> roles);
 
+	List<UserEntity> findByStatus(String status);
+
 }

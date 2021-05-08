@@ -31,6 +31,7 @@ public class BookDetailsEntity {
 	private String category;
 	private String language;
 	private Date createdTimestamp;
+	private String isbn; //13 or 10 char isbn
 	
 	@Transient
 	private boolean available = true;
@@ -129,6 +130,14 @@ public class BookDetailsEntity {
 
 	public Long getCount() {
 		return this.books.stream().filter(x -> x.getStatus().equalsIgnoreCase("available")).count();
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	
 }

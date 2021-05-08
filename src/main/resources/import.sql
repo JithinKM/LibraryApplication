@@ -27,15 +27,15 @@ INSERT INTO library.author VALUES ('1005', 'Yuval Noah Harari', 'Harari', curren
 INSERT INTO library.author VALUES ('1006', 'Balachandran Chullikkad', 'Chullikkad', current_timestamp);
 INSERT INTO library.author VALUES ('1007', 'S Hareesh', 'S Hareesh', current_timestamp);
 
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1001', 'Novel', current_timestamp, 'Malayalam', 'Manjaveyil maranangal', 'Current books', '1002');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1002', 'Novel', current_timestamp, 'Malayalam', 'Kaalam', 'Current books', '1001');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1003', 'Novel', current_timestamp, 'Malayalam', 'Randamoozham', 'Current books', '1001');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1004', 'Novel', current_timestamp, 'English', 'Ikigai', 'FSC', '1004');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1005', 'Novel', current_timestamp, 'English', 'Sapiens', 'Vintage', '1005');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1006', 'Novel', current_timestamp, 'Malayalam', 'Homo Deus', 'Vintage', '1005');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1007', 'Novel', current_timestamp, 'Malayalam', 'Varanasi', 'DC', '1001');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1008', 'Novel', current_timestamp, 'Malayalam', 'Chidambarasmarana', 'DC', '1006');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id) VALUES ('1009', 'Novel', current_timestamp, 'Malayalam', 'Meesha', 'DC', '1007');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1001', 'Novel', current_timestamp, 'Malayalam', 'Manjaveyil maranangal', 'Current books', '1002','9788126438150');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1002', 'Novel', current_timestamp, 'Malayalam', 'Kaalam', 'Current books', '1001','v');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1003', 'Novel', current_timestamp, 'Malayalam', 'Randamoozham', 'Current books', '1001','8122613705');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1004', 'Novel', current_timestamp, 'English', 'Ikigai', 'FSC', '1004','178633089X');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1005', 'Novel', current_timestamp, 'English', 'Sapiens', 'Vintage', '1005','9780099590088');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1006', 'Novel', current_timestamp, 'Malayalam', 'Homo Deus', 'Vintage', '1005','9781784703936');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1007', 'Novel', current_timestamp, 'Malayalam', 'Varanasi', 'DC', '1001','9788125051787');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1008', 'Novel', current_timestamp, 'Malayalam', 'Chidambarasmarana', 'DC', '1006','9788126402793');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1009', 'Novel', current_timestamp, 'Malayalam', 'Meesha', 'DC', '1007','9788126477371');
 
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('2345', 'def', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1001, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('6456', 'ghi', current_timestamp, 300, 'Rack 3', 'LENDED', current_timestamp, 1002, current_timestamp);
@@ -52,5 +52,5 @@ INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, st
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1233', 'ewfwe', current_timestamp, 100, 'Rack 2', 'AVAILABLE', current_timestamp, 1008, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1278', 'gregtewg', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1009, current_timestamp);
 
-INSERT INTO library.book_users (id, books_id, users_username, status) VALUES ('1002', '2345', 'studentone_b2022', 'LENDED');
-INSERT INTO library.book_users (id, books_id, users_username, status) VALUES ('1003', '6456', 'studentsec_b2021', 'RETURNED');
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required) VALUES ('1002', '2345', 'studentone_b2022', 'LENDED',false);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required) VALUES ('1003', '6456', 'studentsec_b2021', 'RETURNED',false);

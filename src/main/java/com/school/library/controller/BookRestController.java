@@ -1,19 +1,25 @@
 package com.school.library.controller;
 
-import com.school.library.config.UserPrincipal;
-import com.school.library.entity.BookDetailsEntity;
-import com.school.library.service.BookService;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
+import com.school.library.config.UserPrincipal;
+import com.school.library.entity.BookDetailsEntity;
+import com.school.library.entity.BookUserEntity;
+import com.school.library.repository.BookUserRepository;
+import com.school.library.service.BookService;
 
 @RestController
 @RequestMapping("/book")
@@ -23,6 +29,9 @@ public class BookRestController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private BookUserRepository repo; 
 
 	@GetMapping("/pages")
 	public List<BookDetailsEntity> getBooks(@RequestParam int page, @RequestParam int size) {
@@ -45,15 +54,7 @@ public class BookRestController {
 
 		return books;
 	}
-
-	//change to delete after sometime
-	//do it from js with popup
-	@GetMapping("/delete/{id}")
-	public String deleteBook(@PathVariable String id) {
-		bookService.deleteBook(id);
-		return "redirect:/book";
-	}
-
+	
 	//do it from js with popup
 	@GetMapping("/block")
 	public String blockBook(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable String id) {
@@ -63,6 +64,21 @@ public class BookRestController {
 		//create colum in table for blocked/borrowedtime, extension request, assigned by...
 		return "json Object";
 	}
+	
+	@GetMapping("/user/all")
+	public List<BookUserEntity> getAllBookUsers() {
+		return repo.findAll();
+	}
+
+	//change to delete after sometime
+	//do it from js with popup
+	@GetMapping("/delete/{id}")
+	public String deleteBook(@PathVariable String id) {
+		bookService.deleteBook(id);
+		return "redirect:/book";
+	}
+
+	
 
 	//do it from js with popup
 	@GetMapping("/renew")
