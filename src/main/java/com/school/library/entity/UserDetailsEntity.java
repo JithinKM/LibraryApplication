@@ -2,6 +2,7 @@ package com.school.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class UserDetailsEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@JsonBackReference
 	private UserEntity user;
 

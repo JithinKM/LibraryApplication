@@ -33,8 +33,8 @@ INSERT INTO library.bookdetails  (id, category, created_timestamp, language, nam
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1004', 'Novel', current_timestamp, 'English', 'Ikigai', 'FSC', '1004','178633089X');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1005', 'Novel', current_timestamp, 'English', 'Sapiens', 'Vintage', '1005','9780099590088');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1006', 'Novel', current_timestamp, 'Malayalam', 'Homo Deus', 'Vintage', '1005','9781784703936');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1007', 'Novel', current_timestamp, 'Malayalam', 'Varanasi', 'DC', '1001','9788125051787');
-INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1008', 'Novel', current_timestamp, 'Malayalam', 'Chidambarasmarana', 'DC', '1006','9788126402793');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1007', 'Novel', current_timestamp, 'Malayalam', 'Varanasi', 'DC', '1001','');
+INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1008', 'Novel', current_timestamp, 'Malayalam', 'Chidambarasmarana', 'DC', '1006','');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1009', 'Novel', current_timestamp, 'Malayalam', 'Meesha', 'DC', '1007','9788126477371');
 
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('2345', 'def', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1001, current_timestamp);

@@ -22,6 +22,7 @@ import com.school.library.enums.UserType;
 import com.school.library.exception.BadRequestExpection;
 import com.school.library.model.CreateUser;
 import com.school.library.repository.BookUserRepository;
+import com.school.library.repository.UserDetailsRepository;
 import com.school.library.repository.UserRepository;
 
 @Service
@@ -29,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private UserDetailsRepository userDetailsRepository;
     
     @Autowired
     private BookUserRepository bookUserRepository;
@@ -47,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity createUser(CreateUser user) {
+	public UserDetailsEntity createUser(CreateUser user) {
 		//Validate user
 		
 		if(!Arrays.asList(UserType.TEACHER.getType(),UserType.STUDENT.getType()).contains(user.getType().trim().toUpperCase())) {
@@ -55,7 +59,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		String userId = user.getFirstname().trim().toLowerCase() + user.getLastname().trim().toLowerCase();
-		if("STUDENT".equalsIgnoreCase(user.getType().trim())) {
+		if("STUDENT".equalsIgnoreCase(user.getType().trim().toUpperCase())) {
 			int batch = Calendar.getInstance().get(Calendar.YEAR) + (10-user.getStandard());
 			userId += "_b"+batch;
 		}
@@ -64,8 +68,8 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("User Already Exists");
 		}
 		
-		UserEntity userEntity = createUserEntity(user, userId);
-		return userRepository.save(userEntity);
+		UserDetailsEntity userDetailsEntity = createUserEntity(user, userId);
+		return userDetailsRepository.save(userDetailsEntity);
 	}
 	
 	@Override
@@ -104,7 +108,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(userEntity);
 	}
 
-	private UserEntity createUserEntity(CreateUser user, String userId) {
+	private UserDetailsEntity createUserEntity(CreateUser user, String userId) {
 		UserEntity userEntity = new UserEntity();
 		
 		userEntity.setUsername(userId);
@@ -125,11 +129,16 @@ public class UserServiceImpl implements UserService {
 		userDetailsEntity.setParentName(Objects.toString(user.getParentName(), ""));
 		userDetailsEntity.setParentPhone(Objects.toString(user.getParentPhone(), ""));
 		userDetailsEntity.setPhone(Objects.toString(user.getPhone(), ""));
-		userDetailsEntity.setStandard(user.getStandard());
+		if("STUDENT".equalsIgnoreCase(user.getType().trim().toUpperCase())) {
+			userDetailsEntity.setStandard(user.getStandard());
+		} else {
+			userDetailsEntity.setStandard(Short.valueOf("0"));
+		}
 		
-		userEntity.setUserdetail(userDetailsEntity);
 		
-		return userEntity;
+		userDetailsEntity.setUser(userEntity);
+		
+		return userDetailsEntity;
 	}
 
 	@Override
