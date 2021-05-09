@@ -68,7 +68,7 @@
                                 <div class="form-group hide-element" id="standard-select">
                                     <label for="standard">Standard</label>
                                     <select class="form-control" id="standard" name="standard">
-                                        <option disabled selected value></option>
+                                        <option selected>0</option>
                                         <option>5</option>
                                         <option>6</option>
                                         <option>7</option>
@@ -82,7 +82,6 @@
                                 <div class="form-group hide-element" id="division-select">
                                     <label for="division">Division</label>
                                     <select class="form-control" id="division" name="division">
-                                        <option disabled selected value></option>
                                         <option>A</option>
                                         <option>B</option>
                                         <option>C</option>
@@ -182,6 +181,7 @@
     $(".form-radio input[name='type']").click(function() {
         if($(".form-radio input[name='type']:checked").val() == "TEACHER") {
             $('#standard-select, #division-select').addClass('hide-element');
+            $('#standard').val(0);
         } else {
             $('#standard-select, #division-select').removeClass('hide-element');
         }
@@ -211,7 +211,7 @@
             userName = firstname + lastname;
 
         } else if ($(".form-radio input[name='type']:checked").val() == "STUDENT"
-            && firstname !== "" && lastname != "" && $('#standard').val() != null) {
+            && firstname !== "" && lastname != "" && $('#standard').val() != 0) {
             userName = firstname + lastname + '_b' + batch;
         }
         $('#username').val(userName);

@@ -15,24 +15,37 @@
                                     <h5 class="font-weight-bold main-title">Book Lending Requests</h5>
                                 </div>
                                 <div class="card-body overflow-auto">
-                                        <div class="row">
-                                        
-                                        
-                                            <div class="col-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header">
-                                                        <h6 class="card-title">Book Name</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{Student name} has requested this book.</p>
-                                                        <a href="#" class="card-link">Approve</a>
-                                                        <a href="#" class="card-link text-danger">Decline</a>
+                                    <div class="row">
+                                    <#if bookreq??>
+                                        <#list bookreq as bookUser>
+                                        <div class="col-6">
+                                            <div class="card bg-light">
+                                                <div class="card-header">
+                                                    <h6 class="card-title">${bookUser.book.bookDetails.name}</h6>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <p class="card-title">Book Id: ${bookUser.book.id}</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="card-title">Rack: ${bookUser.book.rack}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="card-body">
+                                                    <input type="hidden" class="bookApproveId" value="${bookUser.id}">
+                                                    <input type="hidden" class="bookName" value="${bookUser.book.bookDetails.name}">
+                                                    <input type="hidden" class="userName" value="${bookUser.user.username}">
+                                                    <input type="hidden" class="bookId" value="${bookUser.book.id}">
+                                                    <input type="hidden" class="bookCover" value="${bookUser.book.bookDetails.isbn}">
+                                                    <p class="card-text">${bookUser.user.username} has requested this book.</p>
+                                                    <a class="card-link bookApproveLink" data-toggle="modal" data-target="#bookApproveModal">Approve</a>
+                                                    <a href="#" class="card-link text-danger">Decline</a>
+                                                </div>
                                             </div>
-                                            
-                                            
                                         </div>
+                                        </#list>
+                                    </#if>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,6 +123,56 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bookApproveModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center"><span id="bookName" class="text-bold"></span></h5>
+                <form role="form" id="bookApprovalForm" action="/book/request/approve" method="POST">
+                    <div class="row">
+                        <div class="col-5">
+                            <img id="bookCover" class="book-cover-img" alt="Book cover">
+                        </div>
+                        <div class="col-1 form-middle">
+                        </div>
+                        <div class="col-6">
+                            <img src="../img/profile.png" id="userPic" class="user-profile-img" alt="User Img">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Book Id" autocomplete="off" required>
+                                <input type="hidden" id="actualBookId">
+                                <label id="bookIdError" class="text-danger hide-element">Please enter the correct book id!</label>
+                            </div>
+                        </div>
+                        <div class="col-1 form-middle">
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="userName" name="username" disabled value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2"></textarea>
+                    </div>
+                    <input type="hidden" id="bookUserId" name="bookUserId">
+                    <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Assign"/>
+                </form>
             </div>
         </div>
     </div>
