@@ -1,7 +1,9 @@
 package com.school.library.controller;
 
 import com.school.library.entity.BookDetailsEntity;
+import com.school.library.model.CreateUser;
 import com.school.library.service.BookService;
+import com.school.library.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -24,9 +28,18 @@ public class HomeController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/login")
     public String loginPage() {
         return "login";
+    }
+
+    @PostMapping("/signup")
+    public String signup(CreateUser user) {
+        userService.createUser(user);
+        return "redirect:/login";
     }
      
     @GetMapping("/")

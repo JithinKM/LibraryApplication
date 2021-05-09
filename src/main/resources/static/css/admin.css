@@ -557,20 +557,8 @@ a, a:visited, a:hover {
     word-break: break-all;
 }
 
-.book-details-bg {
-    background-image: url(var(--imglink));
-}
-
-.book-details0 {
-    background-image: url('../img/book-cover.png');
-}
-
-.book-details1 {
-    background-image: url('../img/book-cover1.png');
-}
-
-.book-details2 {
-    background-image: url('../img/book-cover2.png');
+.bg-cover {
+    background-size: cover;
 }
 
 .book-details-inner {

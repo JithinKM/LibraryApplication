@@ -2,7 +2,7 @@ package com.school.library.enums;
 
 public enum UserStatusEnum {
 	
-	PENDING("PENDIG",  "Pending Approval"),
+	PENDING("PENDING",  "Pending Approval"),
 	ACTIVE("ACTIVE",  "Active"),
 	BLOCKED("BLOCKED",  "Blocked");
 	

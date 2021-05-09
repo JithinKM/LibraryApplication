@@ -4,7 +4,7 @@ INSERT INTO library.role VALUES ('TEACHER');
 INSERT INTO library.role VALUES ('REGISTERED');
 
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentone_b2022',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'PENDIG', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'PENDING', current_timestamp);
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('libraryadmin',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('teachingstaff',  current_timestamp, 'teacher@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 

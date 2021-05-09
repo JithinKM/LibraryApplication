@@ -1,55 +1,4 @@
-function prepareBookPagination(bookList, template) {
-    var pageCount = $('#pageCount').val();
-    var bookPerPage = 30;
-    $('#books-pagination').twbsPagination({
-        totalPages: pageCount,
-        visiblePages: 5,
-        first: '<<',
-        next: '>',
-        prev: '<',
-        last: '>>',
-        onPageClick: function (event, page) {
-            var pageUrl = '/book/pages?page=' + (page - 1) + '&size=' + bookPerPage;
-            $.get(pageUrl, function(bookDetails) {
-                bookList.html("");
-                bookDetails.forEach(function(bookDetail) {
-                    var html = template.render(bookDetail);
-                    bookList.append(html);
-                });
-                $("html, body").animate({scrollTop: 0}, 300);
-            });
-        }
-    });
-}
-
-function prepareAuthorPagination(authorList, template) {
-    var pageCount = $('#pageCount').val();
-    var authorPerPage = 30;
-    $('#authors-pagination').twbsPagination({
-        totalPages: pageCount,
-        visiblePages: 5,
-        first: '<<',
-        next: '>',
-        prev: '<',
-        last: '>>',
-        onPageClick: function (event, page) {
-            var index = (page - 1) * authorPerPage;
-            var pageUrl = '/author/pages?page=' + (page - 1) + '&size=' + authorPerPage;
-            $.get(pageUrl, function(authors) {
-                authorList.html("");
-                authors.forEach(function(author) {
-                    author.index = ++index;
-                    var html = template.render(author);
-                    authorList.append(html);
-                });
-                $("html, body").animate({scrollTop: 0}, 300);
-            });
-        }
-    });
-}
-
 function homePageReady() {
-    redirectToLogin();
     filterBooks();
 
     $('.book-now').click(function(event) {
@@ -95,8 +44,6 @@ function homePageReady() {
       $(".search-form").submit();
     });
 
-    var template = $.templates("#bookListTemplate");
-    prepareBookPagination($("#book-list"), template);
 }
 
 function filterBooks() {
@@ -108,13 +55,13 @@ function filterBooks() {
     var end = (active * n);
     var start = end - n;
 
-    $('.icon-boxes .book-entries').each(function(index) {
-        if (index >= start && index < end) {
-            $(this).removeClass('hide-element');
-        } else {
-            $(this).addClass('hide-element');
-        }
-    });
+//    $('.icon-boxes .book-entries').each(function(index) {
+//        if (index >= start && index < end) {
+//            $(this).removeClass('hide-element');
+//        } else {
+//            $(this).addClass('hide-element');
+//        }
+//    });
 }
 
 function profilePageReady() {
@@ -165,7 +112,6 @@ function prepareBookEditForm() {
 }
 
 function booksListPageReady() {
-    redirectToLogin();
     $("#book").addClass("active");
 
     $("#filer-books").on("keyup", function() {
@@ -259,13 +205,9 @@ function booksListPageReady() {
         $("#purchasedDateEdit").val($(event.target).siblings(".bookEditPurchased").val());
         $("#priceEdit").val($(event.target).siblings(".bookEditPrice").val());
     });
-
-    var template = $.templates("#bookListTemplate");
-    prepareBookPagination($("#bookListBody"), template);
 }
 
 function authorsListPageReady() {
-    redirectToLogin();
     $("#author").addClass("active");
 
     $("#filter-authors").on("keyup", function() {
@@ -309,9 +251,6 @@ function authorsListPageReady() {
         $('#editId').val(item.id);
         $('#editPenName').val(item.penName);
     });
-
-    var template = $.templates("#authorListTemplate");
-    prepareAuthorPagination($("#authorsListBody"), template);
 }
 
 function authorDetailPageReady() {
@@ -319,7 +258,6 @@ function authorDetailPageReady() {
 }
 
 function usersListPageReady() {
-    redirectToLogin();
     $("#user").addClass("active");
 
     $("#filter-users").on("keyup", function() {
@@ -335,7 +273,6 @@ function usersListPageReady() {
 }
 
 function adminDashboardReady() {
-    redirectToLogin();
     $("#dashboard").addClass("active");
 }
 
@@ -398,12 +335,6 @@ function toggleSignupAndLogin() {
 function processAdminErrorMessage(errorData) {
     alert(JSON.parse(errorData));
     console.log(JSON.parse(errorData));
-}
-function redirectToLogin() {
-    var token = sessionStorage.getItem("JSESSIONID");
-//    if (!token) {
-//        window.location = "/user/login";
-//    }
 }
 
 $(document).ready(function() {

@@ -27,12 +27,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    
-    @PostMapping("/signup")
-    public String signup(CreateUser user) {
-    	userService.createUser(user);
-    	return "redirect:/login";
-    }
 
     @GetMapping("/all")
     public String getUsersListPage(Model model) {

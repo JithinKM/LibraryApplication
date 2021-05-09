@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	public UserEntity createUser(CreateUser user) {
 		//Validate user
 		
-		if(!Arrays.asList(UserType.TEACHER.getType(),UserType.STUDENT.getType()).contains(user.getType().trim())) {
+		if(!Arrays.asList(UserType.TEACHER.getType(),UserType.STUDENT.getType()).contains(user.getType().trim().toUpperCase())) {
 			throw new BadRequestExpection("Role must be STUDENT/TEACHER");
 		}
 		
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 		userEntity.setEmail(user.getEmail());
 		userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
 		HashSet<RoleEntity> roles = new HashSet<>();
-		roles.add(new RoleEntity(user.getType()));
+		roles.add(new RoleEntity(user.getType().trim().toUpperCase()));
 		userEntity.setRoles(roles);
 		userEntity.setCreatedTimestamp(new Date());
 		userEntity.setUpdatedTimestamp(new Date());

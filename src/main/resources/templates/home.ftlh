@@ -17,7 +17,13 @@
             <#list books as bookDetail>
             <div class="col-md-4 col-lg-2 book-entries zoom">
                 <div class="icon-box book-shadow">
-                    <div class="book-details book-details${(bookDetail?index) % 3}">
+                    <div class="book-details bg-cover"
+                        <#if bookDetail.isbn?has_content>
+                            style="background-image:url(http://covers.openlibrary.org/b/isbn/${bookDetail.isbn}-M.jpg);"
+                        <#else>
+                            style="background-image:url(../img/book-cover.png);"
+                        </#if>
+                    >
                         <div class="book-details-inner">
                             <h5 class="title text-center book-filer"><a>${bookDetail.name}</a></h5>
                             <div class="col-12 book-contents">
@@ -90,7 +96,7 @@
 <script id="bookListTemplate" type="text/x-jsrender">
     <div class="col-md-4 col-lg-2 book-entries zoom">
         <div class="icon-box book-shadow">
-            <div class="book-details book-details{{:id % 3}}">
+            <div class="book-details-bg" style="--imglink:http://covers.openlibrary.org/b/isbn/{{:isbn}}-M.jpg">
                 <div class="book-details-inner">
                     <h5 class="title text-center book-filer"><a>{{:name}}</a></h5>
                     <div class="col-12 book-contents">

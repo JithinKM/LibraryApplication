@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class UserEntity {
 	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	
-	@OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private UserDetailsEntity userdetail;
 	

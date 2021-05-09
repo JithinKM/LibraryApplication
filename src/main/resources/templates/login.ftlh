@@ -35,14 +35,14 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" required autocomplete="off">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" required autocomplete="off">
+                                    <label for="lastname">Last Name</label>
+                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -51,13 +51,13 @@
                                 <label for="name">User Type</label>
                                 <div class="form-group row form-radio">
                                     <div class="form-check col-xs-6 col-sm-6">
-                                        <input class="form-check-input" type="radio" name="userType" id="teacher" value="teacher" checked>
+                                        <input class="form-check-input" type="radio" name="type" id="teacher" value="TEACHER" checked>
                                         <label class="form-check-label" for="teacher">
                                         Teacher
                                         </label>
                                     </div>
                                     <div class="form-check col-xs-6  col-sm-6 text-right">
-                                        <input class="form-check-input" type="radio" name="userType" id="student" value="student">
+                                        <input class="form-check-input" type="radio" name="type" id="student" value="STUDENT">
                                         <label class="form-check-label" for="student">
                                         Student
                                         </label>
@@ -65,9 +65,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-12">
-                                <div class="form-group">
+                                <div class="form-group hide-element" id="standard-select">
                                     <label for="standard">Standard</label>
-                                    <select class="form-control" id="standard">
+                                    <select class="form-control" id="standard" name="standard">
+                                        <option disabled selected value></option>
                                         <option>5</option>
                                         <option>6</option>
                                         <option>7</option>
@@ -78,9 +79,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-12">
-                                <div class="form-group">
+                                <div class="form-group hide-element" id="division-select">
                                     <label for="division">Division</label>
-                                    <select class="form-control" id="division">
+                                    <select class="form-control" id="division" name="division">
+                                        <option disabled selected value></option>
                                         <option>A</option>
                                         <option>B</option>
                                         <option>C</option>
@@ -115,7 +117,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label for="userId">User ID</label>
-                                    <input type="text" class="form-control" id="userId" name="userId" disabled autocomplete="off">
+                                    <input type="text" class="form-control" id="username" name="username" disabled autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -144,6 +146,7 @@
                                 <div class="form-group">
                                     <label for="confirmPassword">Confirm Password</label>
                                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" minlength="5" maxlength="50" required autocomplete="off">
+                                    <label id="passwordMatchError" class="text-danger hide-element">Passwords does not match!</label>
                                 </div>
                             </div>
                         </div>
@@ -163,18 +166,61 @@
 </section>
 <script>
     $("#loginLink").click(function() {
-    $('#signupDiv').css({'display': 'none'});
-    $('#signupHead').css({'display': 'none'});
-    $('#loginDiv').css({'display': 'flex'});
-    $('#loginHead').css({'display': 'block'});
+        $('#signupDiv').css({'display': 'none'});
+        $('#signupHead').css({'display': 'none'});
+        $('#loginDiv').css({'display': 'flex'});
+        $('#loginHead').css({'display': 'block'});
     });
 
     $("#signupLink").click(function() {
-    $('#loginDiv').css({'display': 'none'});
-    $('#loginHead').css({'display': 'none'});
-    $('#signupDiv').css({'display': 'flex'});
-    $('#signupHead').css({'display': 'block'});
+        $('#loginDiv').css({'display': 'none'});
+        $('#loginHead').css({'display': 'none'});
+        $('#signupDiv').css({'display': 'flex'});
+        $('#signupHead').css({'display': 'block'});
     });
+
+    $(".form-radio input[name='type']").click(function() {
+        if($(".form-radio input[name='type']:checked").val() == "TEACHER") {
+            $('#standard-select, #division-select').addClass('hide-element');
+        } else {
+            $('#standard-select, #division-select').removeClass('hide-element');
+        }
+    });
+
+    function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmPassword").val();
+        if (password != confirmPassword) {
+            $("#passwordMatchError").removeClass("hide-element");
+            $("#signup-btn").attr("disabled", true);
+        } else {
+            $("#passwordMatchError").addClass("hide-element");
+            $("#signup-btn").attr("disabled", false);
+        }
+    }
+
+    $("#confirmPassword").keyup(checkPasswordMatch);
+
+    function buildUsername() {
+        var firstname = $('#firstname').val().trim().toLowerCase();
+        var lastname = $('#lastname').val().trim().toLowerCase();
+        var batch = new Date().getFullYear() + (10 - $('#standard').val());
+        var userName = "";
+        if($(".form-radio input[name='type']:checked").val() == "TEACHER"
+            && firstname !== "" && lastname != "") {
+            userName = firstname + lastname;
+
+        } else if ($(".form-radio input[name='type']:checked").val() == "STUDENT"
+            && firstname !== "" && lastname != "" && $('#standard').val() != null) {
+            userName = firstname + lastname + '_b' + batch;
+        }
+        $('#username').val(userName);
+    };
+
+    $(".form-radio input[name='type']").click(buildUsername);
+    $('#firstname').change(buildUsername);
+    $('#lastname').change(buildUsername);
+    $("#standard").change(buildUsername);
 
 </script>
 </@base_layout>
