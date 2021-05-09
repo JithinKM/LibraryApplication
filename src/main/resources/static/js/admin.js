@@ -272,8 +272,31 @@ function usersListPageReady() {
     });
 }
 
+function checkBookId() {
+    var actualBookId = $("#actualBookId").val();
+    var bookId = $("#bookId").val();
+    if (actualBookId != bookId) {
+        $("#bookIdError").removeClass("hide-element");
+        $("#assignBook").attr("disabled", true);
+    } else {
+        $("#bookIdError").addClass("hide-element");
+        $("#assignBook").attr("disabled", false);
+    }
+}
+
 function adminDashboardReady() {
     $("#dashboard").addClass("active");
+
+    $('.bookApproveLink').click(function() {
+        $('#bookUserId').val($(this).siblings('.bookApproveId').val());
+        $('#bookName').text($(this).siblings('.bookName').val());
+        $('#userName').val($(this).siblings('.userName').val());
+        $('#actualBookId').val($(this).siblings('.bookId').val());
+        var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
+        $('#bookCover').attr("src", imgSrc);
+
+    });
+    $("#bookId").change(checkBookId);
 }
 
 function showLoadingAnimation() {

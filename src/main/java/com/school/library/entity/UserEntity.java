@@ -5,12 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +25,7 @@ public class UserEntity {
 	private Date updatedTimestamp;
 	private String status; //enabled/registered/active/blocked...
 	
-	@ManyToMany(mappedBy = "user",fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	
