@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder bcryptEncoder;
 
     @Override
-    public UserEntity findByUserDetails(final String email) {
-        return userRepository.findByEmail(email);
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 	@Override
@@ -54,8 +54,7 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("Role must be STUDENT/TEACHER");
 		}
 		
-		
-		String userId = user.getFirstname().trim().toLowerCase()+ user.getLastname().trim().toLowerCase();
+		String userId = user.getFirstname().trim().toLowerCase() + user.getLastname().trim().toLowerCase();
 		if("STUDENT".equalsIgnoreCase(user.getType().trim())) {
 			int batch = Calendar.getInstance().get(Calendar.YEAR) + (10-user.getStandard());
 			userId += "_b"+batch;
@@ -72,10 +71,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity updateProfile(String username, CreateUser user) {
 		if(!userRepository.findById(username).isPresent()) {
+			System.out.println("Not able to find user");
 			throw new BadRequestExpection("Not able to find user");
 		}
 		UserEntity userEntity = userRepository.findById(username).get();
 		
+		if(!StringUtils.isEmpty(user.getPassword())) {
+			
+			if(!bcryptEncoder.matches(user.getOldpassword(), userEntity.getPassword())) {
+				System.out.println("Current password is wrong");
+				throw new BadRequestExpection("Current password is wrong");
+			}
+			userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
+		}
+
 		if(userEntity.getUserdetail().isStudent()) {
 			userEntity.getUserdetail().setStandard(user.getStandard());
 			userEntity.getUserdetail().setDivision(user.getDivision());
@@ -91,9 +100,6 @@ public class UserServiceImpl implements UserService {
 		userEntity.getUserdetail().setParentName(user.getParentName());
 		userEntity.getUserdetail().setParentPhone(user.getParentPhone());
 		userEntity.getUserdetail().setAddress(user.getAddress());
-		if(!StringUtils.isEmpty(user.getPassword())) {
-			userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
-		}
 		
 		return userRepository.save(userEntity);
 	}

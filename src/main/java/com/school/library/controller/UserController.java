@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String getUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, final Model model) {
-    	model.addAttribute("user", new User(userPrincipal.getUser()));
+    	model.addAttribute("user", new User(userService.findByUsername(userPrincipal.getUsername())));
     	model.addAttribute("currentBooks", userService.getCurrentOwnedBooks(userPrincipal.getUsername()));
     	model.addAttribute("bookHistory", userService.getBookHistory(userPrincipal.getUsername()));
     	return "profile";
@@ -44,7 +44,7 @@ public class UserController {
     
     @PostMapping("/profile")
     public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, final Model model) {
-    	model.addAttribute("user", new User(userService.updateProfile(userPrincipal.getUsername(), user)));
-    	return "profile";
+    	userService.updateProfile(userPrincipal.getUsername(), user);
+    	return "redirect:/user/profile";
     }
 }

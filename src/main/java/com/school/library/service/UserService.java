@@ -8,7 +8,7 @@ import com.school.library.model.CreateUser;
 
 public interface UserService {
 
-    UserEntity findByUserDetails(String userName);
+    UserEntity findByUsername(String username);
 
     List<UserEntity> getAllNonAdminUsers();
 

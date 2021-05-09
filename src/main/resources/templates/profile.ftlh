@@ -166,7 +166,16 @@
                             <hr class="user-field mt-2">
                             <div class="row profile-edit-field">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0 mt-2">Password</h6>
+                                    <h6 class="mb-0 mt-2">Current Password</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <div class="user-field mt-2" id="field-address">***********</div>
+                                    <input type="text" class="form-control user-input d-none" id="input-oldpassword" name="oldpassword" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="row profile-edit-field">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 mt-2">New Password</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-address">***********</div>
