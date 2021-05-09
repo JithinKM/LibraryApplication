@@ -55,15 +55,7 @@ public class BookRestController {
 		return books;
 	}
 	
-	//do it from js with popup
-	@GetMapping("/block")
-	public String blockBook(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable String id) {
-		String username = userPrincipal.getUsername();
-		//check number of currently borrowed books of user. if it is greater than x dont allow
-		//check book in between blocked by any user[available quantity].  or direct attempt handle error
-		//create colum in table for blocked/borrowedtime, extension request, assigned by...
-		return "json Object";
-	}
+	
 	
 	@GetMapping("/user/all")
 	public List<BookUserEntity> getAllBookUsers() {

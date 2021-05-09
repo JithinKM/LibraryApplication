@@ -1,23 +1,29 @@
 package com.school.library.controller;
 
-import com.school.library.entity.BookDetailsEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.school.library.model.Book;
-import com.school.library.service.BookService;
+import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.school.library.config.UserPrincipal;
+import com.school.library.entity.BookDetailsEntity;
+import com.school.library.exception.BadRequestExpection;
+import com.school.library.model.Book;
+import com.school.library.service.BookService;
+import com.school.library.service.UserService;
 
 @Controller
 @RequestMapping("/book")
@@ -27,6 +33,12 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Value("${max.allowed.book.count}")
+	private int maxBooks;
 
 	@GetMapping
 	public String getBooksListPage(Model model) {
@@ -45,6 +57,18 @@ public class BookController {
 	public String createBooks(Book book) {
 		bookService.createBooks(book);
 		return "redirect:/book";
+	}
+	
+	@GetMapping("/block/{bookId}")
+	public String blockBook(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("bookId") String bookId) {
+		String username = userPrincipal.getUsername();
+		int currentOwnedBooks = userService.getCurrentOwnedBooks(username).size();
+		if(currentOwnedBooks >= maxBooks) {
+			System.out.println("Maximum number of books are requested/alloted");
+			throw new BadRequestExpection("Maximum number of books are requested/alloted");
+		}
+		userService.assignBookToUser(bookId, username);
+		return "redirect:/";
 	}
 
 }

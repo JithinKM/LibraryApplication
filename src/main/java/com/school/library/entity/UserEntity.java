@@ -43,6 +43,13 @@ public class UserEntity {
 	@JsonBackReference
 	private List<BookEntity> books;
 	
+	public UserEntity() {
+	}
+	
+	public UserEntity(String username) {
+		this.username = username;
+	}
+
 	public String getUsername() {
 		return username;
 	}

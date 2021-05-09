@@ -12,15 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.school.library.entity.BookEntity;
 import com.school.library.entity.BookUserEntity;
 import com.school.library.entity.RoleEntity;
 import com.school.library.entity.UserDetailsEntity;
 import com.school.library.entity.UserEntity;
+import com.school.library.enums.BookStatusEnum;
 import com.school.library.enums.BookUserStatusEnum;
 import com.school.library.enums.UserStatusEnum;
 import com.school.library.enums.UserType;
 import com.school.library.exception.BadRequestExpection;
 import com.school.library.model.CreateUser;
+import com.school.library.repository.BookRepository;
 import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.UserDetailsRepository;
 import com.school.library.repository.UserRepository;
@@ -36,6 +39,9 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private BookUserRepository bookUserRepository;
+    
+    @Autowired
+    private BookRepository bookRepository;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
@@ -155,4 +161,27 @@ public class UserServiceImpl implements UserService {
 				BookUserStatusEnum.RETURNED.getStatus());
 		return bookUserRepository.findByUserUsernameAndStatusIn(username, statusList);
 	}
+
+	@Override
+	public void assignBookToUser(String bookId, String username) {
+		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(bookId, username);
+		
+		if(bookRepository.findById(bookId).isPresent()) {
+			bookRepository.findById(bookId).ifPresent(book -> {
+				if(book.getStatus().equals(BookStatusEnum.AVAILABLE.getStatus())) {
+					bookUserRepository.save(bookUserEntity);
+					book.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
+					bookRepository.save(book);
+				} else {
+					System.out.println("Book already assigned");
+					throw new BadRequestExpection("Book already assigned");
+				}
+				
+			});
+		} else {
+			System.out.println("No Book Found");
+			throw new BadRequestExpection("No Book Found");
+		}
+	}
+	
 }

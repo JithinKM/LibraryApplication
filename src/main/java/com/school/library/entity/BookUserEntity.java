@@ -3,6 +3,8 @@ package com.school.library.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,12 +17,15 @@ import com.school.library.enums.BookUserStatusEnum;
 public class BookUserEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@OneToOne
 	@JoinColumn(name = "books_id", referencedColumnName = "id")
 	private BookEntity book;
 
+	//(cascade = {CascadeType.MERGE} )
+	
 	@OneToOne
 	@JoinColumn(name = "users_username", referencedColumnName = "username")
 	private UserEntity user;
@@ -40,7 +45,9 @@ public class BookUserEntity {
 		return BookUserStatusEnum.valueOf(status).getStatusString();
 	}
 	
-	public BookUserEntity requestBook() {
+	public BookUserEntity requestBook(String bookId, String username) {
+		book = new BookEntity(bookId);
+		user = new UserEntity(username);
 		renewalCount = 0;
 		requestedDate = new Date();
 		return getUpdatedUser(BookUserStatusEnum.REQUESTED, true);

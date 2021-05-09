@@ -20,4 +20,6 @@ public interface UserService {
 	List<BookUserEntity> getCurrentOwnedBooks(String username);
 
 	List<BookUserEntity> getBookHistory(String username);
+
+	void assignBookToUser(String bookId, String username);
 }

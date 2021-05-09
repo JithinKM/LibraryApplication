@@ -4,7 +4,7 @@ INSERT INTO library.role VALUES ('TEACHER');
 INSERT INTO library.role VALUES ('REGISTERED');
 
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentone_b2022',  current_timestamp, 'student1@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
-INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'PENDING', current_timestamp);
+INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('studentsec_b2021',  current_timestamp, 'student2@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('libraryadmin',  current_timestamp, 'admin@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 INSERT INTO library.user (username, created_timestamp, email, password, status, updated_timestamp) VALUES ('teachingstaff',  current_timestamp, 'teacher@shs.com', '$2y$12$yKHewWpeogSWTKGrflTc9OPBWTCjW4G7C7Qio35K5WzAQUvmPyMB6', 'ACTIVE', current_timestamp);
 
@@ -37,10 +37,10 @@ INSERT INTO library.bookdetails  (id, category, created_timestamp, language, nam
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1008', 'Novel', current_timestamp, 'Malayalam', 'Chidambarasmarana', 'DC', '1006','');
 INSERT INTO library.bookdetails  (id, category, created_timestamp, language, name, publication, author_id, isbn) VALUES ('1009', 'Novel', current_timestamp, 'Malayalam', 'Meesha', 'DC', '1007','9788126477371');
 
-INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('2345', 'def', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1001, current_timestamp);
-INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('6456', 'ghi', current_timestamp, 300, 'Rack 3', 'LENDED', current_timestamp, 1002, current_timestamp);
-INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1324', 'jkl', current_timestamp, 400, 'Rack 1', 'AVAILABLE', current_timestamp, 1003, current_timestamp);
-INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1356', 'jkl', current_timestamp, 400, 'Rack 1', 'AVAILABLE', current_timestamp, 1004, current_timestamp);
+INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('2345', 'def', current_timestamp, 200, 'Rack 2', 'NOTAVAILABLE', current_timestamp, 1001, current_timestamp);
+INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('6456', 'ghi', current_timestamp, 300, 'Rack 3', 'NOTAVAILABLE', current_timestamp, 1002, current_timestamp);
+INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1324', 'jkl', current_timestamp, 400, 'Rack 1', 'NOTAVAILABLE', current_timestamp, 1003, current_timestamp);
+INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1356', 'jkl', current_timestamp, 400, 'Rack 1', 'NOTAVAILABLE', current_timestamp, 1004, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1357', 'jkl', current_timestamp, 400, 'Rack 1', 'AVAILABLE', current_timestamp, 1004, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1456', 'asdgasdgs', current_timestamp, 500, 'Rack 3', 'AVAILABLE', current_timestamp, 1005, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1457', 'asdgasdgs', current_timestamp, 500, 'Rack 3', 'AVAILABLE', current_timestamp, 1005, current_timestamp);
