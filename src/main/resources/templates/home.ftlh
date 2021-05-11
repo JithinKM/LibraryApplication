@@ -24,12 +24,12 @@
                             style="background-image:url(../img/book-cover.png);"
                         </#if>
                     >
-                        <div class="book-details-inner">
-                            <h6 class="title text-center book-filer"><a>${bookDetail.name}</a></h6>
-                            <div class="col-12 book-contents">
+                        <div class="book-details-inner d-flex flex-column">
+                            <h6 class="title text-center book-filter bookName"><a>${bookDetail.name}</a></h6>
+                            <div class="col-12 book-contents position-absolute shadow">
                                 <div class="row text-center">
                                     <div class="col-12">
-                                        <p class="book-filer"><i class="bi bi-pencil-square"></i>${bookDetail.author.name}</p>
+                                        <p class="book-filter"><i class="bi bi-pencil-square"></i>${bookDetail.author.name}</p>
                                     </div>
                                 </div>
                                 <div class="row text-center">
@@ -48,13 +48,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <#if bookDetail.count == 0>
-                            <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
+                            <#if bookDetail.count gt 1>
+                                <div class="badge badge-success position-absolute book-count">${bookDetail.count}</div>
+                            <#elseif bookDetail.count == 1>
+                                <div class="badge badge-warning position-absolute book-count">${bookDetail.count}</div>
                             <#else>
-                                <input type="hidden" class="bookId" value="${bookDetail.id}">
-                                <input type="hidden" class="bookName" value="${bookDetail.name}">
-                                <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
+                                <div class="badge badge-secondary position-absolute book-count">${bookDetail.count}</div>
                             </#if>
+                            <div class="mt-auto">
+                                <#if bookDetail.count == 0>
+                                    <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
+                                <#else>
+                                    <input type="hidden" class="bookId" value="${bookDetail.id}">
+                                    <input type="hidden" class="bookName" value="${bookDetail.name}">
+                                    <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
+                                </#if>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -32,11 +32,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <img src="../img/profile.png" alt="profilePic" class="rounded-circle" width="30">
+            </li>
             <li class="nav-item" id="profile">
             <a class="nav-link" href="/user/profile">Profile</a>
             </li>
-            <li class="nav-item d-none onlyForLoggedIn" id="logout">
-            <a class="nav-link" id="logoutLink">Log Out</a>
+            <li class="nav-item">
+            <a class="nav-link" href="/logout">Log Out</a>
             </li>
         </ul>
       </div>

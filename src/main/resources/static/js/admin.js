@@ -1,6 +1,15 @@
 function homePageReady() {
     filterBooks();
 
+    $('.book-contents').width($('.bookName').width());
+    $('.book-contents').fadeOut();
+    $('.bookName').click(function(event) {
+        $(this).siblings('.book-contents').fadeIn("slow");
+    });
+    $('.bookName').mouseleave(function(event) {
+        $(this).siblings('.book-contents').fadeOut("slow");
+    });
+
     $('.book-now').click(function(event) {
         var bookId = $(this).siblings('.bookId').val();
         var bookName = $(this).siblings('.bookName').val();
@@ -32,7 +41,7 @@ function homePageReady() {
 
         var value = $(this).val().toLowerCase();
         $("#book-list .book-entries").filter(function() {
-            if($(this).find('.book-filer').text().toLowerCase().indexOf(value) > -1) {
+            if($(this).find('.book-filter').text().toLowerCase().indexOf(value) > -1) {
                 $(this).removeClass('filter-hide');
             } else {
                 $(this).addClass('filter-hide');

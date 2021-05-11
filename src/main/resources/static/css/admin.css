@@ -391,15 +391,6 @@ a, a:visited, a:hover {
     color: #d9534f !important;
 }
 
-#logoutLink {
-    cursor: pointer;
-}
-
-#logout {
-    border: 1px solid rgba(0,0,0,.5);
-    padding: 0 5px;
-}
-
 .small-form {
     background-color: #fff;
     padding: 20px;
@@ -554,7 +545,7 @@ a, a:visited, a:hover {
     border-radius: 0 15px 15px 0;
     background-size: cover;
     padding: 0;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .bg-cover {
@@ -566,6 +557,7 @@ a, a:visited, a:hover {
     border-left: 15px solid rgba(0,0,0,0.2);
     border-radius: 0 10px 10px 0;
     padding: 5px 10px;
+    min-height: 300px;
 }
 
 .book-details .bi {
@@ -573,9 +565,21 @@ a, a:visited, a:hover {
 }
 
 .book-contents {
-    background-color: rgba(255,255,255,0.7);
+    background-color: #17a2b8;
+    color: #fff;
     border-radius: 5px;
-    padding: 10px 0;
+    padding: 10px;
+    z-index: 3;
+    margin-top: 60px;
+}
+
+.book-count {
+    bottom: 15px;
+    left: 30px;
+    font-size: 19px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 
 .book-now {
