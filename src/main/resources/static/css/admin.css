@@ -760,8 +760,13 @@ a, a:visited, a:hover {
 }
 
 .notification {
-    margin: 15px 0;
-    border-radius: 26px;
+    margin: 15px 0 0 0;
+    cursor: pointer;
+}
+
+.notification a {
+    padding: 5px;
+    font-size: 22px;
 }
 
 .modal-header {
@@ -775,6 +780,10 @@ a, a:visited, a:hover {
 
 .book-modal-title {
     margin: 0 30px;
+}
+
+#preBook {
+    color: #fff;
 }
 
 #prebookModal .modal-content {
@@ -818,6 +827,10 @@ a, a:visited, a:hover {
     width: 100%;
     height: 100%;
     border: 5px solid #ccc;
+}
+
+.user-accordion {
+    padding: 10px;
 }
 
 @media (min-width: 992px) {

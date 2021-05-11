@@ -164,22 +164,24 @@
                                 </div>
                             </div>
                             <hr class="user-field mt-2">
-                            <div class="row profile-edit-field">
+                            <div class="form-check user-input d-none">
+                                <input type="checkbox" class="form-check-input" id="passwordEditCheck">
+                                <label class="form-check-label" for="passwordEditCheck">I want to change my password</label>
+                            </div>
+                            <div class="row profile-edit-field passwordEdit d-none">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0 mt-2">Current Password</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field mt-2" id="field-address">***********</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-oldpassword" name="oldpassword" autocomplete="off">
+                                    <input type="text" class="form-control user-input" id="input-oldpassword" name="oldpassword" autocomplete="off" disabled>
                                 </div>
                             </div>
-                            <div class="row profile-edit-field">
+                            <div class="row profile-edit-field passwordEdit d-none">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0 mt-2">New Password</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <div class="user-field mt-2" id="field-address">***********</div>
-                                    <input type="text" class="form-control user-input d-none" id="input-password" name="password" autocomplete="off">
+                                    <input type="text" class="form-control user-input d-none" id="input-password" name="password" autocomplete="off" disabled>
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-success d-none float-right" id="profileSave" value="Save Changes" />

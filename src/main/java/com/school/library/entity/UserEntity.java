@@ -25,7 +25,7 @@ public class UserEntity {
 	private Date updatedTimestamp;
 	private String status; //enabled/registered/active/blocked...
 	
-	@ManyToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	

@@ -25,7 +25,7 @@
                         </#if>
                     >
                         <div class="book-details-inner">
-                            <h5 class="title text-center book-filer"><a>${bookDetail.name}</a></h5>
+                            <h6 class="title text-center book-filer"><a>${bookDetail.name}</a></h6>
                             <div class="col-12 book-contents">
                                 <div class="row text-center">
                                     <div class="col-12">
@@ -82,12 +82,8 @@
             </div>
             <div class="modal-body">
                 <h5 class="text-center">Do you want to book <span id="bookName" class="text-bold"></span>?</h5>
-                <form role="form" id="prebookForm" action="/book/block" method="POST">
-                    <div class="form-group">
-                        <input type="hidden" id="bookId" name="id">
-                    </div>
-                    <input type="submit" class="btn btn-sm btn-primary float-right" id="preBook" value="Yes"/>
-                </form>
+                <input type="hidden" id="bookId" name="id">
+                <a class="btn btn-sm btn-primary float-right" id="preBook">Yes</a>
             </div>
         </div>
     </div>

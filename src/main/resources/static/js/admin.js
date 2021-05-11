@@ -90,6 +90,18 @@ function profilePageReady() {
         $('.user-field').removeClass('d-none');
         $('.user-input').addClass('d-none');
     });
+
+    $('#passwordEditCheck').change(function() {
+        if(this.checked) {
+            $('.passwordEdit').removeClass('d-none');
+            $('#input-oldpassword').attr("disabled", false);
+            $('#input-password').attr("disabled", false);
+        } else {
+            $('.passwordEdit').addClass('d-none');
+            $('#input-oldpassword').attr("disabled", true);
+            $('#input-password').attr("disabled", true);
+        }
+    });
 }
 
 $.validator.methods.localDate = function( value, element ) {
@@ -294,9 +306,15 @@ function adminDashboardReady() {
         $('#actualBookId').val($(this).siblings('.bookId').val());
         var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
         $('#bookCover').attr("src", imgSrc);
-
     });
     $("#bookId").change(checkBookId);
+
+    $('.bookDeclineLink').click(function() {
+        $('#bookUserIdDecline').val($(this).siblings('.bookApproveId').val());
+        $('#bookNameDecline').text($(this).siblings('.bookName').val());
+        $('#userNameDecline').val($(this).siblings('.userName').val());
+        $('#bookIdDecline').val($(this).siblings('.bookId').val());
+    });
 }
 
 function showLoadingAnimation() {
@@ -362,6 +380,9 @@ function processAdminErrorMessage(errorData) {
 
 $(document).ready(function() {
     var currentPage = $('#pageTracker').val();
+    if ($('#messageModal').length) {
+        $('#messageModalBtn').click();
+    }
 
     if (currentPage == 'home') {
         homePageReady();
