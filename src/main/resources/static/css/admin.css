@@ -582,6 +582,17 @@ a, a:visited, a:hover {
     height: 30px;
 }
 
+.arrow-top:after {
+  content: " ";
+  position: absolute;
+  right: 30px;
+  top: -15px;
+  border-top: none;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #17a2b8;
+}
+
 .book-now {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -851,18 +862,12 @@ a, a:visited, a:hover {
 }
 
 @media (max-width: 770px) {
-    .icon-box {
-        margin: 0 20%;
-    }
     .profile-container {
         width: 90% !important;
     }
 }
 
 @media (max-width: 600px) {
-    .icon-box {
-        margin: 0 10%;
-    }
     .profile-container {
         width: 95% !important;
     }
