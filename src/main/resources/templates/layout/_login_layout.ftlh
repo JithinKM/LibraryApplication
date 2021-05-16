@@ -16,16 +16,9 @@
 	<link rel="stylesheet" href="<@spring.url '/css/typeahead.css' />" type="text/css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" type="text/css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" type="text/css">
+	
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="<@spring.url '/css/admin.css' />" type="text/css">
-	
-</head>
-
-<body class="image-back">
-    
-	<#nested>
-	
-	<#include "login_footer.ftlh">
 	
 	<!-- JavaScript Libraries -->
 	<script src="<@spring.url '/js/jquery.min.js' />"></script>
@@ -36,6 +29,14 @@
 	<script src="<@spring.url '/js/jsviews.min.js'/>"></script>
 	<!-- Custom JavaScript -->
 	<script src="<@spring.url '/js/admin.js'/>"></script>
+	
+</head>
+
+<body class="image-back">
+    
+	<#nested>
+	
+	<#include "login_footer.ftlh">
 	
 </body>
 </html>
