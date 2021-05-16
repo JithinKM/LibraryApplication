@@ -24,36 +24,9 @@
   </head>
 
   <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-custom fixed-top">
-      <a class="navbar-brand" href="/">SHS Library App</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <img src="../img/profile.png" alt="profilePic" class="rounded-circle" width="30">
-            </li>
-            <li class="nav-item" id="profile">
-            <a class="nav-link" href="/user/profile">Profile</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/logout">Log Out</a>
-            </li>
-        </ul>
-      </div>
-    </nav>
+     <#include "layout/nav.ftlh">
 
 <section class="admin-page">
   <div class="container-fluid main-container">
     <div class="row main-row">
-          <div class="col-lg-2 col-md-2 col-sm-3 col-12 sidebar onlyForLoggedIn">
-            <ul class="nav-sidebar admin-nav-bar">
-              <li><a href="/admin/dashboard" id="dashboard">Dashboard</a></li>
-              <hr class="sidebar-divider">
-              <li><a href="/book" id="book">Books</a></li>
-              <li><a href="/author" id="author">Authors</a></li>
-              <li><a href="/user/all" id="user">Users</a></li>
-            </ul>
-          </div>
+          <#include "layout/sidebar.ftlh">

@@ -1,4 +1,4 @@
-<#macro base_layout title="">
+<#macro login_layout title="">
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,6 @@
 	
 	<!-- CSS Libraries -->
 	<link rel="stylesheet" href="<@spring.url '/css/bootstrap.min.css'/>" type="text/css">
-	<link rel="stylesheet" href="<@spring.url '/css/fontawesome.min.css'/>" type="text/css">
 	<link rel="stylesheet" href="<@spring.url '/css/jquery-ui.css' />" type="text/css">
 	<link rel="stylesheet" href="<@spring.url '/css/typeahead.css' />" type="text/css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" type="text/css">
@@ -23,11 +22,10 @@
 </head>
 
 <body class="image-back">
-    <#include "nav.ftlh">
     
 	<#nested>
 	
-	<#include "footer.ftlh">
+	<#include "login_footer.ftlh">
 	
 	<!-- JavaScript Libraries -->
 	<script src="<@spring.url '/js/jquery.min.js' />"></script>

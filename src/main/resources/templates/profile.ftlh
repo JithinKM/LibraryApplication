@@ -1,5 +1,7 @@
-<#assign showMenuBar = false>
-<#include "header.ftl">
+<@user_layout title="Homepage">
+<section class="admin-page">
+   <div class="container-fluid main-container">
+      <div class="row main-row">
 <main class="home-container justify-content-center">
     <div class="text-center profile-container">
         <div class="user-details-outer" id="user-details-accordion">
@@ -192,7 +194,11 @@
         </div>
         </div>
         <div class="current-books">
-            <h5 class="color-cyan">Currently Owned Books</h5>
+        	<#if currentBooks?has_content>
+            	<h5 class="color-cyan">Currently Owned Books</h5>
+            <#else>
+            	<h5 class="color-cyan">No Books Owned Currently</h5>
+            </#if>
             <div class="col-12">
                 <div class="row justify-content-center">
                     <#list currentBooks as currentbook>
@@ -256,7 +262,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <#if user.books??>
+                            <#if user.books?has_content>
                             <#list user.books as book>
                             <tr>
                                 <td>${book.id}</td>
@@ -267,6 +273,8 @@
                                 <td>${book.price}</td>
                             </tr>
                             </#list>
+                            <#else>
+                            	<tr><td colspan="6">No Books Borrowed Till Now.</td></tr>
                             </#if>
                         </tbody>
                     </table>
@@ -278,4 +286,7 @@
 </main>
 
 <#assign pageTracker = "profile">
-<#include "footer.ftl">
+   </div>
+   </div>
+</section>
+</@user_layout>

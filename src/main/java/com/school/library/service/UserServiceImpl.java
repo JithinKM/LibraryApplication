@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookEntity;
 import com.school.library.entity.BookUserEntity;
 import com.school.library.entity.RoleEntity;
@@ -23,6 +24,7 @@ import com.school.library.enums.UserStatusEnum;
 import com.school.library.enums.UserType;
 import com.school.library.exception.BadRequestExpection;
 import com.school.library.model.CreateUser;
+import com.school.library.repository.BookDetailsRepository;
 import com.school.library.repository.BookRepository;
 import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.UserDetailsRepository;
@@ -42,6 +44,9 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private BookRepository bookRepository;
+    
+    @Autowired
+    private BookDetailsRepository bookDetailsRepository;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
@@ -163,25 +168,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void assignBookToUser(String bookId, String username) {
-		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(bookId, username);
-		
-		if(bookRepository.findById(bookId).isPresent()) {
-			bookRepository.findById(bookId).ifPresent(book -> {
-				if(book.getStatus().equals(BookStatusEnum.AVAILABLE.getStatus())) {
-					bookUserRepository.save(bookUserEntity);
-					book.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
-					bookRepository.save(book);
-				} else {
-					System.out.println("Book already assigned");
-					throw new BadRequestExpection("Book already assigned");
-				}
-				
-			});
-		} else {
-			System.out.println("No Book Found");
-			throw new BadRequestExpection("No Book Found");
+	public BookUserEntity assignBookToUser(Long bookDetailsId, String username) {
+		if(!bookDetailsRepository.findById(bookDetailsId).isPresent()) {
+			System.out.println("No Such Book Found");
+			throw new BadRequestExpection("No Such Book Found");
 		}
+		
+		BookDetailsEntity bookDetails = bookDetailsRepository.findById(bookDetailsId).get();
+		if(bookDetails.getCount() <= 0) {
+			System.out.println("Currently Book is not available/Or All books already got allocated");
+			throw new BadRequestExpection("Currently Book is not available/Or All books already got allocated");
+		}
+		
+		BookEntity book = bookDetails.getBooks().parallelStream().filter(x-> x.getStatus()
+				.equals(BookStatusEnum.AVAILABLE.getStatus())).findFirst().get();
+		
+		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(book.getId(), username);
+		bookUserEntity = bookUserRepository.save(bookUserEntity);
+		book.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
+		bookRepository.save(book);
+		
+		return bookUserEntity;
 	}
 	
 }

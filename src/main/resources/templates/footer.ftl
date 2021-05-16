@@ -9,24 +9,6 @@
     </div>
 </section>
 
-<#if message??>
-<button class="btn d-none" id="messageModalBtn" data-toggle="modal" data-target="#messageModal"></button>
-<div class="modal fade text-danger" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content bg-${message.type} text-white">
-            <div class="modal-header">
-                <h5 class="modal-title">${message.title}</h5>
-                <button type="button" class="close prebook-close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>${message.detail}</p>
-            </div>
-        </div>
-    </div>
-</div>
-</#if>
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui.js"></script>

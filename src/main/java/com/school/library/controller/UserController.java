@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.school.library.config.UserPrincipal;
+import com.school.library.exception.Message;
 import com.school.library.model.CreateUser;
 import com.school.library.model.User;
 import com.school.library.repository.UserRepository;
@@ -43,8 +45,10 @@ public class UserController {
     }
     
     @PostMapping("/profile")
-    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, final Model model) {
+    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, final Model model,
+    		RedirectAttributes redirectAttrs) {
     	userService.updateProfile(userPrincipal.getUsername(), user);
+    	redirectAttrs.addFlashAttribute("message", new Message("success","Profile Updated", "User Profile updated successfully."));
     	return "redirect:/user/profile";
     }
 }

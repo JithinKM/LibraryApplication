@@ -1,4 +1,4 @@
-<@base_layout title="Login">
+<@login_layout title="Login">
 <section class="admin-page">
     <div class="container-fluid main-container">
     <div class="row main-row">
@@ -223,4 +223,4 @@
     $("#standard").change(buildUsername);
 
 </script>
-</@base_layout>
+</@login_layout>

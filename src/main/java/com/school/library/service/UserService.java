@@ -21,5 +21,5 @@ public interface UserService {
 
 	List<BookUserEntity> getBookHistory(String username);
 
-	void assignBookToUser(String bookId, String username);
+	BookUserEntity assignBookToUser(Long bookId, String username);
 }

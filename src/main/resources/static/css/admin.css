@@ -301,16 +301,18 @@ a, a:visited, a:hover {
 
 .bd-footer {
     background-color: #232F3E;
-    font-size: 12px;
+    font-size: 14px;
     color: #ccc;
     font-weight: 700;
     z-index: 10;
     left: 0;
-    bottom: 0;
     width: 100%;
-    color: white;
     text-align: center;
-    padding: 20px 0;
+}
+
+.login-footer {
+    position: absolute;
+    bottom: 0;
 }
 
 .navFooterBackToTop {
