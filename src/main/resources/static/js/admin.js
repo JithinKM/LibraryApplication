@@ -69,6 +69,28 @@ function profilePageReady() {
         $('#username-heading').fadeToggle("slow");
     });
 
+    $('.progress-bar').each(function() {
+        var allottedDate = $(this).siblings('.allotted-date').val();
+        var dueDate = $(this).siblings('.due-date').val();
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        var difference = today.getTime() - new Date(allottedDate).getTime();
+        var oneDay = 1000 * 60 * 60 * 24;
+        var difference = (today.getTime() - new Date(allottedDate).getTime()) / oneDay;
+        var total = (new Date(dueDate).getTime() - new Date(allottedDate).getTime()) / oneDay;
+        var percentage = (difference / total) * 100;
+        $(this).css('width', percentage + '%');
+
+        if(percentage < 33) {
+            $(this).addClass('blue');
+        } else if(percentage < 66) {
+            $(this).addClass('yellow');
+        } else {
+            $(this).addClass('red');
+            $(this).parent().parent().siblings('.renew-outer').removeClass('d-none');
+        }
+    });
+
     $('#profileEdit').click(function(event) {
         $(this).addClass('d-none');
         $('#profileSave').removeClass('d-none');
@@ -411,6 +433,4 @@ $(document).ready(function() {
     } else if (currentPage == 'usersList') {
         usersListPageReady();
     }
-
-//    checkLoggedInStatus();
 });

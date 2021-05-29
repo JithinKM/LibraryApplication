@@ -301,6 +301,7 @@ a, a:visited, a:hover {
 
 .bd-footer {
     background-color: #232F3E;
+    padding-top: 20px;
     font-size: 14px;
     color: #ccc;
     font-weight: 700;
@@ -479,7 +480,7 @@ a, a:visited, a:hover {
 
 .nav-sidebar > li > a {
     text-transform: uppercase;
-    color: #ccc;
+    color: #aaa;
 }
 
 .nav-sidebar > li > a:hover {
@@ -604,10 +605,6 @@ a, a:visited, a:hover {
     opacity: 100% !important;
 }
 
-.book-approve-card {
-    border-radius: 10px;
-}
-
 .book-approve-img {
     border-radius: 5px;
     width: 100%;
@@ -648,8 +645,28 @@ a, a:visited, a:hover {
     margin: 20px 15px;
 }
 
-.progress-bar {
+.progress-bar.blue {
     background-color: #17a2b8;
+}
+
+.progress-bar.yellow {
+    background-color: #ffc107;
+}
+
+.progress-bar.red {
+    background-color: #dc3545;
+}
+
+.renew-outer {
+    padding: 0;
+    margin: -8px 0 0 0;
+}
+
+.renew-btn {
+    font-size: 20px;
+    color: #fff !important;
+    padding: 0;
+    margin: 0;
 }
 
 .class-division {
@@ -762,7 +779,6 @@ a, a:visited, a:hover {
 }
 
 .current-book {
-    padding: 10px;
     height: 100%;
     align-items: center;
     display: inline-grid;
@@ -783,6 +799,22 @@ a, a:visited, a:hover {
 .dashboard-content .card {
     margin: 15px 0px;
     max-height: 550px;
+}
+
+.dashboard-content .card-header {
+    padding: 10px !important;
+}
+
+.dashboard-content .card-header h6 {
+    margin-bottom: 0 !important;
+}
+
+.dashboard-content .card-body {
+    background-color: #f5f7fa;
+}
+
+.dashboard-content .book-approve-card-inner {
+    background-color: #fff;
 }
 
 .notification-body {
@@ -861,6 +893,7 @@ a, a:visited, a:hover {
 
 .user-accordion {
     padding: 10px;
+    background-color: #fff;
 }
 
 @media (min-width: 992px) {

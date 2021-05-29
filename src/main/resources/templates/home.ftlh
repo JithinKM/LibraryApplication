@@ -29,22 +29,22 @@
                         <div class="book-details-inner d-flex flex-column">
                            <h6 class="title text-center book-filter bookName"><a>${bookDetail.name}</a></h6>
                            <div class="col-12 book-contents position-absolute shadow arrow-top">
-                              <div class="row text-center">
+                              <div class="row text-left">
                                  <div class="col-12">
                                     <p class="book-filter"><i class="bi bi-pencil-square"></i>${bookDetail.author.name}</p>
                                  </div>
                               </div>
-                              <div class="row text-center">
+                              <div class="row text-left">
                                  <div class="col-12">
                                     <p><i class="bi bi-spellcheck"></i>${bookDetail.language}</p>
                                  </div>
                               </div>
-                              <div class="row text-center">
+                              <div class="row text-left">
                                  <div class="col-12">
                                     <p><i class="bi bi-journals"></i>${bookDetail.category}</p>
                                  </div>
                               </div>
-                              <div class="row text-center">
+                              <div class="row text-left">
                                  <div class="col-12">
                                     <p><i class="bi bi-stack"></i>${bookDetail.count} <#if bookDetail.count == 1>copy <#else> copies </#if>available</p>
                                  </div>

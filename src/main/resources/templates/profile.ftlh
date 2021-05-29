@@ -214,20 +214,25 @@
                                 >
                             </div>
                             <div class="col-6 col-md-8 ${currentbook.status?lower_case}-book-outer shadow-lg">
-                                <div class="current-book">
+                                <div class="current-book text-left">
                                     <h6 class="book-name">${currentbook.book.bookDetails.name}</h6>
-                                    <hr class="user-field mt-2">
                                     <h6>Book Id: ${currentbook.book.id}</h6>
                                     <h6>Rack: ${currentbook.book.rack}</h6>
                                     <h6>Status: ${currentbook.statusText}</h6>
                                     <#if currentbook.dueDate??>
-                                    	<h6>Due Date</h6>
-	                                    <div class="progress">
-	                                        <div class="progress-bar" style="width: 70%"></div>
+                                    	<h6>Due Date: ${currentbook.dueDate?date}</h6>
+                                    	<div class="row">
+                                    	    <div class="col-10">
+                                                <div class="progress">
+                                                    <input type="hidden" class="allotted-date" value="${currentbook.allotedDate?date}">
+                                                    <input type="hidden" class="due-date" value="${currentbook.dueDate?date}">
+                                                    <div class="progress-bar"></div>
+                                                </div>
+                                            </div>
+                                    	    <div class="col-2 renew-outer d-none">
+                                                <a class="btn renew-btn" title="Renew this book"><i class="bi bi-arrow-repeat"></i></a>
+                                            </div>
 	                                    </div>
-	                                    <span class="progress-description">
-	                                        ${currentbook.dueDate?date}
-	                                    </span>
                                     </#if>
                                 </div>
                             </div>
