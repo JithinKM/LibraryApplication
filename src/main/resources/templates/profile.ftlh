@@ -217,7 +217,9 @@
                                 <div class="current-book">
                                     <h6 class="book-name">${currentbook.book.bookDetails.name}</h6>
                                     <hr class="user-field mt-2">
-                                    <h6>${currentbook.statusText}</h6>
+                                    <h6>Book Id: ${currentbook.book.id}</h6>
+                                    <h6>Rack: ${currentbook.book.rack}</h6>
+                                    <h6>Status: ${currentbook.statusText}</h6>
                                     <#if currentbook.dueDate??>
                                     	<h6>Due Date</h6>
 	                                    <div class="progress">

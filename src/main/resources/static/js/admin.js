@@ -1,6 +1,4 @@
 function homePageReady() {
-    filterBooks();
-
     $('.book-contents').width($('.bookName').width());
     $('.book-contents').fadeOut();
     $('.bookName').click(function(event) {
@@ -15,6 +13,11 @@ function homePageReady() {
         var bookName = $(this).siblings('.bookName').val();
         $('#bookId').val(bookId);
         $('#bookName').text(bookName);
+    });
+
+    $('#preBook').click(function() {
+        var bookId = $(this).siblings('#bookId').val();
+        window.location.href = '/book/block/' + bookId;
     });
 
     $('.page-item').click(function(event) {
@@ -53,24 +56,6 @@ function homePageReady() {
       $(".search-form").submit();
     });
 
-}
-
-function filterBooks() {
-    // How many books to display at a time
-    var n = 60;
-
-    var total = $('.book-entries').length;
-    var active = $('.page-item.active').find('.page-link').text();
-    var end = (active * n);
-    var start = end - n;
-
-//    $('.icon-boxes .book-entries').each(function(index) {
-//        if (index >= start && index < end) {
-//            $(this).removeClass('hide-element');
-//        } else {
-//            $(this).addClass('hide-element');
-//        }
-//    });
 }
 
 function profilePageReady() {
@@ -309,20 +294,38 @@ function adminDashboardReady() {
     $("#dashboard").addClass("active");
 
     $('.bookApproveLink').click(function() {
-        $('#bookUserId').val($(this).siblings('.bookApproveId').val());
+        var bookApproveId = $(this).siblings('.bookApproveId').val();
+        $('#bookUserId').val(bookApproveId);
         $('#bookName').text($(this).siblings('.bookName').val());
         $('#userName').val($(this).siblings('.userName').val());
         $('#actualBookId').val($(this).siblings('.bookId').val());
+
+        var status = $(this).siblings('.bookId').val();
+        var approveUrl = "/approve/bookuser/" + bookApproveId;
+        if (status.includes("RENEW")) {
+            approveUrl = "/renew/" + approveUrl;
+        }
+        $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
+
         var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
         $('#bookCover').attr("src", imgSrc);
     });
     $("#bookId").change(checkBookId);
 
     $('.bookDeclineLink').click(function() {
-        $('#bookUserIdDecline').val($(this).siblings('.bookApproveId').val());
+        var bookApproveId = $(this).siblings('.bookApproveId').val();
+        $('#bookUserIdDecline').val(bookApproveId);
         $('#bookNameDecline').text($(this).siblings('.bookName').val());
         $('#userNameDecline').val($(this).siblings('.userName').val());
         $('#bookIdDecline').val($(this).siblings('.bookId').val());
+
+        var status = $(this).siblings('.bookId').val();
+        var declineUrl = "/decline/bookuser/" + bookApproveId;
+        if (status.includes("RENEW")) {
+            declineUrl = "/renew/" + declineUrl;
+        }
+        $("#bookDeclineForm").attr('action', '/admin' + declineUrl);
+
     });
 }
 

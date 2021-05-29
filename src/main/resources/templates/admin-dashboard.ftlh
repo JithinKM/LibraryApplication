@@ -15,34 +15,28 @@
                         <div class="row dashboard-content">
                            <div class="col-xl-8 col-lg-7">
                               <div class="card">
-                                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="font-weight-bold main-title">Book Lending Requests</h5>
+                                 <div class="card-header flex-row align-items-center justify-content-between">
+                                    <h6 class="font-weight-bold">Book Lending Requests</h6>
                                  </div>
                                  <div class="card-body overflow-auto">
                                     <div class="row">
                                        <#if bookreq??>
                                        <#list bookreq as bookUser>
-                                       <div class="col-6">
-                                          <div class="card bg-light">
-                                             <div class="card-header">
-                                                <h6 class="card-title">${bookUser.book.bookDetails.name}</h6>
-                                                <div class="row">
-                                                   <div class="col-6">
-                                                      <p class="card-title">Book Id: ${bookUser.book.id}</p>
-                                                   </div>
-                                                   <div class="col-6">
-                                                      <p class="card-title">Rack: ${bookUser.book.rack}</p>
-                                                   </div>
-                                                </div>
-                                             </div>
+                                       <div class="col-4">
+                                          <div class="card bg-light book-approve-card shadow">
                                              <div class="card-body">
-                                                <input type="hidden" class="bookApproveId" value="${bookUser.id}">
+                                                <h6 class="card-title">${bookUser.book.bookDetails.name}</h6>
+                                                <p class="card-text">Book Id: ${bookUser.book.id}</p>
+                                                <p class="card-text">Rack: ${bookUser.book.rack}</p>
+                                                <p class="card-text"><b>${bookUser.user.username}</b></p>
+                                                <input type="hidden" class="bookApproveId" value="${bookUser.id?string.computer}">
                                                 <input type="hidden" class="bookName" value="${bookUser.book.bookDetails.name}">
                                                 <input type="hidden" class="userName" value="${bookUser.user.username}">
                                                 <input type="hidden" class="bookId" value="${bookUser.book.id}">
                                                 <input type="hidden" class="bookCover" value="${bookUser.book.bookDetails.isbn}">
-                                                <p class="card-text">${bookUser.user.username} has requested this book.</p>
-                                                <a class="card-link bookApproveLink" data-toggle="modal" data-target="#bookApproveModal">Approve</a>
+                                                <input type="hidden" class="status" value="${bookUser.status}">
+                                                <a class="card-link bookApproveLink" data-toggle="modal"
+                                                data-target="#bookApproveModal"><#if bookUser.status == "RENEW">Renew<#else>Assign</#if></a>
                                                 <a class="card-link bookDeclineLink text-danger" data-toggle="modal" data-target="#bookDeclineModal">Decline</a>
                                              </div>
                                           </div>
@@ -55,8 +49,8 @@
                            </div>
                            <div class="col-xl-4 col-lg-5">
                               <div class="card mb-4">
-                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="font-weight-bold main-title">New User Requests</h5>
+                                 <div class="card-header py-3 flex-row align-items-center justify-content-between">
+                                    <h6 class="font-weight-bold">New User Requests</h6>
                                  </div>
                                  <div class="card-body overflow-auto">
                                     <#if userreq??>
@@ -86,18 +80,44 @@
                                                 <div class="col-12">
                                                    <div class="row">
                                                       <div class="col-6">
-                                                         <h6 class="text-right">Parent Name:</h6>
+                                                         <h6 class="text-right">Name:</h6>
                                                       </div>
                                                       <div class="col-6 text-left">
-                                                         ${newuser.userdetail.parentName}
+                                                         ${newuser.userdetail.fullName}
                                                       </div>
                                                    </div>
+                                                   <div class="row">
+                                                      <div class="col-6">
+                                                         <h6 class="text-right">Role:</h6>
+                                                      </div>
+                                                      <div class="col-6 text-left">
+                                                         ${newuser.type}
+                                                      </div>
+                                                   </div>
+                                                   <#if newuser.type?lower_case == 'student'>
+                                                   <div class="row">
+                                                      <div class="col-6">
+                                                         <h6 class="text-right">Class:</h6>
+                                                      </div>
+                                                      <div class="col-6 text-left">
+                                                         ${newuser.userdetail.standard} - ${newuser.userdetail.division}
+                                                      </div>
+                                                   </div>
+                                                  </#if>
                                                    <div class="row">
                                                       <div class="col-6">
                                                          <h6 class="text-right">Phone:</h6>
                                                       </div>
                                                       <div class="col-6 text-left">
                                                          ${newuser.userdetail.phone}
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-6">
+                                                         <h6 class="text-right">Parent Name:</h6>
+                                                      </div>
+                                                      <div class="col-6 text-left">
+                                                         ${newuser.userdetail.parentName}
                                                       </div>
                                                    </div>
                                                 </div>
@@ -114,7 +134,7 @@
                         <div class="col-12 mb-4">
                            <div class="card mb-4">
                               <div class="card-header py-3">
-                                 <h5 class="font-weight-bold main-title">Recently Assigned Books</h5>
+                                 <h6 class="font-weight-bold">Recently Assigned Books</h6>
                               </div>
                               <div class="card-body">
                                  <table class="table table-hover" id="recentBooks">
@@ -173,7 +193,7 @@
                   </div>
                   <div class="modal-body">
                      <h5 class="text-center"><span id="bookName" class="text-bold"></span></h5>
-                     <form role="form" id="bookApprovalForm" action="/book/request/approve" method="POST">
+                     <form role="form" id="bookApprovalForm" method="GET">
                         <div class="row">
                            <div class="col-5">
                               <img id="bookCover" class="book-cover-img" alt="Book cover">
@@ -206,7 +226,7 @@
                            <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2"></textarea>
                         </div>
                         <input type="hidden" id="bookUserId" name="bookUserId">
-                        <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Assign"/>
+                        <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Approve"/>
                      </form>
                   </div>
                </div>
@@ -222,7 +242,7 @@
                   </div>
                   <div class="modal-body">
                      <h5 class="text-center"><span id="bookNameDecline" class="text-bold"></span></h5>
-                     <form role="form" id="bookDeclineForm" action="/book/request/decline" method="POST">
+                     <form role="form" id="bookDeclineForm" method="GET">
                         <div class="row">
                            <div class="col-5">
                               <div class="form-group">
@@ -240,7 +260,7 @@
                         </div>
                         <div class="form-group">
                            <label for="comment">Comment</label>
-                           <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2"></textarea>
+                           <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2" required></textarea>
                         </div>
                         <input type="hidden" id="bookUserIdDecline" name="bookUserId">
                         <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Decline"/>

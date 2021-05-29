@@ -455,11 +455,16 @@ a, a:visited, a:hover {
 }
 
 .sidebar {
-    background-color: #17a2b8;
+    background-color: #232F3E;
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     border-right: 1px solid #eee;
+}
+
+.card-header {
+    background-color: #232F3E !important;
+    color: #ddd !important;
 }
 
 .nav-sidebar {
@@ -595,9 +600,17 @@ a, a:visited, a:hover {
   border-bottom: 15px solid #17a2b8;
 }
 
-.book-now {
-    margin-top: 10px;
-    margin-bottom: 5px;
+.count-btn {
+    opacity: 100% !important;
+}
+
+.book-approve-card {
+    border-radius: 10px;
+}
+
+.book-approve-img {
+    border-radius: 5px;
+    width: 100%;
 }
 
 .page-item.active .page-link {

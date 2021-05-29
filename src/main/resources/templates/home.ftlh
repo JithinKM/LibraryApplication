@@ -50,21 +50,24 @@
                                  </div>
                               </div>
                            </div>
-                           <#if bookDetail.count gt 1>
-                           <div class="badge badge-success position-absolute book-count">${bookDetail.count}</div>
-                           <#elseif bookDetail.count == 1>
-                           <div class="badge badge-warning position-absolute book-count">${bookDetail.count}</div>
-                           <#else>
-                           <div class="badge badge-secondary position-absolute book-count">${bookDetail.count}</div>
-                           </#if>
                            <div class="mt-auto">
-                              <#if bookDetail.count == 0>
-                              <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
-                              <#else>
-                              <input type="hidden" class="bookId" value="${bookDetail.id}">
-                              <input type="hidden" class="bookName" value="${bookDetail.name}">
-                              <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
-                              </#if>
+                               <div class="btn-group" role="group">
+                                  <#if bookDetail.count gt 1>
+                                  <button type="button" class="btn btn-sm btn-success disabled count-btn">${bookDetail
+                                  .count}</button>
+                                  <#elseif bookDetail.count == 1>
+                                  <button type="button" class="btn btn-sm btn-warning disabled count-btn">${bookDetail.count}</button>
+                                  <#else>
+                                  <button type="button" class="btn btn-sm btn-secondary disabled count-btn">${bookDetail.count}</button>
+                                  </#if>
+                                  <#if bookDetail.count == 0>
+                                  <button type="button" class="btn btn-secondary btn-sm book-now" disabled>BOOK NOW</button>
+                                  <#else>
+                                  <input type="hidden" class="bookId" value="${bookDetail.id?string.computer}">
+                                  <input type="hidden" class="bookName" value="${bookDetail.name}">
+                                  <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
+                                  </#if>
+                               </div>
                            </div>
                         </div>
                      </div>
@@ -82,7 +85,7 @@
       </div>
       </main>
       <div class="modal fade" id="prebookModal" tabindex="-1" role="dialog" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close prebook-close" data-dismiss="modal" aria-label="Close">
@@ -90,7 +93,7 @@
                   </button>
                </div>
                <div class="modal-body">
-                  <h5 class="text-center">Do you want to block <span id="bookName" class="text-bold"></span>?</h5>
+                  <h5>Do you want to block <span id="bookName" class="text-bold"></span>?</h5>
                   <p>Blocked books can be borrowed with in 24hrs. After that it will be cancelled.</p>
                   <input type="hidden" id="bookId" name="id">
                   <a class="btn btn-sm btn-primary float-right" id="preBook">Yes</a>

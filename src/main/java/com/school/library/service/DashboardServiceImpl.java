@@ -5,7 +5,9 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.school.library.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,11 @@ public class DashboardServiceImpl implements DashboardService {
 	}
 
 	@Override
-	public List<UserEntity> getAllRegisteredUsers() {
-		return userRepository.findByStatus(UserStatusEnum.PENDING.getStatus());
+	public List<User> getAllRegisteredUsers() {
+
+		return userRepository.findByStatus(UserStatusEnum.PENDING.getStatus())
+				.stream().map(User::new)
+				.collect(Collectors.toList());
 	}
 
 	@Override
