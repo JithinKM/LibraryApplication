@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public BookUserEntity assignBookToUser(Long bookDetailsId, String username) {
+	public BookUserEntity blockBook(Long bookDetailsId, String username) {
 		if(!bookDetailsRepository.findById(bookDetailsId).isPresent()) {
 			System.out.println("No Such Book Found");
 			throw new BadRequestExpection("No Such Book Found");

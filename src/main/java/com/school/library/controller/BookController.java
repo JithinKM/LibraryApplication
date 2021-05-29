@@ -72,7 +72,7 @@ public class BookController {
 			redirectAttrs.addFlashAttribute("message", new Message("danger","Limit Reached", "Maximum number of books are requested/alloted"));
 			return "redirect:/";
 		}
-		BookUserEntity bookUserEntity = userService.assignBookToUser(bookDetailsId, username);
+		BookUserEntity bookUserEntity = userService.blockBook(bookDetailsId, username);
 		
 		String details = "Book with id: " + bookUserEntity.getBook().getId() + " Blocked Successfully.";
 		redirectAttrs.addFlashAttribute("message", new Message("success","Book Blocked", details));

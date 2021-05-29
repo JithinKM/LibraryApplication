@@ -53,36 +53,37 @@ public class BookUserEntity {
 		return getUpdatedUser(BookUserStatusEnum.REQUESTED, true);
 	}
 	
-	public BookUserEntity declined(String comments) {
-		this.comments = comments;
-		return getUpdatedUser(BookUserStatusEnum.DECLINED, false);
-	}
-
-	public BookUserEntity allotBook(Date newDueDate) {
+	public BookUserEntity assignBook(Date newDueDate) {
 		allotedDate = new Date();
 		dueDate = newDueDate;
 		return getUpdatedUser(BookUserStatusEnum.ALLOTED, false);
 	}
 	
-	public BookUserEntity renewRequest() {
+	public BookUserEntity declineBook(String comments) {
+		this.comments = comments;
+		return getUpdatedUser(BookUserStatusEnum.DECLINED, false);
+	}
+	
+	public BookUserEntity renewBook() {
 		++renewalCount;
 		return getUpdatedUser(BookUserStatusEnum.RENEWREQUESTED, true);
 	}
 	
-	public BookUserEntity renewDeclined(String comments) {
+	public BookUserEntity renewApproveBook(Date newDueDate) {
+		dueDate = newDueDate;
+		return getUpdatedUser(BookUserStatusEnum.ALLOTED, false);
+	}
+	
+	public BookUserEntity renewDeclineBook(String comments) {
 		dueDate = null;
 		this.comments = comments;
 		return getUpdatedUser(BookUserStatusEnum.RENEWDECLINED, false);
 	}
 	
-	public BookUserEntity renewApprove(Date newDueDate) {
-		dueDate = newDueDate;
-		return getUpdatedUser(BookUserStatusEnum.ALLOTED, false);
-	}
-	
-	public BookUserEntity returnBook() {
+	public BookUserEntity returnBook(String comments) {
 		returnedDate = new Date();
 		dueDate = null;
+		this.comments = comments;
 		return getUpdatedUser(BookUserStatusEnum.RETURNED, false);
 	}
 	
