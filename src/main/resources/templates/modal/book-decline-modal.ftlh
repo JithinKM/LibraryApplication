@@ -29,7 +29,7 @@
                    <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2" required></textarea>
                 </div>
                 <input type="hidden" id="bookUserIdDecline" name="bookUserId">
-                <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Decline"/>
+                <input type="submit" class="btn btn-sm btn-primary btn-block" id="assignBook" value="Decline"/>
              </form>
           </div>
        </div>

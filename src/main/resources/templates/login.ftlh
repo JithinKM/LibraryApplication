@@ -214,7 +214,7 @@
             && firstname !== "" && lastname != "" && $('#standard').val() != 0) {
             userName = firstname + lastname + '_b' + batch;
         }
-        $('#username').val(userName);
+        $('#username').val(userName.replace(/\s/g, ""));
     };
 
     $(".form-radio input[name='type']").click(buildUsername);

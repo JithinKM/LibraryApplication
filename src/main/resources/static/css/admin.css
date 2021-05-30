@@ -8,13 +8,13 @@ body {
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .image-back {
-	 background: url('../img/school.jpg');
-	 background-size: cover;
-  font-family: 'Lato';
+    background: url('../img/school.jpg');
+    background-size: cover;
+    font-family: 'Lato';
 }
 
 main {
@@ -815,9 +815,17 @@ a, a:visited, a:hover {
   transform: scale(1.02);
 }
 
+.dashboard-content {
+    margin: 15px 0px;
+}
+
 .dashboard-content .card {
     margin: 15px 0px;
-    max-height: 550px;
+    border: none;
+}
+
+.fixed-height-body {
+    height: 300px;
 }
 
 .dashboard-content .card-header {
@@ -829,6 +837,23 @@ a, a:visited, a:hover {
 }
 
 .dashboard-content .card-body {
+    background-color: #f5f7fa;
+}
+
+.dashboard-content .card-footer {
+    background-color: #c6d2e1;
+}
+
+#recentBooks, #recentUsers {
+    cursor: pointer;
+    padding: 10px 0 0 0;
+}
+
+#recentBooksTable, #recentUsersTable {
+    margin: 0;
+}
+
+#recentBooksCollapse, #recentUsersCollapse {
     background-color: #f5f7fa;
 }
 
@@ -911,8 +936,19 @@ a, a:visited, a:hover {
     margin-top: 20px;
 }
 
+.book-cover-div, .profile-pic-div {
+    background-size: cover;
+    border-radius: 10px 10px 0 0;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+}
+
 .form-middle {
+    align-items: center;
+    display: inline-grid;
     margin-top: 8px;
+    font-size: 30px;
 }
 
 .book-cover-img, .user-profile-img {

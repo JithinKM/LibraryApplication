@@ -18,7 +18,7 @@
                    <input type="text" class="form-control" id="editPenName" name="penName" placeholder="Enter author pen-name" autocomplete="off">
                 </div>
                 <input type="hidden" class="form-control" id="editId" name="id">
-                <input type="submit" class="btn btn-primary float-right" id="editAuthor" value="Save"/>
+                <input type="submit" class="btn btn-primary btn-block" id="editAuthor" value="Save"/>
              </form>
           </div>
        </div>

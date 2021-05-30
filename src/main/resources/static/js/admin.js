@@ -343,7 +343,8 @@ function adminDashboardReady() {
         $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
 
         var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
-        $('#bookCover').attr("src", imgSrc);
+        $('.book-cover-div').css("background-image", 'url(' + imgSrc+ ')');
+        $('.profile-pic-div').css("background-image", "url(../img/profile.png)");
     });
     $("#bookId").change(checkBookId);
 

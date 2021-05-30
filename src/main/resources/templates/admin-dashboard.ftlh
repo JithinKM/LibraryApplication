@@ -11,12 +11,27 @@
                   <div id="content">
                      <div class="container-fluid">
                         <div class="row dashboard-content">
+                            <div class="col-6 mb-4">
+                               <div class="card mb-4">
+                                  <div class="card-header">
+                                     <h6 class="font-weight-bold">Return Book</h6>
+                                  </div>
+                                  <div class="card-body d-flex justify-content-center">
+                                    <form role="form" action="/admin/dashboard" method="GET">
+                                        <div class="btn-group mb-3">
+                                          <input type="text" class="form-control" name="bookId" placeholder="Enter book id" aria-label="Book Id" autocomplete="off" required>
+                                          <button class="btn btn-primary" type="submit" id="returnSearch"><i class="bi bi-search"></i></button>
+                                        </div>
+                                    </form>
+                                  </div>
+                               </div>
+                            </div>
                            <div class="col-xl-8 col-lg-7">
                               <div class="card">
                                  <div class="card-header flex-row align-items-center justify-content-between">
-                                    <h6 class="font-weight-bold">Book Lending Requests</h6>
+                                    <h6 class="font-weight-bold">Pending Book Requests</h6>
                                  </div>
-                                 <div class="card-body overflow-auto">
+                                 <div class="card-body overflow-auto fixed-height-body">
                                     <div class="row">
                                        <#if bookreq??>
                                        <#list bookreq as bookUser>
@@ -51,14 +66,57 @@
                                        </#if>
                                     </div>
                                  </div>
+                                  <div class="card-footer" id="recentBooks">
+                                    <h6 class="font-weight-bold" data-toggle="collapse" data-target="#recentBooksCollapse" aria-expanded="true" aria-controls="recentBooksCollapse">History</h6>
+                                    <div id="recentBooksCollapse" class="accordion-collapse collapse" data-parent="#recentBooks">
+                                     <table class="table table-hover" id="recentBooksTable">
+                                        <thead>
+                                           <tr>
+                                              <th scope="col">Book Id</th>
+                                              <th scope="col">Book Name</th>
+                                              <th scope="col">Student</th>
+                                              <th scope="col">Class</th>
+                                              <th scope="col">Assigned Date</th>
+                                              <th scope="col">Due Date</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                              <th scope="row">1</th>
+                                              <td>Randamoozham</td>
+                                              <td>John</td>
+                                              <td>5-B</td>
+                                              <td>21-May-2021</td>
+                                              <td>4-Jun-2021</td>
+                                           </tr>
+                                           <tr>
+                                              <th scope="row">2</th>
+                                              <td>Ikigai</td>
+                                              <td>Mark</td>
+                                              <td>9-K</td>
+                                              <td>15-May-2021</td>
+                                              <td>29-May-2021</td>
+                                           </tr>
+                                           <tr>
+                                              <th scope="row">2</th>
+                                              <td>Sapiens</td>
+                                              <td>Alice</td>
+                                              <td>7-C</td>
+                                              <td>2-Feb-2021</td>
+                                              <td>16-Feb-2021</td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                    </div>
+                                  </div>
                               </div>
                            </div>
                            <div class="col-xl-4 col-lg-5">
                               <div class="card mb-4">
                                  <div class="card-header flex-row align-items-center justify-content-between">
-                                    <h6 class="font-weight-bold">New User Requests</h6>
+                                    <h6 class="font-weight-bold">Pending User Requests</h6>
                                  </div>
-                                 <div class="card-body overflow-auto">
+                                 <div class="card-body overflow-auto fixed-height-body">
                                     <#if userreq??>
                                     <#list userreq as newuser>
                                     <div class="accordion" id="accordion${newuser.username}">
@@ -135,55 +193,34 @@
                                     </#list>
                                     </#if>
                                  </div>
-                              </div>
-                           </div>
-                            <div class="col-12 mb-4">
-                               <div class="card mb-4">
-                                  <div class="card-header">
-                                     <h6 class="font-weight-bold">Recently Assigned Books</h6>
-                                  </div>
-                                  <div class="card-body">
-                                     <table class="table table-hover" id="recentBooks">
+                                  <div class="card-footer" id="recentUsers">
+                                    <h6 class="font-weight-bold" data-toggle="collapse" data-target="#recentUsersCollapse" aria-expanded="true" aria-controls="recentUsersCollapse">History</h6>
+                                    <div id="recentUsersCollapse" class="accordion-collapse collapse" data-parent="#recentUsers">
+                                     <table class="table table-hover" id="recentUsersTable">
                                         <thead>
                                            <tr>
-                                              <th scope="col">Book Id</th>
-                                              <th scope="col">Book Name</th>
-                                              <th scope="col">Student</th>
-                                              <th scope="col">Class</th>
-                                              <th scope="col">Assigned Date</th>
-                                              <th scope="col">Due Date</th>
+                                              <th scope="col">Action</th>
+                                              <th scope="col">Username</th>
+                                              <th scope="col">Comment</th>
                                            </tr>
                                         </thead>
                                         <tbody>
                                            <tr>
-                                              <th scope="row">1</th>
-                                              <td>Randamoozham</td>
-                                              <td>John</td>
-                                              <td>5-B</td>
-                                              <td>21-May-2021</td>
-                                              <td>4-Jun-2021</td>
+                                              <th scope="row"><i class="bi bi-check"></i></th>
+                                              <td>asdssc</td>
+                                              <td>ascsac asdasdsa</td>
                                            </tr>
                                            <tr>
-                                              <th scope="row">2</th>
-                                              <td>Ikigai</td>
-                                              <td>Mark</td>
-                                              <td>9-K</td>
-                                              <td>15-May-2021</td>
-                                              <td>29-May-2021</td>
-                                           </tr>
-                                           <tr>
-                                              <th scope="row">2</th>
-                                              <td>Sapiens</td>
-                                              <td>Alice</td>
-                                              <td>7-C</td>
-                                              <td>2-Feb-2021</td>
-                                              <td>16-Feb-2021</td>
+                                              <th scope="row"><i class="bi bi-x"></i></th>
+                                              <td>qasdsadsad</td>
+                                              <td>sfsdc dfasfc</td>
                                            </tr>
                                         </tbody>
                                      </table>
+                                    </div>
                                   </div>
-                               </div>
-                            </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
