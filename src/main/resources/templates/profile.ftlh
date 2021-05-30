@@ -215,21 +215,21 @@
                             </div>
                             <div class="col-6 ${currentbook.status?lower_case}-book-outer shadow-lg">
                                 <div class="current-book text-left">
-                                    <h6 class="book-name">${currentbook.book.bookDetails.name}</h6>
-                                    <h6>Book Id: ${currentbook.book.id}</h6>
-                                    <h6>Rack: ${currentbook.book.rack}</h6>
-                                    <h6>Status: ${currentbook.statusText}</h6>
+                                    <h6 class="title text-center bookName">${currentbook.book.bookDetails.name}</h6>
+                                    <h7>Book Id: ${currentbook.book.id}</h7>
+                                    <h7>Rack: ${currentbook.book.rack}</h7>
+                                    <h7>Status: ${currentbook.statusText}</h7>
                                     <#if currentbook.dueDate?? && currentbook.status == "ALLOTED">
-                                    	<h6>Due Date: ${currentbook.dueDate?date}</h6>
+                                    	<h7>Due on: ${currentbook.dueDate?date}</h7>
                                     	<div class="row">
-                                    	    <div class="col-10">
+                                    	    <div class="col-9">
                                                 <div class="progress" style="height: 4px;">
                                                     <input type="hidden" class="allotted-date" value="${currentbook.allotedDate?date}">
                                                     <input type="hidden" class="due-date" value="${currentbook.dueDate?date}">
                                                     <div class="progress-bar"></div>
                                                 </div>
                                             </div>
-                                    	    <div class="col-2 renew-outer d-none">
+                                    	    <div class="col-3 renew-outer d-none">
                                                 <input type="hidden" class="bookUserId" value="${currentbook.id?string.computer}">
                                                 <a class="btn renew-btn" title="Renew this book" data-toggle="modal" data-target="#renewModal"><i class="bi bi-arrow-repeat"></i></a>
                                             </div>

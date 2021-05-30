@@ -20,7 +20,7 @@
                                     <div class="row">
                                        <#if bookreq??>
                                        <#list bookreq as bookUser>
-                                       <div class="col-md-6 col-4">
+                                       <div class="col-md-6 col-lg-4">
                                           <div class="card book-approve-card shadow">
                                              <div class="card-body book-approve-card-inner">
                                                 <h6 class="card-title">${bookUser.book.bookDetails.name}</h6>

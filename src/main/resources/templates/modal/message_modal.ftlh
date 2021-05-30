@@ -1,5 +1,5 @@
 <#if message??>
-<button class="btn" id="messageModalBtn" data-toggle="modal" data-target="#messageModal"></button>
+<button class="btn d-none" id="messageModalBtn" data-toggle="modal" data-target="#messageModal"></button>
 <div class="modal fade text-danger" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content bg-${message.style} text-white">
