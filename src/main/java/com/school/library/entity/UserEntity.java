@@ -25,7 +25,7 @@ public class UserEntity {
 	private Date updatedTimestamp;
 	private String status; //enabled/registered/active/blocked...
 	
-	@ManyToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.MERGE} , fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private Set<RoleEntity> roles;
 	
@@ -37,6 +37,8 @@ public class UserEntity {
 	@JsonManagedReference
 	@JsonBackReference
 	private List<BookEntity> books;
+	
+	private String comment;
 	
 	public UserEntity() {
 	}
@@ -128,6 +130,14 @@ public class UserEntity {
 	
 	public boolean isActive() {
 		return this.status.equalsIgnoreCase("ACTIVE");
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 }

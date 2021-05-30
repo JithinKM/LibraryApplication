@@ -22,4 +22,8 @@ public interface UserService {
 	List<BookUserEntity> getBookHistory(String username);
 
 	BookUserEntity blockBook(Long bookId, String username);
+
+	UserEntity approveUserRequest(String userId, String comment);
+
+	UserEntity declineUserRequest(String userId, String comment);
 }

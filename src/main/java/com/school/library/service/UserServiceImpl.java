@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import com.school.library.model.CreateUser;
 import com.school.library.repository.BookDetailsRepository;
 import com.school.library.repository.BookRepository;
 import com.school.library.repository.BookUserRepository;
+import com.school.library.repository.RolesRepository;
 import com.school.library.repository.UserDetailsRepository;
 import com.school.library.repository.UserRepository;
 
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private RolesRepository rolesRepository;
     
     @Autowired
     private UserDetailsRepository userDetailsRepository;
@@ -70,6 +75,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		String userId = user.getFirstname().trim().toLowerCase() + user.getLastname().trim().toLowerCase();
+		userId = userId.replaceAll("\\s", "");
 		if("STUDENT".equalsIgnoreCase(user.getType().trim().toUpperCase())) {
 			int batch = Calendar.getInstance().get(Calendar.YEAR) + (10-user.getStandard());
 			userId += "_b"+batch;
@@ -84,12 +90,39 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public UserEntity approveUserRequest(String userId, String comment) {
+		Optional<UserEntity> userObject = userRepository.findById(userId);
+		if(!userObject.isPresent()) {
+			System.out.println("No Such User Found");
+			throw new BadRequestExpection("No Such User Found");
+		}
+		UserEntity userEntity = userObject.get();
+		userEntity.setStatus(UserStatusEnum.ACTIVE.getStatus());
+		userEntity.setComment(comment);
+		return userRepository.save(userEntity);
+	}
+	
+	@Override
+	public UserEntity declineUserRequest(String userId, String comment) {
+		Optional<UserEntity> userObject = userRepository.findById(userId);
+		if(!userObject.isPresent()) {
+			System.out.println("No Such User Found");
+			throw new BadRequestExpection("No Such User Found");
+		}
+		UserEntity userEntity = userObject.get();
+		userEntity.setStatus(UserStatusEnum.DECLINED.getStatus());
+		userEntity.setComment(comment);
+		return userRepository.save(userEntity);
+	}
+	
+	@Override
 	public UserEntity updateProfile(String username, CreateUser user) {
-		if(!userRepository.findById(username).isPresent()) {
+		Optional<UserEntity> userObject = userRepository.findById(username);
+		if(!userObject.isPresent()) {
 			System.out.println("Not able to find user");
 			throw new BadRequestExpection("Not able to find user");
 		}
-		UserEntity userEntity = userRepository.findById(username).get();
+		UserEntity userEntity = userObject.get();
 		
 		if(!StringUtils.isEmpty(user.getPassword())) {
 			
@@ -125,9 +158,11 @@ public class UserServiceImpl implements UserService {
 		userEntity.setUsername(userId);
 		userEntity.setEmail(user.getEmail());
 		userEntity.setPassword(bcryptEncoder.encode(user.getPassword()));
+		
 		HashSet<RoleEntity> roles = new HashSet<>();
-		roles.add(new RoleEntity(user.getType().trim().toUpperCase()));
+		roles.add(rolesRepository.findById(user.getType().trim().toUpperCase()).get());
 		userEntity.setRoles(roles);
+		
 		userEntity.setCreatedTimestamp(new Date());
 		userEntity.setUpdatedTimestamp(new Date());
 		userEntity.setStatus(UserStatusEnum.PENDING.getStatus());
@@ -190,5 +225,5 @@ public class UserServiceImpl implements UserService {
 		
 		return bookUserEntity;
 	}
-	
+
 }

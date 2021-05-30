@@ -1,5 +1,6 @@
 package com.school.library.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.school.library.entity.BookUserEntity;
+import com.school.library.entity.UserEntity;
 import com.school.library.exception.Message;
 import com.school.library.service.DashboardService;
+import com.school.library.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,14 +25,43 @@ public class DashboardController {
 	public static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private DashboardService dashboardService;
 
 	@GetMapping("/dashboard")
-	public String dashboardPage(Model model) {
+	public String dashboardPage(@RequestParam(value="bookId",required=false) String bookId, Model model) {
+		
+		if(StringUtils.isNoneBlank(bookId)){
+			//model.addAttribute("book", dashboardService.findBookDetails(bookId.trim()));
+		}
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
 		model.addAttribute("userreq", dashboardService.getAllRegisteredUsers());
 		return "admin-dashboard";
+	}
+	
+	@GetMapping("/approve/user/{userId}")
+	public String approveUserRequest(@PathVariable("userId") String userId, @RequestParam(value="comment",required=false) String comment, 
+			RedirectAttributes redirectAttrs) {
+		UserEntity bookUserEntity = userService.approveUserRequest(userId, comment);
+		
+		String details = "User with id: " + userId + " Approved :" + comment;
+		System.out.println(details);
+		redirectAttrs.addFlashAttribute("message", new Message("success","User Approved", details));
+		return "redirect:/admin/dashboard";
+	}
+	
+	@GetMapping("/decline/user/{userId}")
+	public String declineUserRequest(@PathVariable("userId") String userId, @RequestParam(value="comment",required=false) String comment, 
+			RedirectAttributes redirectAttrs) {
+		UserEntity bookUserEntity = userService.declineUserRequest(userId, comment);
+		
+		String details = "User with id: " + userId + " Declined"+ comment; //Comment not saved now
+		System.out.println(details);
+		redirectAttrs.addFlashAttribute("message", new Message("success","User Declined", details));
+		return "redirect:/admin/dashboard";
 	}
 	
 	@GetMapping("/approve/bookuser/{bookUserId}")
