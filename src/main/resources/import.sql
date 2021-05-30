@@ -52,7 +52,7 @@ INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, st
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1233', 'ewfwe', current_timestamp, 100, 'Rack 2', 'AVAILABLE', current_timestamp, 1008, current_timestamp);
 INSERT INTO library.book (id, contributed_by, created_timestamp, price, rack, status, updated_timestamp, book_details_id, purchased_date) VALUES ('1278', 'gregtewg', current_timestamp, 200, 'Rack 2', 'AVAILABLE', current_timestamp, 1009, current_timestamp);
 
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1002', '2345', 'studentone_b2022', 'REQUESTED',true,0,current_timestamp);
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1003', '6456', 'studentone_b2022', 'ALLOTED',false,0,current_timestamp);
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1004', '1324', 'studentone_b2022', 'RENEWREQUESTED',true,0,current_timestamp);
-INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count,due_date) VALUES ('1005', '1356', 'studentone_b2022', 'RENEWDECLINED',false,0,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count, alloted_date, due_date) VALUES ('1002', '2345', 'studentone_b2022', 'REQUESTED',true,0,current_timestamp,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count, alloted_date, due_date) VALUES ('1003', '6456', 'studentone_b2022', 'ALLOTED',false,0,current_timestamp,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count, alloted_date, due_date) VALUES ('1004', '1324', 'studentone_b2022', 'RENEWREQUESTED',true,0,current_timestamp,current_timestamp);
+INSERT INTO library.book_users (id, books_id, users_username, status,action_required,renewal_count, alloted_date, due_date) VALUES ('1005', '1356', 'studentone_b2022', 'RENEWDECLINED',false,0,current_timestamp,current_timestamp);

@@ -71,10 +71,11 @@
                                                    <#if newuser.userdetail.student>${newuser.userdetail.standard} - ${newuser.userdetail.division}</#if>
                                                 </div>
                                                 <div class="col-4 float-right">
-                                                   <a class="text-success" data-toggle="modal" data-target="#userApproveModal">
+                                                   <input type="hidden" class="userId" value="${newuser.username}">
+                                                   <a class="text-success user-approve" data-toggle="modal" data-target="#userApproveModal">
                                                    <i class="bi bi-check"></i>
                                                    </a>
-                                                   <a class="text-danger" data-toggle="modal" data-target="#userDeclineModal">
+                                                   <a class="text-danger user-decline" data-toggle="modal" data-target="#userDeclineModal">
                                                    <i class="bi bi-x"></i>
                                                    </a>
                                                 </div>
@@ -188,122 +189,11 @@
                </div>
             </div>
          </div>
-         <div class="modal fade" id="bookApproveModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <h5 class="text-center"><span id="bookName" class="text-bold"></span></h5>
-                     <form role="form" id="bookApprovalForm" method="GET">
-                        <div class="row">
-                           <div class="col-5">
-                              <img id="bookCover" class="book-cover-img" alt="Book cover">
-                           </div>
-                           <div class="col-1 form-middle">
-                           </div>
-                           <div class="col-6">
-                              <img src="../img/profile.png" id="userPic" class="user-profile-img" alt="User Img">
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-5">
-                              <div class="form-group">
-                                 <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Book Id" autocomplete="off" required>
-                                 <input type="hidden" id="actualBookId">
-                                 <label id="bookIdError" class="text-danger hide-element">Please enter the correct book id!</label>
-                              </div>
-                           </div>
-                           <div class="col-1 form-middle">
-                              <i class="bi bi-arrow-right-circle-fill"></i>
-                           </div>
-                           <div class="col-6">
-                              <div class="form-group">
-                                 <input type="text" class="form-control" id="userName" name="username" disabled value="">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="comment">Comment</label>
-                           <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2"></textarea>
-                        </div>
-                        <input type="hidden" id="bookUserId" name="bookUserId">
-                        <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Approve"/>
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="modal fade" id="bookDeclineModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <h5 class="text-center"><span id="bookNameDecline" class="text-bold"></span></h5>
-                     <form role="form" id="bookDeclineForm" method="GET">
-                        <div class="row">
-                           <div class="col-5">
-                              <div class="form-group">
-                                 <input type="text" class="form-control" id="bookIdDecline" disabled>
-                              </div>
-                           </div>
-                           <div class="col-1 form-middle">
-                              <i class="bi bi-arrow-right-circle-fill"></i>
-                           </div>
-                           <div class="col-6">
-                              <div class="form-group">
-                                 <input type="text" class="form-control" id="userNameDecline" name="username" disabled>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="comment">Comment</label>
-                           <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2" required></textarea>
-                        </div>
-                        <input type="hidden" id="bookUserIdDecline" name="bookUserId">
-                        <input type="submit" class="btn btn-sm btn-primary float-right" id="assignBook" value="Decline"/>
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="modal fade" id="userApproveModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <h5 class="text-center">Do you want to approve this user?</h5>
-                     <a class="btn btn-sm btn-primary float-right text-white" id="approveUser">Yes</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="modal fade" id="userDeclineModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <h5 class="text-center">Do you want to decline this request?</h5>
-                     <a class="btn btn-sm btn-primary float-right text-white" id="declineUser">Yes</a>
-                  </div>
-               </div>
-            </div>
-         </div>
+
+         <#include "/modal/book-approve-modal.ftlh">
+         <#include "/modal/book-decline-modal.ftlh">
+         <#include "/modal/user-approve-modal.ftlh">
+         <#include "/modal/user-decline-modal.ftlh">
          <#assign pageTracker = "adminDashboard">
       </div>
    </div>

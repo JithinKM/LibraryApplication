@@ -67,46 +67,7 @@
                </div>
             </div>
          </div>
-         <div class="modal fade" id="authorEditModal" tabindex="-1" role="dialog" aria-labelledby="authorEditModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <h5 class="modal-title">Edit Author</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
-                  <div class="modal-body">
-                     <form role="form" id="authorEditForm" action="/author" method="POST">
-                        <div class="form-group">
-                           <label for="blogPostTitle">Name</label>
-                           <input type="text" class="form-control typeahead" id="editName" name="name" placeholder="Enter author name" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                           <label for="blogPostTitle">Pen Name</label>
-                           <input type="text" class="form-control" id="editPenName" name="penName" placeholder="Enter author pen-name" autocomplete="off">
-                        </div>
-                        <input type="hidden" class="form-control" id="editId" name="id">
-                        <input type="submit" class="btn btn-primary float-right" id="editAuthor" value="Save"/>
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <script id="authorListTemplate" type="text/x-jsrender">
-            <tr>
-                <td>{{:index}}</td>
-                <td class="author-filter">{{:name}}</td>
-                <td class="author-filter">{{:penName}}</td>
-                <td>
-                    <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
-                    <a class="reject" href="/author/{{:id}}/delete">Delete</a>
-                    <input type="hidden" class="authorEditId" value="{{:id}}" />
-                    <input type="hidden" class="authorEditName" value="{{:name}}" />
-                    <input type="hidden" class="authorEditPenName" value="{{:penName}}" />
-                </td>
-            </tr>
-         </script>
+         <#include "/modal/author-edit-modal.ftlh">
          <#assign pageTracker = "authorsList">
          <input type="hidden" id="pageCount" value="${pageCount}" />
       </div>

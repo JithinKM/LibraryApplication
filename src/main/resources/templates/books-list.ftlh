@@ -117,64 +117,6 @@
       <!-- Modal -->
       <#include "/modal/add-book-modal.ftlh">
       <#include "/modal/edit-book-modal.ftlh">
-      <script id="bookListTemplate" type="text/x-jsrender">
-         <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion{{:id}}" aria-controls="#table-accordion{{:id}}">
-             <td class="book-filter">{{:name}}</td>
-             <td class="book-filter">{{:author.name}}</td>
-             <td>{{:publication}}</td>
-             <td>{{:category}}</td>
-             <td>{{:language}}</td>
-             <td>{{:count}}</td>
-             <input type="hidden" class="bookDetailEditId" value="{{:id}}" />
-             <input type="hidden" class="bookEditName" value="{{:name}}" />
-             <input type="hidden" class="bookEditAuthorId" value="{{:author.id}}" />
-             <input type="hidden" class="bookEditAuthor" value="{{:author.name}}" />
-             <input type="hidden" class="bookEditAuthorPenName" value="{{:author.penName}}" />
-             <input type="hidden" class="bookEditCategory" value="{{:category}}" />
-             <input type="hidden" class="bookEditLanguage" value="{{:language}}" />
-             <input type="hidden" class="bookEditPublication" value="{{:publication}}" />
-         </tr>
-         <tr class="table-collapse table-collapse-header">
-             <td colspan="7" class="books-inner-table">
-                 <div class="book-accordion-inner collapse" id="table-accordion{{:id}}"  data-parent="#bookList">
-                     <table class="table table-info">
-                         <thead>
-                             <tr>
-                                 <th>Id</th>
-                                 <th>Contributed By</th>
-                                 <th>Price</th>
-                                 <th>Status</th>
-                                 <th>Rack</th>
-                                 <th>Purchased Date</th>
-                                 <th>Actions</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             {^{props books}}
-                             <tr>
-                                 <td>{{:>prop.id}}</td>
-                                 <td>{{:>prop.contributedBy}}</td>
-                                 <td>{{:>prop.price}}</td>
-                                 <td>{{:>prop.status}}</td>
-                                 <td>{{:>prop.rack}}</td>
-                                 <td>{{:>prop.purchasedDate}}</td>
-                                 <td>
-                                     <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
-                                     <a class="reject" href="/book/delete/{{:>prop.id}}">Delete</a>
-                                     <input type="hidden" class="bookEditId" value="{{:>prop.id}}" />
-                                     <input type="hidden" class="bookEditRack" value="{{:>prop.rack}}" />
-                                     <input type="hidden" class="bookEditContributed" value="{{:>prop.contributedBy}}" />
-                                     <input type="hidden" class="bookEditPurchased" value="{{:>prop.purchasedDate}}" />
-                                     <input type="hidden" class="bookEditPrice" value="{{:>prop.price}}" />
-                                 </td>
-                             </tr>
-                             {{/props}}
-                         </tbody>
-                     </table>
-                 </div>
-             </td>
-         </tr>
-      </script>
       <#assign pageTracker = "booksList">
       <input type="hidden" id="pageCount" value="${pageCount}" />
    </div>

@@ -69,6 +69,11 @@ function profilePageReady() {
         $('#username-heading').fadeToggle("slow");
     });
 
+    $('.renew-btn').click(function() {
+        var bookUserId = $(this).siblings('.bookUserId').val();
+        $('#renewBook').attr('href', '/book/renew/' + bookUserId);
+    });
+
     $('.progress-bar').each(function() {
         var allottedDate = $(this).siblings('.allotted-date').val();
         var dueDate = $(this).siblings('.due-date').val();
@@ -347,7 +352,16 @@ function adminDashboardReady() {
             declineUrl = "/renew/" + declineUrl;
         }
         $("#bookDeclineForm").attr('action', '/admin' + declineUrl);
+    });
 
+    $('.user-approve').click(function() {
+        var userId = $(this).siblings('.userId').val();
+        $('#userApprovalForm').attr('action', '/admin/approve/user/'+ userId);
+    });
+
+    $('.user-decline').click(function() {
+        var userId = $(this).siblings('.userId').val();
+        $('#userDeclineForm').attr('action', '/admin/decline/user/'+ userId);
     });
 }
 

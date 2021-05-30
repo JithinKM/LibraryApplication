@@ -219,18 +219,19 @@
                                     <h6>Book Id: ${currentbook.book.id}</h6>
                                     <h6>Rack: ${currentbook.book.rack}</h6>
                                     <h6>Status: ${currentbook.statusText}</h6>
-                                    <#if currentbook.dueDate??>
+                                    <#if currentbook.dueDate?? && currentbook.status == "ALLOTED">
                                     	<h6>Due Date: ${currentbook.dueDate?date}</h6>
                                     	<div class="row">
                                     	    <div class="col-10">
-                                                <div class="progress">
+                                                <div class="progress" style="height: 4px;">
                                                     <input type="hidden" class="allotted-date" value="${currentbook.allotedDate?date}">
                                                     <input type="hidden" class="due-date" value="${currentbook.dueDate?date}">
                                                     <div class="progress-bar"></div>
                                                 </div>
                                             </div>
                                     	    <div class="col-2 renew-outer d-none">
-                                                <a class="btn renew-btn" title="Renew this book"><i class="bi bi-arrow-repeat"></i></a>
+                                                <input type="hidden" class="bookUserId" value="${currentbook.id?string.computer}">
+                                                <a class="btn renew-btn" title="Renew this book" data-toggle="modal" data-target="#renewModal"><i class="bi bi-arrow-repeat"></i></a>
                                             </div>
 	                                    </div>
                                     </#if>
@@ -292,6 +293,7 @@
     </div>
 </main>
 
+<#include "/modal/book-renew-modal.ftlh">
 <#assign pageTracker = "profile">
    </div>
    </div>
