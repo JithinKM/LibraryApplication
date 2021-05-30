@@ -1,4 +1,5 @@
 <@admin_layout title="Dashboard">
+<h5 class="admin-mobile-warning d-none">Please use a desktop device to view this site</h5>
 <section class="admin-page">
    <div class="container-fluid main-container">
       <div class="row main-row">
@@ -19,7 +20,7 @@
                                     <div class="row">
                                        <#if bookreq??>
                                        <#list bookreq as bookUser>
-                                       <div class="col-4">
+                                       <div class="col-md-6 col-4">
                                           <div class="card book-approve-card shadow">
                                              <div class="card-body book-approve-card-inner">
                                                 <h6 class="card-title">${bookUser.book.bookDetails.name}</h6>

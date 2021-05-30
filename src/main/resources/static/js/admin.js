@@ -1,3 +1,10 @@
+function showMobileWarning() {
+    if($(window).width() <= 760) {
+        $('.admin-mobile-warning').removeClass('d-none');
+        $('.admin-page').remove();
+    }
+}
+
 function homePageReady() {
     $('.book-contents').width($('.bookName').width());
     $('.book-contents').fadeOut();
@@ -83,6 +90,7 @@ function profilePageReady() {
         var oneDay = 1000 * 60 * 60 * 24;
         var difference = (today.getTime() - new Date(allottedDate).getTime()) / oneDay;
         var total = (new Date(dueDate).getTime() - new Date(allottedDate).getTime()) / oneDay;
+        total = total < 1 ? 1 : total;
         var percentage = (difference / total) * 100;
         $(this).css('width', percentage + '%');
 
@@ -146,6 +154,7 @@ function prepareBookEditForm() {
 
 function booksListPageReady() {
     $("#book").addClass("active");
+    showMobileWarning();
 
     $("#filer-books").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -242,6 +251,7 @@ function booksListPageReady() {
 
 function authorsListPageReady() {
     $("#author").addClass("active");
+    showMobileWarning();
 
     $("#filter-authors").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -286,12 +296,9 @@ function authorsListPageReady() {
     });
 }
 
-function authorDetailPageReady() {
-    $("#author").addClass("active");
-}
-
 function usersListPageReady() {
     $("#user").addClass("active");
+    showMobileWarning();
 
     $("#filter-users").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -319,6 +326,7 @@ function checkBookId() {
 
 function adminDashboardReady() {
     $("#dashboard").addClass("active");
+    showMobileWarning();
 
     $('.bookApproveLink').click(function() {
         var bookApproveId = $(this).siblings('.bookApproveId').val();
@@ -442,8 +450,6 @@ $(document).ready(function() {
         booksListPageReady();
     } else if (currentPage == 'authorsList') {
         authorsListPageReady();
-    } else if (currentPage == 'authorDetail') {
-        authorDetailPageReady();
     } else if (currentPage == 'usersList') {
         usersListPageReady();
     }

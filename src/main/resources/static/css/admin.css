@@ -328,6 +328,14 @@ a, a:visited, a:hover {
     padding: 0;
 }
 
+.admin-mobile-warning {
+    margin-top: 100px;
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+
 .main-container {
     padding: 0;
 }
@@ -928,10 +936,30 @@ a, a:visited, a:hover {
     .profile-container {
         width: 90% !important;
     }
+
+    .book-entries {
+        margin: 5% 20%;
+    }
 }
 
 @media (max-width: 600px) {
     .profile-container {
         width: 95% !important;
+    }
+
+    .current-books {
+        margin: 0 !important;
+    }
+
+    .user-details-outer, .user-books-outer {
+        margin: 0 !important;
+    }
+
+    .profile-img-sm {
+        margin: -45px -30px;
+    }
+
+    .book-entries {
+        margin: 5% 15%;
     }
 }

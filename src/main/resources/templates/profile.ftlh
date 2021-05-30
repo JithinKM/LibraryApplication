@@ -202,9 +202,9 @@
             <div class="col-12">
                 <div class="row justify-content-center">
                     <#list currentBooks as currentbook>
-                    <div class="col-12 col-md-4 current-book-outer zoom">
+                    <div class="col-sm-12 col-md-6 col-lg-4 current-book-outer zoom">
                         <div class="row">
-                            <div class="col-6 col-md-4 book-img-outer">
+                            <div class="col-6 book-img-outer">
                                 <img class="user-book-img shadow-lg" 
                                 <#if currentbook.book.bookDetails.isbn?has_content>
                                 	src="http://covers.openlibrary.org/b/isbn/${currentbook.book.bookDetails.isbn}-M.jpg"
@@ -213,7 +213,7 @@
                                 </#if>
                                 >
                             </div>
-                            <div class="col-6 col-md-8 ${currentbook.status?lower_case}-book-outer shadow-lg">
+                            <div class="col-6 ${currentbook.status?lower_case}-book-outer shadow-lg">
                                 <div class="current-book text-left">
                                     <h6 class="book-name">${currentbook.book.bookDetails.name}</h6>
                                     <h6>Book Id: ${currentbook.book.id}</h6>
