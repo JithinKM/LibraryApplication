@@ -10,7 +10,8 @@
         <img src="../img/profile.png" alt="profilePic" class="rounded-circle" width="30">
         </li>
         <li class="nav-item" id="profile">
-        <a class="nav-link" href="/user/profile">Profile</a>
+        <#assign userName = Session.SPRING_SECURITY_CONTEXT.authentication.principal.getFullName()>
+        <a class="nav-link" href="/user/profile">${userName}</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>

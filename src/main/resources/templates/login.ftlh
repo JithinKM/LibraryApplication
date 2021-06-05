@@ -1,15 +1,15 @@
 <@login_layout title="Login">
-<section class="admin-page">
+<section class="login   -page">
     <div class="container-fluid main-container">
     <div class="row main-row">
-    <div class="col-12 admin-main">
-    <div class="admin-body">
+    <div class="col-12 login-main">
+    <div class="login-body">
         <div class="row">
             <div class="col-sm-12 col-md-7 d-flex justify-content-center">
                 <div class="login-info text-center">
                     <div class="info-inner">
-                        <h2>Sanskrit HS Vattoli</h2>
-                        <h6>Vattoli (P.O), Kakkattil (Via)</h6>
+                        <h1>Sanskrit HS Vattoli</h1>
+                        <h5><i class="bi bi-geo-alt-fill"></i>&nbsp;Vattoli (P.O), Kakkattil (Via)</h5>
                     </div>
                 </div>
             </div>
@@ -20,11 +20,21 @@
                             <h3 id="loginHead" class="main-title text-center">LOGIN</h3>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter username" required autocomplete="off">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter username" required autocomplete="off">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="adminLoginPassword">Password</label>
-                                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" minlength="5" maxlength="50" required autocomplete="off">
+                                <label for="adminLoginPassword">&nbsp;Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" minlength="5" maxlength="50" required autocomplete="off">
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <button type="submit" id="login-btn" class="btn btn-info btn-block text-uppercase">
@@ -125,8 +135,12 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="userId">User ID</label>
-                                            <input type="text" class="form-control" id="username" name="username" disabled autocomplete="off">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="username" name="username" disabled autocomplete="off">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
