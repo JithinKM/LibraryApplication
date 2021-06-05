@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
+    
+    @Value("${max.allowed.renew.count}")
+	private int maxRenew;
 
     @Override
     public UserEntity findByUsername(String username) {
@@ -170,8 +174,8 @@ public class UserServiceImpl implements UserService {
 		UserDetailsEntity userDetailsEntity = new UserDetailsEntity();
 		userDetailsEntity.setAddress(Objects.toString(user.getAddress(), ""));
 		userDetailsEntity.setDivision(user.getDivision());
-		userDetailsEntity.setFirstname(Objects.toString(user.getFirstname(), ""));
-		userDetailsEntity.setLastname(Objects.toString(user.getLastname(), ""));
+		userDetailsEntity.setFirstname(StringUtils.capitalize(Objects.toString(user.getFirstname(), "")));
+		userDetailsEntity.setLastname(StringUtils.capitalize(Objects.toString(user.getLastname(), "")));
 		userDetailsEntity.setParentName(Objects.toString(user.getParentName(), ""));
 		userDetailsEntity.setParentPhone(Objects.toString(user.getParentPhone(), ""));
 		userDetailsEntity.setPhone(Objects.toString(user.getPhone(), ""));
@@ -198,7 +202,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<BookUserEntity> getBookHistory(String username) {
 		List<String> statusList = Arrays.asList(BookUserStatusEnum.DECLINED.getStatus(),
-				BookUserStatusEnum.RETURNED.getStatus());
+				BookUserStatusEnum.RETURNED.getStatus(),BookUserStatusEnum.CANCELLED.getStatus());
 		return bookUserRepository.findByUserUsernameAndStatusIn(username, statusList);
 	}
 
@@ -223,6 +227,45 @@ public class UserServiceImpl implements UserService {
 		book.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
 		bookRepository.save(book);
 		
+		return bookUserEntity;
+	}
+	
+	@Override
+	public BookUserEntity renewBook(Long bookUserId, String username) {
+		BookUserEntity bookUserEntity = validateBookRequest(bookUserId, username);
+		if(bookUserEntity.getRenewalCount() >= maxRenew) {
+			throw new BadRequestExpection("You cant renew this book anymore");
+		}
+		
+		bookUserEntity = bookUserEntity.renewBook();
+		return bookUserRepository.save(bookUserEntity);
+	}
+	
+	@Override
+	public BookUserEntity cancelBookRequest(Long bookUserId, String username) {
+		BookUserEntity bookUserEntity = validateBookRequest(bookUserId, username);
+		if(!BookUserStatusEnum.REQUESTED.getStatus().equals(bookUserEntity.getStatus())) {
+			throw new BadRequestExpection("You cant cancel this book at this time");
+		}
+		
+		bookUserEntity = bookUserRepository.save(bookUserEntity.cancelBook());
+		
+		BookEntity bookEntity = bookUserEntity.getBook();
+		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookRepository.save(bookEntity);
+		
+		return bookUserEntity;
+	}
+	
+	private BookUserEntity validateBookRequest(Long bookUserId, String username) {
+		Optional<BookUserEntity> bookUser = bookUserRepository.findById(bookUserId);
+		if(!bookUser.isPresent()) {
+			throw new BadRequestExpection("No such book request found");
+		}
+		BookUserEntity bookUserEntity = bookUser.get();
+		if(!bookUserEntity.getUser().getUsername().equalsIgnoreCase(username)) {
+			throw new BadRequestExpection("This book request is not in your name");
+		}
 		return bookUserEntity;
 	}
 

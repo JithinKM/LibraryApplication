@@ -8,8 +8,9 @@
             <div class="col-sm-12 col-md-7 d-flex justify-content-center">
                 <div class="login-info text-center">
                     <div class="info-inner">
-                        <h1>Sanskrit HS Vattoli</h1>
-                        <h5><i class="bi bi-geo-alt-fill"></i>&nbsp;Vattoli (P.O), Kakkattil (Via)</h5>
+                        <h1><@spring.message "school.name"/></h1>
+                        <h5><i class="bi bi-geo-alt-fill"></i>&nbsp;<@spring.message "school.address"/></h5>
+                        <h5><i class="bi bi-telephone-fill"></i>&nbsp;<@spring.message "school.contact"/></h5>
                     </div>
                 </div>
             </div>

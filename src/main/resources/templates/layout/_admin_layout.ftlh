@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SHS Library<#if title?has_content> - ${title}</#if></title>
+	<title><@spring.message "app.title"/><#if title?has_content> - ${title}</#if></title>
 	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

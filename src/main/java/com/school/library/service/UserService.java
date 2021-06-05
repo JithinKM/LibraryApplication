@@ -26,4 +26,8 @@ public interface UserService {
 	UserEntity approveUserRequest(String userId, String comment);
 
 	UserEntity declineUserRequest(String userId, String comment);
+
+	BookUserEntity renewBook(Long bookUserId, String username);
+
+	BookUserEntity cancelBookRequest(Long bookUserId, String username);
 }

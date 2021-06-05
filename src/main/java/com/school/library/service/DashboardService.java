@@ -21,4 +21,10 @@ public interface DashboardService {
 
     BookUserEntity approveReturnRequest(Long bookUserId, String comment);
 
+	BookUserEntity findBookDetails(String bookId);
+
+	List<BookUserEntity> getBooksHistory();
+
+	List<User> getUserHistory();
+
 }

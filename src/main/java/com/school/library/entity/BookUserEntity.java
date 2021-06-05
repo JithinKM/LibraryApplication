@@ -53,6 +53,10 @@ public class BookUserEntity {
 		return getUpdatedUser(BookUserStatusEnum.REQUESTED, true);
 	}
 	
+	public BookUserEntity cancelBook() {
+		return getUpdatedUser(BookUserStatusEnum.CANCELLED, false);
+	}
+	
 	public BookUserEntity assignBook(Date newDueDate) {
 		allotedDate = new Date();
 		dueDate = newDueDate;

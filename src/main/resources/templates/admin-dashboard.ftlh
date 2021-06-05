@@ -102,37 +102,33 @@
                                            <tr>
                                               <th scope="col">Book Id</th>
                                               <th scope="col">Book Name</th>
-                                              <th scope="col">Student</th>
-                                              <th scope="col">Class</th>
-                                              <th scope="col">Assigned Date</th>
-                                              <th scope="col">Due Date</th>
+                                              <th scope="col">User</th>
+                                              <th scope="col">Renewal</th>
+                                              <th scope="col">Due/Return Date</th>
+                                              <th scope="col">Status</th>
                                            </tr>
                                         </thead>
                                         <tbody>
-                                           <tr>
-                                              <th scope="row">1</th>
-                                              <td>Randamoozham</td>
-                                              <td>John</td>
-                                              <td>5-B</td>
-                                              <td>21-May-2021</td>
-                                              <td>4-Jun-2021</td>
-                                           </tr>
-                                           <tr>
-                                              <th scope="row">2</th>
-                                              <td>Ikigai</td>
-                                              <td>Mark</td>
-                                              <td>9-K</td>
-                                              <td>15-May-2021</td>
-                                              <td>29-May-2021</td>
-                                           </tr>
-                                           <tr>
-                                              <th scope="row">2</th>
-                                              <td>Sapiens</td>
-                                              <td>Alice</td>
-                                              <td>7-C</td>
-                                              <td>2-Feb-2021</td>
-                                              <td>16-Feb-2021</td>
-                                           </tr>
+                                        	<#if bookhistory??>
+                                       		<#list bookhistory as bookUser>
+	                                           <tr>
+	                                              <th scope="row">${bookUser.book.id}</th>
+	                                              <td>${bookUser.book.bookDetails.name}</td>
+	                                              <td>${bookUser.user.username}</td>
+	                                              <td>${bookUser.renewalCount}</td>
+	                                              <td>
+	                                              	<#if bookUser.dueDate?has_content>
+	                                              		${bookUser.dueDate?date}
+	                                              	<#elseif bookUser.returnedDate?has_content>
+	                                              		${bookUser.returnedDate?date}
+	                                              	<#else>
+	                                              		-
+	                                              	</#if>
+	                                              </td>
+	                                              <td>${bookUser.status}</td>
+	                                           </tr>
+	                                        </#list>
+                                           	</#if>
                                         </tbody>
                                      </table>
                                     </div>

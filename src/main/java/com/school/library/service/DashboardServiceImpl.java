@@ -2,20 +2,25 @@ package com.school.library.service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.school.library.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.school.library.entity.BookEntity;
 import com.school.library.entity.BookUserEntity;
-import com.school.library.entity.UserEntity;
+import com.school.library.enums.BookStatusEnum;
+import com.school.library.enums.BookUserStatusEnum;
 import com.school.library.enums.UserStatusEnum;
 import com.school.library.exception.BadRequestExpection;
+import com.school.library.exception.InternalServerExpection;
+import com.school.library.model.User;
+import com.school.library.repository.BookRepository;
 import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.UserRepository;
 
@@ -33,16 +38,30 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BookRepository bookRepository;
 
 	@Override
 	public List<BookUserEntity> getAllActionRequiredBooks() {
 		return bookUserRepository.findByActionRequiredTrue();
 	}
+	
+	@Override
+	public List<BookUserEntity> getBooksHistory() {
+		return bookUserRepository.findTop10ByActionRequiredFalseOrderByUpdatedDateDesc();
+	}
 
 	@Override
 	public List<User> getAllRegisteredUsers() {
-
 		return userRepository.findByStatus(UserStatusEnum.PENDING.getStatus())
+				.stream().map(User::new)
+				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<User> getUserHistory() {
+		return userRepository.findTop10ByStatusNotOrderByUpdatedTimestampDesc(UserStatusEnum.PENDING.getStatus())
 				.stream().map(User::new)
 				.collect(Collectors.toList());
 	}
@@ -59,7 +78,13 @@ public class DashboardServiceImpl implements DashboardService {
 	public BookUserEntity declineAssignRequest(Long bookUserId, String comment) {
 		Optional<BookUserEntity> bookUser = validateBookRequest(bookUserId);
 		BookUserEntity bookUserEntity = bookUser.get().declineBook(comment);
-		return bookUserRepository.save(bookUserEntity);
+		bookUserEntity = bookUserRepository.save(bookUserEntity);
+		
+		BookEntity bookEntity = bookUserEntity.getBook();
+		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookRepository.save(bookEntity);
+		
+		return bookUserEntity;
 	}
 	
 	@Override
@@ -81,7 +106,25 @@ public class DashboardServiceImpl implements DashboardService {
 	public BookUserEntity approveReturnRequest(Long bookUserId, String comment) {
 		Optional<BookUserEntity> bookUser = validateBookRequest(bookUserId);
 		BookUserEntity bookUserEntity = bookUser.get().returnBook(comment);
-		return bookUserRepository.save(bookUserEntity);
+		bookUserEntity = bookUserRepository.save(bookUserEntity);
+		
+		BookEntity bookEntity = bookUserEntity.getBook();
+		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookRepository.save(bookEntity);
+		
+		return bookUserEntity;
+	}
+	
+	@Override
+	public BookUserEntity findBookDetails(String bookId) {
+		List<BookUserEntity> bookUserList = bookUserRepository.findByBookIdAndStatusIn(bookId, Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(),
+				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus()));
+		if(bookUserList.size() != 1) {
+			bookUserList.forEach(x -> System.out.println(x.getStatus()));
+			System.out.println("You are in trouble..........");
+			throw new InternalServerExpection("Internal Server Exception");
+		}
+		return bookUserList.get(0);
 	}
 	
 	private Optional<BookUserEntity> validateBookRequest(Long bookUserId) {

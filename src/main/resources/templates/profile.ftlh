@@ -261,24 +261,24 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
+                                <th scope="col">BookId</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Lent Date</th>
-                                <th scope="col">Due Date</th>
+                                <th scope="col">Alloted Date</th>
+                                <th scope="col">Return Date</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Comment</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <#if user.books?has_content>
-                            <#list user.books as book>
+                            <#if bookHistory?has_content>
+                            <#list bookHistory as bookuser>
                             <tr>
-                                <td>${book.id}</td>
-                                <td>${book.bookDetails.name}</td>
-                                <td>${book.updatedTimestamp?date}</td>
-                                <td>${book.updatedTimestamp?date}</td>
-                                <td>${book.status}</td>
-                                <td>${book.price}</td>
+                                <td>${bookuser.book.id}</td>
+                                <td>${bookuser.book.bookDetails.name}</td>
+                                <td>${(bookuser.allotedDate)!"-"}</td>
+                                <td>${(bookuser.returnedDate)!"-"}</td>
+                                <td>${bookuser.status}</td>
+                                <td>${bookuser.comments}</td>
                             </tr>
                             </#list>
                             <#else>

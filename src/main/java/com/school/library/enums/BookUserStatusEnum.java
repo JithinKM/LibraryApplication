@@ -2,12 +2,18 @@ package com.school.library.enums;
 
 public enum BookUserStatusEnum {
 	
+	//Book Not yet With User
 	REQUESTED("REQUESTED",  "Requested"),
-	ALLOTED("ALLOTED",  "Alloted"),
+	CANCELLED("CANCELLED",  "Cancelled"),
 	DECLINED("DECLINED",  "Declined"),
+	
+	//Book Is With User
+	ALLOTED("ALLOTED",  "Alloted"),
 	RENEWREQUESTED("RENEWREQUESTED",  "Renew Requested"),
 	RENEWDECLINED("RENEWDECLINED",  "Renew Declined"),
-	RETURNED("RETURNED",  "RETURNED");
+	
+	//Book Is returned to Library
+	RETURNED("RETURNED",  "Returned");
 	
 	private final String status;
     private final String statusString;

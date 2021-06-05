@@ -34,11 +34,15 @@ public class DashboardController {
 	public String dashboardPage(@RequestParam(value="bookId",required=false) String bookId, Model model) {
 		
 		if(StringUtils.isNoneBlank(bookId)){
-			//model.addAttribute("book", dashboardService.findBookDetails(bookId.trim()));
+			model.addAttribute("book", dashboardService.findBookDetails(bookId.trim()));
 		}
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
+		model.addAttribute("bookhistory", dashboardService.getBooksHistory());
+		
 		model.addAttribute("userreq", dashboardService.getAllRegisteredUsers());
+		model.addAttribute("userhistory", dashboardService.getUserHistory());
+		
 		return "admin-dashboard";
 	}
 	

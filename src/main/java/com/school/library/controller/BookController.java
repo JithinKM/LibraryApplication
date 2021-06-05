@@ -78,5 +78,33 @@ public class BookController {
 		redirectAttrs.addFlashAttribute("message", new Message("success","Book Blocked", details));
 		return "redirect:/";
 	}
+	
+	@GetMapping("/renew/{bookUserId}")
+	public String renewBook(@AuthenticationPrincipal UserPrincipal userPrincipal,
+			@PathVariable("bookUserId") Long bookUserId, RedirectAttributes redirectAttrs) {
+		String username = userPrincipal.getUsername();
+		
+		BookUserEntity bookUserEntity = userService.renewBook(bookUserId, username);
+		
+		String details = "Book with id: " + bookUserEntity.getBook().getId() + " Renew requested by user " 
+		+ bookUserEntity.getUser().getUsername();
+		System.out.println(details);
+		redirectAttrs.addFlashAttribute("message", new Message("success","Renew Approved", details));
+		return "redirect:/user/profile";
+	}
+	
+	@GetMapping("/cancel/{bookUserId}")
+	public String cancelBookRequest(@AuthenticationPrincipal UserPrincipal userPrincipal,
+			@PathVariable("bookUserId") Long bookUserId, RedirectAttributes redirectAttrs) {
+		String username = userPrincipal.getUsername();
+		
+		BookUserEntity bookUserEntity = userService.cancelBookRequest(bookUserId, username);
+		
+		String details = "Book with id: " + bookUserEntity.getBook().getId() + " Cancel requested by user " 
+		+ bookUserEntity.getUser().getUsername();
+		System.out.println(details);
+		redirectAttrs.addFlashAttribute("message", new Message("success","Renew Approved", details));
+		return "redirect:/user/profile";
+	}
 
 }
