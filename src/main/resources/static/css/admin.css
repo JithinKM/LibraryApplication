@@ -12,9 +12,8 @@ body::-webkit-scrollbar {
 }
 
 .image-back {
-    background: url('../img/school.jpg');
+    background: url('https://swall.teahub.io/photos/small/95-950902_macbook-air-desktop-backgrounds-minimalist.jpg');
     background-size: cover;
-    font-family: 'Lato';
 }
 
 main {
@@ -341,15 +340,46 @@ a, a:visited, a:hover {
 }
 
 .form-outer {
-    background: rgba(255, 255, 255, 0.5);
     padding: 0;
-    min-width: 25%;
+    min-width: 90%;
 }
 
 #login-form, #signup-form {
-    background: #fff;
-    padding: 20px;
-    margin: 25px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff !important;
+    border-radius: 10px;
+    padding: 30px;
+    border: 20px;
+    margin: 0px 30px;
+    backdrop-filter: blur(5px);
+}
+
+#login-form input, #signup-form input {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff !important;
+    border-bottom: 3px solid #17a2b8;
+    border-radius: 0;
+}
+
+#loginLink, #signupLink {
+    color: #fff !important;
+}
+
+.login-info {
+    color: #fff !important;
+    height: 100%;
+    align-items: center;
+    display: inline-grid;
+    padding: 5px;
+}
+
+#standard, #division {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: #aaa !important;
+    border-bottom: 3px solid #fff;
+    border-radius: 0;
 }
 
 #login-btn, #signup-btn {
@@ -367,8 +397,6 @@ a, a:visited, a:hover {
 .form-radio {
     margin: 0 0 15px 0 !important;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 .pull-right {
@@ -630,7 +658,6 @@ a, a:visited, a:hover {
     padding-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
 }
 
 #user-details-inner, #userBookList {
