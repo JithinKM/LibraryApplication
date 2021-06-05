@@ -335,10 +335,10 @@ function adminDashboardReady() {
         $('#userName').val($(this).siblings('.userName').val());
         $('#actualBookId').val($(this).siblings('.bookId').val());
 
-        var status = $(this).siblings('.bookId').val();
+        var status = $(this).siblings('.status').val();
         var approveUrl = "/approve/bookuser/" + bookApproveId;
         if (status.includes("RENEW")) {
-            approveUrl = "/renew/" + approveUrl;
+            approveUrl = "/renew" + approveUrl;
         }
         $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
 
@@ -355,10 +355,10 @@ function adminDashboardReady() {
         $('#userNameDecline').val($(this).siblings('.userName').val());
         $('#bookIdDecline').val($(this).siblings('.bookId').val());
 
-        var status = $(this).siblings('.bookId').val();
+        var status = $(this).siblings('.status').val();
         var declineUrl = "/decline/bookuser/" + bookApproveId;
         if (status.includes("RENEW")) {
-            declineUrl = "/renew/" + declineUrl;
+            declineUrl = "/renew" + declineUrl;
         }
         $("#bookDeclineForm").attr('action', '/admin' + declineUrl);
     });

@@ -14,6 +14,34 @@
                             <div class="col-6 mb-4">
                                <div class="card mb-4">
                                   <div class="card-header">
+                                     <h6 class="font-weight-bold">Assign Book</h6>
+                                  </div>
+                                  <div class="card-body d-flex justify-content-center">
+                                    <form role="form" action="/admin/book/assign" method="POST">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="form-group">
+                                                  <input type="text" class="form-control" name="bookId" placeholder="Enter book id" autocomplete="off" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="form-group">
+                                                  <input type="text" class="form-control" name="userName" placeholder="Enter username" autocomplete="off" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                  <button class="btn btn-primary" type="submit" id="assignBook">Assign</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-6 mb-4">
+                               <div class="card mb-4">
+                                  <div class="card-header">
                                      <h6 class="font-weight-bold">Return Book</h6>
                                   </div>
                                   <div class="card-body d-flex justify-content-center">
@@ -57,7 +85,7 @@
                                                 <input type="hidden" class="status" value="${bookUser.status}">
                                                 <hr>
                                                 <a class="card-link bookApproveLink" data-toggle="modal"
-                                                data-target="#bookApproveModal"><#if bookUser.status == "RENEW">Renew<#else>Assign</#if></a>
+                                                data-target="#bookApproveModal"><#if bookUser.status == "RENEWREQUESTED">Renew<#else>Assign</#if></a>
                                                 <a class="card-link bookDeclineLink text-danger" data-toggle="modal" data-target="#bookDeclineModal">Decline</a>
                                              </div>
                                           </div>

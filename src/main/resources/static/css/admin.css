@@ -472,8 +472,7 @@ a, a:visited, a:hover {
 }
 
 .card-header {
-    background-color: #232F3E !important;
-    color: #ddd !important;
+    background-color: #c6d2e1 !important;
 }
 
 .nav-sidebar {
@@ -841,7 +840,7 @@ a, a:visited, a:hover {
 }
 
 .dashboard-content .card-footer {
-    background-color: #c6d2e1;
+    background-color: #edf4fc;
 }
 
 #recentBooks, #recentUsers {
