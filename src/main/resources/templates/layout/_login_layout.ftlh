@@ -33,7 +33,7 @@
 	
 </head>
 
-<body class="image-back">
+<body>
     
 	<#nested>
 	

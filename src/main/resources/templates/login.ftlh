@@ -1,5 +1,5 @@
 <@login_layout title="Login">
-<section class="login   -page">
+<section class="login-page">
     <div class="container-fluid main-container">
     <div class="row main-row">
     <div class="col-12 login-main">
@@ -140,7 +140,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control" id="username" name="username" disabled autocomplete="off">
+                                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" disabled autocomplete="off">
                                             </div>
                                         </div>
                                     </div>

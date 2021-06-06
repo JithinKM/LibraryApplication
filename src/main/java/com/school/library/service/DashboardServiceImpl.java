@@ -119,12 +119,15 @@ public class DashboardServiceImpl implements DashboardService {
 	public BookUserEntity findBookDetails(String bookId) {
 		List<BookUserEntity> bookUserList = bookUserRepository.findByBookIdAndStatusIn(bookId, Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(),
 				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus()));
-		if(bookUserList.size() != 1) {
+		if(bookUserList.size() == 0) {
+			return null;
+		} else if(bookUserList.size() > 1) {
 			bookUserList.forEach(x -> System.out.println(x.getStatus()));
 			System.out.println("You are in trouble..........");
 			throw new InternalServerExpection("Internal Server Exception");
+		} else {
+			return bookUserList.get(0);
 		}
-		return bookUserList.get(0);
 	}
 	
 	private Optional<BookUserEntity> validateBookRequest(Long bookUserId) {

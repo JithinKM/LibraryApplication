@@ -23,9 +23,7 @@
                 <div class="row">
                    <div class="col-5">
                       <div class="form-group">
-                         <input type="text" class="form-control" id="bookId" name="bookId" placeholder="Book Id" autocomplete="off" required>
-                         <input type="hidden" id="actualBookId">
-                         <label id="bookIdError" class="text-danger hide-element">Please enter the correct book id!</label>
+                         <input type="text" class="form-control" id="actualBookId" name="bookId" placeholder="Book Id" disabled autocomplete="off" required>
                       </div>
                    </div>
                    <div class="col-2">

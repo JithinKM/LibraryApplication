@@ -20,7 +20,7 @@ public class ApplicationConfiguration {
 	@Bean
 	public LocaleResolver localeResolver() {
 	    SessionLocaleResolver slr = new SessionLocaleResolver();
-	    slr.setDefaultLocale(Locale.forLanguageTag("ml-IN"));
+	    slr.setDefaultLocale(Locale.forLanguageTag("en-IN"));
 	    return slr;
 	}
 	

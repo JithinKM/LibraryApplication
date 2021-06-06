@@ -218,10 +218,22 @@
                                     <h6 class="title text-center bookName">${currentbook.book.bookDetails.name}</h6>
                                     <h7>Book Id: ${currentbook.book.id}</h7>
                                     <h7>Rack: ${currentbook.book.rack}</h7>
-                                    <h7>Status: ${currentbook.statusText}</h7>
+                                    <#if currentbook.status == "REQUESTED">
+                                    	<div class="row main-row">
+                                    	    <div class="col-9">
+                                                <h7>Status: ${currentbook.statusText}</h7>
+                                            </div>
+                                            <div class="col-3 cancel-outer">
+                                                <input type="hidden" class="bookUserId" value="${currentbook.id?string.computer}">
+                                                <a class="btn cancel-btn" title="Cancel this book" data-toggle="modal" data-target="#cancelModal"><i class="bi bi-trash-fill"></i></a>
+                                            </div>
+                                        </div>
+                                    <#else>
+                                        <h7>Status: ${currentbook.statusText}</h7>
+                                    </#if>
                                     <#if currentbook.dueDate?? && currentbook.status == "ALLOTED">
                                     	<h7>Due on: ${currentbook.dueDate?date}</h7>
-                                    	<div class="row">
+                                    	<div class="row main-row">
                                     	    <div class="col-9">
                                                 <div class="progress" style="height: 4px;">
                                                     <input type="hidden" class="allotted-date" value="${currentbook.allotedDate?date}">
@@ -278,7 +290,7 @@
                                 <td>${(bookuser.allotedDate)!"-"}</td>
                                 <td>${(bookuser.returnedDate)!"-"}</td>
                                 <td>${bookuser.status}</td>
-                                <td>${bookuser.comments}</td>
+                                <td>${(bookuser.comments)!"-"}</td>
                             </tr>
                             </#list>
                             <#else>
@@ -294,6 +306,7 @@
 </main>
 
 <#include "/modal/book-renew-modal.ftlh">
+<#include "/modal/book-cancel-modal.ftlh">
 <#assign pageTracker = "profile">
    </div>
    </div>

@@ -81,7 +81,9 @@
                                                 <input type="hidden" class="bookName" value="${bookUser.book.bookDetails.name}">
                                                 <input type="hidden" class="userName" value="${bookUser.user.username}">
                                                 <input type="hidden" class="bookId" value="${bookUser.book.id}">
+                                                <#if bookUser.book.bookDetails.isbn?has_content>
                                                 <input type="hidden" class="bookCover" value="${bookUser.book.bookDetails.isbn}">
+                                                </#if>
                                                 <input type="hidden" class="status" value="${bookUser.status}">
                                                 <hr>
                                                 <a class="card-link bookApproveLink" data-toggle="modal"
@@ -256,6 +258,7 @@
          <#include "/modal/book-decline-modal.ftlh">
          <#include "/modal/user-approve-modal.ftlh">
          <#include "/modal/user-decline-modal.ftlh">
+         <#include "/modal/allotted-book-modal.ftlh">
          <#assign pageTracker = "adminDashboard">
       </div>
    </div>

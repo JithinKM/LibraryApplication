@@ -65,7 +65,7 @@
                                   <#else>
                                   <input type="hidden" class="bookId" value="${bookDetail.id?string.computer}">
                                   <input type="hidden" class="bookName" value="${bookDetail.name}">
-                                  <button type="submit" class="btn btn-info btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
+                                  <button type="submit" class="btn btn-primary btn-sm book-now" data-toggle="modal" data-target="#prebookModal">BOOK NOW</button>
                                   </#if>
                                </div>
                            </div>

@@ -81,6 +81,11 @@ function profilePageReady() {
         $('#renewBook').attr('href', '/book/renew/' + bookUserId);
     });
 
+    $('.cancel-btn').click(function() {
+        var bookUserId = $(this).siblings('.bookUserId').val();
+        $('#cancelBook').attr('href', '/book/cancel/' + bookUserId);
+    });
+
     $('.progress-bar').each(function() {
         var allottedDate = $(this).siblings('.allotted-date').val();
         var dueDate = $(this).siblings('.due-date').val();
@@ -327,6 +332,10 @@ function checkBookId() {
 function adminDashboardReady() {
     $("#dashboard").addClass("active");
     showMobileWarning();
+
+    if ($('#allottedBookModalBtn').length) {
+        $('#allottedBookModalBtn').click();
+    }
 
     $('.bookApproveLink').click(function() {
         var bookApproveId = $(this).siblings('.bookApproveId').val();

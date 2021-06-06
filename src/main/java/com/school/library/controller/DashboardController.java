@@ -34,7 +34,8 @@ public class DashboardController {
 	public String dashboardPage(@RequestParam(value="bookId",required=false) String bookId, Model model) {
 		
 		if(StringUtils.isNoneBlank(bookId)){
-			model.addAttribute("book", dashboardService.findBookDetails(bookId.trim()));
+			model.addAttribute("allottedBook", dashboardService.findBookDetails(bookId.trim()));
+			model.addAttribute("searchedId", bookId);
 		}
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
