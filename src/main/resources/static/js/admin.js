@@ -351,7 +351,12 @@ function adminDashboardReady() {
         }
         $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
 
-        var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
+        var imgSrc = "";
+        if ($(this).siblings('.bookCover').val() != undefined) {
+            imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
+        } else {
+            imgSrc = "../img/book-cover.png";
+        }
         $('.book-cover-div').css("background-image", 'url(' + imgSrc+ ')');
     });
     $("#bookId").change(checkBookId);
