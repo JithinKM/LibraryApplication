@@ -1,13 +1,13 @@
  <div class="modal fade" id="bookDeclineModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
        <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header text-center">
+             <h4 class="modal-title w-100"><span id="bookNameDecline" class="text-bold"></span></h4>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
              </button>
           </div>
           <div class="modal-body">
-             <h5 class="text-center"><span id="bookNameDecline" class="text-bold"></span></h5>
              <form role="form" id="bookDeclineForm" method="GET">
                 <div class="row">
                    <div class="col-5">

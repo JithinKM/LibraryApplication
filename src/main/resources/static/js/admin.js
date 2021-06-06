@@ -7,9 +7,8 @@ function showMobileWarning() {
 
 function homePageReady() {
     $('.book-contents').width($('.bookName').width());
-    $('.book-contents').fadeOut();
     $('.bookName').click(function(event) {
-        $(this).siblings('.book-contents').fadeIn("slow");
+        $(this).siblings('.book-contents').removeClass('d-none').fadeIn("slow");
     });
     $('.bookName').mouseleave(function(event) {
         $(this).siblings('.book-contents').fadeOut("slow");
@@ -322,10 +321,10 @@ function checkBookId() {
     var bookId = $("#bookId").val();
     if (actualBookId != bookId) {
         $("#bookIdError").removeClass("hide-element");
-        $("#assignBook").attr("disabled", true);
+        $("#approveBook").attr("disabled", true);
     } else {
         $("#bookIdError").addClass("hide-element");
-        $("#assignBook").attr("disabled", false);
+        $("#approveBook").attr("disabled", false);
     }
 }
 
@@ -348,12 +347,12 @@ function adminDashboardReady() {
         var approveUrl = "/approve/bookuser/" + bookApproveId;
         if (status.includes("RENEW")) {
             approveUrl = "/renew" + approveUrl;
+            $("#bookId").attr('disabled', true);
         }
         $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
 
         var imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
         $('.book-cover-div').css("background-image", 'url(' + imgSrc+ ')');
-        $('.profile-pic-div').css("background-image", "url(../img/profile.png)");
     });
     $("#bookId").change(checkBookId);
 

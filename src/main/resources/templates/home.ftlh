@@ -28,7 +28,7 @@
                         >
                         <div class="book-details-inner d-flex flex-column">
                            <h6 class="title text-center book-filter bookName"><a>${bookDetail.name}</a></h6>
-                           <div class="col-12 book-contents position-absolute shadow arrow-top">
+                           <div class="col-12 book-contents position-absolute shadow arrow-top d-none">
                               <div class="row text-left">
                                  <div class="col-12">
                                     <p class="book-filter"><i class="bi bi-pencil-square"></i>${bookDetail.author.name}</p>

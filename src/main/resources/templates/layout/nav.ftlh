@@ -1,4 +1,5 @@
 <!-- Navigation Bar-->
+<#assign random = .now?long % 10>
 <nav class="navbar navbar-light navbar-expand-lg navbar-custom fixed-top">
   <a class="navbar-brand" href="/">SHS Library App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-        <img src="../img/profile.png" alt="profilePic" class="rounded-circle" width="30">
+        <img src="../img/avatars/${random}.png" alt="profilePic" class="rounded-circle" width="30">
         </li>
         <li class="nav-item" id="profile">
         <#assign userName = Session.SPRING_SECURITY_CONTEXT.authentication.principal.getFullName()>

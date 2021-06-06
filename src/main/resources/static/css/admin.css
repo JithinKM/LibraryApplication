@@ -181,13 +181,13 @@ main {
 .btn-primary {
     background-color: var(--theme-color);
     border: none;
-    color: #fff;
+    color: #fff !important;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: var(--theme-color);
     border: none;
-    color: #fff;
+    color: #fff !important;
 }
 
 a, a:visited, a:hover {
