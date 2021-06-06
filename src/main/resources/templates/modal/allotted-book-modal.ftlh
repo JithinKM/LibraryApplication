@@ -27,21 +27,20 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>${allottedBook.book.id}</th>
-                          <th>${allottedBook.user.username}</th>
+                          <td>${allottedBook.book.id}</td>
+                          <td>${allottedBook.user.username}</td>
                           <td>${(allottedBook.allotedDate?date) ! "-"}</td>
                           <td>${(allottedBook.dueDate?date) ! "-"}</td>
                           <td>${allottedBook.status}</td>
                         </tr>
                       </tbody>
                     </table>
+                    <a class="btn btn-sm btn-primary float-right" href="/book/return/${allottedBook.id?string.computer}">Return</a>
                 <#else>
                     <h5><@spring.message "modal.bookUser.notFound"/>: ${searchedId}</h5>
                 </#if>
-                <a class="btn btn-sm btn-primary float-right" href="/book/return/${allottedBook.id?string.computer}">Return</a>
             </div>
         </div>
     </div>
 </div>
 </#if>
-
