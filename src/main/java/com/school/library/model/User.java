@@ -19,7 +19,9 @@ public class User {
 
 	private UserDetailsEntity userdetail;
 	private List<BookEntity> books;
-	
+
+	private String comment;
+
 	public String getRoleValues() {
 		return String.join(",", roles);
 	}
@@ -125,5 +127,12 @@ public class User {
 	public void setBooks(List<BookEntity> books) {
 		this.books = books;
 	}
-	
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }

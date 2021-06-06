@@ -231,16 +231,21 @@
                                            </tr>
                                         </thead>
                                         <tbody>
-                                           <tr>
-                                              <th scope="row"><i class="bi bi-check"></i></th>
-                                              <td>asdssc</td>
-                                              <td>ascsac asdasdsa</td>
-                                           </tr>
-                                           <tr>
-                                              <th scope="row"><i class="bi bi-x"></i></th>
-                                              <td>qasdsadsad</td>
-                                              <td>sfsdc dfasfc</td>
-                                           </tr>
+                                            <#if userhistory??>
+                                            <#list userhistory as user>
+                                                <tr>
+                                                    <th scope="row">
+                                                    <#if user.status == "ACTIVE">
+                                                    <i class="bi bi-check"></i>
+                                                    <#else>
+                                                    <i class="bi bi-x"></i>
+                                                    </#if>
+                                                    </th>
+                                                    <td>${user.username}</td>
+                                                    <td>${(user.comment) ! "-"}</td>
+                                                </tr>
+                                            </#list>
+                                            </#if>
                                         </tbody>
                                      </table>
                                     </div>

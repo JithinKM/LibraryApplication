@@ -475,9 +475,7 @@ a, a:visited, a:hover {
 .list-title {
     padding: 20px;
     background-color: #fff;
-    border-radius: 5px;
     margin: 0;
-    box-shadow: 0px 0px 3px -1px rgba(138,130,138,1) !important;
 }
 
 .list-title .row {
