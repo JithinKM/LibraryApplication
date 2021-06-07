@@ -15,21 +15,20 @@
                          <input type="text" class="form-control" id="bookIdDecline" disabled>
                       </div>
                    </div>
-                   <div class="col-1 form-middle">
-                      <i class="bi bi-arrow-right-circle-fill"></i>
+                   <div class="col-2 form-middle text-center">
+                        <i class="bi bi-box-arrow-right"></i>
                    </div>
-                   <div class="col-6">
+                   <div class="col-5">
                       <div class="form-group">
                          <input type="text" class="form-control" id="userNameDecline" name="username" disabled>
                       </div>
                    </div>
                 </div>
                 <div class="form-group">
-                   <label for="comment">Comment</label>
-                   <textarea type="text" class="form-control" id="assignComment" name="comment" autocomplete="off" rows="2" required></textarea>
+                   <textarea type="text" class="form-control" placeholder="comment" name="comment" autocomplete="off" rows="2" required></textarea>
                 </div>
                 <input type="hidden" id="bookUserIdDecline" name="bookUserId">
-                <input type="submit" class="btn btn-sm btn-primary btn-block" id="assignBook" value="Decline"/>
+                <input type="submit" class="btn btn-sm btn-primary btn-block" value="Decline"/>
              </form>
           </div>
        </div>

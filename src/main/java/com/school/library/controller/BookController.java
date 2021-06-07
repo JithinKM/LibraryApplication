@@ -103,7 +103,7 @@ public class BookController {
 		String details = "Book with id: " + bookUserEntity.getBook().getId() + " Cancel requested by user " 
 		+ bookUserEntity.getUser().getUsername();
 		System.out.println(details);
-		redirectAttrs.addFlashAttribute("message", new Message("success","Renew Approved", details));
+		redirectAttrs.addFlashAttribute("message", new Message("success","Book Cancelled", details));
 		return "redirect:/user/profile";
 	}
 

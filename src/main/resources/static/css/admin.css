@@ -948,6 +948,14 @@ a, a:visited, a:hover {
     background-color: #fff;
 }
 
+.assign-return-div {
+    padding: 0;
+}
+
+.overdue-body {
+    height: 251px;
+}
+
 .notification-body {
     padding: 5px;
 }
@@ -1036,7 +1044,6 @@ a, a:visited, a:hover {
 .form-middle {
     align-items: center;
     display: inline-grid;
-    margin-top: 8px;
     font-size: 30px;
 }
 

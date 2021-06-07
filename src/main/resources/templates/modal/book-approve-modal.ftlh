@@ -38,7 +38,7 @@
                    </div>
                 </div>
                 <div class="form-group">
-                   <textarea type="text" class="form-control" placeholder="comment" id="assignComment" name="comment" autocomplete="off" rows="2"></textarea>
+                   <textarea type="text" class="form-control" placeholder="comment" name="comment" autocomplete="off" rows="2"></textarea>
                 </div>
                 <input type="hidden" id="bookUserId" name="bookUserId">
                 <input type="submit" class="btn btn-sm btn-primary btn-block" id="approveBook" value="Approve"/>

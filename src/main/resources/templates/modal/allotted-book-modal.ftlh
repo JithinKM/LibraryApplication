@@ -35,7 +35,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <a class="btn btn-sm btn-primary float-right" href="/book/return/${allottedBook.id?string.computer}">Return</a>
+                    <a class="btn btn-sm btn-primary float-right" href="/admin/return/bookuser/${allottedBook.id?string.computer}?comment=''">Return</a>
                 <#else>
                     <p class="text-center"><@spring.message "modal.bookUser.notFound"/>: ${searchedId}</p>
                 </#if>

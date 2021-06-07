@@ -3,7 +3,7 @@
     <div class="modal-content">
        <div class="modal-header text-center">
           <h5 class="modal-title w-100">Do you want to cancel this book?</h5>
-          <button type="button" class="close prebook-close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
        </div>

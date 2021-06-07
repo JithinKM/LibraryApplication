@@ -14,45 +14,84 @@
                             <div class="col-6 mb-4">
                                <div class="card mb-4">
                                   <div class="card-header">
-                                     <h6 class="font-weight-bold">Assign Book</h6>
+                                     <h6 class="font-weight-bold">Book Overdue</h6>
                                   </div>
-                                  <div class="card-body d-flex justify-content-center">
-                                    <form role="form" action="/admin/book/assign" method="POST">
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <div class="form-group">
-                                                  <input type="text" class="form-control" name="bookId" placeholder="Enter book id" autocomplete="off" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-5">
-                                                <div class="form-group">
-                                                  <input type="text" class="form-control" name="userName" placeholder="Enter username" autocomplete="off" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-2">
-                                                <div class="form-group">
-                                                  <button class="btn btn-primary" type="submit" id="assignBook">Assign</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                  <div class="card-body overflow-auto overdue-body">
+                                     <table class="table table-hover"">
+                                        <thead>
+                                           <tr>
+                                              <th scope="col">Book Id</th>
+                                              <th scope="col">User</th>
+                                              <th scope="col">Due/Return Date</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            <#if bookhistory??>
+                                            <#list bookhistory as bookUser>
+                                               <tr>
+                                                  <th scope="row">${bookUser.book.id}</th>
+                                                  <td>${bookUser.user.username}</td>
+                                                  <td>
+                                                    <#if bookUser.dueDate?has_content>
+                                                        ${bookUser.dueDate?date}
+                                                    <#elseif bookUser.returnedDate?has_content>
+                                                        ${bookUser.returnedDate?date}
+                                                    <#else>
+                                                        -
+                                                    </#if>
+                                                  </td>
+                                               </tr>
+                                            </#list>
+                                            </#if>
+                                        </tbody>
+                                     </table>
                                   </div>
                                </div>
                             </div>
-                            <div class="col-6 mb-4">
-                               <div class="card mb-4">
-                                  <div class="card-header">
-                                     <h6 class="font-weight-bold">Return Book</h6>
-                                  </div>
-                                  <div class="card-body d-flex justify-content-center">
-                                    <form role="form" action="/admin/dashboard" method="GET">
-                                        <div class="btn-group mb-3">
-                                          <input type="text" class="form-control" name="bookId" placeholder="Enter book id" aria-label="Book Id" autocomplete="off" required>
-                                          <button class="btn btn-primary" type="submit" id="returnSearch"><i class="bi bi-search"></i></button>
-                                        </div>
-                                    </form>
-                                  </div>
-                               </div>
+                            <div class="col-6">
+                                <div class="col-12 assign-return-div mb-4">
+                                   <div class="card mb-4">
+                                      <div class="card-header">
+                                         <h6 class="font-weight-bold">Assign Book</h6>
+                                      </div>
+                                      <div class="card-body d-flex justify-content-center">
+                                        <form role="form" action="/admin/book/assign" method="POST">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <div class="form-group">
+                                                      <input type="text" class="form-control" name="bookId" placeholder="Enter book id" autocomplete="off" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="form-group">
+                                                      <input type="text" class="form-control" name="userName" placeholder="Enter username" autocomplete="off" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                      <button class="btn btn-primary" type="submit" id="assignBook">Assign</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="col-12 assign-return-div mb-4">
+                                   <div class="card mb-4">
+                                      <div class="card-header">
+                                         <h6 class="font-weight-bold">Return Book</h6>
+                                      </div>
+                                      <div class="card-body d-flex justify-content-center">
+                                        <form role="form" action="/admin/dashboard" method="GET">
+                                            <div class="btn-group mb-3">
+                                              <input type="text" class="form-control" name="bookId" placeholder="Enter book id" aria-label="Book Id" autocomplete="off" required>
+                                              <button class="btn btn-primary" type="submit" id="returnSearch"><i class="bi bi-search"></i></button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                   </div>
+                                </div>
                             </div>
                            <div class="col-xl-8 col-lg-7">
                               <div class="card">
