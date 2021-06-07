@@ -137,10 +137,6 @@ function profilePageReady() {
     });
 }
 
-$.validator.methods.localDate = function( value, element ) {
-    return this.optional( element ) || /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test( value );
-}
-
 function prepareBookAddForm() {
 
     $("#purchased").datepicker({
