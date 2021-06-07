@@ -387,67 +387,6 @@ function adminDashboardReady() {
     });
 }
 
-function showLoadingAnimation() {
-    $("#pageloaddiv").css("display", "block");
-}
-
-function hideLoadingAnimation() {
-    $("#pageloaddiv").css("display", "none");
-}
-
-function processAdminErrorMessage(response) {
-    if (typeof(response.errors) != "undefined") {
-        showAdminPageAlert(response.errors[0]);
-    } else if (response.status && response.status == "error") {
-        showAdminPageAlert(response.message);
-    }
-}
-
-function checkLoggedInStatus() {
-    var token = sessionStorage.getItem("token");
-    if (token) {
-        $('#loggedIn').val("true");
-        toggleSignupAndLogin();
-    }
-}
-
-function toggleSignupAndLogin() {
-    $('#signup').addClass('d-none');
-    $('#login').addClass('d-none');
-    $('.onlyForLoggedIn').removeClass('d-none');
-    $('#logoutLink').click(function() {
-        console.log("logout clicked");
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            type: 'POST',
-            headers: {
-                "Authorization": sessionStorage.getItem("token")
-            },
-            url: '/user/logout',
-            success: function(data) {
-                hideLoadingAnimation();
-                if (data.status == "SUCCESS") {
-                    console.log(data);
-                    sessionStorage.removeItem("token");
-                    window.location = data.message;
-                } else {
-                    processAdminErrorMessage(data);
-                }
-            },
-            error: function(data) {
-                hideLoadingAnimation();
-                processAdminErrorMessage(JSON.parse(data.responseText));
-            }
-        });
-    });
-}
-
-function processAdminErrorMessage(errorData) {
-    alert(JSON.parse(errorData));
-    console.log(JSON.parse(errorData));
-}
-
 $(document).ready(function() {
     var currentPage = $('#pageTracker').val();
     if ($('#messageModal').length) {

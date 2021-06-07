@@ -23,18 +23,6 @@
 	
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="<@spring.url '/css/admin.css' />" type="text/css">
-	
-	<!-- JavaScript Libraries -->
-	<script src="<@spring.url '/js/jquery.min.js' />"></script>
-	<script src="<@spring.url '/js/jquery-ui.js'/>"></script>
-	<script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
-	<script src="<@spring.url '/js/jquery.validate.js' />"></script>
-	<script src="<@spring.url '/js/typeahead.bundle.js'/>"></script>
-	<script src="<@spring.url '/js/jsviews.min.js'/>"></script>
-	
-	<!-- Custom JavaScript -->
-	<script src="<@spring.url '/js/admin.js'/>"></script>
-	
 </head>
 
 <body>
@@ -43,7 +31,14 @@
 	<#nested>
 	<#include "user_footer.ftlh">
 	<#include "../modal/message_modal.ftlh">
-	
+
+	<!-- JavaScript Libraries -->
+	<script src="<@spring.url '/js/jquery.min.js' />"></script>
+	<script src="<@spring.url '/js/jquery-ui.js'/>"></script>
+	<script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
+
+	<!-- Custom JavaScript -->
+	<script src="<@spring.url '/js/admin.js'/>"></script>
 </body>
 </html>
 </#macro>

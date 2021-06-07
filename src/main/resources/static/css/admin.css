@@ -568,7 +568,6 @@ a, a:visited, a:hover {
 .nav-sidebar {
     list-style-type: none;
     padding: 0;
-    position: fixed;
 }
 
 .nav-sidebar > li {
@@ -587,18 +586,17 @@ a, a:visited, a:hover {
 
 .nav-sidebar > li > .active {
     text-transform: uppercase;
-    color: #fff;
+    color: var(--theme-color);
 }
 
 .nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-    color: #fff;
-    background-color: #0FA4C8;
+.nav-sidebar > li > .active:hover,
+.nav-sidebar > li > .active:focus {
+    color: var(--theme-color);
 }
 
 .sidebar-divider {
-    border-top: 1px solid #17b4c5;
+    border-top: 1px solid var(--theme-color);
 }
 
 .caption {
