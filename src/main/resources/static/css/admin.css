@@ -422,12 +422,28 @@ a, a:visited, a:hover {
     padding: 5px;
 }
 
-#standard, #division {
+#signup-form #standard {
     background-color: rgba(255,255,255,0.1);
     border: none;
-    color: #555 !important;
+    color: #fff !important;
     border-bottom: 3px solid var(--theme-color);
     border-radius: 0;
+}
+
+#signup-form #division {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff !important;
+    border-bottom: 3px solid var(--theme-color);
+    border-radius: 0;
+}
+
+#signup-form #standard option {
+    color: #495057 !important;
+}
+
+#signup-form #division option {
+    color: #495057 !important;
 }
 
 #login-btn, #signup-btn {
@@ -1011,6 +1027,7 @@ a, a:visited, a:hover {
 
 .book-cover-div, .profile-pic-div {
     background-size: cover;
+    border: 5px solid var(--theme-color);
     border-radius: 50%;
     background-position: center;
     height: 177px;

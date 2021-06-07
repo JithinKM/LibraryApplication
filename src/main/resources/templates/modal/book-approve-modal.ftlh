@@ -11,13 +11,13 @@
              <form role="form" id="bookApprovalForm" method="GET">
                 <div class="row">
                    <div class="col-5">
-                       <div class="book-cover-div shadow"></div>
+                       <div class="book-cover-div"></div>
                    </div>
                    <div class="col-2 form-middle text-center">
                         <i class="bi bi-box-arrow-right"></i>
                    </div>
                    <div class="col-5">
-                       <div class="profile-pic-div shadow" style="background-image: url(../img/avatars/${random}.png)"></div>
+                       <div class="profile-pic-div" style="background-image: url(../img/avatars/${random}.png)"></div>
                    </div>
                 </div>
                 <div class="row">
