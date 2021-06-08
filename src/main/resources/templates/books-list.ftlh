@@ -1,5 +1,4 @@
 <@admin_layout title="Books">
-<h5 class="admin-mobile-warning d-none">Please use a desktop device to view this site</h5>
 <section class="admin-page">
    <div class="container-fluid main-container">
       <div class="row main-row">

@@ -1,10 +1,3 @@
-function showMobileWarning() {
-    if($(window).width() <= 760) {
-        $('.admin-mobile-warning').removeClass('d-none');
-        $('.admin-page').remove();
-    }
-}
-
 function homePageReady() {
     $('.book-contents').width($('.bookName').width());
     $('.bookName').click(function(event) {
@@ -154,7 +147,6 @@ function prepareBookEditForm() {
 
 function booksListPageReady() {
     $("#book").addClass("active");
-    showMobileWarning();
 
     $("#filer-books").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -251,7 +243,6 @@ function booksListPageReady() {
 
 function authorsListPageReady() {
     $("#author").addClass("active");
-    showMobileWarning();
 
     $("#filter-authors").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -298,7 +289,6 @@ function authorsListPageReady() {
 
 function usersListPageReady() {
     $("#user").addClass("active");
-    showMobileWarning();
 
     $("#filter-users").on("keyup", function() {
         var value = $(this).val().toLowerCase();
@@ -326,7 +316,6 @@ function checkBookId() {
 
 function adminDashboardReady() {
     $("#dashboard").addClass("active");
-    showMobileWarning();
 
     if ($('#allottedBookModalBtn').length) {
         $('#allottedBookModalBtn').click();

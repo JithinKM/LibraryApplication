@@ -1105,4 +1105,8 @@ a, a:visited, a:hover {
     .book-entries {
         margin: 5% 15%;
     }
+
+    .admin-main , .container-fluid {
+        padding: 0;
+    }
 }

@@ -1,5 +1,4 @@
 <@admin_layout title="Dashboard">
-<h5 class="admin-mobile-warning d-none">Please use a desktop device to view this site</h5>
 <section class="admin-page">
    <div class="container-fluid main-container">
       <div class="row main-row">
@@ -11,7 +10,7 @@
                   <div id="content">
                      <div class="container-fluid">
                         <div class="row dashboard-content">
-                            <div class="col-6 mb-4">
+                            <div class="col-lg-6 mb-4">
                                <div class="card mb-4">
                                   <div class="card-header">
                                      <h6 class="font-weight-bold">Book Overdue</h6>
@@ -48,7 +47,7 @@
                                   </div>
                                </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <div class="col-12 assign-return-div mb-4">
                                    <div class="card mb-4">
                                       <div class="card-header">
@@ -57,17 +56,17 @@
                                       <div class="card-body d-flex justify-content-center">
                                         <form role="form" action="/admin/book/assign" method="POST">
                                             <div class="row">
-                                                <div class="col-5">
+                                                <div class="col-lg-5">
                                                     <div class="form-group">
                                                       <input type="text" class="form-control" name="bookId" placeholder="Enter book id" autocomplete="off" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-5">
+                                                <div class="col-lg-5">
                                                     <div class="form-group">
                                                       <input type="text" class="form-control" name="userName" placeholder="Enter username" autocomplete="off" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-lg-2">
                                                     <div class="form-group">
                                                       <button class="btn btn-primary" type="submit" id="assignBook">Assign</button>
                                                     </div>
