@@ -5,8 +5,8 @@
          <main class="home-container justify-content-center">
             <div class="book-container text-center">
                <div class="search-box">
-                  <form action="" class="search-form">
-                     <input type="text" class="text-center" placeholder="Search for books or authors" id="search" autocomplete="off">
+                  <form action="/home" class="search-form">
+                     <input type="text" class="text-center" placeholder="Search: Book or Author" id="search" name="keyword" autocomplete="off" value=${(keyword)!""}>
                   </form>
                   <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
                      xml:space="preserve">

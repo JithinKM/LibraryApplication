@@ -125,9 +125,8 @@ public class DashboardServiceImpl implements DashboardService {
 			bookUserList.forEach(x -> System.out.println(x.getStatus()));
 			System.out.println("You are in trouble..........");
 			throw new InternalServerExpection("Internal Server Exception");
-		} else {
-			return bookUserList.get(0);
 		}
+		return bookUserList.get(0);
 	}
 	
 	private Optional<BookUserEntity> validateBookRequest(Long bookUserId) {
