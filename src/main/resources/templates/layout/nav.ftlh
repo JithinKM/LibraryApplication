@@ -1,7 +1,7 @@
 <!-- Navigation Bar-->
 <#assign random = .now?long % 10>
 <nav class="navbar navbar-light navbar-expand-lg navbar-custom fixed-top">
-  <a class="navbar-brand" href="/">SHS Library App</a>
+  <a class="navbar-brand" href="/home"><@spring.message "app.title"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

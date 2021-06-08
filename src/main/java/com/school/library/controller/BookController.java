@@ -70,13 +70,13 @@ public class BookController {
 		if(currentOwnedBooks >= maxBooks) {
 			System.out.println("Maximum number of books are requested/alloted");
 			redirectAttrs.addFlashAttribute("message", new Message("danger","Limit Reached", "Maximum number of books are requested/alloted"));
-			return "redirect:/";
+			return "redirect:/home";
 		}
 		BookUserEntity bookUserEntity = userService.blockBook(bookDetailsId, username);
 		
 		String details = "Book with id: " + bookUserEntity.getBook().getId() + " Blocked Successfully.";
 		redirectAttrs.addFlashAttribute("message", new Message("success","Book Blocked", details));
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/renew/{bookUserId}")

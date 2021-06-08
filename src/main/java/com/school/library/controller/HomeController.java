@@ -36,6 +36,11 @@ public class HomeController {
     
 	@Autowired
 	private QueryManager manger;
+	
+	 @GetMapping("/")
+	    public String home() {
+	        return "home";
+	    }
 
     @GetMapping("/login")
     public String loginPage() {
