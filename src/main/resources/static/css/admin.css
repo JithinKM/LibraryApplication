@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
 }
 
 .login-body {
-  background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.5));
+  background: linear-gradient(to right, rgba(95,195,227,0.3), rgba(229,93,135,0.3));
   padding: 60px 20px;
 }
 
@@ -314,7 +314,7 @@ a, a:visited, a:hover {
 #search::-moz-selection {color: #555; background: rgba(0,0,0,0.25);}
 #search::selection {color: #555; background: rgba(0,0,0,0.25);}
 
-.admin-page a {
+.admin-page a, .admin-page a:hover {
     color: var(--theme-color);
 }
 
@@ -363,7 +363,7 @@ a, a:visited, a:hover {
 }
 
 #login-form, #signup-form {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.4);
     color: #fff !important;
     border-radius: 10px;
     padding: 10px 30px;
@@ -599,6 +599,10 @@ a, a:visited, a:hover {
     border-top: 1px solid var(--theme-color);
 }
 
+.nav-sidebar .bi {
+    padding: 5px;
+}
+
 .caption {
     padding: 20px;
     color: var(--theme-color);
@@ -732,7 +736,7 @@ a, a:visited, a:hover {
 }
 
 .username-sm {
-    margin-left: 60px;
+    margin-left: 70px;
     margin-bottom: 0 !important;
 }
 
@@ -745,7 +749,7 @@ a, a:visited, a:hover {
 }
 
 .progress-bar.blue {
-    background-color: var(--theme-color);
+    background-color: #17a2b8;
 }
 
 .progress-bar.yellow {

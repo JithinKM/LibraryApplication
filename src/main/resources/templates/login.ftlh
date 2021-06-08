@@ -48,7 +48,7 @@
                         </form>
                     </div>
                 </div>
-                <div id="signupDiv" class="margin-none d-flex align-items-center">
+                <div id="signupDiv" class="margin-none d-none align-items-center">
                     <div class="form-outer mx-auto">
                         <form id="signup-form"  method="post" action="/signup">
                             <h3 id="signupHead" class="main-title text-center">SIGN UP</h3>

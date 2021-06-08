@@ -77,10 +77,6 @@
                </#if>
             </div>
             <div class="col-12">
-               <nav>
-                  <ul class="pagination justify-content-center" id="books-pagination">
-                  </ul>
-               </nav>
             </div>
       </div>
       </main>

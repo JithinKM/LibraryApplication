@@ -1,6 +1,10 @@
 $(document).ready(function() {
     if($(window).width() > 765) {
+        $('#signupDiv').addClass('d-flex');
+        $('#signupDiv').removeClass('d-none');
         var height = $('#signupDiv').height();
+        $('#signupDiv').removeClass('d-flex');
+        $('#signupDiv').addClass('d-none');
         $('#loginDiv').height(height);
     }
 
