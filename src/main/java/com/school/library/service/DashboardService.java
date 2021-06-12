@@ -9,7 +9,7 @@ public interface DashboardService {
 
     List<BookUserEntity> getAllActionRequiredBooks();
 
-    List<User> getAllRegisteredUsers();
+    List<User> getNewRegisteredUsers();
 
     BookUserEntity approveAssignRequest(Long bookUserId);
 
@@ -28,5 +28,9 @@ public interface DashboardService {
 	List<User> getUserHistory();
 
 	List<BookUserEntity> getAllOverDueBooks();
+
+	List<String> getAllRegisteredUserNames();
+
+	BookUserEntity assignBookToUser(String bookId, String userId);
 
 }

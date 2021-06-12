@@ -39,14 +39,31 @@ public class DashboardController {
 		}
 		
 		model.addAttribute("overduebooks", dashboardService.getAllOverDueBooks());
+		model.addAttribute("usernames", dashboardService.getAllRegisteredUserNames());
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
 		model.addAttribute("bookhistory", dashboardService.getBooksHistory());
 		
-		model.addAttribute("userreq", dashboardService.getAllRegisteredUsers());
+		model.addAttribute("userreq", dashboardService.getNewRegisteredUsers());
 		model.addAttribute("userhistory", dashboardService.getUserHistory());
 		
 		return "admin-dashboard";
+	}
+	
+	@GetMapping("/assign/book/{bookId}/user/{userId}")
+	public String assignBookToUser(@PathVariable("bookId") String bookId, @PathVariable("userId") String userId, 
+			RedirectAttributes redirectAttrs) {
+		if(StringUtils.isBlank(bookId) || StringUtils.isBlank(userId)) {
+			redirectAttrs.addFlashAttribute("message", new Message("danger","Error", "BookId and UserId is mandatory"));
+			return "redirect:/admin/dashboard";
+		}
+		
+		BookUserEntity bookUserEntity = dashboardService.assignBookToUser(bookId, userId);
+		
+		String details = "Book with id: " + bookId + " Assigned to " + userId+ " till Date: "+ bookUserEntity.getDueDate();
+		System.out.println(details);
+		redirectAttrs.addFlashAttribute("message", new Message("success","Book Assigned", details));
+		return "redirect:/admin/dashboard";
 	}
 	
 	@GetMapping("/approve/user/{userId}")

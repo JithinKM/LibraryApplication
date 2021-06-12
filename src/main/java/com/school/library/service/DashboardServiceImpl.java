@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.school.library.entity.BookEntity;
 import com.school.library.entity.BookUserEntity;
+import com.school.library.entity.UserEntity;
 import com.school.library.enums.BookStatusEnum;
 import com.school.library.enums.BookUserStatusEnum;
 import com.school.library.enums.UserStatusEnum;
@@ -33,6 +34,9 @@ public class DashboardServiceImpl implements DashboardService {
 	@Value("${book.renew.allowed.days}")
 	private int renewDays;
 	
+	@Value("${max.allowed.book.count}")
+	private int maxBooks;
+	
 	@Autowired
 	private BookUserRepository bookUserRepository;
 	
@@ -41,6 +45,42 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Override
+	public BookUserEntity assignBookToUser(String bookId, String userId) {
+		
+		BookEntity bookEntity = bookRepository.findById(bookId).map(x -> x)
+				.orElseThrow(() -> new BadRequestExpection("No Such Book Found"));
+		userRepository.findById(userId).map(x -> x)
+				.orElseThrow(() -> new BadRequestExpection("No Such User Found"));
+		
+		//validate book is already assigned or blocked
+		List<BookUserEntity> bookUserList = bookUserRepository.findByBookIdAndStatusIn(bookId, withUserReq());
+		if(bookUserList.size() > 0) {
+			if(bookUserList.size() == 1 && BookUserStatusEnum.REQUESTED.getStatus().equals(bookUserList.get(0).getStatus())
+				&& bookUserList.get(0).getUser().getUsername().equalsIgnoreCase(userId)) {
+				return approveAssignRequest(bookUserList.get(0).getId());
+			} 
+			System.out.println("Book is already assigned or blocked by User");
+			bookUserList.forEach(x -> System.out.println(x.getId()));
+			throw new InternalServerExpection("Book is already assigned or blocked by User");
+		} 
+		
+		//user had taken max number of books?
+		if(maxBooks <= bookUserRepository.findByUserUsernameAndStatusIn(userId, withUserReq()).size()) {
+			System.out.println("Maximum number of books are requested/alloted");
+			throw new InternalServerExpection("Maximum number of books are requested/alloted");
+		}
+		
+		Date date = Date.from(LocalDate.now().plusDays(requestDays).atStartOfDay(ZoneId.systemDefault()).toInstant());
+		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(bookId, userId).assignBook(date) ;
+		bookUserEntity = bookUserRepository.save(bookUserEntity);
+		
+		bookEntity.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
+		bookEntity.setUpdatedTimestamp(new Date());
+		bookRepository.save(bookEntity);
+		return bookUserEntity;
+	}
 
 	@Override
 	public List<BookUserEntity> getAllActionRequiredBooks() {
@@ -59,10 +99,16 @@ public class DashboardServiceImpl implements DashboardService {
 	}
 
 	@Override
-	public List<User> getAllRegisteredUsers() {
+	public List<User> getNewRegisteredUsers() {
 		return userRepository.findByStatus(UserStatusEnum.PENDING.getStatus())
 				.stream().map(User::new)
 				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<String> getAllRegisteredUserNames() {
+		return userRepository.findByStatus(UserStatusEnum.ACTIVE.getStatus())
+				.stream().map(UserEntity::getUsername).collect(Collectors.toList());	
 	}
 	
 	@Override
@@ -146,6 +192,11 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	private List<String> withUser() {
 		return Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(),
+				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus());
+	}
+	
+	private List<String> withUserReq() {
+		return Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(), BookUserStatusEnum.REQUESTED.getStatus(),
 				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus());
 	}
 
