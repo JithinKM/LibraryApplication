@@ -39,7 +39,6 @@ public class DashboardController {
 		}
 		
 		model.addAttribute("overduebooks", dashboardService.getAllOverDueBooks());
-		model.addAttribute("usernames", dashboardService.getAllRegisteredUserNames());
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
 		model.addAttribute("bookhistory", dashboardService.getBooksHistory());
@@ -50,8 +49,8 @@ public class DashboardController {
 		return "admin-dashboard";
 	}
 	
-	@GetMapping("/assign/book/{bookId}/user/{userId}")
-	public String assignBookToUser(@PathVariable("bookId") String bookId, @PathVariable("userId") String userId, 
+	@GetMapping("/book/assign")
+	public String assignBookToUser(@RequestParam("bookId") String bookId, @RequestParam("userId") String userId, 
 			RedirectAttributes redirectAttrs) {
 		if(StringUtils.isBlank(bookId) || StringUtils.isBlank(userId)) {
 			redirectAttrs.addFlashAttribute("message", new Message("danger","Error", "BookId and UserId is mandatory"));

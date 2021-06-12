@@ -48,16 +48,7 @@
 //		return books;
 //	}
 //
-//	@GetMapping("/all")
-//	public List<BookDetailsEntity> getAllBooks() {
-//		List<BookDetailsEntity> books = new ArrayList<>();
-//		Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, Integer.MAX_VALUE);
-//		if(pagedResult.hasContent()) {
-//			books = pagedResult.getContent();
-//		}
-//
-//		return books;
-//	}
+//	
 //	
 //	
 //	

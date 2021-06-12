@@ -17,4 +17,6 @@ public interface BookService {
     List<BookDetailsEntity> getDefaultBooks(int maxVisible, String visibleOrder);
 
     void deleteBook(String id);
+
+	List<BookDetailsEntity> getAllBooks();
 }
