@@ -1,26 +1,18 @@
 package com.school.library.controller;
 
-import static com.school.library.constants.LibraryConstants.BOOKS_PER_PAGE;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.school.library.config.UserPrincipal;
-import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookUserEntity;
 import com.school.library.exception.Message;
 import com.school.library.model.Book;
@@ -28,40 +20,38 @@ import com.school.library.service.BookService;
 import com.school.library.service.UserService;
 
 @Controller
-@RequestMapping("/book")
 public class BookController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(BookController.class);
+	
+	@Value("${max.allowed.book.count}")
+	private int maxBooks;
+	
+	@Value("${admin.book.visible.count}")
+	private int visbleCount;
+    
+    @Value("${admin.book.visible.order}")
+	private String visibleOrder;
 
 	@Autowired
 	private BookService bookService;
 	
 	@Autowired
 	private UserService userService;
-	
-	@Value("${max.allowed.book.count}")
-	private int maxBooks;
 
-	@GetMapping
+	@GetMapping("/book")
 	public String getBooksListPage(Model model) {
-		List<BookDetailsEntity> books = new ArrayList<>();
-//		Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, BOOKS_PER_PAGE);
-//		if(pagedResult.hasContent()) {
-//			books = pagedResult.getContent();
-//		}
-
-		model.addAttribute("books", bookService.getBooks(0, BOOKS_PER_PAGE));
-//		model.addAttribute("pageCount", pagedResult.getTotalPages());
+		model.addAttribute("books", bookService.getDefaultBooks(visbleCount, visibleOrder));
 		return "books-list";
 	}
 
-	@PostMapping
+	@PostMapping("/book")
 	public String createBooks(Book book) {
 		bookService.createBooks(book);
 		return "redirect:/book";
 	}
 	
-	@GetMapping("/block/{bookDetailsId}")
+	@GetMapping("/book/block/{bookDetailsId}")
 	public String blockBook(@AuthenticationPrincipal UserPrincipal userPrincipal,
 			@PathVariable("bookDetailsId") Long bookDetailsId, RedirectAttributes redirectAttrs) {
 		//need to handle same books different copy is getting assigned
@@ -79,7 +69,7 @@ public class BookController {
 		return "redirect:/home";
 	}
 	
-	@GetMapping("/renew/{bookUserId}")
+	@GetMapping("/book/renew/{bookUserId}")
 	public String renewBook(@AuthenticationPrincipal UserPrincipal userPrincipal,
 			@PathVariable("bookUserId") Long bookUserId, RedirectAttributes redirectAttrs) {
 		String username = userPrincipal.getUsername();
@@ -93,7 +83,7 @@ public class BookController {
 		return "redirect:/user/profile";
 	}
 	
-	@GetMapping("/cancel/{bookUserId}")
+	@GetMapping("/book/cancel/{bookUserId}")
 	public String cancelBookRequest(@AuthenticationPrincipal UserPrincipal userPrincipal,
 			@PathVariable("bookUserId") Long bookUserId, RedirectAttributes redirectAttrs) {
 		String username = userPrincipal.getUsername();

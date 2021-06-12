@@ -37,6 +37,8 @@ public class DashboardController {
 			model.addAttribute("allottedBook", dashboardService.findBookDetails(bookId.trim()));
 			model.addAttribute("searchedId", bookId);
 		}
+		
+		model.addAttribute("overduebooks", dashboardService.getAllOverDueBooks());
 
 		model.addAttribute("bookreq", dashboardService.getAllActionRequiredBooks());
 		model.addAttribute("bookhistory", dashboardService.getBooksHistory());

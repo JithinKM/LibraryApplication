@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.management.RuntimeErrorException;
 
@@ -16,21 +17,17 @@ import com.school.library.entity.AuthorEntity;
 import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookEntity;
 import com.school.library.model.Book;
-import com.school.library.repository.AuthorRepository;
 import com.school.library.repository.BookDetailsRepository;
 import com.school.library.repository.BookRepository;
 
 @Service
 public class BookServiceImpl implements BookService {
-
+	
     @Autowired
     private BookRepository bookRepository;
 
     @Autowired
     private BookDetailsRepository bookDetailsRepository;
-
-    @Autowired
-    private AuthorRepository authorRepository;
 
     @Override
     public void createBook(Book book) {
@@ -68,9 +65,20 @@ public class BookServiceImpl implements BookService {
 	}
 
     @Override
-    public List<BookDetailsEntity> getBooks(final int page, final int size) {
-        List<BookDetailsEntity> books = bookDetailsRepository.findBookDetails();
-        return books.parallelStream().limit(size).collect(Collectors.toList());
+    public List<BookDetailsEntity> getDefaultBooks(int maxVisible, String visibleOrder) {
+    	Stream<BookDetailsEntity> books = Stream.of();
+    	switch (visibleOrder) {
+		case "RANDOM":
+			books = bookDetailsRepository.findBookDetails().stream().filter(x -> x.getCount() > 0);
+			break;
+		case "LATEST":
+			books = bookDetailsRepository.findAllByOrderByCreatedTimestampDesc().stream();
+			break;
+		default:
+			books = bookDetailsRepository.findBookDetails().stream().filter(x -> x.getCount() > 0);
+			break;
+		}
+        return books.limit(maxVisible).collect(Collectors.toList());
     }
 
     @Override

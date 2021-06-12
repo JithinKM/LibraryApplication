@@ -27,4 +27,6 @@ public interface DashboardService {
 
 	List<User> getUserHistory();
 
+	List<BookUserEntity> getAllOverDueBooks();
+
 }

@@ -1,5 +1,6 @@
 package com.school.library.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,6 @@ public interface BookUserRepository extends JpaRepository<BookUserEntity, Long> 
 	List<BookUserEntity> findByBookIdAndStatusIn(String bookId, List<String> statusList);
 
 	List<BookUserEntity> findTop10ByActionRequiredFalseOrderByUpdatedDateDesc();
+
+	List<BookUserEntity> findByStatusInAndDueDateLessThan(List<String> withUser, Date date);
 }

@@ -219,13 +219,14 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("Currently Book is not available/Or All books already got allocated");
 		}
 		
-		BookEntity book = bookDetails.getBooks().parallelStream().filter(x-> x.getStatus()
+		BookEntity bookEntity = bookDetails.getBooks().parallelStream().filter(x-> x.getStatus()
 				.equals(BookStatusEnum.AVAILABLE.getStatus())).findFirst().get();
 		
-		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(book.getId(), username);
+		BookUserEntity bookUserEntity = new BookUserEntity().requestBook(bookEntity.getId(), username);
 		bookUserEntity = bookUserRepository.save(bookUserEntity);
-		book.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
-		bookRepository.save(book);
+		bookEntity.setStatus(BookStatusEnum.NOTAVAILABLE.getStatus());
+		bookEntity.setUpdatedTimestamp(new Date());
+		bookRepository.save(bookEntity);
 		
 		return bookUserEntity;
 	}
@@ -252,6 +253,7 @@ public class UserServiceImpl implements UserService {
 		
 		BookEntity bookEntity = bookUserEntity.getBook();
 		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookEntity.setUpdatedTimestamp(new Date());
 		bookRepository.save(bookEntity);
 		
 		return bookUserEntity;

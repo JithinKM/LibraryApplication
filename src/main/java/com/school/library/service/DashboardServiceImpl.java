@@ -53,6 +53,12 @@ public class DashboardServiceImpl implements DashboardService {
 	}
 
 	@Override
+	public List<BookUserEntity> getAllOverDueBooks() {
+		return bookUserRepository.findByStatusInAndDueDateLessThan(withUser(), new Date())
+				.stream().sorted((a, b)-> Double.compare(b.getOverDueDays(), a.getOverDueDays())).collect(Collectors.toList());
+	}
+
+	@Override
 	public List<User> getAllRegisteredUsers() {
 		return userRepository.findByStatus(UserStatusEnum.PENDING.getStatus())
 				.stream().map(User::new)
@@ -82,6 +88,7 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		BookEntity bookEntity = bookUserEntity.getBook();
 		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookEntity.setUpdatedTimestamp(new Date());
 		bookRepository.save(bookEntity);
 		
 		return bookUserEntity;
@@ -110,6 +117,7 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		BookEntity bookEntity = bookUserEntity.getBook();
 		bookEntity.setStatus(BookStatusEnum.AVAILABLE.getStatus());
+		bookEntity.setUpdatedTimestamp(new Date());
 		bookRepository.save(bookEntity);
 		
 		return bookUserEntity;
@@ -117,8 +125,7 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Override
 	public BookUserEntity findBookDetails(String bookId) {
-		List<BookUserEntity> bookUserList = bookUserRepository.findByBookIdAndStatusIn(bookId, Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(),
-				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus()));
+		List<BookUserEntity> bookUserList = bookUserRepository.findByBookIdAndStatusIn(bookId, withUser());
 		if(bookUserList.size() == 0) {
 			return null;
 		} else if(bookUserList.size() > 1) {
@@ -136,4 +143,10 @@ public class DashboardServiceImpl implements DashboardService {
 		}
 		return bookUser;
 	}
+	
+	private List<String> withUser() {
+		return Arrays.asList(BookUserStatusEnum.ALLOTED.getStatus(),
+				BookUserStatusEnum.RENEWREQUESTED.getStatus(),BookUserStatusEnum.RENEWDECLINED.getStatus());
+	}
+
 }

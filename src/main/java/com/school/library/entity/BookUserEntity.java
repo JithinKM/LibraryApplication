@@ -1,5 +1,8 @@
 package com.school.library.entity;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -40,6 +43,10 @@ public class BookUserEntity {
 	private Date returnedDate;
 	private Date dueDate;
 	private Date updatedDate;
+	
+	public long getOverDueDays() {
+		return ChronoUnit.DAYS.between(dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+	}
 	
 	public String getStatusText() {
 		return BookUserStatusEnum.valueOf(status).getStatusString();

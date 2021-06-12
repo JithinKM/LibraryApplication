@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.school.library.enums.BookStatusEnum;
 import com.school.library.model.BookDetails;
 
 @Entity
@@ -129,7 +130,7 @@ public class BookDetailsEntity {
 	}
 
 	public Long getCount() {
-		return this.books.stream().filter(x -> x.getStatus().equalsIgnoreCase("available")).count();
+		return this.books.stream().filter(x -> x.getStatus().equalsIgnoreCase(BookStatusEnum.AVAILABLE.getStatus())).count();
 	}
 
 	public String getIsbn() {
