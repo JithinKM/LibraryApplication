@@ -118,7 +118,6 @@
       <#include "/modal/add-book-modal.ftlh">
       <#include "/modal/edit-book-modal.ftlh">
       <#assign pageTracker = "booksList">
-      <input type="hidden" id="pageCount" value="${pageCount}" />
    </div>
    </div>
 </section>

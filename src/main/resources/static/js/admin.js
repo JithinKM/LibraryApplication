@@ -25,7 +25,6 @@ function homePageReady() {
         filterBooks();
     });
 
-    $('.onlyForLoggedIn').addClass('d-none');
     $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
     $("#search").focus(function() {
       $(".search-box").addClass("border-searching");
@@ -33,32 +32,9 @@ function homePageReady() {
     $("#search").blur(function() {
       $(".search-box").removeClass("border-searching");
     });
-    $("#search").keyup(function() {
-        if($(this).val().length > 0) {
-          $(".go-icon").addClass("go-in");
-        }
-        else {
-          $(".go-icon").removeClass("go-in");
-        }
-
-        var value = $(this).val().toLowerCase();
-        $("#book-list .book-entries").filter(function() {
-            if($(this).find('.book-filter').text().toLowerCase().indexOf(value) > -1) {
-                $(this).removeClass('filter-hide');
-            } else {
-                $(this).addClass('filter-hide');
-            }
-        });
-    });
-
-    $(".go-icon").click(function(){
-      $(".search-form").submit();
-    });
-
 }
 
 function profilePageReady() {
-    $('.onlyForLoggedIn').addClass('d-none');
     $('.admin-main').removeClass('col-lg-10 col-md-10 col-sm-9');
     $('#chevron-toggle').click(function(event) {
         $(this).find(".bi").toggleClass("d-none");
@@ -148,17 +124,6 @@ function prepareBookEditForm() {
 function booksListPageReady() {
     $("#book").addClass("active");
 
-    $("#filer-books").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#bookList tr.table-accordion").filter(function() {
-            if($(this).find('.book-filter').text().toLowerCase().indexOf(value) > -1) {
-                $(this).removeClass('filter-hide');
-            } else {
-                $(this).addClass('filter-hide');
-            }
-        });
-    });
-
     prepareBookAddForm();
     prepareBookEditForm();
 
@@ -244,17 +209,6 @@ function booksListPageReady() {
 function authorsListPageReady() {
     $("#author").addClass("active");
 
-    $("#filter-authors").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#authorsList tr").filter(function() {
-            if($(this).find('.author-filter').text().toLowerCase().indexOf(value) > -1) {
-                $(this).removeClass('filter-hide');
-            } else {
-                $(this).addClass('filter-hide');
-            }
-        });
-    });
-
     $(".author-edit").click(function(event) {
         $("#editName").val($(event.target).siblings(".authorEditName").val());
         $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
@@ -289,17 +243,6 @@ function authorsListPageReady() {
 
 function usersListPageReady() {
     $("#user").addClass("active");
-
-    $("#filter-users").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#usersList tr").filter(function() {
-            if($(this).find('.user-filter').text().toLowerCase().indexOf(value) > -1) {
-                $(this).removeClass('filter-hide');
-            } else {
-                $(this).addClass('filter-hide');
-            }
-        });
-    });
 }
 
 function checkBookId() {

@@ -3,7 +3,8 @@ package com.school.library.service;
 import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookEntity;
 import com.school.library.model.Book;
-import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 public interface BookService {
 
@@ -13,7 +14,7 @@ public interface BookService {
 
     void createBooks(final Book bookEntity);
 
-    Page<BookDetailsEntity> getBooks(final int page, final int size);
+    List<BookDetailsEntity> getBooks(final int page, final int size);
 
     void deleteBook(String id);
 }

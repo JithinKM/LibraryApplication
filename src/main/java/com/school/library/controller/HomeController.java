@@ -33,14 +33,14 @@ public class HomeController {
 
     @Autowired
     UserService userService;
-    
-	@Autowired
-	private QueryManager manger;
-	
-	 @GetMapping("/")
-	    public String home() {
-	        return "home";
-	    }
+
+    @Autowired
+    private QueryManager manger;
+
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/home";
+    }
 
     @GetMapping("/login")
     public String loginPage() {
@@ -62,13 +62,13 @@ public class HomeController {
     	}
     	
         List<BookDetailsEntity> books = new ArrayList<>();
-        Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, BOOKS_PER_PAGE);
-        if(pagedResult.hasContent()) {
-            books = pagedResult.getContent();
-        }
+//        Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, BOOKS_PER_PAGE);
+//        if(pagedResult.hasContent()) {
+//            books = pagedResult.getContent();
+//        }
 
-        model.addAttribute("books", books);
-        model.addAttribute("pageCount", pagedResult.getTotalPages());
+        model.addAttribute("books", bookService.getBooks(0, BOOKS_PER_PAGE));
+//        model.addAttribute("pageCount", pagedResult.getTotalPages());
         return "home";
     }
     

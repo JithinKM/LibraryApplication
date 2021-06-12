@@ -69,7 +69,6 @@
          </div>
          <#include "/modal/author-edit-modal.ftlh">
          <#assign pageTracker = "authorsList">
-         <input type="hidden" id="pageCount" value="${pageCount}" />
       </div>
    </div>
 </section>

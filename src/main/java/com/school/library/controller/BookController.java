@@ -45,13 +45,13 @@ public class BookController {
 	@GetMapping
 	public String getBooksListPage(Model model) {
 		List<BookDetailsEntity> books = new ArrayList<>();
-		Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, BOOKS_PER_PAGE);
-		if(pagedResult.hasContent()) {
-			books = pagedResult.getContent();
-		}
+//		Page<BookDetailsEntity> pagedResult = bookService.getBooks(0, BOOKS_PER_PAGE);
+//		if(pagedResult.hasContent()) {
+//			books = pagedResult.getContent();
+//		}
 
-		model.addAttribute("books", books);
-		model.addAttribute("pageCount", pagedResult.getTotalPages());
+		model.addAttribute("books", bookService.getBooks(0, BOOKS_PER_PAGE));
+//		model.addAttribute("pageCount", pagedResult.getTotalPages());
 		return "books-list";
 	}
 
