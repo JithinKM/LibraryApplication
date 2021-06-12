@@ -38,7 +38,8 @@
 	<script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
 
 	<!-- Custom JavaScript -->
-	<script src="<@spring.url '/js/admin.js'/>"></script>
+	<script src="<@spring.url '/js/home.js'/>"></script>
+	<script src="<@spring.url '/js/profile.js'/>"></script>
 </body>
 </html>
 </#macro>

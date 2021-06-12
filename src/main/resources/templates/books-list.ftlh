@@ -10,7 +10,7 @@
                   <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
                         <div class="input-group search-form">
-                           <input type="text" class="form-control" id="filer-books" placeholder="Search books or authors...">
+                           <input type="text" class="form-control text-center" id="filer-books" placeholder="Search books or authors">
                         </div>
                      </div>
                   </div>
@@ -19,7 +19,7 @@
                          <div class="col-4">
                          </div>
                          <div class="col-4">
-                            <h6 class="font-weight-bold"><i class="bi bi-book"></i>&nbsp;Books</h6>
+                            <h5 class="font-weight-bold"><i class="bi bi-book"></i>&nbsp;Books</h5>
                          </div>
                          <div class="col-4">
                             <a class="pull-right" data-toggle="modal" data-target="#bookAddModal">Add a new book</a>
@@ -35,13 +35,13 @@
                                     <th scope="col">Publication</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Language</th>
-                                    <th scope="col">Count</th>
+                                    <th scope="col">Available</th>
                                  </tr>
                               </thead>
                               <tbody id="bookListBody">
                                  <#if books??>
                                  <#list books as bookDetail>
-                                 <tr class="accordion-toggle table-accordion-<#if bookDetail.count gt 0>hover</#if>" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" aria-controls="#table-accordion${bookDetail?index}">
+                                 <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" aria-controls="#table-accordion${bookDetail?index}">
                                     <td class="book-filter">${bookDetail.name}</td>
                                     <td class="book-filter">${bookDetail.author.name}</td>
                                     <td>${bookDetail.publication}</td>
@@ -56,6 +56,7 @@
                                           <table class="table table-sm table-dark">
                                              <thead>
                                                 <tr>
+                                                   <th>#</th>
                                                    <th>Id</th>
                                                    <th>Contributed By</th>
                                                    <th>Price</th>
@@ -68,6 +69,7 @@
                                              <tbody>
                                                 <#list bookDetail.books as book>
                                                 <tr>
+                                                   <td>${book?index + 1}</td>
                                                    <td>${book.id}</td>
                                                    <td>${book.contributedBy}</td>
                                                    <td>${book.price}</td>
@@ -75,8 +77,8 @@
                                                    <td>${book.rack}</td>
                                                    <td>${book.purchasedDate?date}</td>
                                                    <td>
-                                                      <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a> |
-                                                      <a class="reject" href="/book/delete/${book.id}">Delete</a>
+                                                      <a class="confirm book-edit" data-toggle="modal" data-target="#bookEditModal">Edit</a>
+                                                      <#if book.status != 'NOTAVAILABLE'> | <a class="reject" href="/book/delete/${book.id}">Delete</a></#if>
                                                       <input type="hidden" class="bookEditId" value="${book.id}" />
                                                       <input type="hidden" class="bookDetailEditId" value="${bookDetail.id?string.computer}" />
                                                       <input type="hidden" class="bookEditName" value="${bookDetail.name}" />

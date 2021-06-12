@@ -561,6 +561,10 @@ a, a:visited, a:hover {
     color: var(--theme-color);
 }
 
+.card-header h5 {
+    margin-bottom: 0;
+}
+
 .nav-sidebar {
     list-style-type: none;
     padding: 0;
@@ -617,7 +621,7 @@ a, a:visited, a:hover {
 .table-collapse-header {
     font-weight: bold;
 }
-.table-accordion-hover {
+.table-accordion {
     cursor: pointer;
 }
 

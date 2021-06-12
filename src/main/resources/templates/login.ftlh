@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
+                                    <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -142,6 +142,11 @@
                                                 </div>
                                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" disabled autocomplete="off">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="dob" name="dob" placeholder="DOB" required autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

@@ -17,12 +17,12 @@
                                          <h6 class="font-weight-bold"><i class="bi bi-box-arrow-right"></i>&nbsp;Assign Book</h6>
                                       </div>
                                       <div class="card-body d-flex justify-content-center">
-                                        <form role="form" action="/admin/book/assign" method="POST">
+                                        <form role="form" action="/admin/book/assign" method="GET">
                                             <div class="form-group">
                                               <input type="text" class="form-control" name="bookId" placeholder="Enter book id" autocomplete="off" required>
                                             </div>
                                             <div class="form-group">
-                                              <input type="text" class="form-control" name="userName" placeholder="Enter username" autocomplete="off" required>
+                                              <input type="text" class="form-control" name="userId" placeholder="Enter username" autocomplete="off" required>
                                             </div>
                                             <div class="form-group">
                                               <button class="btn btn-primary btn-block" type="submit" id="assignBook">Assign</button>

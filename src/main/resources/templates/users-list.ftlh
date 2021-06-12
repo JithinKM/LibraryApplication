@@ -7,19 +7,21 @@
          <div class="col-lg-10 col-md-10 col-sm-9 col-12 admin-main">
             <div class="container main-content text-center">
                <div class="panel panel-info list-title">
-                  <div class="row">
-                     <div class="col-xs-12 col-sm-4 panel-heading">
-                        <h3 class="panel-title float-left">Users</h3>
-                     </div>
+                  <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
                         <div class="input-group search-form">
-                           <input type="text" class="form-control" id="filter-users" placeholder="Search users...">
+                           <input type="text" class="form-control text-center" id="filter-users" placeholder="Search users">
                            </span>
                         </div>
                      </div>
                   </div>
-                  <div class="panel-body">
-                     <div class="justify-content-center">
+                  <div class="card mb-4">
+                      <div class="row card-header">
+                         <div class="col-12">
+                            <h5 class="font-weight-bold"><i class="bi bi-person"></i>&nbsp;Users</h5>
+                         </div>
+                      </div>
+                      <div class="card-body d-flex justify-content-center book-card">
                         <div class="table-responsive">
                            <table class="table table-hover" id="usersList">
                               <thead>
