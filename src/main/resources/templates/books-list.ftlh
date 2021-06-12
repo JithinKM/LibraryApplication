@@ -7,26 +7,27 @@
          <div class="col-lg-10 col-md-10 col-sm-9 col-12 admin-main">
             <div class="container main-content text-center">
                <div class="panel panel-info list-title">
-                  <div class="row">
-                     <div class="col-xs-12 col-sm-4 panel-heading">
-                        <h3 class="panel-title float-left">Books</h3>
-                     </div>
+                  <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
                         <div class="input-group search-form">
                            <input type="text" class="form-control" id="filer-books" placeholder="Search books or authors...">
                         </div>
                      </div>
-                     <div class="col-xs-12 col-sm-4 panel-heading">
-                        <!-- Button trigger modal -->
-                        <a class="panel-btn float-right" data-toggle="modal" data-target="#bookAddModal">
-                        Add a new book
-                        </a>
-                     </div>
                   </div>
-                  <div class="panel-body">
-                     <div class="justify-content-center">
+                  <div class="card mb-4">
+                      <div class="row card-header">
+                         <div class="col-4">
+                         </div>
+                         <div class="col-4">
+                            <h6 class="font-weight-bold"><i class="bi bi-book"></i>&nbsp;Books</h6>
+                         </div>
+                         <div class="col-4">
+                            <a class="pull-right" data-toggle="modal" data-target="#bookAddModal">Add a new book</a>
+                         </div>
+                      </div>
+                      <div class="card-body d-flex justify-content-center book-card">
                         <div class="table-responsive">
-                           <table class="table table-hover" id="bookList">
+                           <table class="table" id="bookList">
                               <thead>
                                  <tr>
                                     <th scope="col">Name</th>
@@ -40,7 +41,7 @@
                               <tbody id="bookListBody">
                                  <#if books??>
                                  <#list books as bookDetail>
-                                 <tr class="accordion-toggle table-accordion" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" aria-controls="#table-accordion${bookDetail?index}">
+                                 <tr class="accordion-toggle table-accordion-<#if bookDetail.count gt 0>hover</#if>" data-toggle="collapse" data-target="#table-accordion${bookDetail?index}" aria-controls="#table-accordion${bookDetail?index}">
                                     <td class="book-filter">${bookDetail.name}</td>
                                     <td class="book-filter">${bookDetail.author.name}</td>
                                     <td>${bookDetail.publication}</td>
@@ -48,10 +49,11 @@
                                     <td>${bookDetail.language}</td>
                                     <td>${bookDetail.count}</td>
                                  </tr>
+                                 <#if bookDetail.books?has_content>
                                  <tr class="table-collapse table-collapse-header">
                                     <td colspan="7" class="books-inner-table">
                                        <div class="book-accordion-inner collapse" id="table-accordion${bookDetail?index}"  data-parent="#bookList">
-                                          <table class="table table-info">
+                                          <table class="table table-sm table-dark">
                                              <thead>
                                                 <tr>
                                                    <th>Id</th>
@@ -96,6 +98,7 @@
                                        </div>
                                     </td>
                                  </tr>
+                                  </#if>
                                  </#list>
                                  </#if>
                               </tbody>

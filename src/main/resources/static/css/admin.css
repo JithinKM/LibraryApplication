@@ -481,11 +481,6 @@ a, a:visited, a:hover {
     vertical-align: baseline;
 }
 
-.table-responsive {
-    background: #fff;
-    margin-top: 20px;
-}
-
 .confirm {
     color: #5cb85c !important;
 }
@@ -525,8 +520,8 @@ a, a:visited, a:hover {
     padding: 10px;
 }
 
-.panel-btn {
-    padding: 5px;
+.book-card {
+    padding: 0;
 }
 
 .search-form {
@@ -563,6 +558,7 @@ a, a:visited, a:hover {
 
 .card-header {
     background-color: #c6d2e1 !important;
+    color: var(--theme-color);
 }
 
 .nav-sidebar {
@@ -603,6 +599,10 @@ a, a:visited, a:hover {
     padding: 5px;
 }
 
+.card-header .bi {
+    padding: 5px;
+}
+
 .caption {
     padding: 20px;
     color: var(--theme-color);
@@ -617,7 +617,7 @@ a, a:visited, a:hover {
 .table-collapse-header {
     font-weight: bold;
 }
-.table-accordion {
+.table-accordion-hover {
     cursor: pointer;
 }
 
@@ -913,29 +913,30 @@ a, a:visited, a:hover {
     margin: 15px 0px;
 }
 
-.dashboard-content .card {
+.main-content .card {
     margin: 15px 0px;
     border: none;
 }
 
 .fixed-height-body {
-    height: 300px;
+    max-height: 300px;
 }
 
-.dashboard-content .card-header {
+.main-content .card-header {
     padding: 10px !important;
 }
 
-.dashboard-content .card-header h6 {
+.main-content .card-header h6 {
     margin-bottom: 0 !important;
 }
 
-.dashboard-content .card-body {
+.main-content .card-body {
     background-color: #f5f7fa;
 }
 
-.dashboard-content .card-footer {
+.main-content .card-footer {
     background-color: #edf4fc;
+    color: var(--theme-color);
 }
 
 #recentBooks, #recentUsers {
@@ -960,7 +961,12 @@ a, a:visited, a:hover {
 }
 
 .overdue-body {
-    height: 251px;
+    height: 358px;
+}
+
+.no-content-img img {
+    width: 120px;
+    opacity: 70%;
 }
 
 .notification-body {
