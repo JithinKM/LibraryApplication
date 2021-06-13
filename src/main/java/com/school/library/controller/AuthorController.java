@@ -1,22 +1,21 @@
 package com.school.library.controller;
 
-import com.school.library.entity.AuthorEntity;
-import com.school.library.model.Author;
-import com.school.library.service.AuthorService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.school.library.constants.LibraryConstants.AUTHORS_PER_PAGE;
-import static com.school.library.constants.LibraryConstants.AUTHOR_DETAIL_TEMPLATE;
+import com.school.library.model.Author;
+import com.school.library.service.AuthorService;
 
 @Controller
 @RequestMapping("/author")
@@ -28,15 +27,14 @@ public class AuthorController {
     private AuthorService authorService;
     
     @GetMapping
-    public String getAuthorsListPage(Model model) {
-        List<AuthorEntity> authors = new ArrayList<>();
-        Page<AuthorEntity> pagedResult = authorService.getAuthors(0, AUTHORS_PER_PAGE);
-        if(pagedResult.hasContent()) {
-            authors = pagedResult.getContent();
-        }
-
-        model.addAttribute("authors", authors);
-        model.addAttribute("pageCount", pagedResult.getTotalPages());
+    public String getAuthorsListPage(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+    	if (StringUtils.isNotBlank(keyword)) {
+			model.addAttribute("authors", authorService.searchAuthors(keyword));
+			model.addAttribute("keyword", keyword);
+			return "authors-list";
+		}
+    	
+        model.addAttribute("authors", authorService.getDefaultAuthors());
         return "authors-list";
     }
 
@@ -45,25 +43,34 @@ public class AuthorController {
         authorService.createAuthor(author);
         return "redirect:/author";
     }
-
-    @DeleteMapping("/{id}")
+    
+    @PutMapping
+    public String updateAuthor(Author author, Model model) {
+        authorService.updateAuthor(author);
+        return "redirect:/author";
+    }
+    
+    @DeleteMapping("/id/{id}")
     public String deleteAuthor(@PathVariable Long id) {
-        authorService.deleteAuthor(id);
+        authorService.deleteAuthorById(id);
         return "authors-list";
     }
 
-    @GetMapping("/all/{query}")
-    public List<AuthorEntity> getAuthors(@PathVariable("query") String name) {
-
-        return authorService.getAuthors(name);
-    }
-
-    @GetMapping("/{id}")
-    public ModelAndView getAuthor(@PathVariable("id") Long id,  final ModelAndView model) {
-
-        final AuthorEntity author = authorService.getAuthor(id);
-        model.addObject("author", author);
-        model.setViewName(AUTHOR_DETAIL_TEMPLATE);
-        return model;
-    }
+   
+    
+    
+    
+    
+    
+//    @GetMapping("/id/{id}")
+//    @ResponseBody
+//    public AuthorEntity getAuthor(@PathVariable("id") Long id, Model model) {
+//        return authorService.getAuthorById(id);
+//    }
+//    
+//    @GetMapping("/all/{name}")
+//    @ResponseBody
+//    public List<AuthorEntity> getAuthorsByName(@PathVariable("name") String name) {
+//        return authorService.getAuthorsByName(name);
+//    }
 }

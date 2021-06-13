@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.school.library.service.UtilityService;
+import com.school.library.service.impl.UtilityService;
 
 @RestController
 @RequestMapping("/utility")

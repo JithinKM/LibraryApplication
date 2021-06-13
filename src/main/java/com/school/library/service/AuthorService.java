@@ -4,17 +4,27 @@ import java.util.List;
 
 import com.school.library.entity.AuthorEntity;
 import com.school.library.model.Author;
-import org.springframework.data.domain.Page;
 
 public interface AuthorService {
 
-    void createAuthor(final Author author);
+	List<AuthorEntity> getAllAuthors();
 
-    Page<AuthorEntity> getAuthors(final int page, final int size);
+	List<AuthorEntity> getDefaultAuthors();
 
-    List<AuthorEntity> getAuthors(final String name);
+	void createAuthor(Author author);
+	
+	void updateAuthor(Author author);
 
-    AuthorEntity getAuthor(final Long id);
+	void deleteAuthorById(Long id);
 
-    void deleteAuthor(final Long id);
+	List<AuthorEntity> searchAuthors(String keyword);
+
+	
+	
+	//need to delete below
+	AuthorEntity getAuthorById(Long id);
+
+	List<AuthorEntity> getAuthorsByName(String name);
+
+	
 }

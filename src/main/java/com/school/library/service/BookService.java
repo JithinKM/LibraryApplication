@@ -14,9 +14,11 @@ public interface BookService {
 
     void createBooks(final Book bookEntity);
 
-    List<BookDetailsEntity> getDefaultBooks(int maxVisible, String visibleOrder);
+    List<BookDetailsEntity> getDefaultBooks(String visibleOrder);
 
     void deleteBook(String id);
 
 	List<BookDetailsEntity> getAllBooks();
+	
+	List<BookDetailsEntity> searchBookDetails(String keyword);
 }

@@ -1,4 +1,4 @@
-package com.school.library.service;
+package com.school.library.service.impl;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,6 +24,7 @@ import com.school.library.model.User;
 import com.school.library.repository.BookRepository;
 import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.UserRepository;
+import com.school.library.service.DashboardService;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {

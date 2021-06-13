@@ -1,4 +1,4 @@
-package com.school.library.service;
+package com.school.library.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,17 +11,26 @@ import javax.management.RuntimeErrorException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
 import com.school.library.entity.AuthorEntity;
 import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookEntity;
+import com.school.library.entity.QBookDetailsEntity;
 import com.school.library.model.Book;
 import com.school.library.repository.BookDetailsRepository;
 import com.school.library.repository.BookRepository;
+import com.school.library.service.BookService;
 
 @Service
 public class BookServiceImpl implements BookService {
+	
+	@Value("${book.visible.count}")
+	private int visbleCount;
 	
     @Autowired
     private BookRepository bookRepository;
@@ -65,7 +74,7 @@ public class BookServiceImpl implements BookService {
 	}
 
     @Override
-    public List<BookDetailsEntity> getDefaultBooks(int maxVisible, String visibleOrder) {
+    public List<BookDetailsEntity> getDefaultBooks(String visibleOrder) {
     	Stream<BookDetailsEntity> books = Stream.of();
     	switch (visibleOrder) {
 		case "RANDOM":
@@ -78,7 +87,7 @@ public class BookServiceImpl implements BookService {
 			books = bookDetailsRepository.findBookDetails().stream().filter(x -> x.getCount() > 0);
 			break;
 		}
-        return books.limit(maxVisible).collect(Collectors.toList());
+        return books.limit(visbleCount).collect(Collectors.toList());
     }
 
     @Override
@@ -91,5 +100,22 @@ public class BookServiceImpl implements BookService {
 	public List<BookDetailsEntity> getAllBooks() {
 		return bookDetailsRepository.findAll();
 	}
+	
+	//Book Details Search ----------------------------------------------------------------
+	@Override
+	public List<BookDetailsEntity> searchBookDetails(String keyword) {
+		OrderSpecifier<String> sortByName = QBookDetailsEntity.bookDetailsEntity.name.asc();
+		return (List<BookDetailsEntity>) bookDetailsRepository.findAll(predicateBookDetails(keyword), sortByName);
+	}
 
+	private Predicate predicateBookDetails(String keyword) {
+		QBookDetailsEntity qBookDetailsEntity = QBookDetailsEntity.bookDetailsEntity;
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+		
+		if(StringUtils.isNotBlank(keyword)) {
+			booleanBuilder.or(qBookDetailsEntity.name.likeIgnoreCase("%" + keyword + "%"));
+			booleanBuilder.or(qBookDetailsEntity.author.name.likeIgnoreCase("%" + keyword + "%"));
+		}
+		return booleanBuilder.getValue();
+	}
 }

@@ -1,5 +1,6 @@
 package com.school.library.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.school.library.config.UserPrincipal;
@@ -26,9 +28,6 @@ public class BookController {
 	
 	@Value("${max.allowed.book.count}")
 	private int maxBooks;
-	
-	@Value("${admin.book.visible.count}")
-	private int visbleCount;
     
     @Value("${admin.book.visible.order}")
 	private String visibleOrder;
@@ -38,10 +37,17 @@ public class BookController {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	@GetMapping("/book")
-	public String getBooksListPage(Model model) {
-		model.addAttribute("books", bookService.getDefaultBooks(visbleCount, visibleOrder));
+	public String getBooksListPage(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+		
+		if (StringUtils.isNotBlank(keyword)) {
+			model.addAttribute("books", bookService.searchBookDetails(keyword));
+			model.addAttribute("keyword", keyword);
+			return "books-list";
+		}
+		
+		model.addAttribute("books", bookService.getDefaultBooks(visibleOrder));
 		return "books-list";
 	}
 

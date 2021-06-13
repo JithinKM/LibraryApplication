@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.school.library.config.QueryManager;
 import com.school.library.service.BookService;
 
 @Controller
@@ -18,17 +17,11 @@ public class HomeController {
 
 	public static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@Value("${book.visible.count}")
-	private int visbleCount;
-
 	@Value("${book.visible.order}")
 	private String visibleOrder;
 
 	@Autowired
 	private BookService bookService;
-
-	@Autowired
-	private QueryManager manger;
 
 	@GetMapping("/")
 	public String home() {
@@ -38,12 +31,12 @@ public class HomeController {
 	@GetMapping("/home")
 	public String homePage(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
 		if (StringUtils.isNotBlank(keyword)) {
-			model.addAttribute("books", manger.searchBooks(keyword));
+			model.addAttribute("books", bookService.searchBookDetails(keyword));
 			model.addAttribute("keyword", keyword);
 			return "home";
 		}
 
-		model.addAttribute("books", bookService.getDefaultBooks(visbleCount, visibleOrder));
+		model.addAttribute("books", bookService.getDefaultBooks(visibleOrder));
 		return "home";
 	}
 

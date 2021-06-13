@@ -1,4 +1,4 @@
-package com.school.library.service;
+package com.school.library.service.impl;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -32,6 +32,7 @@ import com.school.library.repository.BookUserRepository;
 import com.school.library.repository.RolesRepository;
 import com.school.library.repository.UserDetailsRepository;
 import com.school.library.repository.UserRepository;
+import com.school.library.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
