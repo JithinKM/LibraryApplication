@@ -1,5 +1,7 @@
 package com.school.library.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -181,7 +183,13 @@ public class UserServiceImpl implements UserService {
 		userDetailsEntity.setParentName(Objects.toString(user.getParentName(), ""));
 		userDetailsEntity.setParentPhone(Objects.toString(user.getParentPhone(), ""));
 		userDetailsEntity.setPhone(Objects.toString(user.getPhone(), ""));
-		userDetailsEntity.setDob(user.getDob());
+		
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+			userDetailsEntity.setDob(sdf.parse(user.getDob()));
+		} catch (ParseException e) {
+			userDetailsEntity.setDob(new Date());
+		}
 		Random random = new Random();
 		userDetailsEntity.setAvatarId(String.valueOf(random.nextInt(30) + 1));
 		
