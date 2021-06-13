@@ -17,9 +17,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
 import com.school.library.entity.BookDetailsEntity;
 import com.school.library.entity.BookEntity;
 import com.school.library.entity.BookUserEntity;
+import com.school.library.entity.QUserEntity;
 import com.school.library.entity.RoleEntity;
 import com.school.library.entity.UserDetailsEntity;
 import com.school.library.entity.UserEntity;
@@ -291,6 +295,24 @@ public class UserServiceImpl implements UserService {
 			userDetail.setAvatarId("0");
 		}
 		userDetail.setAvatarId(avatarId);	
+	}
+	
+	//Book Details Search ----------------------------------------------------------------
+	@Override
+	public List<UserEntity> searchUserDetails(String keyword) {
+		OrderSpecifier<String> sortByName = QUserEntity.userEntity.userdetail.firstname.asc();
+		return (List<UserEntity>) userRepository.findAll(predicateBookDetails(keyword), sortByName);
+	}
+
+	private Predicate predicateBookDetails(String keyword) {
+		QUserEntity qUserEntity = QUserEntity.userEntity;
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+		
+		if(StringUtils.isNotBlank(keyword)) {
+			booleanBuilder.or(qUserEntity.userdetail.firstname.likeIgnoreCase("%" + keyword + "%"));
+			booleanBuilder.or(qUserEntity.userdetail.lastname.likeIgnoreCase("%" + keyword + "%"));
+		}
+		return booleanBuilder.getValue();
 	}
 
 }

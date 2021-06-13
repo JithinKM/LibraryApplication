@@ -32,4 +32,6 @@ public interface UserService {
 	BookUserEntity cancelBookRequest(Long bookUserId, String username);
 
 	void updateProfileAvatar(String username, String avatarId);
+
+	List<UserEntity> searchUserDetails(String keyword);
 }

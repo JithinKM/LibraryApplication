@@ -1,11 +1,12 @@
 package com.school.library.repository;
 
-import com.school.library.entity.BookEntity;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.school.library.entity.BookEntity;
+
 @Repository
-public interface BookRepository extends PagingAndSortingRepository<BookEntity, String> {
+public interface BookRepository extends JpaRepository<BookEntity, String> {
 
 //    @Query("FROM BookEntity b where b.author = :author")
 //    Iterable<BookEntity> findAllByAuthor(@Param("author") final String authorId);
