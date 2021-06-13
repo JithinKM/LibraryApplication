@@ -10,8 +10,12 @@
                   <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
                         <div class="input-group search-form">
-                           <input type="text" class="form-control text-center" id="filter-users" placeholder="Search users">
-                           </span>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control text-center" id="filter-users" placeholder="Search users">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                </div>
+                            </div>
                         </div>
                      </div>
                   </div>

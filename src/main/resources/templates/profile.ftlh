@@ -28,7 +28,12 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="align-items-center text-center">
-                            <img src="../img/avatars/${random}.png" alt="profilePic" class="rounded-circle" width="150">
+                            <div class="img-overlay">
+                                <img src="../img/avatars/${random}.png" alt="profilePic" class="rounded-circle" width="150">
+                                <div class="col-12 mx-auto d-flex align-items-center change-image">
+                                    <a class="mx-auto" data-toggle="modal" data-target="#avatarModal"><i class="bi bi-camera-fill"></i></a>
+                                </div>
+                            </div>
                             <div class="mt-3 user-name color-cyan">
                                 <h4>${user.username}</h4>
                                 <p class="text-secondary mb-1">${user.type}</p>
@@ -307,6 +312,7 @@
 
 <#include "/modal/book-renew-modal.ftlh">
 <#include "/modal/book-cancel-modal.ftlh">
+<#include "/modal/avatar-modal.ftlh">
 <#assign pageTracker = "profile">
    </div>
    </div>

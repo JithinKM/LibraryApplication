@@ -68,6 +68,16 @@ function profilePageReady() {
             $('#input-password').attr("disabled", true);
         }
     });
+
+    $('.avatar-select').click(function(clickEvent) {
+        clickEvent.preventDefault();
+        clickEvent.stopPropagation();
+        $('.change-avatar').css('opacity', 0);
+        $(this).parent('.change-avatar').css('opacity', 1);
+        var avatarSrc = $(this).parent().siblings('.rounded-circle').attr('src');
+        var avatarId = avatarSrc.substr(avatarSrc.length - 5);
+        document.cookie = "avatarId=" + avatarId;
+    });
 }
 
 $(document).ready(function() {
