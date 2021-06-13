@@ -171,12 +171,14 @@ function adminDashboardReady() {
         $("#bookApprovalForm").attr('action', '/admin' + approveUrl);
 
         var imgSrc = "";
+        var profilePic = "../img/avatars/" + $(this).siblings('.avatarId').val() + ".png";
         if ($(this).siblings('.bookCover').val() != undefined) {
             imgSrc = "http://covers.openlibrary.org/b/isbn/" + $(this).siblings('.bookCover').val() + "-M.jpg";
         } else {
             imgSrc = "../img/book-cover.png";
         }
         $('.book-cover-div').css("background-image", 'url(' + imgSrc+ ')');
+        $('.profile-pic-div').css("background-image", 'url(' + profilePic+ ')');
     });
     $("#bookId").change(checkBookId);
 

@@ -17,7 +17,7 @@
                         <i class="bi bi-box-arrow-right"></i>
                    </div>
                    <div class="col-5">
-                       <div class="profile-pic-div" style="background-image: url(../img/avatars/${random}.png)"></div>
+                       <div class="profile-pic-div" style="background-image: url(../img/avatars/0.png)"></div>
                    </div>
                 </div>
                 <div class="row">

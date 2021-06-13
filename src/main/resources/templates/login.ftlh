@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="dob" name="dob" placeholder="DOB" required autocomplete="off">
+                                            <input type="date" class="form-control" id="dob" name="dob" placeholder="DOB" required autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

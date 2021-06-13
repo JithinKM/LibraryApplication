@@ -10,7 +10,8 @@
                 <div class="row">
                     <div class="col-10">
                         <div class="row" id="username-heading">
-                            <img src="../img/avatars/${random}.png" alt="Admin" class="rounded-circle profile-img-sm" width="110" height="110">
+                            <img src="../img/avatars/${(avatarId)!0}.png" alt="Admin" class="rounded-circle
+                            profile-img-sm" width="110" height="110">
                             <div class="col-12">
                                 <h5 class="text-left color-cyan username-sm">${user.userdetail.fullName}</h5>
                             </div>
@@ -29,7 +30,7 @@
                     <div class="col-md-5">
                         <div class="align-items-center text-center">
                             <div class="img-overlay">
-                                <img src="../img/avatars/${random}.png" alt="profilePic" class="rounded-circle" width="150">
+                                <img src="../img/avatars/${(avatarId)!0}.png" alt="profilePic" class="rounded-circle" width="150">
                                 <div class="col-12 mx-auto d-flex align-items-center change-image">
                                     <a class="mx-auto" data-toggle="modal" data-target="#avatarModal"><i class="bi bi-camera-fill"></i></a>
                                 </div>

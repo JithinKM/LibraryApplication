@@ -1,5 +1,5 @@
 <div class="modal fade modal-blur" id="avatarModal" tabindex="-1" role="dialog" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+ <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
        <div class="modal-header text-center">
           <h5 class="modal-title w-100"><@spring.message "modal.avatar.title"/></h5>
@@ -10,8 +10,8 @@
        <div class="modal-body">
           <div class="col-12 avatar-outer">
             <div class="row">
-            <#list 0..8 as i>
-                <div class="col-4 avatar-img">
+            <#list 1..30 as i>
+                <div class="col-2 avatar-img">
                     <div class="img-overlay">
                         <img class="rounded-circle w-100" src="../img/avatars/${i}.png" width="100">
                         <div class="col-12 mx-auto d-flex align-items-center change-avatar">

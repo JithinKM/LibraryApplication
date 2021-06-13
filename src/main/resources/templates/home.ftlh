@@ -3,17 +3,38 @@
    <div class="container-fluid main-container">
       <div class="row main-row">
          <main class="home-container justify-content-center">
-            <div class="book-container text-center">
-               <div class="search-box">
-                  <form action="/home" class="search-form">
-                     <input type="text" class="text-center" placeholder="Search: Book or Author" id="search" name="keyword" autocomplete="off" value=${(keyword)!""}>
-                  </form>
-                  <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
-                     xml:space="preserve">
-                     <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
-                     <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
-                  </svg>
-               </div>
+           <div class="search-box">
+              <form action="/home" class="search-form">
+                 <input type="text" class="text-center" placeholder="Search: Book or Author" id="search" name="keyword"
+                 autocomplete="off" value="${(keyword)!""}" minlength="3" required>
+              </form>
+              <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
+                 xml:space="preserve">
+                 <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
+                 <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
+              </svg>
+           </div>
+           <#if keyword?has_content>
+           <h6 class="w-100 text-center home-info"><@spring.message "homepage.searchBooks.message"/></h6>
+           <#else>
+           <h6 class="w-100 text-center home-info"><@spring.message "homepage.randomBooks.message"/></h6>
+           </#if>
+           <h6 class="w-100 text-center home-info-arrow bounce-3"><a href="#book-list-outer" class="scrollto"><i class="bi bi-arrow-down-short"></i></a></h6>
+           <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+             <defs>
+               <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+             </defs>
+             <g class="wave1">
+               <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+             </g>
+             <g class="wave2">
+               <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+             </g>
+             <g class="wave3">
+               <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+             </g>
+           </svg>
+            <div id="book-list-outer" class="book-container text-center">
                <div class="row icon-boxes" id="book-list">
                   <#if books??>
                   <#list books as bookDetail>
