@@ -9,10 +9,12 @@
                <div class="panel panel-info list-title">
                   <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
-                        <div class="input-group search-form">
-                           <input type="text" class="form-control text-center" id="filter-authors" placeholder="Search authors">
-                           </span>
-                        </div>
+                        <form role="form" action="/author" method="GET">
+                            <div class="btn-group mb-3">
+                                <input type="text" class="form-control text-center" name="keyword" placeholder="Search authors" minlength="3" autocomplete="off" required>
+                                <button class="btn btn-secondary" type="submit" id="authorSearch"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                      </div>
                   </div>
                   <div class="card mb-4">
@@ -41,7 +43,7 @@
                                     <td class="author-filter">${author.penName}</td>
                                     <td>
                                        <a class="confirm author-edit" data-toggle="modal" data-target="#authorEditModal">Edit</a> |
-                                       <a class="reject" href="/author/${author.id}/delete">Delete</a>
+                                       <a class="reject" href="/author/id/${author.id?string.computer}">Delete</a>
                                        <input type="hidden" class="authorEditId" value="${author.id}" />
                                        <input type="hidden" class="authorEditName" value="${author.name}" />
                                        <input type="hidden" class="authorEditPenName" value="${author.penName}" />

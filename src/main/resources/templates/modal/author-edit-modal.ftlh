@@ -8,10 +8,10 @@
              </button>
           </div>
           <div class="modal-body">
-             <form role="form" id="authorEditForm" action="/author" method="POST">
+             <form role="form" id="authorEditForm" action="/author" method="PUT">
                 <div class="form-group">
                    <label for="blogPostTitle">Name</label>
-                   <input type="text" class="form-control typeahead" id="editName" name="name" placeholder="Enter author name" autocomplete="off">
+                   <input type="text" class="form-control" id="editName" name="name" placeholder="Enter author name" autocomplete="off">
                 </div>
                 <div class="form-group">
                    <label for="blogPostTitle">Pen Name</label>

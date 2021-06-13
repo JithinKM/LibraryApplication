@@ -27,6 +27,7 @@
 	<#nested>
 	
 	<#include "login_footer.ftlh">
+	<#include "../modal/message_modal.ftlh">
 
 	<!-- JavaScript Libraries -->
 	<script src="<@spring.url '/js/jquery.min.js' />"></script>

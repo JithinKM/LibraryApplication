@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    var currentPage = $('#pageTracker').val();
+    if ($('#messageModal').length) {
+        $('#messageModalBtn').click();
+    }
+
     if($(window).width() > 765) {
         $('#signupDiv').addClass('d-flex');
         $('#signupDiv').removeClass('d-none');

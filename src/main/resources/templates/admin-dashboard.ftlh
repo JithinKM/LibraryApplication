@@ -101,7 +101,7 @@
                                                     <div class="card-body d-flex justify-content-center">
                                                         <form role="form" action="/admin/dashboard" method="GET">
                                                             <div class="btn-group mb-3">
-                                                                <input type="text" class="form-control" name="bookId" placeholder="Enter book id" aria-label="Book Id" autocomplete="off" required>
+                                                                <input type="text" class="form-control" name="searchBookId" placeholder="Enter book id" aria-label="Book Id" autocomplete="off" required>
                                                                 <button class="btn btn-primary" type="submit" id="bookSearch"><i class="bi bi-search"></i></button>
                                                             </div>
                                                         </form>
@@ -116,7 +116,7 @@
                                                     <div class="card-body d-flex justify-content-center">
                                                         <form role="form" action="/admin/dashboard" method="GET">
                                                             <div class="btn-group mb-3">
-                                                                <input type="text" class="form-control" name="username" placeholder="Enter username" aria-label="Book Id" autocomplete="off" required>
+                                                                <input type="text" class="form-control" name="searchUsername" placeholder="Enter username" aria-label="Book Id" autocomplete="off" required>
                                                                 <button class="btn btn-primary" type="submit" id="userSearch"><i class="bi bi-search"></i></button>
                                                             </div>
                                                         </form>
@@ -152,7 +152,7 @@
                                                                 </div>
                                                                 <input type="hidden" class="bookApproveId" value="${bookUser.id?string.computer}">
                                                                 <input type="hidden" class="bookName" value="${bookUser.book.bookDetails.name}">
-                                                                <input type="hidden" class="avatarId" value="${(bookUser.book.bookDetails.avatarId)!0}">
+                                                                <input type="hidden" class="avatarId" value="${(bookUser.user.userdetail.avatarId)!0}">
                                                                 <input type="hidden" class="userName" value="${bookUser.user.username}">
                                                                 <input type="hidden" class="bookId" value="${bookUser.book.id}">
                                                                 <#if bookUser.book.bookDetails.isbn?has_content>
@@ -231,11 +231,14 @@
                                                 <div class="accordion" id="accordion${newuser.username}">
                                                     <div class="accordion-item shadow-sm">
                                                         <div class="accordion-header" data-toggle="collapse" data-target="#${newuser.username}" aria-expanded="true" aria-controls="${newuser.username}">
-                                                            <div class="row notification alert-info">
-                                                                <div class="col-5 notification-body">
+                                                            <div class="row notification">
+                                                                <div class="col-1 notification-body">
+                                                                    <img src="../img/avatars/${(newuser.userdetail.avatarId)!0}.png" class="rounded-circle" width="25" height="25">
+                                                                </div>
+                                                                <div class="col-5 notification-body font-weight-bold">
                                                                     ${newuser.userdetail.fullName}
                                                                 </div>
-                                                                <div class="col-3 notification-body">
+                                                                <div class="col-2 notification-body">
                                                                     <#if newuser.userdetail.student>${newuser.userdetail.standard} - ${newuser.userdetail.division}</#if>
                                                                 </div>
                                                                 <div class="col-4 float-right">

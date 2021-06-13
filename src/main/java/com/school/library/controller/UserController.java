@@ -1,6 +1,7 @@
 package com.school.library.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import com.school.library.entity.UserDetailsEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +60,11 @@ public class UserController {
     	return "redirect:/user/profile";
     }
     
-    @PostMapping("/user/profile/avatar/{avatarId}")
-    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("avatarId") String avatarId, 
+    @GetMapping("/user/profile/avatar/{avatarId}")
+    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("avatarId") String avatarId,
     		Model model, RedirectAttributes redirectAttrs) {
-    	userService.updateProfileAvatar(userPrincipal.getUsername(), avatarId);
+        UserDetailsEntity userDetails = userService.updateProfileAvatar(userPrincipal.getUsername(), avatarId);
+        userPrincipal.setAvatarId(userDetails.getAvatarId());
     	return "redirect:/user/profile";
     }
 }

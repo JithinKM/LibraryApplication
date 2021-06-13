@@ -105,31 +105,6 @@ function authorsListPageReady() {
         $("#editPenName").val($(event.target).siblings(".authorEditPenName").val());
         $("#editId").val($(event.target).siblings(".authorEditId").val());
     });
-
-    $.get( "/author/all", function(data) {
-        var authors = data;
-        var authorSuggestions = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: authors
-        });
-
-        $('.typeahead').typeahead({
-          hint: true,
-          highlight: true,
-          minLength: 1
-        },
-        {
-          name: 'authors',
-          display: 'name',
-          source: authorSuggestions.ttAdapter()
-        });
-    });
-
-    $('.typeahead').on('typeahead:selected', function(evt, item) {
-        $('#editId').val(item.id);
-        $('#editPenName').val(item.penName);
-    });
 }
 
 function usersListPageReady() {

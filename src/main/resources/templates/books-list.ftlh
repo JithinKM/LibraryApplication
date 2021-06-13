@@ -9,9 +9,12 @@
                <div class="panel panel-info list-title">
                   <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
-                        <div class="input-group search-form">
-                           <input type="text" class="form-control text-center" id="filer-books" placeholder="Search books or authors">
-                        </div>
+                        <form role="form" action="/book" method="GET">
+                            <div class="btn-group mb-3">
+                                <input type="text" class="form-control text-center" name="keyword" placeholder="Search books or authors" minlength="3" autocomplete="off" required>
+                                <button class="btn btn-secondary" type="submit" id="bookSearch"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                      </div>
                   </div>
                   <div class="card mb-4">

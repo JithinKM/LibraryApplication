@@ -9,6 +9,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item" id="profile">
             <#assign userName = Session.SPRING_SECURITY_CONTEXT.authentication.principal.getFullName()>
+            <#assign avatarId = Session.SPRING_SECURITY_CONTEXT.authentication.principal.getAvatarId()>
             <a class="nav-link" href="/user/profile">
                 <img src="../img/avatars/${(avatarId)!0}.png" alt="profilePic" class="rounded-circle" width="25"/>
                 ${userName}

@@ -9,14 +9,12 @@
                <div class="panel panel-info list-title">
                   <div class="row d-flex justify-content-center">
                      <div class="col-xs-12 col-sm-4 panel-heading">
-                        <div class="input-group search-form">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control text-center" id="filter-users" placeholder="Search users">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                </div>
+                        <form role="form" action="/user" method="GET">
+                            <div class="btn-group mb-3">
+                                <input type="text" class="form-control text-center" name="keyword" placeholder="Search users" minlength="3" autocomplete="off" required>
+                                <button class="btn btn-secondary" type="submit" id="userSearch"><i class="bi bi-search"></i></button>
                             </div>
-                        </div>
+                        </form>
                      </div>
                   </div>
                   <div class="card mb-4">

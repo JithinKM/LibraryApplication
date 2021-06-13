@@ -43,6 +43,10 @@ public class UserPrincipal implements UserDetails {
 		return user.getUserdetail().getAvatarId();
 	}
 
+	public void setAvatarId(String avatarId) {
+		user.getUserdetail().setAvatarId(avatarId);
+	}
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

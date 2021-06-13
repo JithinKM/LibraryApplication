@@ -13,7 +13,7 @@
             <#list 1..30 as i>
                 <div class="col-2 avatar-img">
                     <div class="img-overlay">
-                        <img class="rounded-circle w-100" src="../img/avatars/${i}.png" width="100">
+                        <img class="rounded-circle w-100" src="../img/avatars/${i}.png" data="${i}" width="100">
                         <div class="col-12 mx-auto d-flex align-items-center change-avatar">
                             <a class="mx-auto avatar-select" data-toggle="modal" data-target="#avatarModal"><i class="bi bi-check"></i></a>
                         </div>

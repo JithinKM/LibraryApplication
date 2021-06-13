@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-10">
                         <div class="row" id="username-heading">
-                            <img src="../img/avatars/${(avatarId)!0}.png" alt="Admin" class="rounded-circle
+                            <img src="../img/avatars/${(user.userdetail.avatarId)!0}.png" class="rounded-circle
                             profile-img-sm" width="110" height="110">
                             <div class="col-12">
                                 <h5 class="text-left color-cyan username-sm">${user.userdetail.fullName}</h5>
@@ -30,7 +30,7 @@
                     <div class="col-md-5">
                         <div class="align-items-center text-center">
                             <div class="img-overlay">
-                                <img src="../img/avatars/${(avatarId)!0}.png" alt="profilePic" class="rounded-circle" width="150">
+                                <img src="../img/avatars/${(user.userdetail.avatarId)!0}.png" alt="profilePic" class="rounded-circle" width="150">
                                 <div class="col-12 mx-auto d-flex align-items-center change-image">
                                     <a class="mx-auto" data-toggle="modal" data-target="#avatarModal"><i class="bi bi-camera-fill"></i></a>
                                 </div>
@@ -126,6 +126,16 @@
                                 <div class="col-sm-9 text-secondary">
                                     <div class="user-field mt-2" id="field-email">${user.email}</div>
                                     <input type="text" class="form-control user-input d-none" id="input-email" name="email" autocomplete="off" value="${user.email}">
+                                </div>
+                            </div>
+                            <hr class="user-field mt-2">
+                            <div class="row profile-edit-field">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 mt-2">DOB</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <div class="user-field mt-2" id="field-dob">${(user.userdetail.dob?date)!"-"}</div>
+                                    <input type="text" class="form-control user-input d-none" id="input-dob" name="dob" autocomplete="off" value="${(user.userdetail.dob?date)!"-"}" disabled>
                                 </div>
                             </div>
                             <hr class="user-field mt-2">

@@ -288,13 +288,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateProfileAvatar(String username, String avatarId) {
-		UserEntity userEntity = userRepository.findById(username).map(x -> x).orElseThrow(() -> new BadRequestExpection("Not able to find user"));
+	public UserDetailsEntity updateProfileAvatar(String username, String avatarId) {
+		UserEntity userEntity = userRepository.findById(username).orElseThrow(() -> new BadRequestExpection("Not able to find user"));
 		UserDetailsEntity userDetail = userEntity.getUserdetail();
-		if(StringUtils.isBlank(avatarId)) {
-			userDetail.setAvatarId("0");
+		if(StringUtils.isNotBlank(avatarId)) {
+			userDetail.setAvatarId(avatarId);
+			return userDetailsRepository.save(userDetail);
 		}
-		userDetail.setAvatarId(avatarId);	
+
+		return userDetail;
 	}
 	
 	//Book Details Search ----------------------------------------------------------------

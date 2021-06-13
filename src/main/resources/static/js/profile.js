@@ -74,9 +74,8 @@ function profilePageReady() {
         clickEvent.stopPropagation();
         $('.change-avatar').css('opacity', 0);
         $(this).parent('.change-avatar').css('opacity', 1);
-        var avatarSrc = $(this).parent().siblings('.rounded-circle').attr('src');
-        var avatarId = avatarSrc.substr(avatarSrc.length - 5);
-        document.cookie = "avatarId=" + avatarId;
+        var avatarId = $(this).parent().siblings('.rounded-circle').attr('data');
+        $("#applyAvatar").attr('href', '/user/profile/avatar/' + avatarId);
     });
 }
 
