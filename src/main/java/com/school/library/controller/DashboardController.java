@@ -31,7 +31,20 @@ public class DashboardController {
 	private DashboardService dashboardService;
 
 	@GetMapping("/dashboard")
-	public String dashboardPage(@RequestParam(value="bookId",required=false) String bookId, Model model) {
+	public String dashboardPage(@RequestParam(value="bookId",required=false) String bookId,
+			@RequestParam(value="searchUserId",required=false) String searchUserId,
+			@RequestParam(value="searchBookId",required=false) String searchBookId,
+			Model model) {
+		
+		if(StringUtils.isNoneBlank(searchUserId)){
+			model.addAttribute("searchUser", dashboardService.findAllUserDetails(searchUserId.trim()));
+			model.addAttribute("searchUserId", searchUserId);
+		}
+		
+		if(StringUtils.isNoneBlank(searchBookId)){
+			model.addAttribute("searchBook", dashboardService.findAllBookDetails(searchBookId.trim()));
+			model.addAttribute("searchBookId", searchBookId);
+		}
 		
 		if(StringUtils.isNoneBlank(bookId)){
 			model.addAttribute("allottedBook", dashboardService.findBookDetails(bookId.trim()));

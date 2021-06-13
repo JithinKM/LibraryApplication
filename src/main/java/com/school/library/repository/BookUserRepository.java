@@ -20,4 +20,8 @@ public interface BookUserRepository extends JpaRepository<BookUserEntity, Long> 
 	List<BookUserEntity> findTop10ByActionRequiredFalseOrderByUpdatedDateDesc();
 
 	List<BookUserEntity> findByStatusInAndDueDateLessThan(List<String> withUser, Date date);
+
+	List<BookUserEntity> findByBookIdOrderByUpdatedDateDesc(String searchBookId);
+
+	List<BookUserEntity> findByUserUsernameOrderByUpdatedDateDesc(String searchUserId);
 }

@@ -36,6 +36,11 @@ public class AuthorEntity {
 	public AuthorEntity(Long id) {
 		this.id = id;
 	}
+	
+	public AuthorEntity(String authorName) {
+		this.name = authorName;
+		this.penName = authorName;
+	}
 			
 	public AuthorEntity(Author author) {
 		this.id = author.getId();

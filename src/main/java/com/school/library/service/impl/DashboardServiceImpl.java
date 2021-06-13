@@ -183,6 +183,16 @@ public class DashboardServiceImpl implements DashboardService {
 		return bookUserList.get(0);
 	}
 	
+	@Override
+	public List<BookUserEntity> findAllBookDetails(String searchBookId) {
+		return bookUserRepository.findByBookIdOrderByUpdatedDateDesc(searchBookId);
+	}
+	
+	@Override
+	public List<BookUserEntity> findAllUserDetails(String searchUserId) {
+		return bookUserRepository.findByUserUsernameOrderByUpdatedDateDesc(searchUserId);
+	}
+	
 	private Optional<BookUserEntity> validateBookRequest(Long bookUserId) {
 		Optional<BookUserEntity> bookUser = bookUserRepository.findById(bookUserId);
 		if(!bookUser.isPresent()) {

@@ -58,6 +58,15 @@ public class BookDetailsEntity {
 		this.author = authorEntity;
 	}
 	
+	public BookDetailsEntity(String name, String publication, String category, String language, Date createdTimestamp, AuthorEntity authorEntity) {
+		this.name = name;
+		this.publication = publication;
+		this.category = category;
+		this.language = language;
+		this.createdTimestamp = createdTimestamp;
+		this.author = authorEntity;
+	}
+	
 	public BookDetailsEntity() {
 	}
 

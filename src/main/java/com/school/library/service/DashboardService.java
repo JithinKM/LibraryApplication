@@ -1,9 +1,9 @@
 package com.school.library.service;
 
+import java.util.List;
+
 import com.school.library.entity.BookUserEntity;
 import com.school.library.model.User;
-
-import java.util.List;
 
 public interface DashboardService {
 
@@ -32,5 +32,9 @@ public interface DashboardService {
 	List<String> getAllRegisteredUserNames();
 
 	BookUserEntity assignBookToUser(String bookId, String userId);
+
+	List<BookUserEntity> findAllBookDetails(String searchBookId);
+
+	List<BookUserEntity> findAllUserDetails(String trim);
 
 }
