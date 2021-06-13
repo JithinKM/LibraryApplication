@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String getUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, final Model model) {
+    public String getUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
     	model.addAttribute("user", new User(userService.findByUsername(userPrincipal.getUsername())));
     	model.addAttribute("currentBooks", userService.getCurrentOwnedBooks(userPrincipal.getUsername()));
     	model.addAttribute("bookHistory", userService.getBookHistory(userPrincipal.getUsername()));
@@ -45,10 +46,17 @@ public class UserController {
     }
     
     @PostMapping("/profile")
-    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, final Model model,
+    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, CreateUser user, Model model,
     		RedirectAttributes redirectAttrs) {
     	userService.updateProfile(userPrincipal.getUsername(), user);
     	redirectAttrs.addFlashAttribute("message", new Message("success","Profile Updated", "User Profile updated successfully."));
+    	return "redirect:/user/profile";
+    }
+    
+    @PostMapping("/profile/avatar/{avatarId}")
+    public String updateUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("avatarId") String avatarId, 
+    		Model model, RedirectAttributes redirectAttrs) {
+    	userService.updateProfileAvatar(userPrincipal.getUsername(), avatarId);
     	return "redirect:/user/profile";
     }
 }

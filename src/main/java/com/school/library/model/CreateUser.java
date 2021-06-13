@@ -1,5 +1,7 @@
 package com.school.library.model;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,6 +20,9 @@ public class CreateUser {
 	private String parentPhone;
 	private String password;
 	private String oldpassword;
+	private String avatarId;
+	private String imageId;
+	private Date dob;
 	
 	public String getFirstname() {
 		return firstname;
@@ -96,6 +101,24 @@ public class CreateUser {
 	}
 	public void setOldpassword(String oldpassword) {
 		this.oldpassword = oldpassword;
+	}
+	public String getAvatarId() {
+		return avatarId;
+	}
+	public void setAvatarId(String avatarId) {
+		this.avatarId = avatarId;
+	}
+	public String getImageId() {
+		return imageId;
+	}
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
+	}
+	public Date getDob() {
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 	
 }

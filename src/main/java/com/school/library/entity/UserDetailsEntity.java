@@ -1,6 +1,6 @@
 package com.school.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "userdetails", schema = "library")
@@ -30,6 +32,9 @@ public class UserDetailsEntity {
 	private String address;
 	private String parentName;
 	private String parentPhone;
+	private String avatarId;
+	private String imageId;
+	private Date dob;
 	
 	public String getfullName() {
 		return firstname + " " + lastname;
@@ -117,6 +122,30 @@ public class UserDetailsEntity {
 
 	public void setParentPhone(String parentPhone) {
 		this.parentPhone = parentPhone;
+	}
+
+	public String getAvatarId() {
+		return avatarId;
+	}
+
+	public void setAvatarId(String avatarId) {
+		this.avatarId = avatarId;
+	}
+
+	public String getImageId() {
+		return imageId;
+	}
+
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
 }

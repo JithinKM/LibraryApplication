@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
     
     @Value("${max.allowed.renew.count}")
 	private int maxRenew;
-
+    
     @Override
     public UserEntity findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -180,15 +181,17 @@ public class UserServiceImpl implements UserService {
 		userDetailsEntity.setParentName(Objects.toString(user.getParentName(), ""));
 		userDetailsEntity.setParentPhone(Objects.toString(user.getParentPhone(), ""));
 		userDetailsEntity.setPhone(Objects.toString(user.getPhone(), ""));
+		userDetailsEntity.setDob(user.getDob());
+		Random random = new Random();
+		userDetailsEntity.setAvatarId(String.valueOf(random.nextInt(30) + 1));
+		
 		if("STUDENT".equalsIgnoreCase(user.getType().trim().toUpperCase())) {
 			userDetailsEntity.setStandard(user.getStandard());
 		} else {
 			userDetailsEntity.setStandard(Short.valueOf("0"));
 		}
 		
-		
 		userDetailsEntity.setUser(userEntity);
-		
 		return userDetailsEntity;
 	}
 
@@ -270,6 +273,16 @@ public class UserServiceImpl implements UserService {
 			throw new BadRequestExpection("This book request is not in your name");
 		}
 		return bookUserEntity;
+	}
+
+	@Override
+	public void updateProfileAvatar(String username, String avatarId) {
+		UserEntity userEntity = userRepository.findById(username).map(x -> x).orElseThrow(() -> new BadRequestExpection("Not able to find user"));
+		UserDetailsEntity userDetail = userEntity.getUserdetail();
+		if(StringUtils.isBlank(avatarId)) {
+			userDetail.setAvatarId("0");
+		}
+		userDetail.setAvatarId(avatarId);	
 	}
 
 }

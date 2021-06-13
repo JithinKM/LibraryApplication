@@ -30,4 +30,6 @@ public interface UserService {
 	BookUserEntity renewBook(Long bookUserId, String username);
 
 	BookUserEntity cancelBookRequest(Long bookUserId, String username);
+
+	void updateProfileAvatar(String username, String avatarId);
 }

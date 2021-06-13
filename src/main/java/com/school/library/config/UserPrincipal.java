@@ -38,6 +38,10 @@ public class UserPrincipal implements UserDetails {
 	public String getFullName() {
 		return user.getUserdetail().getfullName();
 	}
+	
+	public String getAvatarId() {
+		return user.getUserdetail().getAvatarId();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

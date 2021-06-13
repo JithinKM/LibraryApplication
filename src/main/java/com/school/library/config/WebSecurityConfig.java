@@ -15,9 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private CustomRequestFilter requestFilter;
-    
     @Bean
     public UserDetailsService userDetailsService() {
       return new LibUserDetailsService();
@@ -31,14 +28,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
     	
-//    	httpSecurity
-//        .csrf().disable()
-//        .authorizeRequests()
-//        	.anyRequest().permitAll()
-//        	.and()
-//        .exceptionHandling()
-//        	.accessDeniedPage("/403");
-
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
@@ -55,18 +44,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 	.accessDeniedPage("/403");
         
-        //httpSecurity.addFilterAfter(requestFilter, BasicAuthenticationFilter.class);
     }
-    
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//    	UserDetails user = User.withDefaultPasswordEncoder()
-//    							.username("admin")
-//    							.password("admin")
-//    							.roles("ADMIN")
-//    							.build();
-//    	return new InMemoryUserDetailsManager(user);
-//    }
-
 }
