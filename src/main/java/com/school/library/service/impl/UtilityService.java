@@ -37,6 +37,7 @@ public class UtilityService {
 	@Autowired
 	private BookDetailsRepository bookDetailsRepository;
 
+	@SuppressWarnings("unchecked")
 	public void addBulkBookDetails(MultipartFile file) {
 		List<LibraryCsv> librayBooks = null;
 		try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {

@@ -3,6 +3,7 @@ package com.school.library.config;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,7 +41,7 @@ public class UserPrincipal implements UserDetails {
 	}
 	
 	public String getAvatarId() {
-		return user.getUserdetail().getAvatarId();
+		return Objects.toString(user.getUserdetail().getAvatarId(), "0");
 	}
 
 	public void setAvatarId(String avatarId) {
